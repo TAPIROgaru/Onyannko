@@ -1,6 +1,9 @@
 #pragma once
 #include "../library/t2klib.h"
 #include "DxLib.h"
+#include "game_main.h"
+
+
 
 
 //----------------------------------------------------------------------------------------------------

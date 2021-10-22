@@ -76,10 +76,10 @@
     <ClCompile Include="program\game\Enemy.cpp">
       <Filter>program\game</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\Player.cpp">
+    <ClCompile Include="program\game\Bullet.cpp">
       <Filter>program\game</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\Bullet.cpp">
+    <ClCompile Include="program\game\Player.cpp">
       <Filter>program\game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -171,9 +171,6 @@
     <ClInclude Include="program\game\Enemy.h">
       <Filter>program\game</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\Player.h">
-      <Filter>program\game</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\Bullet.h">
       <Filter>program\game</Filter>
     </ClInclude>
@@ -181,6 +178,9 @@
       <Filter>program\game</Filter>
     </ClInclude>
     <ClInclude Include="program\game\Camera.h">
+      <Filter>program\game</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\Player.h">
       <Filter>program\game</Filter>
     </ClInclude>
   </ItemGroup>

@@ -46,8 +46,9 @@ public:
 	//リスト　ポインタ
 
 	std::list<Object*>Op;   //Objectクラス
-	Player* Pp = nullptr;   //Playerクラス
 	std::list<Bullet*>Bp;   //Bulletクラス
+	std::list<Enemy*>Ep;    //Enemyクラス
+	Player* Pp = nullptr;   //Playerクラス
 
 	Camera cam;             //Cameraクラス
 
