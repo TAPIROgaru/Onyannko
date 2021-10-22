@@ -43,6 +43,13 @@ void GameManager::Delete() {
 	}
 }
 
+
+//----------------------------------------------------------------------------------------------------
+//’eì¬
+void GameManager::MakeBullet(t2k::Vector3 pos) {
+
+}
+
 //----------------------------------------------------------------------------------------------------
 //–ˆƒtƒŒ[ƒ€ŒÄ‚Ño‚µ
 
@@ -58,6 +65,8 @@ void GameManager::Update(float deltatime) {
 
 		pointer->Update(deltatime);
 	}
+
+	Delete();
 }
 void GameManager::Render(float deltatime) {
 

@@ -35,6 +35,7 @@
   <ItemGroup>
     <ClInclude Include="program\game\Bullet.h" />
     <ClInclude Include="program\game\Camera.h" />
+    <ClInclude Include="program\game\CharaObj.h" />
     <ClInclude Include="program\game\Enemy.h" />
     <ClInclude Include="program\game\GameManager.h" />
     <ClInclude Include="program\game\game_main.h" />

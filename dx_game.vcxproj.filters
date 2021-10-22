@@ -168,9 +168,6 @@
     <ClInclude Include="program\game\Object.h">
       <Filter>program\game</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\Camera.h">
-      <Filter>program\game</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\Enemy.h">
       <Filter>program\game</Filter>
     </ClInclude>
@@ -178,6 +175,12 @@
       <Filter>program\game</Filter>
     </ClInclude>
     <ClInclude Include="program\game\Bullet.h">
+      <Filter>program\game</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\CharaObj.h">
+      <Filter>program\game</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\Camera.h">
       <Filter>program\game</Filter>
     </ClInclude>
   </ItemGroup>

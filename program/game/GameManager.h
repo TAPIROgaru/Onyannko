@@ -6,6 +6,7 @@
 //©ìƒtƒ@ƒCƒ‹
 
 #include "Object.h"
+#include "CharaObj.h"
 #include "Camera.h"
 #include "Player.h"
 #include "Bullet.h"
@@ -24,6 +25,8 @@ public:
 	void Init();     //‰Šú‰»
 
 	void Delete();   //íœ
+
+	void MakeBullet(t2k::Vector3);
 
 
 	//------------------------------------------------------------------------------------------------
