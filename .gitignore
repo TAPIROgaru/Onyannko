@@ -33,3 +33,4 @@
 
 # Files not added
 .vs/
+.Debug/
