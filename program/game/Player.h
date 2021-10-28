@@ -4,7 +4,6 @@
 //©ìƒtƒ@ƒCƒ‹
 
 #include "CharaObj.h"
-#include "GameManager.h"
 
 
 

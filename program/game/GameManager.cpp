@@ -50,6 +50,30 @@ void GameManager::MakeBullet(t2k::Vector3 pos) {
 
 }
 
+
+//----------------------------------------------------------------------------------------------------
+//セーブ
+void GameManager::SavePlayer() {
+
+	FILE* fp = nullptr;
+
+	fopen_s(&fp, "player.bin", "wb");
+
+	//fwrite(Pp->name, sizeof(Pp->name), 1, fp);
+
+	//int status[5] = {
+	//	Pp->HP,
+
+	//};
+
+	//fwrite(status, sizeof(status), 1, fp);
+
+	fwrite(&Pp->sta, sizeof(CharaObj::Status), 1, fp);
+
+	fclose(fp);
+}
+
+
 //----------------------------------------------------------------------------------------------------
 //毎フレーム呼び出し
 
@@ -74,5 +98,7 @@ void GameManager::Render(float deltatime) {
 
 		pointer->Render(&cam);
 	}
+
+	DrawFormatString(100, 100, -1, "x:%f y:%f", Pp->pos.x, Pp->pos.y);
 }
 //----------------------------------------------------------------------------------------------------

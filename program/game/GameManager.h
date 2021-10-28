@@ -26,7 +26,9 @@ public:
 
 	void Delete();   //削除
 
-	void MakeBullet(t2k::Vector3);
+	void MakeBullet(t2k::Vector3);  //弾生成
+
+	void SavePlayer();
 
 
 	//------------------------------------------------------------------------------------------------
@@ -45,11 +47,13 @@ public:
 	//------------------------------------------------------------------------------------------------
 	//リスト　ポインタ
 
-	std::list<Object*>Op;   //Objectクラス
-	Player* Pp = nullptr;   //Playerクラス
-	std::list<Bullet*>Bp;   //Bulletクラス
+	std::list <Object*> Op;   //Objectクラス
+	std::list <Bullet*> Bp;   //Bulletクラス
+	std::list <Enemy*> Ep;    //Enemyクラス
 
-	Camera cam;             //Cameraクラス
+	Camera cam;               //Cameraクラス
+
+	Player* Pp = nullptr;     //Playerクラス
 
 
 	//------------------------------------------------------------------------------------------------

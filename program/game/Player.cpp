@@ -1,5 +1,5 @@
 #include "Player.h"
-
+#include "GameManager.h"
 
 extern GameManager* GMp;
 
@@ -16,17 +16,47 @@ Player::Player() {
 void Player::LoadStatus() {
 
 	FILE* fp = nullptr;
-	char buff[256];
 
-	fopen_s(&fp, "player.txt", "r");
+	char buff[name_length] = { 0 };
+	int status[status_value] = { 0 };
 
-	if (fp == NULL) { exit(1); }
+	fopen_s(&fp, "player.bin", "rb");
 
-	fseek(fp, 0, SEEK_END);
-	int file_size = ftell(fp);
-	fseek(fp, 0, SEEK_SET);
+	//バイナリファイルがなかったら
+	if (fp == NULL) {
 
-	//fread_s(&buff, sizeof(buff), file_size, 1, fp);
+		std::vector<std::vector<std::string>>datas;
+		datas = t2k::loadCsv("Charactor_Status.csv");
+
+		//名前読み込み
+		for (int i = 0; i < name_length; i++) {
+
+			sta.name[i] = datas[0][0].c_str()[i];
+
+			if ('\0' == datas[0][0].c_str()[i]) {
+				break;
+			}
+		}
+
+		//ステータス読み込み
+			
+
+		return;
+	}
+	
+	//名前読み込み
+	fread_s(buff, sizeof(buff), sizeof(buff) * name_length, 1, fp);
+
+	for (int i = 0; i < name_length;i++) {
+
+		sta.name[i] = buff[i];
+	}
+
+
+	fseek(fp, 0, sizeof(buff) * name_length);
+
+	//ステータス読み込み
+	fread_s(status, sizeof(status), sizeof(status) * status_value, 1, fp);
 
 	fclose(fp);
 }
@@ -39,25 +69,25 @@ void Player::Move(float deltatime) {
 	//上
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_W)) {
 
-		pos.y -= move_speed;
+		pos.y -= sta.move_speed;
 	}
 
 	//左
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_A)) {
 
-		pos.x -= move_speed;
+		pos.x -= sta.move_speed;
 	}
 
 	//下
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_S)) {
 
-		pos.y += move_speed;
+		pos.y += sta.move_speed;
 	}
 
 	//右
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_D)) {
 
-		pos.x += move_speed;
+		pos.x += sta.move_speed;
 	}
 
 	//右クリック
@@ -74,7 +104,7 @@ void Player::FireBullet(float deltatime) {
 
 	timecount += deltatime;
 
-	if (attack_speed > timecount) { return; }
+	if (sta.attack_speed > timecount) { return; }
 
 	timecount = 0;
 

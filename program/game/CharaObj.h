@@ -20,13 +20,24 @@ public:
 	//------------------------------------------------------------------------------------------------
 	//変数
 
+	static constexpr int name_length = 11;  //名前の長さ
+	static constexpr int status_value = 5;  //ステータスの数
+
+	
 
 	//ステータス
-	int HP;            //ヒットポイント
-	int move_speed;    //移動速度
-	int attack;        //攻撃力
-	int defense;       //防御力
-	int attack_speed;  //攻撃速度      一秒間に何回攻撃するか
+	class Status {
+	public:
+
+		char name[name_length] = { 0 };             //名前　※10文字
+		int HP;                //ヒットポイント
+		int move_speed;        //移動速度
+		int attack;            //攻撃力
+		int defense;           //防御力
+		int attack_speed;      //攻撃速度      一秒間に何回攻撃するか
+	};
+
+	Status sta;
 
 	float timecount = 0;
 
