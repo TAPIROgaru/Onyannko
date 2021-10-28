@@ -17,15 +17,22 @@ public:
 
 	Player();
 
-	void Move(float);//操作
-	void LoadStatus();//プレイヤーステータスのロード
-	void FireBullet(float);
+	void Move(float);       //操作
+	void LoadStatus();      //プレイヤーステータスのロード
+	void FireBullet(float); //弾を撃つ
+	void ShootDirection();  //発射する向き
 
 
 	//------------------------------------------------------------------------------------------------
 	//変数
 
+	
+	float bullet_direction_x = 0; //弾を発射する向き
+	float bullet_direction_y = 0;
 
+	float magnitude = 0;          //正規化
+
+	float angle = 0;              //角度
 
 	//------------------------------------------------------------------------------------------------
 	//毎フレーム呼び出し

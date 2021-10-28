@@ -1,13 +1,16 @@
 #include "Player.h"
 #include "GameManager.h"
 
+
+#define PI 3.14159265359f
+
 extern GameManager* GMp;
 
 //----------------------------------------------------------------------------------------------------
 //コンストラクタ
 Player::Player() {
 
-	pos = t2k::Vector3(100, 100, 0);
+	pos = t2k::Vector3(0, 0, 0);
 	LoadStatus();
 }
 
@@ -28,35 +31,43 @@ void Player::LoadStatus() {
 		std::vector<std::vector<std::string>>datas;
 		datas = t2k::loadCsv("Charactor_Status.csv");
 
-		//名前読み込み
-		for (int i = 0; i < name_length; i++) {
+		int i = 0;
 
-			sta.name[i] = datas[0][0].c_str()[i];
+		//名前読み込み
+		for (i = 0; i < name_length; i++) {
+
+			name[i] = datas[0][0].c_str()[i];
 
 			if ('\0' == datas[0][0].c_str()[i]) {
+
 				break;
 			}
 		}
 
 		//ステータス読み込み
-			
+		sta = {
+			std::atoi(datas[0][1].c_str()), //ヒットポイント
+			std::atoi(datas[0][2].c_str()), //移動速度
+			std::atoi(datas[0][3].c_str()), //攻撃力
+			std::atoi(datas[0][4].c_str()), //防御力
+			std::atoi(datas[0][5].c_str()), //攻撃速度
+		};
 
 		return;
 	}
 	
 	//名前読み込み
-	fread_s(buff, sizeof(buff), sizeof(buff) * name_length, 1, fp);
-
-	for (int i = 0; i < name_length;i++) {
-
-		sta.name[i] = buff[i];
-	}
-
-
-	fseek(fp, 0, sizeof(buff) * name_length);
+	fread_s(name, sizeof(name), sizeof(char) * name_length, 1, fp);
 
 	//ステータス読み込み
-	fread_s(status, sizeof(status), sizeof(status) * status_value, 1, fp);
+	fread_s(status, sizeof(status), sizeof(int) * status_value, 1, fp);
+	//memcpy( &sta, status, sizeof(status) );
+
+	sta.HP           = status[0];
+	sta.move_speed   = status[1];
+	sta.attack       = status[2];
+	sta.defense      = status[3];
+	sta.attack_speed = status[4];
 
 	fclose(fp);
 }
@@ -90,7 +101,7 @@ void Player::Move(float deltatime) {
 		pos.x += sta.move_speed;
 	}
 
-	//右クリック
+	//左クリック
 	if (true == (GetMouseInput() & MOUSE_INPUT_LEFT)) {
 
 		FireBullet(deltatime);
@@ -102,13 +113,36 @@ void Player::Move(float deltatime) {
 //撃つ
 void Player::FireBullet(float deltatime) {
 
-	timecount += deltatime;
-
 	if (sta.attack_speed > timecount) { return; }
+
+	ShootDirection();
+
+	GMp->MakeBullet(pos, bullet_direction_x, bullet_direction_y, angle);
 
 	timecount = 0;
 
-	GMp->MakeBullet(pos);
+}
+
+
+//----------------------------------------------------------------------------------------------------
+//発射する向き
+void Player::ShootDirection() {
+
+	//カメラ座標を考慮したマウス座標を取得
+	t2k::Vector3 mouse_pos = GMp->GetMousePosition();
+
+	//Playerとマウスの距離
+	t2k::Vector3 component = pos - mouse_pos;
+
+	//単位ベクトル
+	magnitude = (float)sqrt(component.x * component.x + component.y * component.y);
+
+	//角度の計算
+	bullet_direction_x = component.x / magnitude * -1;
+	bullet_direction_y = component.y / magnitude * -1;
+
+	//画像角度の計算
+	angle = atan2f(bullet_direction_x, bullet_direction_y) + PI * 2;
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -116,11 +150,24 @@ void Player::FireBullet(float deltatime) {
 
 void Player::Update(float deltatime) {
 
+	timecount += deltatime;
+
 	Move(deltatime);
+
 }
 void Player::Render(Camera* cam) {
 
-	DrawCircle(pos.x, pos.y, 20, -1, true);
+	t2k::Vector3 pos_ = GMp->FixPositionVector(pos);
+
+	DrawCircle(pos_.x, pos_.y, 20, -1, true);
+
+	DrawFormatString(100, 100, -1, "x:%f y:%f", pos.x, pos.y);
+	DrawFormatString(100, 120, -1, "名前:%s", name);
+	DrawFormatString(100, 140, -1, "HP:%d", sta.HP);
+	DrawFormatString(100, 160, -1, "移動速度:%d", sta.move_speed);
+	DrawFormatString(100, 180, -1, "攻撃力:%d", sta.attack);
+	DrawFormatString(100, 200, -1, "防御力:%d", sta.defense);
+	DrawFormatString(100, 220, -1, "攻撃速度:%d", sta.attack_speed);
 }
 
 //----------------------------------------------------------------------------------------------------

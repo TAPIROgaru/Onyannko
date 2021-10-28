@@ -26,15 +26,17 @@ public:
 	
 
 	//ステータス
+
+	char name[name_length] = { 0 };  //名前　※10文字
+
 	class Status {
 	public:
 
-		char name[name_length] = { 0 };             //名前　※10文字
-		int HP;                //ヒットポイント
-		int move_speed;        //移動速度
-		int attack;            //攻撃力
-		int defense;           //防御力
-		int attack_speed;      //攻撃速度      一秒間に何回攻撃するか
+		int HP;                     //ヒットポイント
+		int move_speed;             //移動速度
+		int attack;                 //攻撃力
+		int defense;                //防御力
+		int attack_speed;           //攻撃速度      一秒間に何回攻撃するか
 	};
 
 	Status sta;

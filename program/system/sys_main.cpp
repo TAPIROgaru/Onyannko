@@ -15,7 +15,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	ChangeWindowMode( true ) ;
 
 	// ウィンドウサイズ設定
-	SetGraphMode( 1024, 768, 32 ) ;
+	SetGraphMode(1920 / 2, 1080 / 2, 32);
 
 	// フレームレート設定
 	FpsSetting( 60, 800 ) ;
