@@ -3,38 +3,49 @@
 //----------------------------------------------------------------------------------------------------
 //自作ファイル
 
-#include "CharaObj.h"
+#include "Scene.h"
 
+#include "Object.h"
+#include "CharaObj.h"
+#include "Camera.h"
+#include "Player.h"
+#include "Bullet.h"
+#include "Enemy.h"
 
 
 //----------------------------------------------------------------------------------------------------
 
-class Player :public CharaObj {
+class PlayScene :public Scene {
 public:
 
 	//------------------------------------------------------------------------------------------------
 	//関数
 
-	Player();
+	PlayScene();
 
-	void Move(float);       //操作
-	void LoadStatus();      //プレイヤーステータスのロード
-	void FireBullet(float); //弾を撃つ
-	void ShootDirection();  //発射する向き
+	void Delete();
+
+	void SavePlayer();
+
+
+	//------------------------------------------------------------------------------------------------
+	//他ソースファイルから使う関数
+	
+	//弾生成
+	void MakeBullet(t2k::Vector3, float, float, float);
 
 
 	//------------------------------------------------------------------------------------------------
 	//変数
 
-	
-	float bullet_direction_x = 0; //弾を発射する向き
-	float bullet_direction_y = 0;
 
-	float magnitude = 0;          //正規化
+	std::list <Object*> Op;     //Object
+	std::list <Bullet*> Bp;     //Bullet
+	std::list <Enemy*> Ep;      //Enemy
+	Player* Pp = nullptr;       //Player
 
-	float angle = 0;              //角度
+	Camera cam;                 //Cameraクラス
 
-	int mouse_img = 0;
 
 	//------------------------------------------------------------------------------------------------
 	//毎フレーム呼び出し

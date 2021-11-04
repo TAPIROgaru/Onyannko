@@ -4,6 +4,8 @@
 #include "../support/FrameRateController.h"
 #include "../game/game_main.h"
 
+#include "../game/GameManager.h"
+
 static std::chrono::system_clock::time_point clock_start, clock_end ; 
 
 // プログラムは WinMain から始まります
@@ -12,10 +14,10 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 {
 
 	// ウィンドウモードで起動
-	ChangeWindowMode( true ) ;
+	ChangeWindowMode(GameManager::WINDOW_MODE);
 
 	// ウィンドウサイズ設定
-	SetGraphMode(1920 / 2, 1080 / 2, 32);
+	SetGraphMode(GameManager::FIELD_W, GameManager::FIELD_H, 32);
 
 	// フレームレート設定
 	FpsSetting( 60, 800 ) ;

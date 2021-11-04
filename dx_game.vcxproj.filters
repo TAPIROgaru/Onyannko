@@ -20,6 +20,12 @@
     <Filter Include="program\library">
       <UniqueIdentifier>{7c942d65-0a18-4117-88ae-e80f1655e00f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="program\game\scene">
+      <UniqueIdentifier>{94bd9a85-bc30-4145-913d-99e5e55ff066}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="program\game\main">
+      <UniqueIdentifier>{48f1d9b1-cd58-4a99-a8ff-66f158fd331d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="program\support\FrameRateController.cpp">
@@ -70,20 +76,29 @@
     <ClCompile Include="program\library\shape.cpp">
       <Filter>program\library</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\GameManager.cpp">
-      <Filter>program\game</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\Enemy.cpp">
-      <Filter>program\game</Filter>
-    </ClCompile>
     <ClCompile Include="program\game\Bullet.cpp">
-      <Filter>program\game</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\Player.cpp">
-      <Filter>program\game</Filter>
+      <Filter>program\game\main</Filter>
     </ClCompile>
     <ClCompile Include="program\game\Camera.cpp">
-      <Filter>program\game</Filter>
+      <Filter>program\game\main</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\Enemy.cpp">
+      <Filter>program\game\main</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\GameManager.cpp">
+      <Filter>program\game\main</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\Player.cpp">
+      <Filter>program\game\main</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\PlayScene.cpp">
+      <Filter>program\game\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\TitleScene.cpp">
+      <Filter>program\game\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\MenuScene.cpp">
+      <Filter>program\game\scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -165,26 +180,38 @@
     <ClInclude Include="program\library\hierarchy_tree.h">
       <Filter>program\library</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\GameManager.h">
-      <Filter>program\game</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\Object.h">
-      <Filter>program\game</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\Enemy.h">
-      <Filter>program\game</Filter>
+    <ClInclude Include="program\game\Scene.h">
+      <Filter>program\game\scene</Filter>
     </ClInclude>
     <ClInclude Include="program\game\Bullet.h">
-      <Filter>program\game</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\CharaObj.h">
-      <Filter>program\game</Filter>
+      <Filter>program\game\main</Filter>
     </ClInclude>
     <ClInclude Include="program\game\Camera.h">
-      <Filter>program\game</Filter>
+      <Filter>program\game\main</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\CharaObj.h">
+      <Filter>program\game\main</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\Enemy.h">
+      <Filter>program\game\main</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\GameManager.h">
+      <Filter>program\game\main</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\Object.h">
+      <Filter>program\game\main</Filter>
     </ClInclude>
     <ClInclude Include="program\game\Player.h">
-      <Filter>program\game</Filter>
+      <Filter>program\game\main</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\PlayScene.h">
+      <Filter>program\game\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\TitleScene.h">
+      <Filter>program\game\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\MenuScene.h">
+      <Filter>program\game\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

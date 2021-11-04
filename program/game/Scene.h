@@ -1,48 +1,39 @@
 #pragma once
 
+#include "../library/t2klib.h"
+#include "DxLib.h"
+#include <list>
+
+
 //----------------------------------------------------------------------------------------------------
 //自作ファイル
 
-#include "CharaObj.h"
-
+#include "Camera.h"
 
 
 //----------------------------------------------------------------------------------------------------
 
-class Player :public CharaObj {
+class Scene {
 public:
 
 	//------------------------------------------------------------------------------------------------
 	//関数
 
-	Player();
-
-	void Move(float);       //操作
-	void LoadStatus();      //プレイヤーステータスのロード
-	void FireBullet(float); //弾を撃つ
-	void ShootDirection();  //発射する向き
-
+	virtual ~Scene() {};
 
 	//------------------------------------------------------------------------------------------------
 	//変数
 
-	
-	float bullet_direction_x = 0; //弾を発射する向き
-	float bullet_direction_y = 0;
+	int img = 0;
 
-	float magnitude = 0;          //正規化
-
-	float angle = 0;              //角度
-
-	int mouse_img = 0;
 
 	//------------------------------------------------------------------------------------------------
 	//毎フレーム呼び出し
 
-	void Update(float deltatime) override;
-	void Render(Camera* cam)     override;
+	virtual void Update(float deltatime) {};
+	virtual void Render(Camera* cam) {};
+	virtual void Render() {};
 
 
 	//------------------------------------------------------------------------------------------------
-
 };

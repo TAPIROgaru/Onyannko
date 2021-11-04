@@ -14,6 +14,7 @@ Player::Player() {
 	LoadStatus();
 
 	secconds_AS = 1.0f / sta.attack_speed;
+	img = LoadGraph("graphics/AIM.png");
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -119,7 +120,7 @@ void Player::FireBullet(float deltatime) {
 
 	ShootDirection();
 
-	GMp->MakeBullet(pos, bullet_direction_x, bullet_direction_y, angle);
+	GMp->SPp->MakeBullet(pos, bullet_direction_x, bullet_direction_y, angle);
 
 	timecount = 0;
 
@@ -160,6 +161,11 @@ void Player::Update(float deltatime) {
 void Player::Render(Camera* cam) {
 
 	t2k::Vector3 pos_ = GMp->FixPositionVector(pos);
+
+	int x, y;
+	GetMousePoint(&x, &y);
+
+	DrawRotaGraph(x, y, 0.05f, 0, img, true);
 
 	DrawCircle(pos_.x, pos_.y, 20, -1, true);
 

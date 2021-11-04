@@ -5,12 +5,10 @@
 //----------------------------------------------------------------------------------------------------
 //自作ファイル
 
-#include "Object.h"
-#include "CharaObj.h"
-#include "Camera.h"
-#include "Player.h"
-#include "Bullet.h"
-#include "Enemy.h"
+#include "Scene.h"
+#include "PlayScene.h"
+#include "TitleScene.h"
+#include "MenuScene.h"
 
 
 //----------------------------------------------------------------------------------------------------
@@ -21,32 +19,24 @@ public:
 	//------------------------------------------------------------------------------------------------
 	//スクリーンサイズ　フィールドサイズ
 
-	static constexpr int SCREEN_W = 1920 / 2;
-	static constexpr int SCREEN_H = 1080 / 2;
+	static constexpr int SCREEN_W = 960;
+	static constexpr int SCREEN_H = 540;
 
-	static constexpr int FIELD_W = 1920;
-	static constexpr int FIELD_H = 1080;
+	static constexpr int FIELD_W = SCREEN_W * 1.2;
+	static constexpr int FIELD_H = SCREEN_H * 1.2;
+
+	static constexpr bool WINDOW_MODE = true;
 
 	//------------------------------------------------------------------------------------------------
 
 	//コンストラクタ
 	GameManager();
 
-	//初期化
-	void Init();
-
-	//タイトルシーン
-	bool Title(const float);
-	//プレイシーン
-	bool Play(const float);
-
 
 	//------------------------------------------------------------------------------------------------
 	//関数
 
-	void Delete();   //削除
-
-	void SavePlayer();
+	void DrawBuckGround();
 
 
 	//------------------------------------------------------------------------------------------------
@@ -58,35 +48,22 @@ public:
 	//カメラ座標を考慮した座標を取得できる関数
 	t2k::Vector3 FixPositionVector(t2k::Vector3);
 
-	//弾生成
-	void MakeBullet(t2k::Vector3, float, float, float);
-
 
 	//------------------------------------------------------------------------------------------------
 	//変数
 
-	 //初期化フラグ
-	bool _init = true;
+	int img = 0;
 
-	//シーン管理
-	t2k::Sequence<GameManager*> seq =
-		t2k::Sequence<GameManager*>(this, &GameManager::Title);
-
-	int img;
-
-	t2k::Vector3 img_pos1 = { -SCREEN_W * 1.5, -SCREEN_H * 1.5,0 };
-	t2k::Vector3 img_pos2 = { SCREEN_W * 1.5, SCREEN_H * 1.5,0 };
+	t2k::Vector3 img_pos1 = { -FIELD_W, -FIELD_H,0 };
+	t2k::Vector3 img_pos2 = { FIELD_W, FIELD_H,0 };
 
 	//------------------------------------------------------------------------------------------------
 	//リスト　ポインタ
 
-	std::list <Object*> Op;   //Objectクラス
-	std::list <Bullet*> Bp;   //Bulletクラス
-	std::list <Enemy*> Ep;    //Enemyクラス
-
-	Camera cam;               //Cameraクラス
-
-	Player* Pp = nullptr;     //Playerクラス
+	std::list <Scene*> Sp;      //Scene
+	PlayScene* SPp = nullptr;   //Play
+	TitleScene* STp = nullptr;  //Title
+	MenuScene* SMp = nullptr;   //Menu
 
 
 	//------------------------------------------------------------------------------------------------

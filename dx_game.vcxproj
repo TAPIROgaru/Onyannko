@@ -16,7 +16,10 @@
     <ClCompile Include="program\game\Enemy.cpp" />
     <ClCompile Include="program\game\GameManager.cpp" />
     <ClCompile Include="program\game\game_main.cpp" />
+    <ClCompile Include="program\game\MenuScene.cpp" />
     <ClCompile Include="program\game\Player.cpp" />
+    <ClCompile Include="program\game\PlayScene.cpp" />
+    <ClCompile Include="program\game\TitleScene.cpp" />
     <ClCompile Include="program\library\bounding.cpp" />
     <ClCompile Include="program\library\font.cpp" />
     <ClCompile Include="program\library\input.cpp" />
@@ -40,8 +43,12 @@
     <ClInclude Include="program\game\Enemy.h" />
     <ClInclude Include="program\game\GameManager.h" />
     <ClInclude Include="program\game\game_main.h" />
+    <ClInclude Include="program\game\MenuScene.h" />
     <ClInclude Include="program\game\Object.h" />
     <ClInclude Include="program\game\Player.h" />
+    <ClInclude Include="program\game\PlayScene.h" />
+    <ClInclude Include="program\game\Scene.h" />
+    <ClInclude Include="program\game\TitleScene.h" />
     <ClInclude Include="program\library\bounding.h" />
     <ClInclude Include="program\library\font.h" />
     <ClInclude Include="program\library\hierarchy_tree.h" />

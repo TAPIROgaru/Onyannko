@@ -7,7 +7,7 @@
 //----------------------------------------------------------------------------------------------------
 //Ž©ìƒtƒ@ƒCƒ‹
 
-#include"GameManager.h"
+#include "GameManager.h"
 
 
 //----------------------------------------------------------------------------------------------------
@@ -24,7 +24,7 @@ void gameMain( float deltatime ) {
 
 	if (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_ESCAPE)) {
 
-		GMp->SavePlayer();
+		GMp->SPp->SavePlayer();
 		exit(0);
 	}
 

@@ -20,9 +20,31 @@ Bullet::Bullet(float x, float y, float dire_x, float dire_y, float a) {
 //“®‚©‚·
 void Bullet::Move() {
 
+	if (isDelete()) {
+		alive_flag = false;
+		return;
+	}
+
 	pos.x += direction_x * speed;
 	pos.y += direction_y * speed;
 }
+
+
+
+//----------------------------------------------------------------------------------------------------
+//Á‚·
+bool Bullet::isDelete() {
+
+	if (pos.x > GMp->FIELD_W) { return true; }
+	if (pos.x < -GMp->FIELD_W) { return true; }
+
+	if (pos.y > GMp->FIELD_H) { return true; }
+	if (pos.y < -GMp->FIELD_H) { return true; }
+
+
+	return false;
+}
+
 
 //----------------------------------------------------------------------------------------------------
 //–ˆƒtƒŒ[ƒ€ŒÄ‚Ño‚µ

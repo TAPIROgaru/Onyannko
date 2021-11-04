@@ -17,6 +17,7 @@ public:
 	Bullet(float, float, float, float, float);
 
 	void Move();
+	bool isDelete();
 
 
 	//------------------------------------------------------------------------------------------------

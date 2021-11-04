@@ -23,8 +23,6 @@ public:
 	static constexpr int name_length = 11;  //名前の長さ
 	static constexpr int status_value = 5;  //ステータスの数
 
-	
-
 	//ステータス
 
 	char name[name_length] = { 0 };  //名前　※10文字
@@ -43,6 +41,8 @@ public:
 
 	float secconds_AS = 0;   //1攻撃何秒か
 	float timecount = 0;     //時間計測
+
+	int img = 0;
 
 	//------------------------------------------------------------------------------------------------
 };
