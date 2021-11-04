@@ -12,6 +12,8 @@ Player::Player() {
 
 	pos = t2k::Vector3(0, 0, 0);
 	LoadStatus();
+
+	secconds_AS = 1.0f / sta.attack_speed;
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -113,7 +115,7 @@ void Player::Move(float deltatime) {
 //Œ‚‚Â
 void Player::FireBullet(float deltatime) {
 
-	if (sta.attack_speed > timecount) { return; }
+	if (secconds_AS > timecount) { return; }
 
 	ShootDirection();
 

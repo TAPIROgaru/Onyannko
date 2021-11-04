@@ -36,12 +36,13 @@ public:
 		int move_speed;             //ˆÚ“®‘¬“x
 		int attack;                 //UŒ‚—Í
 		int defense;                //–hŒä—Í
-		int attack_speed;           //UŒ‚‘¬“x      ˆê•bŠÔ‚É‰½‰ñUŒ‚‚·‚é‚©
+		int attack_speed;           //UŒ‚‘¬“x      1•bŠÔ‚É‰½‰ñUŒ‚‚·‚é‚©
 	};
 
 	Status sta;
 
-	float timecount = 0;
+	float secconds_AS = 0;   //1UŒ‚‰½•b‚©
+	float timecount = 0;     //ŠÔŒv‘ª
 
 	//------------------------------------------------------------------------------------------------
 };

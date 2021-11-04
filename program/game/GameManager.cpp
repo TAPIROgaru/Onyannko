@@ -143,6 +143,7 @@ void GameManager::Render(float deltatime) {
 	t2k::Vector3 pos_2 = FixPositionVector(img_pos2);
 
 	DrawExtendGraph(pos_1.x, pos_1.y, pos_2.x, pos_2.y, img, false);
+	cam.update(deltatime);
 
 	for (auto pointer : Op) {
 
