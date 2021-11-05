@@ -22,11 +22,7 @@ GameManager* GMp = nullptr;
 
 void gameMain( float deltatime ) {
 
-	if (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_ESCAPE)) {
-
-		GMp->SPp->SavePlayer();
-		exit(0);
-	}
+	if (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_ESCAPE)) { exit(0); }
 
 	if (init) {
 

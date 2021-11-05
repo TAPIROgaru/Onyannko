@@ -1,8 +1,8 @@
-#include "MenuScene.h"
+#include "ResultScene.h"
 
 //----------------------------------------------------------------------------------------------------
 //コンストラクタ
-MenuScene::MenuScene() {
+ResultScene::ResultScene() {
 
 
 }
@@ -11,13 +11,14 @@ MenuScene::MenuScene() {
 //----------------------------------------------------------------------------------------------------
 //毎フレーム呼び出し
 
-void MenuScene::Update(float deltatime) {
+void ResultScene::Update(float deltatime) {
 
 
 }
-void MenuScene::Render(float deltatime) {
+void ResultScene::Render(float deltatime) {
 
-	DrawString(0, 0, "メニュー", -1);
+	DrawString(0, 0, "リザルト", -1);
+
 }
 
 //----------------------------------------------------------------------------------------------------

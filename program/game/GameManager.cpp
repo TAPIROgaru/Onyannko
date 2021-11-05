@@ -8,9 +8,15 @@ GameManager::GameManager() {
 	img = LoadGraph("graphics/sample.jpg");
 
 	STp = new TitleScene();
-	Sp.emplace_back(STp);
-}
+	SMp = new MenuScene();
+	SPp = new PlayScene();
 
+	STp->alive_flag = true;
+
+	Sp.emplace_back(STp);
+	Sp.emplace_back(SMp);
+	Sp.emplace_back(SPp);
+}
 
 
 //----------------------------------------------------------------------------------------------------
@@ -27,33 +33,37 @@ void GameManager::DrawBuckGround() {
 
 
 //----------------------------------------------------------------------------------------------------
-//カメラを考慮したマウス座標の取得
-t2k::Vector3 GameManager::GetMousePosition() {
+//背景
+void GameManager::ChangeScene() {
 
-	int x, y;
-	GetMousePoint(&x, &y);
+	if (STp->alive_flag && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD1)) {
+		STp->alive_flag = false;
+		SMp->alive_flag = true;
 
-	t2k::Vector3 pos = { 0,0,0 };
+		return;
+	}
 
-	//カメラを考慮
-	pos.x = x + SPp->cam.pos.x - (GameManager::SCREEN_W >> 1);
-	pos.y = y + SPp->cam.pos.y - (GameManager::SCREEN_H >> 1);
+	if (SMp->alive_flag && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD2)) {
+		SMp->alive_flag = false;
+		STp->alive_flag = true;
 
-	return pos;
+		return;
+	}
+
+	if (SMp->alive_flag && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD3)) {
+		SMp->alive_flag = false;
+		SPp->alive_flag = true;
+
+		return;
+	}
+
+	if (SPp->alive_flag && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD4)) {
+		SPp->alive_flag = false;
+		SMp->alive_flag = true;
+
+		return;
+	}
 }
-
-//カメラを考慮した座標の取得
-t2k::Vector3 GameManager::FixPositionVector(t2k::Vector3 pos) {
-
-	t2k::Vector3 pos_ = {
-		pos.x - SPp->cam.pos.x + (GameManager::SCREEN_W >> 1),
-		pos.y - SPp->cam.pos.y + (GameManager::SCREEN_H >> 1),
-		0
-	};
-
-	return pos_;
-}
-
 
 
 //----------------------------------------------------------------------------------------------------
@@ -63,21 +73,16 @@ void GameManager::Update(float deltatime) {
 
 	for (auto pointer : Sp) {
 
-		pointer->Update(deltatime);
+		if (pointer->alive_flag) { pointer->Update(deltatime); }
 	}
+
+	ChangeScene();
 }
 void GameManager::Render(float deltatime) {
 
-	t2k::Vector3 pos_1 = FixPositionVector(img_pos1);
-	t2k::Vector3 pos_2 = FixPositionVector(img_pos2);
-
-	//DrawBuckGround();
-	DrawExtendGraph(pos_1.x,pos_1.y,pos_2.x,pos_2.y,img,true);
-
-
 	for (auto pointer : Sp) {
 
-		pointer->Render();
+		if (pointer->alive_flag) { pointer->Render(deltatime); }
 	}
 
 }

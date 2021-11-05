@@ -15,8 +15,9 @@ void TitleScene::Update(float deltatime) {
 
 
 }
-void TitleScene::Render(Camera* cam) {
+void TitleScene::Render(float deltatime) {
 
+	DrawString(0, 0, "ƒ^ƒCƒgƒ‹", -1);
 
 }
 

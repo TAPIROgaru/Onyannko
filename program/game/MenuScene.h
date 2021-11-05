@@ -28,7 +28,7 @@ public:
 	//–ˆƒtƒŒ[ƒ€ŒÄ‚Ño‚µ
 
 	void Update(float deltatime) override;
-	void Render(Camera* cam)     override;
+	void Render(float deltatime) override;
 
 
 	//------------------------------------------------------------------------------------------------

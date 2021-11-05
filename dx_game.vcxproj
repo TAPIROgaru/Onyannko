@@ -19,6 +19,8 @@
     <ClCompile Include="program\game\MenuScene.cpp" />
     <ClCompile Include="program\game\Player.cpp" />
     <ClCompile Include="program\game\PlayScene.cpp" />
+    <ClCompile Include="program\game\PowerStone.cpp" />
+    <ClCompile Include="program\game\ResultScene.cpp" />
     <ClCompile Include="program\game\TitleScene.cpp" />
     <ClCompile Include="program\library\bounding.cpp" />
     <ClCompile Include="program\library\font.cpp" />
@@ -47,6 +49,8 @@
     <ClInclude Include="program\game\Object.h" />
     <ClInclude Include="program\game\Player.h" />
     <ClInclude Include="program\game\PlayScene.h" />
+    <ClInclude Include="program\game\PowerStone.h" />
+    <ClInclude Include="program\game\ResultScene.h" />
     <ClInclude Include="program\game\Scene.h" />
     <ClInclude Include="program\game\TitleScene.h" />
     <ClInclude Include="program\library\bounding.h" />

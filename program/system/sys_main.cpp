@@ -17,7 +17,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	ChangeWindowMode(GameManager::WINDOW_MODE);
 
 	// ウィンドウサイズ設定
-	SetGraphMode(GameManager::FIELD_W, GameManager::FIELD_H, 32);
+	SetGraphMode(GameManager::SCREEN_W, GameManager::SCREEN_H, 32);
 
 	// フレームレート設定
 	FpsSetting( 60, 800 ) ;

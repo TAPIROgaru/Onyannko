@@ -70,15 +70,52 @@ void PlayScene::MakeBullet(t2k::Vector3 pos, float direction_x, float direction_
 
 
 //----------------------------------------------------------------------------------------------------
+//カメラを考慮したマウス座標の取得
+t2k::Vector3 PlayScene::GetMousePosition() {
+
+	int x, y;
+	GetMousePoint(&x, &y);
+
+	t2k::Vector3 pos = { 0,0,0 };
+
+	//カメラを考慮
+	pos.x = x + cam.pos.x - (GameManager::SCREEN_W >> 1);
+	pos.y = y + cam.pos.y - (GameManager::SCREEN_H >> 1);
+
+	return pos;
+}
+
+//カメラを考慮した座標の取得
+t2k::Vector3 PlayScene::FixPositionVector(t2k::Vector3 pos) {
+
+	t2k::Vector3 pos_ = {
+		pos.x - cam.pos.x + (GameManager::SCREEN_W >> 1),
+		pos.y - cam.pos.y + (GameManager::SCREEN_H >> 1),
+		0
+	};
+
+	return pos_;
+}
+
+
+//----------------------------------------------------------------------------------------------------
 //毎フレーム呼び出し
 
 void PlayScene::Update(float deltatime) {
 
 	cam.pos += (Pp->pos - cam.pos) * 0.1f;
+
+	for (auto pointer : Op) {
+
+		if (pointer->alive_flag) { pointer->Update(deltatime); }
+	}
 }
-void PlayScene::Render(Camera* cam) {
+void PlayScene::Render(float deltatime) {
 
+	for (auto pointer : Op) {
 
+		if (pointer->alive_flag) { pointer->Render(&cam); }
+	}
 }
 
 //----------------------------------------------------------------------------------------------------

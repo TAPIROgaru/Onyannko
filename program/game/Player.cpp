@@ -17,6 +17,14 @@ Player::Player() {
 	img = LoadGraph("graphics/AIM.png");
 }
 
+
+//----------------------------------------------------------------------------------------------------
+//デストラクタ
+Player::~Player() {
+	GMp->SPp->SavePlayer();
+}
+
+
 //----------------------------------------------------------------------------------------------------
 //ファイル読み込み
 void Player::LoadStatus() {
@@ -132,7 +140,7 @@ void Player::FireBullet(float deltatime) {
 void Player::ShootDirection() {
 
 	//カメラ座標を考慮したマウス座標を取得
-	t2k::Vector3 mouse_pos = GMp->GetMousePosition();
+	t2k::Vector3 mouse_pos = GMp->SPp->GetMousePosition();
 
 	//Playerとマウスの距離
 	t2k::Vector3 component = pos - mouse_pos;
@@ -160,7 +168,7 @@ void Player::Update(float deltatime) {
 }
 void Player::Render(Camera* cam) {
 
-	t2k::Vector3 pos_ = GMp->FixPositionVector(pos);
+	t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
 
 	int x, y;
 	GetMousePoint(&x, &y);

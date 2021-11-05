@@ -24,6 +24,8 @@ public:
 	//------------------------------------------------------------------------------------------------
 	//•Ï”
 
+	bool alive_flag = false;
+
 	int img = 0;
 
 
@@ -31,8 +33,7 @@ public:
 	//–ˆƒtƒŒ[ƒ€ŒÄ‚Ño‚µ
 
 	virtual void Update(float deltatime) {};
-	virtual void Render(Camera* cam) {};
-	virtual void Render() {};
+	virtual void Render(float deltatime) {};
 
 
 	//------------------------------------------------------------------------------------------------

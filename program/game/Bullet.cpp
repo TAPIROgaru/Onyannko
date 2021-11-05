@@ -54,7 +54,7 @@ void Bullet::Update(float deltatime) {
 }
 void Bullet::Render(Camera* cam) {
 
-	t2k::Vector3 pos_ = GMp->FixPositionVector(pos);
+	t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
 	DrawCircle(pos_.x, pos_.y, 5, -1, false);
 }
 

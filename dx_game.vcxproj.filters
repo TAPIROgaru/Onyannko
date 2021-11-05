@@ -20,10 +20,13 @@
     <Filter Include="program\library">
       <UniqueIdentifier>{7c942d65-0a18-4117-88ae-e80f1655e00f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="program\game\scene">
+    <Filter Include="program\game\my_system">
+      <UniqueIdentifier>{69463416-310e-463b-8ae6-4730e2af7ae4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="program\game\my_scene">
       <UniqueIdentifier>{94bd9a85-bc30-4145-913d-99e5e55ff066}</UniqueIdentifier>
     </Filter>
-    <Filter Include="program\game\main">
+    <Filter Include="program\game\my_main">
       <UniqueIdentifier>{48f1d9b1-cd58-4a99-a8ff-66f158fd331d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -77,28 +80,34 @@
       <Filter>program\library</Filter>
     </ClCompile>
     <ClCompile Include="program\game\Bullet.cpp">
-      <Filter>program\game\main</Filter>
+      <Filter>program\game\my_main</Filter>
     </ClCompile>
     <ClCompile Include="program\game\Camera.cpp">
-      <Filter>program\game\main</Filter>
+      <Filter>program\game\my_main</Filter>
     </ClCompile>
     <ClCompile Include="program\game\Enemy.cpp">
-      <Filter>program\game\main</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\GameManager.cpp">
-      <Filter>program\game\main</Filter>
+      <Filter>program\game\my_main</Filter>
     </ClCompile>
     <ClCompile Include="program\game\Player.cpp">
-      <Filter>program\game\main</Filter>
+      <Filter>program\game\my_main</Filter>
     </ClCompile>
     <ClCompile Include="program\game\PlayScene.cpp">
-      <Filter>program\game\scene</Filter>
+      <Filter>program\game\my_scene</Filter>
     </ClCompile>
     <ClCompile Include="program\game\TitleScene.cpp">
-      <Filter>program\game\scene</Filter>
+      <Filter>program\game\my_scene</Filter>
     </ClCompile>
     <ClCompile Include="program\game\MenuScene.cpp">
-      <Filter>program\game\scene</Filter>
+      <Filter>program\game\my_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\GameManager.cpp">
+      <Filter>program\game\my_system</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\ResultScene.cpp">
+      <Filter>program\game\my_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\PowerStone.cpp">
+      <Filter>program\game\my_system</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -181,37 +190,43 @@
       <Filter>program\library</Filter>
     </ClInclude>
     <ClInclude Include="program\game\Scene.h">
-      <Filter>program\game\scene</Filter>
+      <Filter>program\game\my_scene</Filter>
     </ClInclude>
     <ClInclude Include="program\game\Bullet.h">
-      <Filter>program\game\main</Filter>
+      <Filter>program\game\my_main</Filter>
     </ClInclude>
     <ClInclude Include="program\game\Camera.h">
-      <Filter>program\game\main</Filter>
+      <Filter>program\game\my_main</Filter>
     </ClInclude>
     <ClInclude Include="program\game\CharaObj.h">
-      <Filter>program\game\main</Filter>
+      <Filter>program\game\my_main</Filter>
     </ClInclude>
     <ClInclude Include="program\game\Enemy.h">
-      <Filter>program\game\main</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\GameManager.h">
-      <Filter>program\game\main</Filter>
+      <Filter>program\game\my_main</Filter>
     </ClInclude>
     <ClInclude Include="program\game\Object.h">
-      <Filter>program\game\main</Filter>
+      <Filter>program\game\my_main</Filter>
     </ClInclude>
     <ClInclude Include="program\game\Player.h">
-      <Filter>program\game\main</Filter>
+      <Filter>program\game\my_main</Filter>
     </ClInclude>
     <ClInclude Include="program\game\PlayScene.h">
-      <Filter>program\game\scene</Filter>
+      <Filter>program\game\my_scene</Filter>
     </ClInclude>
     <ClInclude Include="program\game\TitleScene.h">
-      <Filter>program\game\scene</Filter>
+      <Filter>program\game\my_scene</Filter>
     </ClInclude>
     <ClInclude Include="program\game\MenuScene.h">
-      <Filter>program\game\scene</Filter>
+      <Filter>program\game\my_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\GameManager.h">
+      <Filter>program\game\my_system</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\ResultScene.h">
+      <Filter>program\game\my_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\PowerStone.h">
+      <Filter>program\game\my_system</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
