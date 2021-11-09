@@ -38,6 +38,8 @@ public:
 		int attack_speed;           //UŒ‚‘¬“x      1•bŠÔ‚É‰½‰ñUŒ‚‚·‚é‚©
 	};
 
+	char chara_img[256];
+
 	Status sta;
 
 	float secconds_AS = 0;   //1UŒ‚‰½•b‚©

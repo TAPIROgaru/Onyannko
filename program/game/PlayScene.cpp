@@ -12,6 +12,9 @@ PlayScene::PlayScene() {
 
 	Pp = new Player();
 	Op.emplace_back(Pp);
+
+	Ep = new Enemy(1);
+	Op.emplace_back(Ep);
 }
 
 
@@ -41,6 +44,25 @@ void PlayScene::Delete() {
 		}
 		Opit++;
 	}
+}
+
+
+//----------------------------------------------------------------------------------------------------
+//消す
+void PlayScene::Start(float deltatime) {
+
+	if (!alive_flag) { return; }
+
+	count += deltatime;
+
+	if (count < 3) {
+		
+		DrawFormatString(0, 10, -1, "よーい　%f",count);
+		return;
+	}
+
+	DrawString(0, 10, "スタート", -1);
+	_start_flag = true;
 }
 
 
@@ -100,10 +122,10 @@ t2k::Vector3 PlayScene::FixPositionVector(t2k::Vector3 pos) {
 
 //----------------------------------------------------------------------------------------------------
 //毎フレーム呼び出し
-
 void PlayScene::Update(float deltatime) {
 
 	cam.pos += (Pp->pos - cam.pos) * 0.1f;
+	Start(deltatime);
 
 	for (auto pointer : Op) {
 

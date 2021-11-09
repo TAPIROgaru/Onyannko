@@ -27,6 +27,8 @@ public:
 
 	void SavePlayer();
 
+	void Start(float);
+
 
 	//------------------------------------------------------------------------------------------------
 	//他ソースファイルから使う関数
@@ -47,10 +49,15 @@ public:
 
 	std::list <Object*> Op;     //Object
 	std::list <Bullet*> Bp;     //Bullet
-	std::list <Enemy*> Ep;      //Enemy
+	Enemy* Ep  = nullptr;       //Enemy
 	Player* Pp = nullptr;       //Player
 
 	Camera cam;                 //Cameraクラス
+
+	bool _start_flag = false;
+
+	float count = 0;
+	float start = 3;
 
 
 	//------------------------------------------------------------------------------------------------

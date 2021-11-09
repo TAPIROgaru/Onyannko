@@ -10,7 +10,7 @@ extern GameManager* GMp;
 //コンストラクタ
 Player::Player() {
 
-	pos = t2k::Vector3(0, 0, 0);
+	pos = { -200, 0, 0 };
 	LoadStatus();
 
 	secconds_AS = 1.0f / sta.attack_speed;
@@ -20,9 +20,7 @@ Player::Player() {
 
 //----------------------------------------------------------------------------------------------------
 //デストラクタ
-Player::~Player() {
-	GMp->SPp->SavePlayer();
-}
+Player::~Player() {}
 
 
 //----------------------------------------------------------------------------------------------------
@@ -31,7 +29,6 @@ void Player::LoadStatus() {
 
 	FILE* fp = nullptr;
 
-	char buff[name_length] = { 0 };
 	int status[status_value] = { 0 };
 
 	fopen_s(&fp, "player.bin", "rb");
@@ -72,13 +69,15 @@ void Player::LoadStatus() {
 
 	//ステータス読み込み
 	fread_s(status, sizeof(status), sizeof(int) * status_value, 1, fp);
-	//memcpy( &sta, status, sizeof(status) );
 
 	sta.HP           = status[0];
 	sta.move_speed   = status[1];
 	sta.attack       = status[2];
 	sta.defense      = status[3];
 	sta.attack_speed = status[4];
+
+	//画像読み込み
+	//fread_s(chara_img, sizeof(chara_img))
 
 	fclose(fp);
 }

@@ -106,8 +106,8 @@
     <ClCompile Include="program\game\ResultScene.cpp">
       <Filter>program\game\my_scene</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\PowerStone.cpp">
-      <Filter>program\game\my_system</Filter>
+    <ClCompile Include="program\game\Scroll.cpp">
+      <Filter>program\game\my_main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -225,8 +225,8 @@
     <ClInclude Include="program\game\ResultScene.h">
       <Filter>program\game\my_scene</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\PowerStone.h">
-      <Filter>program\game\my_system</Filter>
+    <ClInclude Include="program\game\Scroll.h">
+      <Filter>program\game\my_main</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

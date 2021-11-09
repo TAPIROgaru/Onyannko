@@ -3,11 +3,11 @@
 namespace tpr {
 
 	//‘•”õ‹Z
-	class PowerStone final {//final‚ÍŒp³‚³‚¹‚È‚¢
+	class Scroll final {//final‚ÍŒp³‚³‚¹‚È‚¢
 	public:
 
-		PowerStone() {};
-		~PowerStone() {};
+		Scroll() {};
+		~Scroll() {};
 
 		//‘•”õ‹Zˆê——
 		enum ult {
