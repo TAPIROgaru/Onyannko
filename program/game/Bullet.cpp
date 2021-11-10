@@ -6,13 +6,16 @@ extern GameManager* GMp;
 
 //----------------------------------------------------------------------------------------------------
 //コンストラクタ
-Bullet::Bullet(float x, float y, float dire_x, float dire_y, float a) {
+Bullet::Bullet(float x, float y, float dire_x, float dire_y, float a, bool t) {
 
 	pos = { x,y,0 };
 
 	direction_x = dire_x;
 	direction_y = dire_y;
 	angle = a;
+
+	_team = t;
+	r = 5;
 }
 
 
@@ -28,7 +31,6 @@ void Bullet::Move() {
 	pos.x += direction_x * speed;
 	pos.y += direction_y * speed;
 }
-
 
 
 //----------------------------------------------------------------------------------------------------
@@ -55,7 +57,7 @@ void Bullet::Update(float deltatime) {
 void Bullet::Render(Camera* cam) {
 
 	t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
-	DrawCircle(pos_.x, pos_.y, 5, -1, false);
+	DrawCircle(pos_.x, pos_.y, r, -1, false);
 }
 
 //----------------------------------------------------------------------------------------------------

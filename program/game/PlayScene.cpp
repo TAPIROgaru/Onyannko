@@ -10,11 +10,7 @@ extern GameManager* GMp;
 //コンストラクタ
 PlayScene::PlayScene() {
 
-	Pp = new Player();
-	Op.emplace_back(Pp);
-
-	Ep = new Enemy(1);
-	Op.emplace_back(Ep);
+	datas = t2k::loadCsv("Charactor_Status.csv");
 }
 
 
@@ -48,7 +44,7 @@ void PlayScene::Delete() {
 
 
 //----------------------------------------------------------------------------------------------------
-//消す
+//スタート
 void PlayScene::Start(float deltatime) {
 
 	if (!alive_flag) { return; }
@@ -56,8 +52,8 @@ void PlayScene::Start(float deltatime) {
 	count += deltatime;
 
 	if (count < 3) {
-		
-		DrawFormatString(0, 10, -1, "よーい　%f",count);
+
+		DrawFormatString(0, 10, -1, "よーい　%f", count);
 		return;
 	}
 
@@ -82,10 +78,26 @@ void PlayScene::SavePlayer() {
 
 
 //----------------------------------------------------------------------------------------------------
-//弾作成
-void PlayScene::MakeBullet(t2k::Vector3 pos, float direction_x, float direction_y, float a) {
+//ゲームオーバー
+void PlayScene::isOver() {
 
-	Bullet* bp = new Bullet(pos.x, pos.y, direction_x, direction_y, a);
+	//if(Pp->)
+}
+
+
+//----------------------------------------------------------------------------------------------------
+//当たり判定
+void PlayScene::isHit() {
+
+	//当たり判定は個対多で行う
+}
+
+
+//----------------------------------------------------------------------------------------------------
+//弾作成
+void PlayScene::MakeBullet(t2k::Vector3 pos, float direction_x, float direction_y, float a, bool t) {
+
+	Bullet* bp = new Bullet(pos.x, pos.y, direction_x, direction_y, a, t);
 	Bp.emplace_back(bp);
 	Op.emplace_back(bp);
 }
@@ -121,8 +133,26 @@ t2k::Vector3 PlayScene::FixPositionVector(t2k::Vector3 pos) {
 
 
 //----------------------------------------------------------------------------------------------------
+//初期化
+void PlayScene::Init() {
+
+	if (!_init) { return; }
+
+	Pp = new Player();
+	Op.emplace_back(Pp);
+
+	Ep = new Enemy(1);
+	Op.emplace_back(Ep);
+
+	_init = false;
+}
+
+
+//----------------------------------------------------------------------------------------------------
 //毎フレーム呼び出し
 void PlayScene::Update(float deltatime) {
+
+	Init();
 
 	cam.pos += (Pp->pos - cam.pos) * 0.1f;
 	Start(deltatime);

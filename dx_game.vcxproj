@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="program\game\Bullet.cpp" />
     <ClCompile Include="program\game\Camera.cpp" />
+    <ClCompile Include="program\game\CircleHit.cpp" />
     <ClCompile Include="program\game\Enemy.cpp" />
     <ClCompile Include="program\game\GameManager.cpp" />
     <ClCompile Include="program\game\game_main.cpp" />
@@ -42,6 +43,7 @@
     <ClInclude Include="program\game\Bullet.h" />
     <ClInclude Include="program\game\Camera.h" />
     <ClInclude Include="program\game\CharaObj.h" />
+    <ClInclude Include="program\game\CircleHit.h" />
     <ClInclude Include="program\game\Enemy.h" />
     <ClInclude Include="program\game\GameManager.h" />
     <ClInclude Include="program\game\game_main.h" />

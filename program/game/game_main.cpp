@@ -30,8 +30,9 @@ void gameMain( float deltatime ) {
 	}
 
 	if (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_ESCAPE)) {
-
-		GMp->SPp->SavePlayer();
+		if (GMp->SPp->Pp->alive_flag) {
+			GMp->SPp->SavePlayer();
+		}
 		exit(0);
 	}
 

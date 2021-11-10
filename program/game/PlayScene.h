@@ -11,6 +11,7 @@
 #include "Player.h"
 #include "Bullet.h"
 #include "Enemy.h"
+#include "CircleHit.h"
 
 
 //----------------------------------------------------------------------------------------------------
@@ -29,12 +30,18 @@ public:
 
 	void Start(float);
 
+	void isOver();
+
+	void Init();
+
+	void isHit();
+
 
 	//------------------------------------------------------------------------------------------------
 	//他ソースファイルから使う関数
 	
 	//弾生成
-	void MakeBullet(t2k::Vector3, float, float, float);
+	void MakeBullet(t2k::Vector3, float, float, float, bool);
 
 	//カメラ座標を考慮したマウス座標を取得できる関数
 	t2k::Vector3 GetMousePosition();
@@ -54,7 +61,13 @@ public:
 
 	Camera cam;                 //Cameraクラス
 
+	std::vector<std::vector<std::string>>datas;
+
 	bool _start_flag = false;
+
+	bool _over = false;
+
+	bool _init = true;
 
 	float count = 0;
 	float start = 3;

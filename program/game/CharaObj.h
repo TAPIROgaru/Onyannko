@@ -38,7 +38,7 @@ public:
 		int attack_speed;           //UŒ‚‘¬“x      1•bŠÔ‚É‰½‰ñUŒ‚‚·‚é‚©
 	};
 
-	char chara_img[256];
+	int graphic_handle = 0;         //‰æ‘œƒnƒ“ƒhƒ‹
 
 	Status sta;
 

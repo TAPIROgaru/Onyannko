@@ -5,7 +5,14 @@
 //コンストラクタ
 GameManager::GameManager() {
 
-	img = LoadGraph("graphics/sample.jpg");
+}
+
+
+//----------------------------------------------------------------------------------------------------
+//初期化
+void GameManager::Init() {
+
+	if (!_init) { return; }
 
 	STp = new TitleScene();
 	SMp = new MenuScene();
@@ -16,6 +23,8 @@ GameManager::GameManager() {
 	Sp.emplace_back(STp);
 	Sp.emplace_back(SMp);
 	Sp.emplace_back(SPp);
+
+	_init = false;
 }
 
 
@@ -33,7 +42,7 @@ void GameManager::DrawBuckGround() {
 
 
 //----------------------------------------------------------------------------------------------------
-//背景
+//シーン遷移
 void GameManager::ChangeScene() {
 
 	if (STp->alive_flag && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD1)) {
@@ -70,6 +79,8 @@ void GameManager::ChangeScene() {
 //毎フレーム呼び出し
 
 void GameManager::Update(float deltatime) {
+
+	Init();
 
 	for (auto pointer : Sp) {
 

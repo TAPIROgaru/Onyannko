@@ -10,8 +10,10 @@ extern GameManager* GMp;
 //コンストラクタ
 Player::Player() {
 
+	_team = true;
 	pos = { -200, 0, 0 };
 	LoadStatus();
+	r = 20;
 
 	secconds_AS = 1.0f / sta.attack_speed;
 	img = LoadGraph("graphics/AIM.png");
@@ -20,7 +22,10 @@ Player::Player() {
 
 //----------------------------------------------------------------------------------------------------
 //デストラクタ
-Player::~Player() {}
+Player::~Player() {
+
+	GMp->SPp->SavePlayer();
+}
 
 
 //----------------------------------------------------------------------------------------------------
@@ -36,17 +41,14 @@ void Player::LoadStatus() {
 	//バイナリファイルがなかったら
 	if (fp == NULL) {
 
-		std::vector<std::vector<std::string>>datas;
-		datas = t2k::loadCsv("Charactor_Status.csv");
-
 		int i = 0;
 
 		//名前読み込み
 		for (i = 0; i < name_length; i++) {
 
-			name[i] = datas[0][0].c_str()[i];
+			name[i] = GMp->SPp->datas[0][0].c_str()[i];
 
-			if ('\0' == datas[0][0].c_str()[i]) {
+			if ('\0' == GMp->SPp->datas[0][0].c_str()[i]) {
 
 				break;
 			}
@@ -54,12 +56,15 @@ void Player::LoadStatus() {
 
 		//ステータス読み込み
 		sta = {
-			std::atoi(datas[0][1].c_str()), //ヒットポイント
-			std::atoi(datas[0][2].c_str()), //移動速度
-			std::atoi(datas[0][3].c_str()), //攻撃力
-			std::atoi(datas[0][4].c_str()), //防御力
-			std::atoi(datas[0][5].c_str()), //攻撃速度
+			std::atoi(GMp->SPp->datas[0][1].c_str()), //ヒットポイント
+			std::atoi(GMp->SPp->datas[0][2].c_str()), //移動速度
+			std::atoi(GMp->SPp->datas[0][3].c_str()), //攻撃力
+			std::atoi(GMp->SPp->datas[0][4].c_str()), //防御力
+			std::atoi(GMp->SPp->datas[0][5].c_str()), //攻撃速度
 		};
+
+		//画像読み込み
+		graphic_handle= LoadGraph(GMp->SPp->datas[0][6].c_str());
 
 		return;
 	}
@@ -77,9 +82,17 @@ void Player::LoadStatus() {
 	sta.attack_speed = status[4];
 
 	//画像読み込み
-	//fread_s(chara_img, sizeof(chara_img))
+	//fread_s(graphic_handle, sizeof(graphic_handle), sizeof(graphic_handle), 1, fp);
 
 	fclose(fp);
+}
+
+
+//削除
+void Player::isDelete() {
+
+	if (sta.HP <= 0) { alive_flag = false; }
+
 }
 
 
@@ -127,7 +140,7 @@ void Player::FireBullet(float deltatime) {
 
 	ShootDirection();
 
-	GMp->SPp->MakeBullet(pos, bullet_direction_x, bullet_direction_y, angle);
+	GMp->SPp->MakeBullet(pos, bullet_direction_x, bullet_direction_y, angle, true);
 
 	timecount = 0;
 
@@ -174,7 +187,7 @@ void Player::Render(Camera* cam) {
 
 	DrawRotaGraph(x, y, 0.05f, 0, img, true);
 
-	DrawCircle(pos_.x, pos_.y, 20, -1, true);
+	DrawCircle(pos_.x, pos_.y, r, -1, true);
 
 	DrawFormatString(100, 100, -1, "x:%f y:%f", pos.x, pos.y);
 	DrawFormatString(100, 120, -1, "名前:%s", name);
