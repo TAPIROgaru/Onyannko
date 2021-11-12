@@ -25,10 +25,10 @@ public:
 	static constexpr int SCREEN_W = 960;
 	static constexpr int SCREEN_H = 540;
 
-	static constexpr int FIELD_W = SCREEN_W * 1.5;
-	static constexpr int FIELD_H = SCREEN_H * 1.5;
+	static constexpr int FIELD_W = 576;   // 1152
+	static constexpr int FIELD_H = 320;   // 640
 
-	static constexpr bool WINDOW_MODE = false;
+	static constexpr bool WINDOW_MODE = true;
 
 	//------------------------------------------------------------------------------------------------
 
@@ -38,8 +38,6 @@ public:
 
 	//------------------------------------------------------------------------------------------------
 	//ä÷êî
-
-	void DrawBuckGround();
 
 	void ChangeScene();
 

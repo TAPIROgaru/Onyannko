@@ -11,7 +11,8 @@ extern GameManager* GMp;
 PlayScene::PlayScene() {
 
 	datas = t2k::loadCsv("Charactor_Status.csv");
-	img_back = LoadGraph("sample.jpg");
+	map = t2k::loadCsv("BackGround.csv");
+	img_back = LoadGraph("graphics/kusa.png");
 }
 
 
@@ -45,21 +46,44 @@ void PlayScene::Delete() {
 
 
 //----------------------------------------------------------------------------------------------------
+//背景
+void PlayScene::DrawBuckGround() {
+
+	int x = -GMp->FIELD_W;
+	int y = -GMp->FIELD_H;
+
+	DrawGraph(x, y, img_back, false);
+
+	//for (auto i:map) {
+	//	for (auto j:i) {
+
+	//		
+	//		x += 16;
+	//	}
+	//	y += 16;
+	//}
+}
+
+
+//----------------------------------------------------------------------------------------------------
 //スタート
 void PlayScene::Start(float deltatime) {
 
-	if (!_switch) { return; }
+	if (!_switch || count >= 5) { return; }
 
 	count += deltatime;
 
 	if (count < 3) {
 
-		DrawFormatString(0, 10, -1, "よーい　%f", count);
+		DrawFormatString(0, 0, -1, "よーい　%f", count);
 		return;
 	}
 
-	DrawString(0, 10, "スタート", -1);
-	_start_flag = true;
+	if (count < 5) {
+		DrawString(0, 0, "スタート", -1);
+		_start_flag = true;
+		return;
+	}
 }
 
 
@@ -82,8 +106,9 @@ void PlayScene::SavePlayer() {
 //ゲームオーバー
 void PlayScene::isOver() {
 
-	if (Pp->sta.HP == 0) {
+	if (Pp->sta.HP == 0 || Ep->sta.HP == 0) {
 
+		GMp->SRp->_switch = true;
 	}
 }
 
@@ -169,10 +194,8 @@ void PlayScene::Init() {
 void PlayScene::Update(float deltatime) {
 
 	Init();
+	DrawBuckGround();
 
-	Delete();
-
-	cam.pos += (Pp->pos - cam.pos) * 0.1f;
 	Start(deltatime);
 
 	for (auto p : Op) {
@@ -180,7 +203,12 @@ void PlayScene::Update(float deltatime) {
 		if (p->alive_flag) { p->Update(deltatime); }
 	}
 
+	cam.pos += (Pp->pos - cam.pos) * 0.1f;
+
 	isHit();
+	Delete();
+
+	isOver();
 }
 void PlayScene::Render(float deltatime) {
 

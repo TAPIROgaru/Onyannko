@@ -24,6 +24,7 @@ Enemy::~Enemy() {
 //
 void Enemy::Move(float deltatime) {
 
+	if (!GMp->SPp->_start_flag || GMp->SRp->_switch) { return; }
 
 }
 

@@ -99,28 +99,38 @@ void Player::isDelete() {
 //動かす
 void Player::Move(float deltatime) {
 
+	if (!GMp->SPp->_start_flag || GMp->SRp->_switch) { return; }
+
 	//上
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_W)) {
+		if (pos.y - r > -GMp->FIELD_H) {
 
-		pos.y -= sta.move_speed;
+			pos.y -= sta.move_speed;
+		}
 	}
 
 	//左
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_A)) {
+		if (pos.x - r > -GMp->FIELD_W) {
 
-		pos.x -= sta.move_speed;
+			pos.x -= sta.move_speed;
+		}
 	}
 
 	//下
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_S)) {
+		if (pos.y + r < GMp->FIELD_H) {
 
-		pos.y += sta.move_speed;
+			pos.y += sta.move_speed;
+		}
 	}
 
 	//右
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_D)) {
+		if (pos.x + r < GMp->FIELD_W) {
 
-		pos.x += sta.move_speed;
+			pos.x += sta.move_speed;
+		}
 	}
 
 	//左クリック

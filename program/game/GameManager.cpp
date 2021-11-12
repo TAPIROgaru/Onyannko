@@ -33,19 +33,6 @@ void GameManager::Init() {
 
 
 //----------------------------------------------------------------------------------------------------
-//îwåi
-void GameManager::DrawBuckGround() {
-
-	for (int y = -FIELD_H; y < FIELD_H; y += 16) {
-		for (int x = -FIELD_W; x < FIELD_W; x += 16) {
-
-			//DrawGraph(x, y, img, false);
-		}
-	}
-}
-
-
-//----------------------------------------------------------------------------------------------------
 //ÉVÅ[ÉìëJà⁄
 void GameManager::ChangeScene() {
 
@@ -72,6 +59,7 @@ void GameManager::ChangeScene() {
 
 	if (SPp->_switch && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD4)) {
 		SPp->_switch = false;
+		SRp->_switch = false;
 		SMp->_switch = true;
 
 		return;

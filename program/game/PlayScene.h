@@ -36,6 +36,8 @@ public:
 
 	void isHit();
 
+	void DrawBuckGround();
+
 
 	//------------------------------------------------------------------------------------------------
 	//他ソースファイルから使う関数
@@ -62,6 +64,7 @@ public:
 	Camera cam;                 //Cameraクラス
 
 	std::vector<std::vector<std::string>>datas;
+	std::vector<std::vector<std::string>>map;
 
 	bool _start_flag = false;
 
