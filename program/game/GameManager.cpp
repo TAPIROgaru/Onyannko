@@ -5,6 +5,8 @@
 //コンストラクタ
 GameManager::GameManager() {
 
+	img_aim = LoadGraph("graphics/AIM.png");
+	img_mouse = LoadGraph("graphics/mouse.png");
 }
 
 
@@ -17,12 +19,14 @@ void GameManager::Init() {
 	STp = new TitleScene();
 	SMp = new MenuScene();
 	SPp = new PlayScene();
+	SRp = new ResultScene();
 
-	STp->alive_flag = true;
+	STp->_switch = true;
 
 	Sp.emplace_back(STp);
 	Sp.emplace_back(SMp);
 	Sp.emplace_back(SPp);
+	Sp.emplace_back(SRp);
 
 	_init = false;
 }
@@ -35,7 +39,7 @@ void GameManager::DrawBuckGround() {
 	for (int y = -FIELD_H; y < FIELD_H; y += 16) {
 		for (int x = -FIELD_W; x < FIELD_W; x += 16) {
 
-			DrawGraph(x, y, img, false);
+			//DrawGraph(x, y, img, false);
 		}
 	}
 }
@@ -45,30 +49,30 @@ void GameManager::DrawBuckGround() {
 //シーン遷移
 void GameManager::ChangeScene() {
 
-	if (STp->alive_flag && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD1)) {
-		STp->alive_flag = false;
-		SMp->alive_flag = true;
+	if (STp->_switch && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD1)) {
+		STp->_switch = false;
+		SMp->_switch = true;
 
 		return;
 	}
 
-	if (SMp->alive_flag && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD2)) {
-		SMp->alive_flag = false;
-		STp->alive_flag = true;
+	if (SMp->_switch && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD2)) {
+		SMp->_switch = false;
+		STp->_switch = true;
 
 		return;
 	}
 
-	if (SMp->alive_flag && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD3)) {
-		SMp->alive_flag = false;
-		SPp->alive_flag = true;
+	if (SMp->_switch && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD3)) {
+		SMp->_switch = false;
+		SPp->_switch = true;
 
 		return;
 	}
 
-	if (SPp->alive_flag && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD4)) {
-		SPp->alive_flag = false;
-		SMp->alive_flag = true;
+	if (SPp->_switch && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD4)) {
+		SPp->_switch = false;
+		SMp->_switch = true;
 
 		return;
 	}
@@ -82,19 +86,28 @@ void GameManager::Update(float deltatime) {
 
 	Init();
 
-	for (auto pointer : Sp) {
+	for (auto p : Sp) {
 
-		if (pointer->alive_flag) { pointer->Update(deltatime); }
+		if (p->_switch) { p->Update(deltatime); }
 	}
 
 	ChangeScene();
 }
 void GameManager::Render(float deltatime) {
 
-	for (auto pointer : Sp) {
+	for (auto p : Sp) {
 
-		if (pointer->alive_flag) { pointer->Render(deltatime); }
+		if (p->_switch) { p->Render(deltatime); }
 	}
 
+	int x, y;
+	GetMousePoint(&x, &y);
+
+	if (SPp->_switch) {
+		DrawRotaGraph(x, y, 0.05f, 0, img_aim, true);
+	}
+	else {
+		DrawRotaGraph(x, y, 0.05f, 0, img_mouse, true);
+	}
 }
 //----------------------------------------------------------------------------------------------------

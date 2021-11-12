@@ -9,7 +9,13 @@ bool CircleHit(float pos1_x, float pos1_y, int r1, float pos2_x, float pos2_y, i
 
 	float C = A * A + B * B;
 
-	if (r1 + r2 >= sqrt(C)) { return true; }
+	int andR = r1 + r2;
+
+	float _c = sqrt(C);
+
+	if (andR >= _c) {
+		return true;
+	}
 
 	return false;
 }

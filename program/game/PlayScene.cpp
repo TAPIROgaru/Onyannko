@@ -11,6 +11,7 @@ extern GameManager* GMp;
 PlayScene::PlayScene() {
 
 	datas = t2k::loadCsv("Charactor_Status.csv");
+	img_back = LoadGraph("sample.jpg");
 }
 
 
@@ -47,7 +48,7 @@ void PlayScene::Delete() {
 //スタート
 void PlayScene::Start(float deltatime) {
 
-	if (!alive_flag) { return; }
+	if (!_switch) { return; }
 
 	count += deltatime;
 
@@ -81,7 +82,9 @@ void PlayScene::SavePlayer() {
 //ゲームオーバー
 void PlayScene::isOver() {
 
-	//if(Pp->)
+	if (Pp->sta.HP == 0) {
+
+	}
 }
 
 
@@ -89,7 +92,20 @@ void PlayScene::isOver() {
 //当たり判定
 void PlayScene::isHit() {
 
-	//当たり判定は個対多で行う
+	for (auto p : Bp) {
+		if (p->_team) {
+			if (CircleHit(Ep->pos.x, Ep->pos.y, Ep->r, p->pos.x, p->pos.y, p->r)) {
+				Ep->sta.HP--;
+				p->alive_flag = false;
+			}
+		}
+		else if (!p->_team) {
+			if (CircleHit(Pp->pos.x, Pp->pos.y, Pp->r, p->pos.x, p->pos.y, p->r)) {
+				Pp->sta.HP--;
+				p->alive_flag = false;
+			}
+		}
+	}
 }
 
 
@@ -154,19 +170,23 @@ void PlayScene::Update(float deltatime) {
 
 	Init();
 
+	Delete();
+
 	cam.pos += (Pp->pos - cam.pos) * 0.1f;
 	Start(deltatime);
 
-	for (auto pointer : Op) {
+	for (auto p : Op) {
 
-		if (pointer->alive_flag) { pointer->Update(deltatime); }
+		if (p->alive_flag) { p->Update(deltatime); }
 	}
+
+	isHit();
 }
 void PlayScene::Render(float deltatime) {
 
-	for (auto pointer : Op) {
+	for (auto p : Op) {
 
-		if (pointer->alive_flag) { pointer->Render(&cam); }
+		if (p->alive_flag) { p->Render(&cam); }
 	}
 }
 

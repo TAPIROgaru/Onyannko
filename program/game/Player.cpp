@@ -16,7 +16,6 @@ Player::Player() {
 	r = 20;
 
 	secconds_AS = 1.0f / sta.attack_speed;
-	img = LoadGraph("graphics/AIM.png");
 }
 
 
@@ -181,11 +180,6 @@ void Player::Update(float deltatime) {
 void Player::Render(Camera* cam) {
 
 	t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
-
-	int x, y;
-	GetMousePoint(&x, &y);
-
-	DrawRotaGraph(x, y, 0.05f, 0, img, true);
 
 	DrawCircle(pos_.x, pos_.y, r, -1, true);
 
