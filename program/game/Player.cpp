@@ -13,7 +13,7 @@ Player::Player() {
 	_team = true;
 	pos = { -200, 0, 0 };
 	LoadStatus();
-	r = 20;
+	r = 18;
 
 	secconds_AS = 1.0f / sta.attack_speed;
 }
@@ -36,6 +36,9 @@ void Player::LoadStatus() {
 	int status[status_value] = { 0 };
 
 	fopen_s(&fp, "player.bin", "rb");
+
+	//画像読み込み
+	chara_handle = LoadGraph(GMp->SPp->datas[0][6].c_str());
 
 	//バイナリファイルがなかったら
 	if (fp == NULL) {
@@ -62,9 +65,6 @@ void Player::LoadStatus() {
 			std::atoi(GMp->SPp->datas[0][5].c_str()), //攻撃速度
 		};
 
-		//画像読み込み
-		graphic_handle= LoadGraph(GMp->SPp->datas[0][6].c_str());
-
 		return;
 	}
 	
@@ -79,9 +79,6 @@ void Player::LoadStatus() {
 	sta.attack       = status[2];
 	sta.defense      = status[3];
 	sta.attack_speed = status[4];
-
-	//画像読み込み
-	//fread_s(graphic_handle, sizeof(graphic_handle), sizeof(graphic_handle), 1, fp);
 
 	fclose(fp);
 }
@@ -103,33 +100,45 @@ void Player::Move(float deltatime) {
 
 	//上
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_W)) {
-		if (pos.y - r > -GMp->FIELD_H) {
 
-			pos.y -= sta.move_speed;
+		pos.y -= sta.move_speed;
+
+		if (pos.y - r < -GMp->FIELD_H) {
+
+			pos.y = -GMp->FIELD_H + r;
 		}
 	}
 
 	//左
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_A)) {
-		if (pos.x - r > -GMp->FIELD_W) {
 
-			pos.x -= sta.move_speed;
+		pos.x -= sta.move_speed;
+
+		if (pos.x - r < -GMp->FIELD_W) {
+
+			pos.x = -GMp->FIELD_W + r;
 		}
 	}
 
 	//下
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_S)) {
-		if (pos.y + r < GMp->FIELD_H) {
 
-			pos.y += sta.move_speed;
+		pos.y += sta.move_speed;
+
+		if (pos.y + r > GMp->FIELD_H) {
+
+			pos.y = GMp->FIELD_H - r;
 		}
 	}
 
 	//右
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_D)) {
-		if (pos.x + r < GMp->FIELD_W) {
 
-			pos.x += sta.move_speed;
+		pos.x += sta.move_speed;
+
+		if (pos.x + r > GMp->FIELD_W) {
+
+			pos.x = GMp->FIELD_W - r;
 		}
 	}
 
@@ -149,7 +158,7 @@ void Player::FireBullet(float deltatime) {
 
 	ShootDirection();
 
-	GMp->SPp->MakeBullet(pos, bullet_direction_x, bullet_direction_y, angle, true);
+	GMp->SPp->MakeBullet(pos, bullet_direction_x, bullet_direction_y, true);
 
 	timecount = 0;
 
@@ -191,7 +200,7 @@ void Player::Render(Camera* cam) {
 
 	t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
 
-	DrawCircle(pos_.x, pos_.y, r, -1, true);
+	DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, chara_handle, 1);
 
 	DrawFormatString(100, 100, -1, "x:%f y:%f", pos.x, pos.y);
 	DrawFormatString(100, 120, -1, "名前:%s", name);

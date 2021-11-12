@@ -26,7 +26,7 @@ public:
 	static constexpr int SCREEN_H = 540;
 
 	static constexpr int FIELD_W = 576;   // 1152
-	static constexpr int FIELD_H = 320;   // 640
+	static constexpr int FIELD_H = 400;   // 800
 
 	static constexpr bool WINDOW_MODE = true;
 

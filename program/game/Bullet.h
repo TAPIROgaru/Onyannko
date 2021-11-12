@@ -14,7 +14,7 @@ public:
 	//------------------------------------------------------------------------------------------------
 	//ä÷êî
 
-	Bullet(float, float, float, float, float, bool);
+	Bullet(float, float, float, float, bool);
 
 	void Move();
 	bool isDelete();

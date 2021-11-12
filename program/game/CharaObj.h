@@ -38,7 +38,7 @@ public:
 		int attack_speed;           //攻撃速度      1秒間に何回攻撃するか
 	};
 
-	int graphic_handle = 0;         //画像ハンドル
+	int chara_handle = 0;         //画像ハンドル
 
 	Status sta;
 

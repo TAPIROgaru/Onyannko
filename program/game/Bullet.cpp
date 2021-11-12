@@ -6,16 +6,15 @@ extern GameManager* GMp;
 
 //----------------------------------------------------------------------------------------------------
 //コンストラクタ
-Bullet::Bullet(float x, float y, float dire_x, float dire_y, float a, bool t) {
+Bullet::Bullet(float x, float y, float dire_x, float dire_y, bool t) {
 
 	pos = { x,y,0 };
 
 	direction_x = dire_x;
 	direction_y = dire_y;
-	angle = a;
 
 	_team = t;
-	r = 5;
+	r = 7;
 }
 
 
@@ -27,6 +26,8 @@ void Bullet::Move() {
 		alive_flag = false;
 		return;
 	}
+
+	if (GMp->SRp->_switch) { return; }
 
 	pos.x += direction_x * speed;
 	pos.y += direction_y * speed;
@@ -57,7 +58,10 @@ void Bullet::Update(float deltatime) {
 void Bullet::Render(Camera* cam) {
 
 	t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
-	DrawCircle(pos_.x, pos_.y, r, -1, false);
+
+	DrawRotaGraph(pos_.x, pos_.y, 1.0, angle, GMp->SPp->img_bullet, 1);
+
+	angle += 0.15f;
 }
 
 //----------------------------------------------------------------------------------------------------

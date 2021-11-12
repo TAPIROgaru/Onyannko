@@ -12,7 +12,9 @@ PlayScene::PlayScene() {
 
 	datas = t2k::loadCsv("Charactor_Status.csv");
 	map = t2k::loadCsv("BackGround.csv");
-	img_back = LoadGraph("graphics/kusa.png");
+	img_bullet = LoadGraph("graphics/shuriken.png");
+	img_back[0] = LoadGraph("graphics/kusa.png");
+	img_back[1] = LoadGraph("graphics/inviolability.png");
 }
 
 
@@ -49,19 +51,22 @@ void PlayScene::Delete() {
 //”wŒi
 void PlayScene::DrawBuckGround() {
 
-	int x = -GMp->FIELD_W;
-	int y = -GMp->FIELD_H;
+	t2k::Vector3 pos = { -GMp->FIELD_W - 16 * 3 ,-GMp->FIELD_H - 16 * 2, 0 };
 
-	DrawGraph(x, y, img_back, false);
+	t2k::Vector3 pos_ = FixPositionVector(pos);
 
-	//for (auto i:map) {
-	//	for (auto j:i) {
+	float x = pos_.x;
+	float y = pos_.y;
 
-	//		
-	//		x += 16;
-	//	}
-	//	y += 16;
-	//}
+	for (auto i : map) {
+		x = pos_.x;
+		for (auto j : i) {
+
+			DrawRotaGraph(x, y, 1.0, 0, img_back[std::atoi(j.c_str())], 1);
+			x += 16;
+		}
+		y += 16;
+	}
 }
 
 
@@ -136,9 +141,9 @@ void PlayScene::isHit() {
 
 //----------------------------------------------------------------------------------------------------
 //’eì¬
-void PlayScene::MakeBullet(t2k::Vector3 pos, float direction_x, float direction_y, float a, bool t) {
+void PlayScene::MakeBullet(t2k::Vector3 pos, float direction_x, float direction_y, bool t) {
 
-	Bullet* bp = new Bullet(pos.x, pos.y, direction_x, direction_y, a, t);
+	Bullet* bp = new Bullet(pos.x, pos.y, direction_x, direction_y, t);
 	Bp.emplace_back(bp);
 	Op.emplace_back(bp);
 }
@@ -203,7 +208,7 @@ void PlayScene::Update(float deltatime) {
 		if (p->alive_flag) { p->Update(deltatime); }
 	}
 
-	cam.pos += (Pp->pos - cam.pos) * 0.1f;
+	cam.update(deltatime, Pp->pos);
 
 	isHit();
 	Delete();

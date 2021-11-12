@@ -10,9 +10,10 @@ Enemy::Enemy(int num) {
 
 	_team = false;
 	pos = { 200, 0, 0 };
-	r = 20;
+	r = 18;
 	LoadStatus(num);
 
+	secconds_AS = 1.0f / sta.attack_speed;
 }
 //デストラクタ
 Enemy::~Enemy() {
@@ -56,7 +57,7 @@ void Enemy::LoadStatus(int num) {
 	};
 
 	//画像
-	graphic_handle = LoadGraph(GMp->SPp->datas[num][6].c_str());
+	chara_handle = LoadGraph(GMp->SPp->datas[num][6].c_str());
 }
 
 
@@ -71,7 +72,7 @@ void Enemy::Render(Camera* cam) {
 
 	t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
 
-	DrawCircle(pos_.x, pos_.y, 20, -1, true);
+	DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, chara_handle, 1);
 
 	DrawFormatString(600, 100, -1, "x:%f y:%f"  , pos.x, pos.y);
 	DrawFormatString(600, 120, -1, "名前:%s"    , name);

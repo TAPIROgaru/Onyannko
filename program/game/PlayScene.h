@@ -43,7 +43,7 @@ public:
 	//他ソースファイルから使う関数
 	
 	//弾生成
-	void MakeBullet(t2k::Vector3, float, float, float, bool);
+	void MakeBullet(t2k::Vector3, float, float, bool);
 
 	//カメラ座標を考慮したマウス座標を取得できる関数
 	t2k::Vector3 GetMousePosition();
@@ -74,6 +74,8 @@ public:
 
 	float count = 0;
 	float start = 3;
+
+	int img_bullet = 0;
 
 
 	//------------------------------------------------------------------------------------------------

@@ -13,10 +13,23 @@ Camera::Camera() {
 
 //----------------------------------------------------------------------------------------------------
 
-void Camera::update(float deltatime) {
+void Camera::update(float deltatime, t2k::Vector3 pos_) {
 
-	if (pos.x) {
-
+	if (pos.x < -GMp->FIELD_W + GMp->SCREEN_W / 2) {
+		pos.x = -GMp->FIELD_W + GMp->SCREEN_W / 2;
 	}
-	DrawFormatString(0, 0, -1, "x:%lf y:%lf", pos.x, pos.y);
+	else if (pos.x > GMp->FIELD_W - GMp->SCREEN_W / 2) {
+		pos.x = GMp->FIELD_W - GMp->SCREEN_W / 2;
+	}
+
+	if (pos.y < -GMp->FIELD_H + GMp->SCREEN_H / 2) {
+		pos.y = -GMp->FIELD_H + GMp->SCREEN_H / 2;
+	}
+	else if (pos.y > GMp->FIELD_H - GMp->SCREEN_H / 2) {
+		pos.y = GMp->FIELD_H - GMp->SCREEN_H / 2;
+	}
+
+	pos += (pos_ - pos) * 0.1f;
+
+	DrawFormatString(0, 50, -1, "camera x:%lf y:%lf", pos.x, pos.y);
 }
