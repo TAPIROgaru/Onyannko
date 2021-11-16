@@ -29,6 +29,8 @@ public:
 	//•Ï”
 
 	
+	int _hp = 0;
+	
 	float bullet_direction_x = 0; //’e‚ğ”­Ë‚·‚éŒü‚«
 	float bullet_direction_y = 0;
 

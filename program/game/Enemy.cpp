@@ -66,7 +66,7 @@ void Enemy::LoadStatus(int num) {
 
 void Enemy::Update(float deltatime) {
 
-
+	if (GMp->SRp->_switch) { alive_flag = false; }
 }
 void Enemy::Render(Camera* cam) {
 

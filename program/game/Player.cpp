@@ -14,6 +14,7 @@ Player::Player() {
 	pos = { -200, 0, 0 };
 	LoadStatus();
 	r = 18;
+	_hp = sta.HP;
 
 	secconds_AS = 1.0f / sta.attack_speed;
 }
@@ -195,6 +196,7 @@ void Player::Update(float deltatime) {
 
 	Move(deltatime);
 
+	if (GMp->SRp->_switch) { alive_flag = false; }
 }
 void Player::Render(Camera* cam) {
 
@@ -204,7 +206,7 @@ void Player::Render(Camera* cam) {
 
 	DrawFormatString(100, 100, -1, "x:%f y:%f", pos.x, pos.y);
 	DrawFormatString(100, 120, -1, "–¼‘O:%s", name);
-	DrawFormatString(100, 140, -1, "HP:%d", sta.HP);
+	DrawFormatString(100, 140, -1, "HP:%d", _hp);
 	DrawFormatString(100, 160, -1, "ˆÚ“®‘¬“x:%d", sta.move_speed);
 	DrawFormatString(100, 180, -1, "UŒ‚—Í:%d", sta.attack);
 	DrawFormatString(100, 200, -1, "–hŒä—Í:%d", sta.defense);

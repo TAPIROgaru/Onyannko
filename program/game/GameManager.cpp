@@ -53,6 +53,7 @@ void GameManager::ChangeScene() {
 	if (SMp->_switch && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD3)) {
 		SMp->_switch = false;
 		SPp->_switch = true;
+		SPp->_init = true;
 
 		return;
 	}
@@ -61,6 +62,8 @@ void GameManager::ChangeScene() {
 		SPp->_switch = false;
 		SRp->_switch = false;
 		SMp->_switch = true;
+
+		
 
 		return;
 	}

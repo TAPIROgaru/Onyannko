@@ -56,9 +56,6 @@ public:
 	int img_aim;
 	int img_mouse;
 
-	t2k::Vector3 img_pos1 = { -FIELD_W, -FIELD_H,0 };
-	t2k::Vector3 img_pos2 = { FIELD_W, FIELD_H,0 };
-
 
 	//------------------------------------------------------------------------------------------------
 	//リスト　ポインタ

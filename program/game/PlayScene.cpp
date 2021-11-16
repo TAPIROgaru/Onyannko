@@ -111,7 +111,7 @@ void PlayScene::SavePlayer() {
 //ゲームオーバー
 void PlayScene::isOver() {
 
-	if (Pp->sta.HP == 0 || Ep->sta.HP == 0) {
+	if (Pp->_hp == 0 || Ep->sta.HP == 0) {
 
 		GMp->SRp->_switch = true;
 	}
@@ -131,7 +131,7 @@ void PlayScene::isHit() {
 		}
 		else if (!p->_team) {
 			if (CircleHit(Pp->pos.x, Pp->pos.y, Pp->r, p->pos.x, p->pos.y, p->r)) {
-				Pp->sta.HP--;
+				Pp->_hp--;
 				p->alive_flag = false;
 			}
 		}

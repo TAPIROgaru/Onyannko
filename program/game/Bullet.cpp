@@ -54,6 +54,8 @@ bool Bullet::isDelete() {
 void Bullet::Update(float deltatime) {
 
 	Move();
+
+	if (GMp->SRp->_switch) { alive_flag = false; }
 }
 void Bullet::Render(Camera* cam) {
 
