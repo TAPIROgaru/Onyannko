@@ -19,18 +19,20 @@ public:
 
 
 	void Move(float);       //操作
-	void LoadStatus(int);      //プレイヤーステータスのロード
+	void LoadStatus(int);   //プレイヤーステータスのロード
 	void FireBullet(float); //弾を撃つ
-	void ShootDirection();  //発射する向き
+	void FindPlayer(float); //プレイヤーとの位置関係
 
 
 	//------------------------------------------------------------------------------------------------
 	//変数
 
+	int search_range = 900;       //索敵範囲
+
 	float bullet_direction_x = 0; //弾を発射する向き
 	float bullet_direction_y = 0;
 
-	float magnitude = 0;          //正規化
+	float magnitude = 0;          //単位ベクトル
 
 	float angle = 0;              //角度
 

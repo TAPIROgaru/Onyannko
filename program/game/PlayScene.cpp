@@ -10,11 +10,13 @@ extern GameManager* GMp;
 //コンストラクタ
 PlayScene::PlayScene() {
 
-	datas = t2k::loadCsv("Charactor_Status.csv");
+	datas = GMp->datas;
+
 	map = t2k::loadCsv("BackGround.csv");
-	img_bullet = LoadGraph("graphics/shuriken.png");
-	img_back[0] = LoadGraph("graphics/kusa.png");
-	img_back[1] = LoadGraph("graphics/inviolability.png");
+
+	img_bullet = GMp->loadGraph("graphics/shuriken.png");
+	img_back[0] = GMp->loadGraph("graphics/kusa.png");
+	img_back[1] = GMp->loadGraph("graphics/shasen.png");
 }
 
 
@@ -189,6 +191,8 @@ void PlayScene::Init() {
 
 	Ep = new Enemy(1);
 	Op.emplace_back(Ep);
+
+	count = 0;
 
 	_init = false;
 }

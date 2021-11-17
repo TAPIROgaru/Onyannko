@@ -5,8 +5,10 @@
 //コンストラクタ
 GameManager::GameManager() {
 
-	img_aim = LoadGraph("graphics/AIM.png");
-	img_mouse = LoadGraph("graphics/mouse.png");
+	datas = t2k::loadCsv("Charactor_Status.csv");
+
+	img_aim = loadGraph("graphics/AIM.png");
+	img_mouse = loadGraph("graphics/mouse.png");
 }
 
 
@@ -67,6 +69,23 @@ void GameManager::ChangeScene() {
 
 		return;
 	}
+}
+
+
+//----------------------------------------------------------------------------------------------------
+//画像呼び出し
+int GameManager::loadGraph(std::string str) {
+
+	auto it =image.find(str);
+
+	if (it != image.end()) {
+		return it->second;
+	}
+
+	int img = LoadGraph(str.c_str());
+	image.insert(std::make_pair(str, img));
+
+	return img;
 }
 
 

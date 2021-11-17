@@ -39,7 +39,7 @@ void Player::LoadStatus() {
 	fopen_s(&fp, "player.bin", "rb");
 
 	//画像読み込み
-	chara_handle = LoadGraph(GMp->SPp->datas[0][6].c_str());
+	chara_handle = GMp->loadGraph("graphics/Player.png");
 
 	//バイナリファイルがなかったら
 	if (fp == NULL) {
@@ -162,7 +162,6 @@ void Player::FireBullet(float deltatime) {
 	GMp->SPp->MakeBullet(pos, bullet_direction_x, bullet_direction_y, true);
 
 	timecount = 0;
-
 }
 
 

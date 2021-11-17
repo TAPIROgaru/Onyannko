@@ -57,7 +57,43 @@ void Enemy::LoadStatus(int num) {
 	};
 
 	//画像
-	chara_handle = LoadGraph(GMp->SPp->datas[num][6].c_str());
+	chara_handle = GMp->loadGraph("graphics/Enemy.png");
+}
+
+
+//----------------------------------------------------------------------------------------------------
+//プレイヤーとの距離
+void Enemy::FindPlayer(float deltatime) {
+
+	//Player座標を取得
+	t2k::Vector3 pos_ = GMp->SPp->Pp->pos;
+
+	//Playerとの距離
+	t2k::Vector3 component = pos - pos_;
+
+	//単位ベクトル
+	float magnitude = (float)sqrt(component.x * component.x + component.y * component.y);
+
+	if (search_range < magnitude) { return; }
+
+	//角度の計算
+	float bullet_direction_x = component.x / magnitude * -1;
+	float bullet_direction_y = component.y / magnitude * -1;
+
+	GMp->SPp->MakeBullet(pos, bullet_direction_x, bullet_direction_y, false);
+
+}
+
+
+//----------------------------------------------------------------------------------------------------
+//撃つ
+void Enemy::FireBullet(float deltatime) {
+
+	if (secconds_AS > timecount) { return; }
+
+	GMp->SPp->MakeBullet(pos, bullet_direction_x, bullet_direction_y, true);
+
+	timecount = 0;
 }
 
 
@@ -65,6 +101,10 @@ void Enemy::LoadStatus(int num) {
 //毎フレーム呼び出し
 
 void Enemy::Update(float deltatime) {
+
+	timecount += deltatime;
+
+	FindPlayer(deltatime);
 
 	if (GMp->SRp->_switch) { alive_flag = false; }
 }

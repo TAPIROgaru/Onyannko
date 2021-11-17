@@ -34,7 +34,7 @@ public:
 	float bullet_direction_x = 0; //弾を発射する向き
 	float bullet_direction_y = 0;
 
-	float magnitude = 0;          //正規化
+	float magnitude = 0;          //単位ベクトル
 
 	float angle = 0;              //角度
 
