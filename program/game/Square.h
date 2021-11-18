@@ -1,48 +1,62 @@
 #pragma once
+#include "../library/t2klib.h"
 
 //----------------------------------------------------------------------------------------------------
 //自作ファイル
 
-#include "CharaObj.h"
+#include "Object.h"
+#include "Camera.h"
 
 
 //----------------------------------------------------------------------------------------------------
 
-class Enemy :public CharaObj {
+class Square : public Object {
 public:
 
 	//------------------------------------------------------------------------------------------------
 	//関数
 
-	Enemy(int);
-	~Enemy();
-
-
-	void Move(float);       //操作
-	void LoadStatus(int);   //プレイヤーステータスのロード
-	void FireBullet(float); //弾を撃つ
-	void FindPlayer(float); //プレイヤーとの位置関係
+	Square(t2k::Vector3, int, int);
 
 
 	//------------------------------------------------------------------------------------------------
 	//変数
 
-	int search_range_palyer = 750;       //索敵範囲
-	int search_range_bullet = 800;
+	int img = 0;
 
-	float bullet_direction_x = 0; //弾を発射する向き
-	float bullet_direction_y = 0;
+	int size_w_ = 16;
+	int size_h_ = 16;
 
-	float angle = 0;              //角度
+	//------------------------------------------------------------------------------------------------
+	//マスのデータ
+
+	int    status;
+	Square* open_bp = nullptr;
+	int    est_cost;
+	int    act_cost;
+	int    score;
+	int    type;
+
+	//------------------------------------------------------------------------------------------------
+	//ステータス
+
+	enum {
+
+		OPEN,
+		CLOSE,
+		YES,
+		NO,
+		START,
+		GOAL
+	};
 
 
 	//------------------------------------------------------------------------------------------------
 	//毎フレーム呼び出し
 
 	void Update(float deltatime) override;
-	void Render(Camera* cam)     override;
+	void Render(Camera* camera) override;
 
 
 	//------------------------------------------------------------------------------------------------
-
 };

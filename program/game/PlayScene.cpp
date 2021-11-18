@@ -17,6 +17,7 @@ PlayScene::PlayScene() {
 	img_bullet = GMp->loadGraph("graphics/shuriken.png");
 	img_back[0] = GMp->loadGraph("graphics/kusa.png");
 	img_back[1] = GMp->loadGraph("graphics/shasen.png");
+	img_back[2] = GMp->loadGraph("graphics/isi.png");
 }
 
 
@@ -33,6 +34,17 @@ void PlayScene::Delete() {
 			continue;
 		}
 		Bpit++;
+	}
+
+	//Squareƒ|ƒCƒ“ƒ^Œ^‚ÌƒŠƒXƒg
+	std::list<Square*>::iterator Spit = Sp.begin();
+	while (Spit != Sp.end()) {
+		if (!(*Spit)->alive_flag) {
+
+			Spit = Sp.erase(Spit);
+			continue;
+		}
+		Spit++;
 	}
 
 	//Objectƒ|ƒCƒ“ƒ^Œ^‚ÌƒŠƒXƒg
@@ -53,18 +65,27 @@ void PlayScene::Delete() {
 //”wŒi
 void PlayScene::DrawBuckGround() {
 
-	t2k::Vector3 pos = { -GMp->FIELD_W - 16 * 3 ,-GMp->FIELD_H - 16 * 2, 0 };
+	
 
-	t2k::Vector3 pos_ = FixPositionVector(pos);
-
-	float x = pos_.x;
-	float y = pos_.y;
+	float x = -GMp->FIELD_W - 16 * 3;
+	float y = -GMp->FIELD_H - 16 * 2;
 
 	for (auto i : map) {
-		x = pos_.x;
-		for (auto j : i) {
+		x = -GMp->FIELD_W - 16 * 3;
+		for (auto k : i) {
 
-			DrawRotaGraph(x, y, 1.0, 0, img_back[std::atoi(j.c_str())], 1);
+			Square* sp = new Square(
+				t2k::Vector3(x, y, 0), 
+				img_back[std::atoi(k.c_str())], 
+				std::atoi(k.c_str()));
+
+			Op.emplace_back(sp);
+			Sp.emplace_back(sp);
+
+			if (std::atoi(k.c_str()) != FLOOR) {
+				Sp_wall.emplace_back(sp);
+			}
+
 			x += 16;
 		}
 		y += 16;
@@ -122,7 +143,8 @@ void PlayScene::isOver() {
 
 //----------------------------------------------------------------------------------------------------
 //“–‚½‚è”»’è
-void PlayScene::isHit() {
+//’e
+void PlayScene::isHit_bullet() {
 
 	for (auto p : Bp) {
 		if (p->_team) {
@@ -139,7 +161,28 @@ void PlayScene::isHit() {
 		}
 	}
 }
+//•Ç
+void PlayScene::isHit_wall() {
 
+	Sp_wall.sort([&](Square* l, Square* r) {
+		float ld = (Pp->pos - l->pos).length();
+		float rd = (Pp->pos - r->pos).length();
+		return (ld < rd);
+	});
+
+	for (auto p : Sp_wall) {
+
+		float x = p->pos.x + (p->size_w_ >> 1);
+		float y = p->pos.y + (p->size_h_ >> 1);
+
+		t2k::Vector3 pos_ = t2k::getNearestRectPoint(
+			t2k::Vector3(x, y, 0),
+			p->size_w_,
+			p->size_w_,
+			Pp->pos
+			);
+	}
+}
 
 //----------------------------------------------------------------------------------------------------
 //’eì¬
@@ -186,6 +229,8 @@ void PlayScene::Init() {
 
 	if (!_init) { return; }
 
+	DrawBuckGround();
+
 	Pp = new Player();
 	Op.emplace_back(Pp);
 
@@ -193,6 +238,7 @@ void PlayScene::Init() {
 	Op.emplace_back(Ep);
 
 	count = 0;
+	_start_flag = false;
 
 	_init = false;
 }
@@ -203,9 +249,6 @@ void PlayScene::Init() {
 void PlayScene::Update(float deltatime) {
 
 	Init();
-	DrawBuckGround();
-
-	Start(deltatime);
 
 	for (auto p : Op) {
 
@@ -214,7 +257,7 @@ void PlayScene::Update(float deltatime) {
 
 	cam.update(deltatime, Pp->pos);
 
-	isHit();
+	isHit_bullet();
 	Delete();
 
 	isOver();
@@ -225,6 +268,10 @@ void PlayScene::Render(float deltatime) {
 
 		if (p->alive_flag) { p->Render(&cam); }
 	}
+
+	Start(deltatime);
+
+	cam.render();
 }
 
 //----------------------------------------------------------------------------------------------------

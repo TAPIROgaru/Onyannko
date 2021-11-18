@@ -12,7 +12,7 @@ Camera::Camera() {
 }
 
 //----------------------------------------------------------------------------------------------------
-
+//–ˆƒtƒŒ[ƒ€ŒÄ‚Ño‚µ
 void Camera::update(float deltatime, t2k::Vector3 pos_) {
 
 	if (pos.x < -GMp->FIELD_W + GMp->SCREEN_W / 2) {
@@ -30,6 +30,9 @@ void Camera::update(float deltatime, t2k::Vector3 pos_) {
 	}
 
 	pos += (pos_ - pos) * 0.1f;
+}
+void Camera::render() {
 
 	DrawFormatString(0, 50, -1, "camera x:%lf y:%lf", pos.x, pos.y);
 }
+//----------------------------------------------------------------------------------------------------

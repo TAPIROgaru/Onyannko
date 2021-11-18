@@ -26,7 +26,7 @@ public:
 
 	bool _switch = false;
 
-	static constexpr int value = 2;
+	static constexpr int value = 3;
 	int img_back[value] = { 0 };
 
 

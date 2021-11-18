@@ -112,6 +112,9 @@
     <ClCompile Include="program\game\CircleHit.cpp">
       <Filter>program\game\my_system</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\Square.cpp">
+      <Filter>program\game\my_main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="program\support\FrameRateController.h">
@@ -233,6 +236,9 @@
     </ClInclude>
     <ClInclude Include="program\game\CircleHit.h">
       <Filter>program\game\my_system</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\Square.h">
+      <Filter>program\game\my_main</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

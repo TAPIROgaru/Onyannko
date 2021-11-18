@@ -65,8 +65,6 @@ void GameManager::ChangeScene() {
 		SRp->_switch = false;
 		SMp->_switch = true;
 
-		
-
 		return;
 	}
 }

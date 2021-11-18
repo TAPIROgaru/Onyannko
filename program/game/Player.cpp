@@ -23,8 +23,6 @@ Player::Player() {
 //----------------------------------------------------------------------------------------------------
 //デストラクタ
 Player::~Player() {
-
-	GMp->SPp->SavePlayer();
 }
 
 
@@ -195,7 +193,11 @@ void Player::Update(float deltatime) {
 
 	Move(deltatime);
 
-	if (GMp->SRp->_switch) { alive_flag = false; }
+	if (GMp->SRp->_switch) {
+
+		GMp->SPp->SavePlayer(); 
+		alive_flag = false; 
+	}
 }
 void Player::Render(Camera* cam) {
 

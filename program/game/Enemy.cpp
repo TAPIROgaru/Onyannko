@@ -25,7 +25,6 @@ Enemy::~Enemy() {
 //
 void Enemy::Move(float deltatime) {
 
-	if (!GMp->SPp->_start_flag || GMp->SRp->_switch) { return; }
 
 }
 
@@ -65,6 +64,8 @@ void Enemy::LoadStatus(int num) {
 //プレイヤーとの距離
 void Enemy::FindPlayer(float deltatime) {
 
+	if (!GMp->SPp->_start_flag || GMp->SRp->_switch) { return; }
+
 	//Player座標を取得
 	t2k::Vector3 pos_ = GMp->SPp->Pp->pos;
 
@@ -74,14 +75,13 @@ void Enemy::FindPlayer(float deltatime) {
 	//単位ベクトル
 	float magnitude = (float)sqrt(component.x * component.x + component.y * component.y);
 
-	if (search_range < magnitude) { return; }
+	if (search_range_palyer < magnitude) { return; }
 
 	//角度の計算
-	float bullet_direction_x = component.x / magnitude * -1;
-	float bullet_direction_y = component.y / magnitude * -1;
+	bullet_direction_x = component.x / magnitude * -1;
+	bullet_direction_y = component.y / magnitude * -1;
 
-	GMp->SPp->MakeBullet(pos, bullet_direction_x, bullet_direction_y, false);
-
+	FireBullet(deltatime);
 }
 
 
@@ -91,7 +91,7 @@ void Enemy::FireBullet(float deltatime) {
 
 	if (secconds_AS > timecount) { return; }
 
-	GMp->SPp->MakeBullet(pos, bullet_direction_x, bullet_direction_y, true);
+	GMp->SPp->MakeBullet(pos, bullet_direction_x, bullet_direction_y, _team);
 
 	timecount = 0;
 }

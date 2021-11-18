@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="program\game\Square.cpp" />
     <ClCompile Include="program\game\Bullet.cpp" />
     <ClCompile Include="program\game\Camera.cpp" />
     <ClCompile Include="program\game\CircleHit.cpp" />
@@ -40,6 +41,7 @@
     <ClCompile Include="program\system\sys_main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="program\game\Square.h" />
     <ClInclude Include="program\game\Bullet.h" />
     <ClInclude Include="program\game\Camera.h" />
     <ClInclude Include="program\game\CharaObj.h" />
