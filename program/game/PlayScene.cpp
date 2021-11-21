@@ -2,6 +2,7 @@
 #include "Camera.h"
 #include "GameManager.h"
 #include "Player.h"
+#include "Square.h"
 
 
 extern GameManager* GMp;
@@ -13,11 +14,6 @@ PlayScene::PlayScene() {
 	datas = GMp->datas;
 
 	map = t2k::loadCsv("BackGround.csv");
-
-	img_bullet = GMp->loadGraph("graphics/shuriken.png");
-	img_back[0] = GMp->loadGraph("graphics/kusa.png");
-	img_back[1] = GMp->loadGraph("graphics/shasen.png");
-	img_back[2] = GMp->loadGraph("graphics/isi.png");
 }
 
 
@@ -65,7 +61,7 @@ void PlayScene::Delete() {
 //”wŒi
 void PlayScene::DrawBuckGround() {
 
-	
+
 
 	float x = -GMp->FIELD_W - 16 * 3;
 	float y = -GMp->FIELD_H - 16 * 2;
@@ -74,15 +70,44 @@ void PlayScene::DrawBuckGround() {
 		x = -GMp->FIELD_W - 16 * 3;
 		for (auto k : i) {
 
+			int img = 0, type = 0;
+			int num = std::atoi(k.c_str());
+
+			switch (num) {
+
+			case FLOOR:
+				img = GMp->loadGraph("graphics/kusa.png");
+				type = 2;
+
+				break;
+
+			case OUTSIDE_WALL:
+			case INSIDE_WALL:
+				img = GMp->loadGraph("graphics/shasen.png");
+				type = 3;
+
+				break;
+
+			case ROCK:
+				img = GMp->loadGraph("graphics/isi.png");
+				type = 3;
+
+				break;
+
+			default:
+				break;
+			}
+
 			Square* sp = new Square(
-				t2k::Vector3(x, y, 0), 
-				img_back[std::atoi(k.c_str())], 
-				std::atoi(k.c_str()));
+				t2k::Vector3(x, y, 0),
+				img,
+				type
+			);
 
 			Op.emplace_back(sp);
 			Sp.emplace_back(sp);
 
-			if (std::atoi(k.c_str()) != FLOOR) {
+			if (num == (ROCK || INSIDE_WALL)) {
 				Sp_wall.emplace_back(sp);
 			}
 
@@ -162,11 +187,12 @@ void PlayScene::isHit_bullet() {
 	}
 }
 //•Ç
-void PlayScene::isHit_wall() {
+bool PlayScene::isHit_wall(t2k::Vector3 pos ,float r) {
 
+	//pos‚É‹ß‚¢‡‚Éƒ\[ƒg
 	Sp_wall.sort([&](Square* l, Square* r) {
-		float ld = (Pp->pos - l->pos).length();
-		float rd = (Pp->pos - r->pos).length();
+		float ld = (pos - l->pos).length();
+		float rd = (pos - r->pos).length();
 		return (ld < rd);
 	});
 
@@ -179,10 +205,44 @@ void PlayScene::isHit_wall() {
 			t2k::Vector3(x, y, 0),
 			p->size_w_,
 			p->size_w_,
-			Pp->pos
-			);
+			pos
+		);
+
+		if (isHit_DotAndCircle(pos_, pos, r)) {
+			return true;
+		}
+
+		return false;
 	}
 }
+
+
+//----------------------------------------------------------------------------------------------------
+//“_‚Æ‰~‚Ì“–‚½‚è”»’è
+bool PlayScene::isHit_DotAndCircle(t2k::Vector3 dot_pos, t2k::Vector3 cir_pos, float r) {
+
+	float x = dot_pos.x - cir_pos.x;
+	float y = dot_pos.y + cir_pos.y;
+
+	if (x * x + y * y <= r * r) {
+
+		return true;
+	}
+
+	return false;
+}
+
+
+//----------------------------------------------------------------------------------------------------
+//•Ç‚âáŠQ•¨‚Ì“–‚½‚è”»’è(À•W•â³‚à‚·‚é)@¦‰~‚Æ“_‚Ì‚Ý
+void PlayScene::ActionCorrectionPosition(t2k::Vector3& pos, t2k::Vector3 prev_pos, float r) {
+
+	if (!isHit_wall(pos, r)) { return; }
+
+
+
+}
+
 
 //----------------------------------------------------------------------------------------------------
 //’eì¬
@@ -258,6 +318,7 @@ void PlayScene::Update(float deltatime) {
 	cam.update(deltatime, Pp->pos);
 
 	isHit_bullet();
+
 	Delete();
 
 	isOver();

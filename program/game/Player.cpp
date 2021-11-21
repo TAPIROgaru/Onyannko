@@ -101,10 +101,8 @@ void Player::Move(float deltatime) {
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_W)) {
 
 		pos.y -= sta.move_speed;
+		if (GMp->SPp->isHit_wall(pos.y,true)) {
 
-		if (pos.y - r < -GMp->FIELD_H) {
-
-			pos.y = -GMp->FIELD_H + r;
 		}
 	}
 
@@ -112,33 +110,18 @@ void Player::Move(float deltatime) {
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_A)) {
 
 		pos.x -= sta.move_speed;
-
-		if (pos.x - r < -GMp->FIELD_W) {
-
-			pos.x = -GMp->FIELD_W + r;
-		}
 	}
 
 	//下
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_S)) {
 
 		pos.y += sta.move_speed;
-
-		if (pos.y + r > GMp->FIELD_H) {
-
-			pos.y = GMp->FIELD_H - r;
-		}
 	}
 
 	//右
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_D)) {
 
 		pos.x += sta.move_speed;
-
-		if (pos.x + r > GMp->FIELD_W) {
-
-			pos.x = GMp->FIELD_W - r;
-		}
 	}
 
 	//左クリック

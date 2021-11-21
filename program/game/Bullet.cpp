@@ -13,6 +13,8 @@ Bullet::Bullet(float x, float y, float dire_x, float dire_y, bool t) {
 	direction_x = dire_x;
 	direction_y = dire_y;
 
+	img = GMp->loadGraph("graphics/shuriken.png");
+
 	_team = t;
 	r = 7;
 }
@@ -61,7 +63,7 @@ void Bullet::Render(Camera* cam) {
 
 	t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
 
-	DrawRotaGraph(pos_.x, pos_.y, 1.0, angle, GMp->SPp->img_bullet, 1);
+	DrawRotaGraph(pos_.x, pos_.y, 1.0, angle, img, 1);
 
 	angle += 0.15f;
 }
