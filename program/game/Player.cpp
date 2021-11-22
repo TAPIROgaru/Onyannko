@@ -101,9 +101,6 @@ void Player::Move(float deltatime) {
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_W)) {
 
 		pos.y -= sta.move_speed;
-		if (GMp->SPp->isHit_wall(pos.y,true)) {
-
-		}
 	}
 
 	//ç∂

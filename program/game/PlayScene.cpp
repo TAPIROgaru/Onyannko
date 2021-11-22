@@ -168,6 +168,7 @@ void PlayScene::isOver() {
 
 //----------------------------------------------------------------------------------------------------
 //“–‚½‚è”»’è
+
 //’e
 void PlayScene::isHit_bullet() {
 
@@ -186,15 +187,16 @@ void PlayScene::isHit_bullet() {
 		}
 	}
 }
+
 //•Ç
-bool PlayScene::isHit_wall(t2k::Vector3 pos ,float r) {
+int PlayScene::isHit_wall(t2k::Vector3 pos, t2k::Vector3  prev_pos, float r) {
 
 	//pos‚É‹ß‚¢‡‚Éƒ\[ƒg
 	Sp_wall.sort([&](Square* l, Square* r) {
 		float ld = (pos - l->pos).length();
 		float rd = (pos - r->pos).length();
 		return (ld < rd);
-	});
+		});
 
 	for (auto p : Sp_wall) {
 
@@ -209,15 +211,16 @@ bool PlayScene::isHit_wall(t2k::Vector3 pos ,float r) {
 		);
 
 		if (isHit_DotAndCircle(pos_, pos, r)) {
-			return true;
+
+			int num = CollisionDirection(pos_, pos, prev_pos);
+
+			return num;
 		}
 
-		return false;
+		return 0;
 	}
 }
 
-
-//----------------------------------------------------------------------------------------------------
 //“_‚Æ‰~‚Ì“–‚½‚è”»’è
 bool PlayScene::isHit_DotAndCircle(t2k::Vector3 dot_pos, t2k::Vector3 cir_pos, float r) {
 
@@ -232,13 +235,25 @@ bool PlayScene::isHit_DotAndCircle(t2k::Vector3 dot_pos, t2k::Vector3 cir_pos, f
 	return false;
 }
 
+//Õ“Ë‚µ‚½•ûŒü
+int PlayScene::CollisionDirection(t2k::Vector3 dot_pos, t2k::Vector3 cir_pos, t2k::Vector3 prev_pos) {
 
-//----------------------------------------------------------------------------------------------------
+	float x = (cir_pos - dot_pos).x;
+
+
+
+	float y = (cir_pos - dot_pos).y;
+
+
+	return 1;
+}
+
 //•Ç‚âáŠQ•¨‚Ì“–‚½‚è”»’è(À•W•â³‚à‚·‚é)@¦‰~‚Æ“_‚Ì‚Ý
 void PlayScene::ActionCorrectionPosition(t2k::Vector3& pos, t2k::Vector3 prev_pos, float r) {
 
-	if (!isHit_wall(pos, r)) { return; }
+	int num = isHit_wall(pos, prev_pos, r);
 
+	if (0 == num) { return; }
 
 
 }
