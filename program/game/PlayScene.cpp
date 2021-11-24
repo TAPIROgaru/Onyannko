@@ -188,15 +188,15 @@ void PlayScene::isHit_bullet() {
 	}
 }
 
-//壁
-int PlayScene::isHit_wall(t2k::Vector3 pos, t2k::Vector3  prev_pos, float r) {
+//壁の当たり判定
+int PlayScene::isHit_wall(t2k::Vector3 pos, float r) {
 
 	//posに近い順にソート
 	Sp_wall.sort([&](Square* l, Square* r) {
 		float ld = (pos - l->pos).length();
 		float rd = (pos - r->pos).length();
 		return (ld < rd);
-		});
+	});
 
 	for (auto p : Sp_wall) {
 
@@ -206,19 +206,19 @@ int PlayScene::isHit_wall(t2k::Vector3 pos, t2k::Vector3  prev_pos, float r) {
 		t2k::Vector3 pos_ = t2k::getNearestRectPoint(
 			t2k::Vector3(x, y, 0),
 			p->size_w_,
-			p->size_w_,
+			p->size_h_,
 			pos
 		);
 
 		if (isHit_DotAndCircle(pos_, pos, r)) {
 
-			int num = CollisionDirection(pos_, pos, prev_pos);
+			int num = t2k::getRegionPointAndRect(pos_, t2k::Vector3(x, y, 0), p->size_w_, p->size_h_);
 
 			return num;
 		}
-
-		return 0;
 	}
+
+	return 4;
 }
 
 //点と円の当たり判定
@@ -235,27 +235,61 @@ bool PlayScene::isHit_DotAndCircle(t2k::Vector3 dot_pos, t2k::Vector3 cir_pos, f
 	return false;
 }
 
-//衝突した方向
-int PlayScene::CollisionDirection(t2k::Vector3 dot_pos, t2k::Vector3 cir_pos, t2k::Vector3 prev_pos) {
-
-	float x = (cir_pos - dot_pos).x;
-
-
-
-	float y = (cir_pos - dot_pos).y;
-
-
-	return 1;
-}
-
 //壁や障害物の当たり判定(座標補正もする)　※円と点のみ
 void PlayScene::ActionCorrectionPosition(t2k::Vector3& pos, t2k::Vector3 prev_pos, float r) {
 
-	int num = isHit_wall(pos, prev_pos, r);
+	const int HIT_UP = 2;
+	const int HIT_DOWN = 0;
+	const int HIT_RIGHT = 3;
+	const int HIT_LEFT = 1;
+	const int NO_HIT = 4;
 
-	if (0 == num) { return; }
+	int num = isHit_wall(pos, r);
 
+	//当たってない
+	if (num == NO_HIT) { return; }
 
+	//上
+	if (num == HIT_UP) {
+
+		float y = (prev_pos - pos).y;
+
+		if (y < 0) {
+
+			pos.y = prev_pos.y;
+		}
+	}
+	//下
+	if (num == HIT_DOWN) {
+
+		float y = (prev_pos - pos).y;
+
+		if (y > 0) {
+
+			pos.y = prev_pos.y;
+		}
+
+	}
+	//右
+	if (num == HIT_RIGHT) {
+
+		float x = (prev_pos - pos).x;
+
+		if (x < 0) {
+
+			pos.x = prev_pos.x;
+		}
+	}
+	//左
+	if (num == HIT_LEFT) {
+
+		float x = (prev_pos - pos).x;
+
+		if (x > 0) {
+
+			pos.x = prev_pos.x;
+		}
+	}
 }
 
 

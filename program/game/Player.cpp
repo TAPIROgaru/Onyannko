@@ -12,6 +12,7 @@ Player::Player() {
 
 	_team = true;
 	pos = { -200, 0, 0 };
+	prev_pos = { -200, 0, 0 };
 	LoadStatus();
 	r = 18;
 	_hp = sta.HP;
@@ -126,6 +127,8 @@ void Player::Move(float deltatime) {
 
 		FireBullet(deltatime);
 	}
+
+	prev_pos = pos;
 }
 
 

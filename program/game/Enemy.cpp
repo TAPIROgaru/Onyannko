@@ -104,7 +104,7 @@ void Enemy::Update(float deltatime) {
 
 	timecount += deltatime;
 
-	FindPlayer(deltatime);
+	//FindPlayer(deltatime);
 
 	if (GMp->SRp->_switch) { alive_flag = false; }
 }

@@ -28,6 +28,9 @@ public:
 	static constexpr int FIELD_W = 576;   // 1152
 	static constexpr int FIELD_H = 400;   // 800
 
+	static constexpr int TILE_SIZE_W = 16;
+	static constexpr int TILE_SIZE_H = 16;
+
 	static constexpr bool WINDOW_MODE = true;
 
 	//------------------------------------------------------------------------------------------------
