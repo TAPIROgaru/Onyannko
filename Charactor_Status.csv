@@ -1,2 +1,2 @@
-Player,10,5,2,1,5,graphics/Player.png
-Enemy,10,5,2,1,5,graphics/Enemy.png
+Player,10,5,2,1,5,0,1,2
+Enemy,10,5,2,1,5,0,1,2

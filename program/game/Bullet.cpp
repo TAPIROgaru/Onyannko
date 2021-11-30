@@ -22,7 +22,7 @@ Bullet::Bullet(float x, float y, float dire_x, float dire_y, bool t) {
 
 //----------------------------------------------------------------------------------------------------
 //“®‚©‚·
-void Bullet::Move() {
+void Bullet::Move(float deltatime) {
 
 	if (isDelete()) {
 		alive_flag = false;
@@ -33,6 +33,8 @@ void Bullet::Move() {
 
 	pos.x += direction_x * speed;
 	pos.y += direction_y * speed;
+
+	count += deltatime;
 }
 
 
@@ -46,6 +48,7 @@ bool Bullet::isDelete() {
 	if (pos.y > GMp->FIELD_H) { return true; }
 	if (pos.y < -GMp->FIELD_H) { return true; }
 
+	if (hp < count) { return true; }
 
 	return false;
 }
@@ -55,7 +58,7 @@ bool Bullet::isDelete() {
 //–ˆƒtƒŒ[ƒ€ŒÄ‚Ño‚µ
 void Bullet::Update(float deltatime) {
 
-	Move();
+	Move(deltatime);
 
 	if (GMp->SRp->_switch) { alive_flag = false; }
 }

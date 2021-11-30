@@ -24,6 +24,8 @@ Player::Player() {
 //----------------------------------------------------------------------------------------------------
 //デストラクタ
 Player::~Player() {
+
+	GMp->SPp->SavePlayer();
 }
 
 
@@ -65,6 +67,11 @@ void Player::LoadStatus() {
 			std::atoi(GMp->SPp->datas[0][5].c_str()), //攻撃速度
 		};
 
+		//スキル読み込み
+		ult    = new tpr::Scroll(std::atoi(GMp->SPp->datas[0][6].c_str()));
+		skillA = new tpr::Scroll(std::atoi(GMp->SPp->datas[0][7].c_str()));
+		skillB = new tpr::Scroll(std::atoi(GMp->SPp->datas[0][8].c_str()));
+
 		return;
 	}
 	
@@ -80,15 +87,15 @@ void Player::LoadStatus() {
 	sta.defense      = status[3];
 	sta.attack_speed = status[4];
 
+	//スキル読み込み
+	int num[3];
+	fread_s(num, sizeof(num), sizeof(int) * 3, 1, fp);
+
+	ult    = new tpr::Scroll(num[0]);
+	skillA = new tpr::Scroll(num[1]);
+	skillB = new tpr::Scroll(num[2]);
+
 	fclose(fp);
-}
-
-
-//削除
-void Player::isDelete() {
-
-	if (sta.HP <= 0) { alive_flag = false; }
-
 }
 
 
@@ -126,6 +133,23 @@ void Player::Move(float deltatime) {
 	if (true == (GetMouseInput() & MOUSE_INPUT_LEFT)) {
 
 		FireBullet(deltatime);
+	}
+
+	//ult
+	if (t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_SPACE)) {
+
+		ShootDirection();
+		ult->Activate();
+	}
+
+	//skillA
+	if (t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_C)) {
+		ShootDirection();
+	}
+
+	//skillB
+	if (t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_V)) {
+		ShootDirection();
 	}
 
 	prev_pos = pos;
@@ -179,7 +203,6 @@ void Player::Update(float deltatime) {
 	if (GMp->SRp->_switch) {
 
 		GMp->SPp->SavePlayer(); 
-		alive_flag = false; 
 	}
 }
 void Player::Render(Camera* cam) {
@@ -189,12 +212,15 @@ void Player::Render(Camera* cam) {
 	DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, chara_handle, 1);
 
 	DrawFormatString(100, 100, -1, "x:%f y:%f", pos.x, pos.y);
-	DrawFormatString(100, 120, -1, "名前:%s", name);
-	DrawFormatString(100, 140, -1, "HP:%d", _hp);
+	DrawFormatString(100, 120, -1, "名前    :%s", name);
+	DrawFormatString(100, 140, -1, "HP      :%d", _hp);
 	DrawFormatString(100, 160, -1, "移動速度:%d", sta.move_speed);
-	DrawFormatString(100, 180, -1, "攻撃力:%d", sta.attack);
-	DrawFormatString(100, 200, -1, "防御力:%d", sta.defense);
+	DrawFormatString(100, 180, -1, "攻撃力  :%d", sta.attack);
+	DrawFormatString(100, 200, -1, "防御力  :%d", sta.defense);
 	DrawFormatString(100, 220, -1, "攻撃速度:%d", sta.attack_speed);
+	DrawFormatString(100, 240, -1, "ult     :%d", ult->my_number);
+	DrawFormatString(100, 260, -1, "skillA  :%d", skillA->my_number);
+	DrawFormatString(100, 280, -1, "skillB  :%d", skillB->my_number);
 }
 
 //----------------------------------------------------------------------------------------------------

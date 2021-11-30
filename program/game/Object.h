@@ -26,6 +26,8 @@ public:
 
 	t2k::Vector3 pos;          //座標
 	int r;                     //当たり判定用の半径
+	int size_w;                //当たり判定用の幅
+	int size_h;                //当たり判定用の高さ
 	bool alive_flag = true;    //生存フラグ
 	bool _team;                //陣営
 	int img = 0;               //画像

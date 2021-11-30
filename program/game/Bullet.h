@@ -16,12 +16,15 @@ public:
 
 	Bullet(float, float, float, float, bool);
 
-	void Move();
+	void Move(float);
 	bool isDelete();
 
 
 	//------------------------------------------------------------------------------------------------
 	//•Ï”
+
+	float hp = 10.0f;
+	float count = 0;
 
 	float speed = 10.0f;
 

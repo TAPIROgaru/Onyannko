@@ -29,6 +29,9 @@
     <Filter Include="program\game\my_main">
       <UniqueIdentifier>{48f1d9b1-cd58-4a99-a8ff-66f158fd331d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="program\game\my_scrolls">
+      <UniqueIdentifier>{c71f8cda-bf00-4c48-abf8-abc0c65a537b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="program\support\FrameRateController.cpp">
@@ -106,14 +109,14 @@
     <ClCompile Include="program\game\ResultScene.cpp">
       <Filter>program\game\my_scene</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\Scroll.cpp">
-      <Filter>program\game\my_main</Filter>
-    </ClCompile>
     <ClCompile Include="program\game\CircleHit.cpp">
       <Filter>program\game\my_system</Filter>
     </ClCompile>
     <ClCompile Include="program\game\Square.cpp">
       <Filter>program\game\my_main</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\Scroll.cpp">
+      <Filter>program\game\my_scrolls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -231,14 +234,14 @@
     <ClInclude Include="program\game\ResultScene.h">
       <Filter>program\game\my_scene</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\Scroll.h">
-      <Filter>program\game\my_main</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\CircleHit.h">
       <Filter>program\game\my_system</Filter>
     </ClInclude>
     <ClInclude Include="program\game\Square.h">
       <Filter>program\game\my_main</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\Scroll.h">
+      <Filter>program\game\my_scrolls</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

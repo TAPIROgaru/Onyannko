@@ -5,6 +5,7 @@
 //自作ファイル
 
 #include "Object.h"
+#include "Scroll.h"
 
 
 //----------------------------------------------------------------------------------------------------
@@ -41,6 +42,10 @@ public:
 	int chara_handle = 0;         //画像ハンドル
 
 	Status sta;
+
+	tpr::Scroll* ult;
+	tpr::Scroll* skillA;
+	tpr::Scroll* skillB;
 
 	float secconds_AS = 0;   //1攻撃何秒か
 	float timecount = 0;     //時間計測

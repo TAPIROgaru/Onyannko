@@ -54,6 +54,20 @@ void PlayScene::Delete() {
 		}
 		Opit++;
 	}
+
+	//Playerポインタ
+	if (!Pp->alive_flag) {
+
+		delete (Pp);
+		Pp = nullptr;
+	}
+
+	//Enemyポインタ
+	if (!Ep->alive_flag) {
+
+		delete (Ep);
+		Ep = nullptr;
+	}
 }
 
 
@@ -150,6 +164,9 @@ void PlayScene::SavePlayer() {
 
 	fwrite(Pp->name, sizeof(Pp->name), 1, fp);
 	fwrite(&Pp->sta, sizeof(CharaObj::Status), 1, fp);
+	fwrite(&Pp->ult->my_number, sizeof(int), 1, fp);
+	fwrite(&Pp->skillA->my_number, sizeof(int), 1, fp);
+	fwrite(&Pp->skillB->my_number, sizeof(int), 1, fp);
 
 	fclose(fp);
 }
@@ -357,6 +374,8 @@ void PlayScene::Init() {
 //毎フレーム呼び出し
 void PlayScene::Update(float deltatime) {
 
+	Start(deltatime);
+
 	Init();
 
 	for (auto p : Op) {
@@ -378,8 +397,6 @@ void PlayScene::Render(float deltatime) {
 
 		if (p->alive_flag) { p->Render(&cam); }
 	}
-
-	Start(deltatime);
 
 	cam.render();
 }

@@ -3,29 +3,57 @@
 namespace tpr {
 
 	//ëïîıãZ
-	class Scroll final {//finalÇÕåpè≥Ç≥ÇπÇ»Ç¢
+	class Scroll final {
+	//finalÇÕåpè≥Ç≥ÇπÇ»Ç¢
+
 	public:
 
-		Scroll() {};
+
+		//------------------------------------------------------------------------------------------------
+		//ä÷êî
+
+		Scroll(int);
 		~Scroll() {};
 
+		bool Activate(float);
+
+		void Beam();
+		void AirStrike();
+		void Madness();
+		void Barrier();
+		void Tracking();
+		void Blink();
+		void Shotgun();
+		void Turret();
+		void ArmorPiercing();
+
+
+		//------------------------------------------------------------------------------------------------
+		//ïœêî
+
+		int my_number;
+		float cool_time;
+
+
+		//------------------------------------------------------------------------------------------------
 		//ëïîıãZàÍóó
 		enum ult {
 
-			A,
-			B,
-			C,
+			BEAM,
+			AIR_STRIKE,
+			MADNESS,
 		};
 		enum skill {
 
-			D,
-			E,
-			H,
-			I,
-			J,
-			K,
+			BARRIER = 3,
+			TRACKING,
+			BLINK,
+			SHOTGUN,
+			TURRET,
+			ARMOR_PIERCING,
 		};
 
 
+		//------------------------------------------------------------------------------------------------
 	};
 }
