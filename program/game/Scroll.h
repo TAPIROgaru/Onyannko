@@ -1,9 +1,11 @@
 #pragma once
 
+#include "Object.h"
+
 namespace tpr {
 
 	//‘•”õ‹Z
-	class Scroll final {
+	class Scroll final :public Object  {
 	//final‚ÍŒp³‚³‚¹‚È‚¢
 
 	public:

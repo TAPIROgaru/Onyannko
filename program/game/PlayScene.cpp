@@ -121,7 +121,7 @@ void PlayScene::DrawBuckGround() {
 			Op.emplace_back(sp);
 			Sp.emplace_back(sp);
 
-			if (num == (ROCK || INSIDE_WALL)) {
+			if (num == ROCK || num == INSIDE_WALL) {
 				Sp_wall.emplace_back(sp);
 			}
 
@@ -205,8 +205,7 @@ void PlayScene::isHit_bullet() {
 	}
 }
 
-//壁の当たり判定
-int PlayScene::isHit_wall(t2k::Vector3 pos, float r) {
+void PlayScene::isHit_wall(t2k::Vector3& pos, t2k::Vector3 prev_pos, float r) {
 
 	//posに近い順にソート
 	Sp_wall.sort([&](Square* l, Square* r) {
@@ -219,30 +218,29 @@ int PlayScene::isHit_wall(t2k::Vector3 pos, float r) {
 
 		float x = p->pos.x + (p->size_w_ >> 1);
 		float y = p->pos.y + (p->size_h_ >> 1);
+		t2k::Vector3 box_pos = { x, y, 0 };
 
 		t2k::Vector3 pos_ = t2k::getNearestRectPoint(
-			t2k::Vector3(x, y, 0),
+			box_pos,
 			p->size_w_,
 			p->size_h_,
 			pos
 		);
 
-		if (isHit_DotAndCircle(pos_, pos, r)) {
+		//if (isHit_DotAndCircle(pos_, pos, r)) {
+		if( t2k::isIntersectSphere(pos_, 1, pos, r ) ){
 
-			int num = t2k::getRegionPointAndRect(pos_, t2k::Vector3(x, y, 0), p->size_w_, p->size_h_);
+			int num = t2k::getRegionPointAndRect(prev_pos, t2k::Vector3(x, y, 0), p->size_w_, p->size_h_);
 
-			return num;
+			ActionCorrectionPosition(pos, r, pos_, num);
 		}
 	}
-
-	return 4;
 }
 
-//点と円の当たり判定
 bool PlayScene::isHit_DotAndCircle(t2k::Vector3 dot_pos, t2k::Vector3 cir_pos, float r) {
 
 	float x = dot_pos.x - cir_pos.x;
-	float y = dot_pos.y + cir_pos.y;
+	float y = dot_pos.y - cir_pos.y;
 
 	if (x * x + y * y <= r * r) {
 
@@ -252,60 +250,32 @@ bool PlayScene::isHit_DotAndCircle(t2k::Vector3 dot_pos, t2k::Vector3 cir_pos, f
 	return false;
 }
 
-//壁や障害物の当たり判定(座標補正もする)　※円と点のみ
-void PlayScene::ActionCorrectionPosition(t2k::Vector3& pos, t2k::Vector3 prev_pos, float r) {
+void PlayScene::ActionCorrectionPosition(t2k::Vector3& pos, float r, t2k::Vector3 dot_pos, int num) {
 
-	const int HIT_UP = 2;
-	const int HIT_DOWN = 0;
-	const int HIT_RIGHT = 3;
-	const int HIT_LEFT = 1;
-	const int NO_HIT = 4;
+	const int HIT_UP = 2;     //上に当たった
+	const int HIT_DOWN = 0;   //下に当たった
+	const int HIT_RIGHT = 3;  //右に当たった
+	const int HIT_LEFT = 1;   //左に当たった
 
-	int num = isHit_wall(pos, r);
-
-	//当たってない
-	if (num == NO_HIT) { return; }
-
-	//上
+	//下に補正
 	if (num == HIT_UP) {
 
-		float y = (prev_pos - pos).y;
-
-		if (y < 0) {
-
-			pos.y = prev_pos.y;
-		}
+		pos.y = (dot_pos.y + 1 + r);
 	}
-	//下
+	//上に補正
 	if (num == HIT_DOWN) {
 
-		float y = (prev_pos - pos).y;
-
-		if (y > 0) {
-
-			pos.y = prev_pos.y;
-		}
-
+		pos.y = (dot_pos.y - 1 - r);
 	}
-	//右
+	//左に補正
 	if (num == HIT_RIGHT) {
 
-		float x = (prev_pos - pos).x;
-
-		if (x < 0) {
-
-			pos.x = prev_pos.x;
-		}
+		pos.x = (dot_pos.x - 1 - r);
 	}
-	//左
+	//右の補正
 	if (num == HIT_LEFT) {
 
-		float x = (prev_pos - pos).x;
-
-		if (x > 0) {
-
-			pos.x = prev_pos.x;
-		}
+		pos.x = (dot_pos.x + 1 + r);
 	}
 }
 

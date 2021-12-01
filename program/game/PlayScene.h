@@ -76,15 +76,10 @@ public:
 	//=======================================================
 	// 壁の当たり判定
 	// 1. Vector座標
-	// 2. 円の半径
-	// 
-	// return [0...上]
-	//        [1...右]
-	//        [2...下]
-	//        [3...左]
-	//        [4...当たってない]
+	// 2. 1フレーム前の座標
+	// 3. 円の半径
 	//=======================================================
-	inline int isHit_wall(t2k::Vector3, float );
+	void isHit_wall(t2k::Vector3& pos, t2k::Vector3 prev_pos, float r);
 
 
 	//=======================================================
@@ -95,16 +90,19 @@ public:
 	// 
 	// return true 当たってる　false 当たってない
 	//=======================================================
-	inline bool isHit_DotAndCircle(t2k::Vector3, t2k::Vector3, float);
+	inline bool isHit_DotAndCircle(t2k::Vector3 dot_pos, t2k::Vector3 cir_pos, float r);
 
 
 	//=======================================================
-	//	壁や障害物の当たり判定(座標補正もする)　※円と点のみ
+	//	円と四角形の当たり判定後の座標補正
 	// 1. 補正対象のVector座標
-	// 2. 1フレーム前の座標
-	// 3. 円の半径
+	// 2. 円の半径
+	// 3. 衝突した四角形のVector座標
+	// 4. 四角形の幅
+	// 5. 四角形の高さ
+	// 6. 当たっている方向
 	//=======================================================
-	void ActionCorrectionPosition(t2k::Vector3&,t2k::Vector3,float);
+	inline void ActionCorrectionPosition(t2k::Vector3& pos, float r, t2k::Vector3 dot_pos,int num);
 
 
 	//------------------------------------------------------------------------------------------------

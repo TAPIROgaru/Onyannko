@@ -139,7 +139,7 @@ void Player::Move(float deltatime) {
 	if (t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_SPACE)) {
 
 		ShootDirection();
-		ult->Activate();
+		//ult->Activate();
 	}
 
 	//skillA
@@ -151,6 +151,8 @@ void Player::Move(float deltatime) {
 	if (t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_V)) {
 		ShootDirection();
 	}
+
+	GMp->SPp->isHit_wall(pos, prev_pos, r);
 
 	prev_pos = pos;
 }

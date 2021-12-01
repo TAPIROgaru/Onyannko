@@ -25,7 +25,7 @@ void Square::Render(Camera* camera) {
 
 	t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
 
-	DrawGraph(pos_.x, pos_.y, img, false);
+	DrawGraph((int)pos_.x, (int)pos_.y, img, false);
 }
 
 
