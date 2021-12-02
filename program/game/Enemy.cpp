@@ -1,5 +1,6 @@
-#include "Enemy.h"
+#include <stdlib.h>
 
+#include "Enemy.h"
 #include "GameManager.h"
 
 extern GameManager* GMp;
@@ -30,7 +31,7 @@ void Enemy::Move(float deltatime) {
 
 
 //----------------------------------------------------------------------------------------------------
-//
+//ステータス読み込み
 void Enemy::LoadStatus(int num) {
 
 	int i = 0;
@@ -57,6 +58,24 @@ void Enemy::LoadStatus(int num) {
 
 	//画像
 	chara_handle = GMp->loadGraph("graphics/Enemy.png");
+
+	ult = new tpr::Scroll(rand() % 2);
+
+	//ランダムな順番にソート(スキル番号)
+	int arry[6] = { 3,4,5,6,7,8 };
+	for (int i = 0; i < 10; i++) {
+
+		int numA = rand() % 6;
+		int A = arry[numA];
+
+		int numB = rand() % 6;
+		arry[numA] = arry[numB];
+
+		arry[numB] = A;
+	}
+
+	skillA = new tpr::Scroll(arry[0]);
+	skillB = new tpr::Scroll(arry[1]);
 }
 
 
@@ -113,12 +132,15 @@ void Enemy::Render(Camera* cam) {
 	DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, chara_handle, 1);
 
 	DrawFormatString(600, 100, -1, "x:%f y:%f"  , pos.x, pos.y);
-	DrawFormatString(600, 120, -1, "名前:%s"    , name);
-	DrawFormatString(600, 140, -1, "HP:%d"      , sta.HP);
+	DrawFormatString(600, 120, -1, "名前    :%s"    , name);
+	DrawFormatString(600, 140, -1, "HP      :%d"      , sta.HP);
 	DrawFormatString(600, 160, -1, "移動速度:%d", sta.move_speed);
-	DrawFormatString(600, 180, -1, "攻撃力:%d"  , sta.attack);
-	DrawFormatString(600, 200, -1, "防御力:%d"  , sta.defense);
+	DrawFormatString(600, 180, -1, "攻撃力  :%d"  , sta.attack);
+	DrawFormatString(600, 200, -1, "防御力  :%d"  , sta.defense);
 	DrawFormatString(600, 220, -1, "攻撃速度:%d", sta.attack_speed);
+	DrawFormatString(600, 240, -1, "ult     :%d", ult->my_number);
+	DrawFormatString(600, 260, -1, "skillA  :%d", skillA->my_number);
+	DrawFormatString(600, 280, -1, "skillB  :%d", skillB->my_number);
 }
 
 //----------------------------------------------------------------------------------------------------

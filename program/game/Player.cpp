@@ -14,7 +14,7 @@ Player::Player() {
 	pos = { -200, 0, 0 };
 	prev_pos = { -200, 0, 0 };
 	LoadStatus();
-	r = 18;
+	r = 16;
 	_hp = sta.HP;
 
 	secconds_AS = 1.0f / sta.attack_speed;
@@ -152,7 +152,7 @@ void Player::Move(float deltatime) {
 		ShootDirection();
 	}
 
-	GMp->SPp->isHit_wall(pos, prev_pos, r);
+	GMp->SPp->isHit_Wall(pos, prev_pos, r);
 
 	prev_pos = pos;
 }

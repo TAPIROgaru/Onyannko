@@ -3,6 +3,7 @@
 #include "../support/Support.h"
 #include "game_main.h"
 #include "../library/t2klib.h"
+#include <time.h>
 
 //----------------------------------------------------------------------------------------------------
 //Ž©ìƒtƒ@ƒCƒ‹
@@ -26,6 +27,8 @@ void gameMain( float deltatime ) {
 
 		GMp = new GameManager();
 
+		srand((unsigned int)time(0));
+
 		init = false;
 	}
 	
@@ -38,4 +41,6 @@ void gameMain( float deltatime ) {
 
 	GMp->Update(deltatime);
 	GMp->Render(deltatime);
+
+	printfDx("%f\n",deltatime);
 }

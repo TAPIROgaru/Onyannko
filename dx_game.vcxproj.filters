@@ -118,6 +118,9 @@
     <ClCompile Include="program\game\Scroll.cpp">
       <Filter>program\game\my_scrolls</Filter>
     </ClCompile>
+    <ClCompile Include="Route.cpp">
+      <Filter>program\game\my_system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="program\support\FrameRateController.h">
@@ -242,6 +245,9 @@
     </ClInclude>
     <ClInclude Include="program\game\Scroll.h">
       <Filter>program\game\my_scrolls</Filter>
+    </ClInclude>
+    <ClInclude Include="Route.h">
+      <Filter>program\game\my_system</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

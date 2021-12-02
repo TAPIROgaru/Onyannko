@@ -9,6 +9,7 @@ extern GameManager* GMp;
 Bullet::Bullet(float x, float y, float dire_x, float dire_y, bool t) {
 
 	pos = { x,y,0 };
+	prve_pos = { x,y,0 };
 
 	direction_x = dire_x;
 	direction_y = dire_y;
@@ -23,11 +24,6 @@ Bullet::Bullet(float x, float y, float dire_x, float dire_y, bool t) {
 //----------------------------------------------------------------------------------------------------
 //“®‚©‚·
 void Bullet::Move(float deltatime) {
-
-	if (isDelete()) {
-		alive_flag = false;
-		return;
-	}
 
 	if (GMp->SRp->_switch) { return; }
 
@@ -48,7 +44,9 @@ bool Bullet::isDelete() {
 	if (pos.y > GMp->FIELD_H) { return true; }
 	if (pos.y < -GMp->FIELD_H) { return true; }
 
-	if (hp < count) { return true; }
+	if (scope < count) { return true; }
+
+	if (GMp->SPp->isHit_Wall(pos, r)) { return true; }
 
 	return false;
 }
@@ -61,6 +59,8 @@ void Bullet::Update(float deltatime) {
 	Move(deltatime);
 
 	if (GMp->SRp->_switch) { alive_flag = false; }
+
+	if (isDelete()) { alive_flag = false; }
 }
 void Bullet::Render(Camera* cam) {
 

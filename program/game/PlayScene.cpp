@@ -77,11 +77,12 @@ void PlayScene::DrawBuckGround() {
 
 
 
-	float x = -GMp->FIELD_W - 16 * 3;
-	float y = -GMp->FIELD_H - 16 * 2;
+	float x = -GMp->FIELD_W - GMp->TILE_SIZE_W * 2;
+	float y = -GMp->FIELD_H - GMp->TILE_SIZE_H * 2;
 
 	for (auto i : map) {
-		x = -GMp->FIELD_W - 16 * 3;
+		x = -GMp->FIELD_W - GMp->TILE_SIZE_W * 2;
+
 		for (auto k : i) {
 
 			int img = 0, type = 0;
@@ -125,9 +126,9 @@ void PlayScene::DrawBuckGround() {
 				Sp_wall.emplace_back(sp);
 			}
 
-			x += 16;
+			x += GMp->TILE_SIZE_W;
 		}
-		y += 16;
+		y += GMp->TILE_SIZE_H;
 	}
 }
 
@@ -140,17 +141,9 @@ void PlayScene::Start(float deltatime) {
 
 	count += deltatime;
 
-	if (count < 3) {
+	if (count < 3) { return; }
 
-		DrawFormatString(0, 0, -1, "よーい　%f", count);
-		return;
-	}
-
-	if (count < 5) {
-		DrawString(0, 0, "スタート", -1);
-		_start_flag = true;
-		return;
-	}
+	if (count < 5) { _start_flag = true; return; }
 }
 
 
@@ -186,7 +179,7 @@ void PlayScene::isOver() {
 //----------------------------------------------------------------------------------------------------
 //当たり判定
 
-//弾
+
 void PlayScene::isHit_bullet() {
 
 	for (auto p : Bp) {
@@ -205,7 +198,28 @@ void PlayScene::isHit_bullet() {
 	}
 }
 
-void PlayScene::isHit_wall(t2k::Vector3& pos, t2k::Vector3 prev_pos, float r) {
+bool PlayScene::isHit_Wall(t2k::Vector3 pos, float r) {
+
+	for (auto p : Sp_wall) {
+
+		float x = p->pos.x + (p->size_w_ >> 1);
+		float y = p->pos.y + (p->size_h_ >> 1);
+		t2k::Vector3 box_pos = { x, y, 0 };
+
+		t2k::Vector3 pos_ = t2k::getNearestRectPoint(
+			box_pos,
+			p->size_w_,
+			p->size_h_,
+			pos
+		);
+
+		if (isHit_DotAndCircle(pos_, pos, r)) { return true; }
+	}
+
+	return false;
+}
+
+void PlayScene::isHit_Wall(t2k::Vector3& pos, t2k::Vector3 prev_pos, float r) {
 
 	//posに近い順にソート
 	Sp_wall.sort([&](Square* l, Square* r) {
@@ -227,12 +241,11 @@ void PlayScene::isHit_wall(t2k::Vector3& pos, t2k::Vector3 prev_pos, float r) {
 			pos
 		);
 
-		//if (isHit_DotAndCircle(pos_, pos, r)) {
-		if( t2k::isIntersectSphere(pos_, 1, pos, r ) ){
+		if (isHit_DotAndCircle(pos_, pos, r)){
 
 			int num = t2k::getRegionPointAndRect(prev_pos, t2k::Vector3(x, y, 0), p->size_w_, p->size_h_);
 
-			ActionCorrectionPosition(pos, r, pos_, num);
+			isHit_ActionCorrectionPosition(pos, r, pos_, num);
 		}
 	}
 }
@@ -250,7 +263,7 @@ bool PlayScene::isHit_DotAndCircle(t2k::Vector3 dot_pos, t2k::Vector3 cir_pos, f
 	return false;
 }
 
-void PlayScene::ActionCorrectionPosition(t2k::Vector3& pos, float r, t2k::Vector3 dot_pos, int num) {
+void PlayScene::isHit_ActionCorrectionPosition(t2k::Vector3& pos, float r, t2k::Vector3 dot_pos, int num) {
 
 	const int HIT_UP = 2;     //上に当たった
 	const int HIT_DOWN = 0;   //下に当たった
