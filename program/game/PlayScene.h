@@ -9,12 +9,13 @@
 
 #include "Object.h"
 #include "CharaObj.h"
-#include "Camera.h"
 #include "Player.h"
 #include "Bullet.h"
 #include "Enemy.h"
 #include "CircleHit.h"
 #include "Square.h"
+#include "Astar.h"
+#include "Vector2.h"
 
 
 //----------------------------------------------------------------------------------------------------
@@ -37,7 +38,7 @@ public:
 
 	void Init();
 
-	void DrawBuckGround();
+	void LoadBuckGround();
 
 	void isHit_bullet();
 
@@ -47,17 +48,17 @@ public:
 
 	
 	//=======================================================
-	//弾生成
-	// 1.初期座標
-	// 2.x角度
-	// 3.y角度
-	// 4.陣営
+	// 弾生成
+	// 1. 初期座標
+	// 2. x角度
+	// 3. y角度
+	// 4. 陣営
 	//=======================================================
 	void MakeBullet(t2k::Vector3, float, float, bool);
 
 
 	//=======================================================
-	//カメラ座標を考慮したマウス座標を取得できる関数
+	// カメラ座標を考慮したマウス座標を取得できる関数
 	// 
 	// return マウス座標
 	//=======================================================
@@ -66,7 +67,7 @@ public:
 
 	//=======================================================
 	// カメラ座標を考慮した座標を取得できる関数
-	// 1.修正するVector座標
+	// 1. 修正するVector座標
 	// 
 	// return 修正されたVector座標
 	//=======================================================
@@ -113,22 +114,32 @@ public:
 	inline void isHit_ActionCorrectionPosition(t2k::Vector3& pos, float r, t2k::Vector3 dot_pos,int num);
 
 
+	//=======================================================
+	// Astar用のPlayerとEnemyの二次元座標作製
+	//=======================================================
+	inline void MakeVector2AndMap();
+
+
 	//------------------------------------------------------------------------------------------------
 	//変数
 
-
+	//=======================================================
+	//クラスのポインタ
 	std::list <Object*> Op;      //Object
 	std::list <Bullet*> Bp;      //Bullet
 	std::list <Square*> Sp;      //Square
 	std::list <Square*> Sp_wall; //Square
 	Enemy* Ep  = nullptr;        //Enemy
 	Player* Pp = nullptr;        //Player
+	Camera cam;                  //Camera
 
-	Camera cam;                  //Cameraクラス
+	//=======================================================
+	//CSV管理用変数
+	std::vector<std::vector<std::string>>datas; //キャラデータ
+	std::vector<std::vector<std::string>>map;   //マップデータ
 
-	std::vector<std::vector<std::string>>datas;
-	std::vector<std::vector<std::string>>map;
-
+	//=======================================================
+	//開始と終了と初期化用変数
 	bool _start_flag = false;
 
 	bool _over = false;
@@ -137,6 +148,13 @@ public:
 
 	float count = 0;
 	float start = 3;
+
+	//=======================================================
+	//Astar用変数
+	std::vector<std::vector<int>>astar_map;
+
+	tpr::Vector2 e_pos = { 0,0 };
+	tpr::Vector2 p_pos = { 0,0 };
 
 
 	//------------------------------------------------------------------------------------------------

@@ -85,9 +85,6 @@
     <ClCompile Include="program\game\Bullet.cpp">
       <Filter>program\game\my_main</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\Camera.cpp">
-      <Filter>program\game\my_main</Filter>
-    </ClCompile>
     <ClCompile Include="program\game\Enemy.cpp">
       <Filter>program\game\my_main</Filter>
     </ClCompile>
@@ -118,7 +115,10 @@
     <ClCompile Include="program\game\Scroll.cpp">
       <Filter>program\game\my_scrolls</Filter>
     </ClCompile>
-    <ClCompile Include="Route.cpp">
+    <ClCompile Include="program\game\Astar.cpp">
+      <Filter>program\game\my_system</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\Camera.cpp">
       <Filter>program\game\my_system</Filter>
     </ClCompile>
   </ItemGroup>
@@ -207,9 +207,6 @@
     <ClInclude Include="program\game\Bullet.h">
       <Filter>program\game\my_main</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\Camera.h">
-      <Filter>program\game\my_main</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\CharaObj.h">
       <Filter>program\game\my_main</Filter>
     </ClInclude>
@@ -246,7 +243,19 @@
     <ClInclude Include="program\game\Scroll.h">
       <Filter>program\game\my_scrolls</Filter>
     </ClInclude>
-    <ClInclude Include="Route.h">
+    <ClInclude Include="tpr_library.h">
+      <Filter>program\game\my_system</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\Astar.h">
+      <Filter>program\game\my_system</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\Vector2.h">
+      <Filter>program\game\my_system</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\Node.h">
+      <Filter>program\game\my_system</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\Camera.h">
       <Filter>program\game\my_system</Filter>
     </ClInclude>
   </ItemGroup>

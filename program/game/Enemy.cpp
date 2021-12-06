@@ -15,6 +15,8 @@ Enemy::Enemy(int num) {
 	LoadStatus(num);
 
 	secconds_AS = 1.0f / sta.attack_speed;
+
+	astar = new tpr::Astar( GMp->SPp->astar_map);
 }
 //デストラクタ
 Enemy::~Enemy() {

@@ -6,11 +6,10 @@ extern GameManager* GMp;
 
 //----------------------------------------------------------------------------------------------------
 //コンストラクタ
-Square::Square(t2k::Vector3 start,int img,int type) {
+Square::Square(t2k::Vector3 start, int img) {
 
 	pos = start;
 	this->img = img;
-	this->type = type;
 }
 
 

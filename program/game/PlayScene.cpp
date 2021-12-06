@@ -73,39 +73,54 @@ void PlayScene::Delete() {
 
 //----------------------------------------------------------------------------------------------------
 //îwåi
-void PlayScene::DrawBuckGround() {
+void PlayScene::LoadBuckGround() {
 
 
 
 	float x = -GMp->FIELD_W - GMp->TILE_SIZE_W * 2;
 	float y = -GMp->FIELD_H - GMp->TILE_SIZE_H * 2;
 
+	int _y = -2;
+
 	for (auto i : map) {
 		x = -GMp->FIELD_W - GMp->TILE_SIZE_W * 2;
 
+		std::vector<int> map_y(1, -1);
+
 		for (auto k : i) {
 
-			int img = 0, type = 0;
+			int img = 0;
 			int num = std::atoi(k.c_str());
 
 			switch (num) {
 
 			case FLOOR:
 				img = GMp->loadGraph("graphics/kusa.png");
-				type = 2;
+
+				if (map_y[0] == -1) {
+					map_y[0] = 2;
+				}
+				else {
+					map_y.emplace_back(2);
+				}
 
 				break;
 
 			case OUTSIDE_WALL:
 			case INSIDE_WALL:
 				img = GMp->loadGraph("graphics/shasen.png");
-				type = 3;
 
 				break;
 
 			case ROCK:
 				img = GMp->loadGraph("graphics/isi.png");
-				type = 3;
+
+				if (map_y[0] == -1) {
+					map_y[0] = 2;
+				}
+				else {
+					map_y.emplace_back(3);
+				}
 
 				break;
 
@@ -115,8 +130,7 @@ void PlayScene::DrawBuckGround() {
 
 			Square* sp = new Square(
 				t2k::Vector3(x, y, 0),
-				img,
-				type
+				img
 			);
 
 			Op.emplace_back(sp);
@@ -129,6 +143,10 @@ void PlayScene::DrawBuckGround() {
 			x += GMp->TILE_SIZE_W;
 		}
 		y += GMp->TILE_SIZE_H;
+
+		if (map_y[0] != -1) {
+			astar_map.emplace_back(map_y);
+		}
 	}
 }
 
@@ -178,7 +196,6 @@ void PlayScene::isOver() {
 
 //----------------------------------------------------------------------------------------------------
 //ìñÇΩÇËîªíË
-
 
 void PlayScene::isHit_bullet() {
 
@@ -250,7 +267,7 @@ void PlayScene::isHit_Wall(t2k::Vector3& pos, t2k::Vector3 prev_pos, float r) {
 	}
 }
 
-bool PlayScene::isHit_DotAndCircle(t2k::Vector3 dot_pos, t2k::Vector3 cir_pos, float r) {
+inline bool PlayScene::isHit_DotAndCircle(t2k::Vector3 dot_pos, t2k::Vector3 cir_pos, float r) {
 
 	float x = dot_pos.x - cir_pos.x;
 	float y = dot_pos.y - cir_pos.y;
@@ -263,7 +280,7 @@ bool PlayScene::isHit_DotAndCircle(t2k::Vector3 dot_pos, t2k::Vector3 cir_pos, f
 	return false;
 }
 
-void PlayScene::isHit_ActionCorrectionPosition(t2k::Vector3& pos, float r, t2k::Vector3 dot_pos, int num) {
+inline void PlayScene::isHit_ActionCorrectionPosition(t2k::Vector3& pos, float r, t2k::Vector3 dot_pos, int num) {
 
 	const int HIT_UP = 2;     //è„Ç…ìñÇΩÇ¡ÇΩ
 	const int HIT_DOWN = 0;   //â∫Ç…ìñÇΩÇ¡ÇΩ
@@ -290,6 +307,14 @@ void PlayScene::isHit_ActionCorrectionPosition(t2k::Vector3& pos, float r, t2k::
 
 		pos.x = (dot_pos.x + 1 + r);
 	}
+}
+
+
+//----------------------------------------------------------------------------------------------------
+//AstarópÇÃPlayerÇ∆EnemyÇÃìÒéüå≥ç¿ïWçÏêª
+inline void PlayScene::MakeVector2AndMap() {
+
+
 }
 
 
@@ -338,7 +363,7 @@ void PlayScene::Init() {
 
 	if (!_init) { return; }
 
-	DrawBuckGround();
+	LoadBuckGround();
 
 	Pp = new Player();
 	Op.emplace_back(Pp);

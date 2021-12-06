@@ -4,6 +4,7 @@
 //©ìƒtƒ@ƒCƒ‹
 
 #include "CharaObj.h"
+#include "Astar.h"
 
 
 //----------------------------------------------------------------------------------------------
@@ -27,13 +28,15 @@ public:
 	//------------------------------------------------------------------------------------------
 	//•Ï”
 
-	int search_range_palyer = 750;       //õ“G”ÍˆÍ
+	int search_range_palyer = 750; //õ“G”ÍˆÍ
 	int search_range_bullet = 800;
 
-	float bullet_direction_x = 0; //’e‚ğ”­Ë‚·‚éŒü‚«
+	float bullet_direction_x = 0;  //’e‚ğ”­Ë‚·‚éŒü‚«
 	float bullet_direction_y = 0;
 
-	float angle = 0;              //Šp“x
+	float angle = 0;               //Šp“x
+
+	tpr::Astar* astar = nullptr;  //Œo˜H’Tõ
 
 
 	//------------------------------------------------------------------------------------------
