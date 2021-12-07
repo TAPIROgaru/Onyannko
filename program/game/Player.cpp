@@ -213,7 +213,7 @@ void Player::Render(Camera* cam) {
 
 	DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, chara_handle, 1);
 
-	DrawFormatString(100, 100, -1, "x:%f y:%f", pos.x, pos.y);
+	DrawFormatString(100, 100, -1, "x:%f y:%f", pos_.x, pos_.y);
 	DrawFormatString(100, 120, -1, "–¼‘O    :%s", name);
 	DrawFormatString(100, 140, -1, "HP      :%d", _hp);
 	DrawFormatString(100, 160, -1, "ˆÚ“®‘¬“x:%d", sta.move_speed);

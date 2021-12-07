@@ -34,8 +34,8 @@ public:
 	static constexpr int TILE_VALUE_W = 40;
 	static constexpr int TILE_VALUE_H = 28;
 
-	static constexpr int TILE_VALUE_W_WALL = 4;
-	static constexpr int TILE_VALUE_H_WALL = 4;
+	static constexpr int TILE_VALUE_W_WALL = 6;
+	static constexpr int TILE_VALUE_H_WALL = 6;
 
 	static constexpr bool WINDOW_MODE = true;
 

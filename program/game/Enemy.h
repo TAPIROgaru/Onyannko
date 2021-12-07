@@ -5,6 +5,7 @@
 
 #include "CharaObj.h"
 #include "Astar.h"
+#include "Node.h"
 
 
 //----------------------------------------------------------------------------------------------
@@ -28,15 +29,23 @@ public:
 	//------------------------------------------------------------------------------------------
 	//変数
 
-	int search_range_palyer = 750; //索敵範囲
-	int search_range_bullet = 800;
+	int search_range_palyer = 750;    //索敵範囲
+	int search_range_bullet = 800;    //弾の認識範囲
 
-	float bullet_direction_x = 0;  //弾を発射する向き
-	float bullet_direction_y = 0;
+	float bullet_direction_x = 0;     //弾を発射する向きX
+	float bullet_direction_y = 0;     //弾を発射する向きY
 
-	float angle = 0;               //角度
+	float angle = 0;                  //角度
 
-	tpr::Astar* astar = nullptr;  //経路探索
+	t2k::Vector3 prev_pos;            //1フレーム前の座標
+
+	tpr::Astar* astar = nullptr;      //経路探索
+
+	unsigned int flame_count = 0;     //フレームのカウント
+
+	std::list<tpr::Node*> route;      //動くルート
+
+	std::list<tpr::Vector2> move_pos; //ワールド座標
 
 
 	//------------------------------------------------------------------------------------------

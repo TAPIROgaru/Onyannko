@@ -28,7 +28,51 @@ Enemy::~Enemy() {
 //
 void Enemy::Move(float deltatime) {
 
+	if (!GMp->SPp->_start_flag || GMp->SRp->_switch) { return; }
 
+	std::list<tpr::Vector2>::iterator moveit;
+
+	if (flame_count % 3 == 0) {
+
+		move_pos.clear();
+
+		tpr::Vector2 p_pos;
+		tpr::Vector2 e_pos;
+		
+		GMp->SPp->MakeVector2(&p_pos, &e_pos);
+
+		route = astar->Astar_Exe(p_pos, e_pos);
+
+		std::list<tpr::Node*>::iterator Npit = route.begin();
+		while (Npit != route.end()) {
+
+			move_pos.emplace_back(
+				(*Npit)->pos.x * GMp->TILE_SIZE_W,
+				(*Npit)->pos.y * GMp->TILE_SIZE_H
+			);
+		}
+
+		moveit = move_pos.begin();
+	}
+
+	if (moveit == move_pos.end()) {
+		return;
+	}
+
+	tpr::Vector2 my_pos = { (int)pos.x, (int)pos.y };
+	tpr::Vector2 component = (*moveit) - my_pos;
+
+	float magnitude=(float)sqrt(component.x * component.x + component.y * component.y);
+
+	tpr::Vector2 move_dire = { (int)(component.x / magnitude),(int)(component.y / magnitude) };
+
+	pos += {(float)move_dire.x* sta.move_speed, (float)move_dire.y* sta.move_speed, 0};
+
+	GMp->SPp->isHit_Wall(pos, prev_pos, r);
+
+	prev_pos = pos;
+	flame_count++;
+	moveit++;
 }
 
 
@@ -91,7 +135,7 @@ void Enemy::FindPlayer(float deltatime) {
 	t2k::Vector3 pos_ = GMp->SPp->Pp->pos;
 
 	//Playerとの距離
-	t2k::Vector3 component = pos - pos_;
+	t2k::Vector3 component = pos_ - pos;
 
 	//単位ベクトル
 	float magnitude = (float)sqrt(component.x * component.x + component.y * component.y);
@@ -99,8 +143,8 @@ void Enemy::FindPlayer(float deltatime) {
 	if (search_range_palyer < magnitude) { return; }
 
 	//角度の計算
-	bullet_direction_x = component.x / magnitude * -1;
-	bullet_direction_y = component.y / magnitude * -1;
+	bullet_direction_x = component.x / magnitude;
+	bullet_direction_y = component.y / magnitude;
 
 	FireBullet(deltatime);
 }
@@ -126,6 +170,7 @@ void Enemy::Update(float deltatime) {
 	timecount += deltatime;
 
 	//FindPlayer(deltatime);
+	Move(deltatime);
 }
 void Enemy::Render(Camera* cam) {
 

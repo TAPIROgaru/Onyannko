@@ -80,12 +80,12 @@ void PlayScene::LoadBuckGround() {
 	float x = -GMp->FIELD_W - GMp->TILE_SIZE_W * 2;
 	float y = -GMp->FIELD_H - GMp->TILE_SIZE_H * 2;
 
-	int _y = -2;
+	int _y = 0;
 
 	for (auto i : map) {
 		x = -GMp->FIELD_W - GMp->TILE_SIZE_W * 2;
 
-		std::vector<int> map_y(1, -1);
+		std::vector<int> map_y;
 
 		for (auto k : i) {
 
@@ -97,12 +97,7 @@ void PlayScene::LoadBuckGround() {
 			case FLOOR:
 				img = GMp->loadGraph("graphics/kusa.png");
 
-				if (map_y[0] == -1) {
-					map_y[0] = 2;
-				}
-				else {
-					map_y.emplace_back(2);
-				}
+				map_y.emplace_back(2);
 
 				break;
 
@@ -115,12 +110,7 @@ void PlayScene::LoadBuckGround() {
 			case ROCK:
 				img = GMp->loadGraph("graphics/isi.png");
 
-				if (map_y[0] == -1) {
-					map_y[0] = 2;
-				}
-				else {
-					map_y.emplace_back(3);
-				}
+				map_y.emplace_back(3);
 
 				break;
 
@@ -144,7 +134,7 @@ void PlayScene::LoadBuckGround() {
 		}
 		y += GMp->TILE_SIZE_H;
 
-		if (map_y[0] != -1) {
+		if (!map_y.empty()) {
 			astar_map.emplace_back(map_y);
 		}
 	}
@@ -312,9 +302,24 @@ inline void PlayScene::isHit_ActionCorrectionPosition(t2k::Vector3& pos, float r
 
 //----------------------------------------------------------------------------------------------------
 //Astar用のPlayerとEnemyの二次元座標作製
-inline void PlayScene::MakeVector2AndMap() {
+
+void PlayScene::MakeVector2(tpr::Vector2* p_pos, tpr::Vector2* e_pos) {
+
+	t2k::Vector3 _pos;
+	_pos = FixPositionVector(Pp->pos);
+
+	*p_pos = tpr::Vector2{
+		(int)(_pos.x - GMp->TILE_SIZE_W * 2) / GMp->TILE_SIZE_W,
+		(int)(_pos.y - GMp->TILE_SIZE_H * 2) / GMp->TILE_SIZE_H
+	};
 
 
+	_pos = FixPositionVector(Ep->pos);
+
+	*e_pos = tpr::Vector2{
+		(int)(_pos.x - GMp->TILE_SIZE_W * 2) / GMp->TILE_SIZE_W,
+		(int)(_pos.y - GMp->TILE_SIZE_H * 2) / GMp->TILE_SIZE_H
+	};
 }
 
 
@@ -345,12 +350,23 @@ t2k::Vector3 PlayScene::GetMousePosition() {
 }
 
 //カメラを考慮した座標の取得
+
 t2k::Vector3 PlayScene::FixPositionVector(t2k::Vector3 pos) {
 
 	t2k::Vector3 pos_ = {
 		pos.x - cam.pos.x + (GameManager::SCREEN_W >> 1),
 		pos.y - cam.pos.y + (GameManager::SCREEN_H >> 1),
 		0
+	};
+
+	return pos_;
+}
+
+tpr::Vector2 PlayScene::FixPositionVector(tpr::Vector2 pos) {
+
+	tpr::Vector2 pos_ = {
+		(int)(pos.x - cam.pos.x + (GameManager::SCREEN_W >> 1)),
+		(int)(pos.y - cam.pos.y + (GameManager::SCREEN_H >> 1))
 	};
 
 	return pos_;

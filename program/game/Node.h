@@ -29,6 +29,8 @@ namespace tpr {
 		int     score;     //スコア
 		Node*   parent;    //親ノード
 
+
+		//ソート用operator
 		bool operator < (const Node& node) const {
 			return score > node.score;
 		}

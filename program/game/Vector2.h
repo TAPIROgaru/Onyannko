@@ -33,6 +33,11 @@ namespace tpr {
 			return Vector2(x + p.x, y + p.y);
 		}
 
+		Vector2 operator -(Vector2 p) {
+
+			return Vector2(x - p.x, y - p.y);
+		}
+
 		bool operator ==(Vector2 p) {
 
 			if (x == p.x && y == p.y) { return true; }
