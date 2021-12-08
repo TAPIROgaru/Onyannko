@@ -1,4 +1,9 @@
-#include"GameManager.h"
+#include "GameManager.h"
+#include "Scene.h"
+#include "PlayScene.h"
+#include "MenuScene.h"
+#include "ResultScene.h"
+#include "TitleScene.h"
 
 
 //----------------------------------------------------------------------------------------------------

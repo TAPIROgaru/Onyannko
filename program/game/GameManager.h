@@ -1,17 +1,23 @@
 #pragma once
 #include "DxLib.h"
 #include <list>
+#include <string>
+#include <unordered_map>
+using namespace std;
 
 //----------------------------------------------------------------------------------------------------
 //自作ファイル
 
-#include "Scene.h"
-#include "PlayScene.h"
-#include "TitleScene.h"
-#include "MenuScene.h"
-#include "ResultScene.h"
 
-#include "Camera.h"
+
+//----------------------------------------------------------------------------------------------------
+//クラスの前方宣言
+
+class Scene;
+class PlayScene;
+class TitleScene;
+class MenuScene;
+class ResultScene;
 
 
 //----------------------------------------------------------------------------------------------------

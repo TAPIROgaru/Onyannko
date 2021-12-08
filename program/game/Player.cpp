@@ -1,5 +1,7 @@
 #include "Player.h"
 #include "GameManager.h"
+#include "PlayScene.h"
+#include "ResultScene.h"
 
 
 #define PI 3.14159265359f

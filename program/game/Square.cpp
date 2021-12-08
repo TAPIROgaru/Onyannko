@@ -1,5 +1,7 @@
 #include "Square.h"
 #include "GameManager.h"
+#include "PlayScene.h"
+#include "ResultScene.h"
 
 extern GameManager* GMp;
 

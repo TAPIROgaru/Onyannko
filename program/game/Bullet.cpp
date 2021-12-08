@@ -1,5 +1,7 @@
 #include "Bullet.h"
 #include "GameManager.h"
+#include "PlayScene.h"
+#include "ResultScene.h"
 
 extern GameManager* GMp;
 
@@ -38,11 +40,11 @@ void Bullet::Move(float deltatime) {
 //Á‚·
 bool Bullet::isDelete() {
 
-	if (pos.x > GMp->FIELD_W) { return true; }
-	if (pos.x < -GMp->FIELD_W) { return true; }
+	if (pos.x > GMp->TILE_VALUE_W * GMp->TILE_SIZE_W) { return true; }
+	if (pos.x < r) { return true; }
 
-	if (pos.y > GMp->FIELD_H) { return true; }
-	if (pos.y < -GMp->FIELD_H) { return true; }
+	if (pos.y > GMp->TILE_VALUE_H * GMp->TILE_SIZE_H) { return true; }
+	if (pos.y < r) { return true; }
 
 	if (scope < count) { return true; }
 

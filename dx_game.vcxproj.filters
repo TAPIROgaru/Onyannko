@@ -243,9 +243,6 @@
     <ClInclude Include="program\game\Scroll.h">
       <Filter>program\game\my_scrolls</Filter>
     </ClInclude>
-    <ClInclude Include="tpr_library.h">
-      <Filter>program\game\my_system</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\Astar.h">
       <Filter>program\game\my_system</Filter>
     </ClInclude>
@@ -256,6 +253,9 @@
       <Filter>program\game\my_system</Filter>
     </ClInclude>
     <ClInclude Include="program\game\Camera.h">
+      <Filter>program\game\my_system</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\tpr_library.h">
       <Filter>program\game\my_system</Filter>
     </ClInclude>
   </ItemGroup>

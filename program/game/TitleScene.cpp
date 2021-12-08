@@ -2,6 +2,7 @@
 
 #include "TitleScene.h"
 #include "GameManager.h"
+#include "MenuScene.h"
 
 extern GameManager* GMp;
 

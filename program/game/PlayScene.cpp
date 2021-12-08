@@ -3,6 +3,7 @@
 #include "GameManager.h"
 #include "Player.h"
 #include "Square.h"
+#include "ResultScene.h"
 
 
 extern GameManager* GMp;
@@ -302,6 +303,7 @@ inline void PlayScene::isHit_ActionCorrectionPosition(t2k::Vector3& pos, float r
 }
 
 
+
 //----------------------------------------------------------------------------------------------------
 //Astar用のPlayerとEnemyの二次元座標作製
 
@@ -321,6 +323,7 @@ void PlayScene::MakeVector2(tpr::Vector2* p_pos, tpr::Vector2* e_pos) {
 
 //----------------------------------------------------------------------------------------------------
 //弾作成
+
 void PlayScene::MakeBullet(t2k::Vector3 pos, float direction_x, float direction_y, bool t) {
 
 	Bullet* bp = new Bullet(pos.x, pos.y, direction_x, direction_y, t);
@@ -331,6 +334,7 @@ void PlayScene::MakeBullet(t2k::Vector3 pos, float direction_x, float direction_
 
 //----------------------------------------------------------------------------------------------------
 //カメラを考慮したマウス座標の取得
+
 t2k::Vector3 PlayScene::GetMousePosition() {
 
 	int x, y;

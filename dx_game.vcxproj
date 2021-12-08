@@ -60,6 +60,7 @@
     <ClInclude Include="program\game\ResultScene.h" />
     <ClInclude Include="program\game\Scene.h" />
     <ClInclude Include="program\game\TitleScene.h" />
+    <ClInclude Include="program\game\tpr_library.h" />
     <ClInclude Include="program\game\Vector2.h" />
     <ClInclude Include="program\library\bounding.h" />
     <ClInclude Include="program\library\font.h" />
@@ -86,7 +87,6 @@
     <ClInclude Include="program\support\dx_lib_ext.h" />
     <ClInclude Include="program\support\FrameRateController.h" />
     <ClInclude Include="program\support\Support.h" />
-    <ClInclude Include="tpr_library.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{16B0EE01-D3C9-4C3A-B205-DF401859A35C}</ProjectGuid>

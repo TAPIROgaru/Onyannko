@@ -2,6 +2,8 @@
 
 #include "Enemy.h"
 #include "GameManager.h"
+#include "PlayScene.h"
+#include "ResultScene.h"
 
 extern GameManager* GMp;
 
@@ -152,9 +154,11 @@ void Enemy::FindPlayer(float deltatime) {
 
 	if (search_range_palyer < magnitude) { return; }
 
+	int gap = 40;
+
 	//Šp“x‚ÌŒvŽZ
-	bullet_direction_x = component.x / magnitude;
-	bullet_direction_y = component.y / magnitude;
+	bullet_direction_x = (component.x + rand() % gap - gap / 2) / magnitude;
+	bullet_direction_y = (component.y + rand() % gap - gap / 2) / magnitude;
 
 	FireBullet(deltatime);
 }
@@ -201,7 +205,7 @@ void Enemy::Render(Camera* cam) {
 
 	DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, chara_handle, 1);
 
-	DrawFormatString(600, 100, -1, "x:%f y:%f"  , pos_.x, pos_.y);
+	DrawFormatString(600, 100, -1, "x:%f y:%f"  , pos.x, pos.y);
 	DrawFormatString(600, 120, -1, "–¼‘O    :%s"    , name);
 	DrawFormatString(600, 140, -1, "HP      :%d"      , sta.HP);
 	DrawFormatString(600, 160, -1, "ˆÚ“®‘¬“x:%d", sta.move_speed);
