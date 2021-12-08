@@ -11,15 +11,15 @@ namespace tpr {
 
 	//----------------------------------------------------------------------------------------------
 	//Xç¿ïWYç¿ïWÇÃä«óù
-	class Vector2 {
+	class Vector2_int {
 	public:
 
-		Vector2() :
+		Vector2_int() :
 			x(0),
 			y(0)
 		{}
 
-		Vector2(int _x, int _y) :
+		Vector2_int(int _x, int _y) :
 			x(_x),
 			y(_y)
 		{}
@@ -28,17 +28,17 @@ namespace tpr {
 		int x;
 		int y;
 
-		Vector2 operator +(Vector2 p) {
+		Vector2_int operator +(Vector2_int p) {
 
-			return Vector2(x + p.x, y + p.y);
+			return Vector2_int(x + p.x, y + p.y);
 		}
 
-		Vector2 operator -(Vector2 p) {
+		Vector2_int operator -(Vector2_int p) {
 
-			return Vector2(x - p.x, y - p.y);
+			return Vector2_int(x - p.x, y - p.y);
 		}
 
-		bool operator ==(Vector2 p) {
+		bool operator ==(Vector2_int p) {
 
 			if (x == p.x && y == p.y) { return true; }
 			return false;

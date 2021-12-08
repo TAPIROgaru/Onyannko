@@ -15,7 +15,7 @@
 #include "CircleHit.h"
 #include "Square.h"
 #include "Astar.h"
-#include "Vector2.h"
+#include "Vector2_int.h"
 
 
 //----------------------------------------------------------------------------------------------------
@@ -80,7 +80,7 @@ public:
 	// 
 	// return 修正されたVector座標
 	//=======================================================
-	tpr::Vector2 FixPositionVector(tpr::Vector2);
+	tpr::Vector2_int FixPositionVector(tpr::Vector2_int);
 
 
 	//=======================================================
@@ -128,9 +128,7 @@ public:
 	// 1. Player用Vector2変数のアドレス
 	// 2. Enemy用Vector2変数のアドレス
 	//=======================================================
-	void MakeVector2(tpr::Vector2* p_pos, tpr::Vector2* e_pos);
-
-	bool isHit_BoxAndLine();
+	void MakeVector2(tpr::Vector2_int* p_pos, tpr::Vector2_int* e_pos);
 
 
 	//------------------------------------------------------------------------------------------------
@@ -166,8 +164,8 @@ public:
 	//Astar用変数
 	std::vector<std::vector<int>>astar_map;
 
-	tpr::Vector2 e_pos = { 0,0 };
-	tpr::Vector2 p_pos = { 0,0 };
+	tpr::Vector2_int e_pos = { 0,0 };
+	tpr::Vector2_int p_pos = { 0,0 };
 
 
 	//------------------------------------------------------------------------------------------------

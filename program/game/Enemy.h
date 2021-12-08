@@ -49,7 +49,7 @@ public:
 
 	std::list<tpr::Node*> route;        //動くルート
 
-	std::vector<tpr::Vector2> move_pos; //ワールド座標
+	std::vector<tpr::Vector2_int> move_pos; //ワールド座標
 	int move_count = 0;
 	bool _astar_falg = true;
 

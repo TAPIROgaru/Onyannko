@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="program\game\Astar.cpp" />
+    <ClCompile Include="program\game\Collision.cpp" />
     <ClCompile Include="program\game\Square.cpp" />
     <ClCompile Include="program\game\Bullet.cpp" />
     <ClCompile Include="program\game\Camera.cpp" />
@@ -43,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="program\game\Astar.h" />
+    <ClInclude Include="program\game\Collision.h" />
     <ClInclude Include="program\game\Node.h" />
+    <ClInclude Include="program\game\Quadrilateral.h" />
     <ClInclude Include="program\game\Square.h" />
     <ClInclude Include="program\game\Bullet.h" />
     <ClInclude Include="program\game\Camera.h" />
@@ -61,7 +64,8 @@
     <ClInclude Include="program\game\Scene.h" />
     <ClInclude Include="program\game\TitleScene.h" />
     <ClInclude Include="program\game\tpr_library.h" />
-    <ClInclude Include="program\game\Vector2.h" />
+    <ClInclude Include="program\game\Vector2_deci.h" />
+    <ClInclude Include="program\game\Vector2_int.h" />
     <ClInclude Include="program\library\bounding.h" />
     <ClInclude Include="program\library\font.h" />
     <ClInclude Include="program\library\hierarchy_tree.h" />

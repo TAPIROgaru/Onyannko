@@ -3,7 +3,7 @@
 //--------------------------------------------------------------------------------------------------
 //自作ファイル
 
-#include "Vector2.h"
+#include "Vector2_int.h"
 
 
 //--------------------------------------------------------------------------------------------------
@@ -22,12 +22,12 @@ namespace tpr {
 			parent(nullptr)
 		{}
 
-		Vector2 pos;       //マスの座標
-		int     status;    //マスの状態
-		int     est_cost;  //推定のコスト
-		int     act_cost;  //実際のコスト
-		int     score;     //スコア
-		Node*   parent;    //親ノード
+		Vector2_int pos; //マスの座標
+		int     status;      //マスの状態
+		int     est_cost;    //推定のコスト
+		int     act_cost;    //実際のコスト
+		int     score;       //スコア
+		Node*   parent;      //親ノード
 
 
 		//ソート用operator

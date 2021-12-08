@@ -307,14 +307,14 @@ inline void PlayScene::isHit_ActionCorrectionPosition(t2k::Vector3& pos, float r
 //----------------------------------------------------------------------------------------------------
 //Astar—p‚ÌPlayer‚ÆEnemy‚Ì“ñŽŸŒ³À•Wì»
 
-void PlayScene::MakeVector2(tpr::Vector2* p_pos, tpr::Vector2* e_pos) {
+void PlayScene::MakeVector2(tpr::Vector2_int* p_pos, tpr::Vector2_int* e_pos) {
 
-	*p_pos = tpr::Vector2{
+	*p_pos = tpr::Vector2_int{
 		(int)Pp->pos.x / GMp->TILE_SIZE_W,
 		(int)Pp->pos.y / GMp->TILE_SIZE_H
 	};
 
-	*e_pos = tpr::Vector2{
+	*e_pos = tpr::Vector2_int{
 		(int)Ep->pos.x / GMp->TILE_SIZE_W,
 		(int)Ep->pos.y / GMp->TILE_SIZE_H
 	};
@@ -362,9 +362,9 @@ t2k::Vector3 PlayScene::FixPositionVector(t2k::Vector3 pos) {
 	return pos_;
 }
 
-tpr::Vector2 PlayScene::FixPositionVector(tpr::Vector2 pos) {
+tpr::Vector2_int PlayScene::FixPositionVector(tpr::Vector2_int pos) {
 
-	tpr::Vector2 pos_ = {
+	tpr::Vector2_int pos_ = {
 		(int)(pos.x - cam.pos.x + (GameManager::SCREEN_W >> 1)),
 		(int)(pos.y - cam.pos.y + (GameManager::SCREEN_H >> 1))
 	};

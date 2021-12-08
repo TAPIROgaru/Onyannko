@@ -37,7 +37,7 @@ namespace tpr{
 	//-----------------------------------------------------------------------------------------------
 	//Astarの実行
 
-	std::list<Node*> Astar::Astar_Exe(Vector2 p_pos, Vector2 e_pos) {
+	std::list<Node*> Astar::Astar_Exe(Vector2_int p_pos, Vector2_int e_pos) {
 
 		Initialize(p_pos, e_pos);
 		AstarPlay(&nodes[e_pos.y][e_pos.x], p_pos);
@@ -49,7 +49,7 @@ namespace tpr{
 	//-----------------------------------------------------------------------------------------------
 	//初期化
 
-	void Astar::Initialize(Vector2 p_pos, Vector2 e_pos) {
+	void Astar::Initialize(Vector2_int p_pos, Vector2_int e_pos) {
 
 		nodes = origin_nodes;
 
@@ -62,7 +62,7 @@ namespace tpr{
 
 		for (int y = 0; y < GameManager::TILE_VALUE_H - GameManager::TILE_VALUE_H_WALL; y++) {
 			for (int x = 0; x < GameManager::TILE_VALUE_W - GameManager::TILE_VALUE_W_WALL; x++) {
-				nodes[y][x].pos = Vector2{ x,y };
+				nodes[y][x].pos = Vector2_int{ x,y };
 				nodes[y][x].est_cost = (abs(p_pos.x - x) + abs(p_pos.y - y));
 			}
 		}
@@ -80,7 +80,7 @@ namespace tpr{
 	//-----------------------------------------------------------------------------------------------
 	//経路探索実行
 
-	bool Astar::AstarPlay(Node* _now ,Vector2 p_pos) {
+	bool Astar::AstarPlay(Node* _now , Vector2_int p_pos) {
 
 		//スタート地点のスコア計算
 		if (START == _now->status) {
@@ -88,16 +88,16 @@ namespace tpr{
 		}
 
 		//縦横斜めの8方向の座標
-		Vector2 dire[8] = {
-			Vector2(-1,-1),Vector2( 0,-1),Vector2( 1,-1),
-			Vector2(-1, 0),/*           */Vector2( 1, 0),
-			Vector2(-1, 1),Vector2( 0, 1),Vector2( 1, 1)
+		Vector2_int dire[8] = {
+			Vector2_int(-1,-1),Vector2_int( 0,-1),Vector2_int( 1,-1),
+			Vector2_int(-1, 0),/*                   */Vector2_int( 1, 0),
+			Vector2_int(-1, 1),Vector2_int( 0, 1),Vector2_int( 1, 1)
 		};
 
 		//8方向調べて可能ならオープン
 		for (int i = 0; i < 8; i++) {
 
-			Vector2 next = _now->pos + dire[i];
+			Vector2_int next = _now->pos + dire[i];
 
 			//オープン可能かどうか
 			if (!isOpen(next)) { continue; }
@@ -156,7 +156,7 @@ namespace tpr{
 	//-----------------------------------------------------------------------------------------------
 	//オープン可能なマスか確認
 
-	bool Astar::isOpen(Vector2 pos) {
+	bool Astar::isOpen(Vector2_int pos) {
 
 		if (pos.x < 0) { return false; }
 		if (pos.y < 0) { return false; }

@@ -23,7 +23,7 @@ namespace tpr {
 		//=======================================================
 		// Astarの実行
 		//=======================================================
-		std::list<Node*> Astar_Exe(Vector2 p_pos, Vector2 e_pos);
+		std::list<Node*> Astar_Exe(Vector2_int p_pos, Vector2_int e_pos);
 
 
 		int img = 0;
@@ -35,7 +35,7 @@ namespace tpr {
 		// 1. 二次元座標上のPlayer
 		// 2. 二次元座標上のEnemy
 		//=======================================================
-		void Initialize(Vector2 p_pos, Vector2 e_pos);
+		void Initialize(Vector2_int p_pos, Vector2_int e_pos);
 
 
 		//=======================================================
@@ -44,7 +44,7 @@ namespace tpr {
 		// 
 		// return true できる　false できない
 		//=======================================================
-		bool isOpen(Vector2 pos);
+		bool isOpen(Vector2_int pos);
 
 
 		//=======================================================
@@ -54,7 +54,7 @@ namespace tpr {
 		// 
 		// return true ゴール発見　false 到達不可(想定してない)
 		//=======================================================
-		bool AstarPlay(Node* _now, Vector2 p_pos);
+		bool AstarPlay(Node* _now, Vector2_int p_pos);
 
 
 		//=======================================================

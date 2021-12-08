@@ -41,8 +41,8 @@ void Enemy::Move(float deltatime) {
 			move_pos.clear();
 			route.clear();
 
-			tpr::Vector2 p_pos;
-			tpr::Vector2 e_pos;
+			tpr::Vector2_int p_pos;
+			tpr::Vector2_int e_pos;
 
 			GMp->SPp->MakeVector2(&p_pos, &e_pos);
 
