@@ -46,13 +46,16 @@ namespace t2k {
 			t2.normalize();
 			return acosf( t1.dot(t2) );
 		}
+
 		inline Vector3 cross(const Vector3& v) { return DirectX::XMVector3Cross(*this, Vector3(v)); }
 		inline Vector3 normalize() { *this = DirectX::XMVector3Normalize(Vector3(*this)); return *this; }
 		inline float length() { return DirectX::XMVector3Length(*this).m128_f32[0]; }
-		static inline Vector3 transformCoord(Vector3 &v, const DirectX::XMMATRIX &m) { return DirectX::XMVector3TransformCoord(v, m); }
+
+		static inline Vector3 transformCoord(const Vector3 &v, const DirectX::XMMATRIX &m) { return DirectX::XMVector3TransformCoord(Vector3(v), m); }
 		static inline Vector3 lerp(const t2k::Vector3& s, const t2k::Vector3& e, float t) { return s + (e - s) * t; }
 		static inline float dot(const t2k::Vector3& v1, const t2k::Vector3& v2){ return DirectX::XMVector3Dot(Vector3(v1), Vector3(v2)).m128_f32[0]; }
 		static inline Vector3 cross(const t2k::Vector3& v1, const t2k::Vector3& v2){ return DirectX::XMVector3Cross(Vector3(v1), Vector3(v2)); }
+		static inline Vector3 rot2D(const t2k::Vector3 v, float sin, float cos) { return Vector3(v.x*cos - v.y*sin, v.x*sin + v.y*cos, 0.0); }
 
 		//-----------------------------------------------------------------------------------------------------
 		//

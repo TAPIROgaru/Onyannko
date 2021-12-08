@@ -36,6 +36,7 @@ namespace t2k{
 		inline void inRotationAxis( Vector3 &v, const float angle ) { *this = DirectX::XMMatrixRotationAxis(v, angle ); }
 		inline void inInverse( Matrix& m ) { *this = DirectX::XMMatrixInverse(nullptr, m); }
 		inline void inTranspose( Matrix& m ) { *this = DirectX::XMMatrixTranspose( m ); }
+		inline Matrix inverse() const { return DirectX::XMMatrixInverse(nullptr, Matrix(*this)); }
 
 		static inline Matrix createTranslation(const float x, const float y, const float z){ return DirectX::XMMatrixTranslation(x, y, z); }
 		static inline Matrix createScaling(const float x, const float y, const float z) { return DirectX::XMMatrixScaling(x, y, z); }

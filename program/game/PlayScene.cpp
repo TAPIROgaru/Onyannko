@@ -77,13 +77,15 @@ void PlayScene::LoadBuckGround() {
 
 
 
-	float x = -GMp->FIELD_W - GMp->TILE_SIZE_W * 2;
-	float y = -GMp->FIELD_H - GMp->TILE_SIZE_H * 2;
+	//float x = -GMp->FIELD_W - GMp->TILE_SIZE_W * 2;
+	float x = -GMp->TILE_SIZE_W * 3;
+	//float y = -GMp->FIELD_H - GMp->TILE_SIZE_H * 2;
+	float y = -GMp->TILE_SIZE_H * 3;
 
 	int _y = 0;
 
 	for (auto i : map) {
-		x = -GMp->FIELD_W - GMp->TILE_SIZE_W * 2;
+		x = -GMp->TILE_SIZE_W * 3;
 
 		std::vector<int> map_y;
 
@@ -305,20 +307,14 @@ inline void PlayScene::isHit_ActionCorrectionPosition(t2k::Vector3& pos, float r
 
 void PlayScene::MakeVector2(tpr::Vector2* p_pos, tpr::Vector2* e_pos) {
 
-	t2k::Vector3 _pos;
-	_pos = FixPositionVector(Pp->pos);
-
 	*p_pos = tpr::Vector2{
-		(int)(_pos.x - GMp->TILE_SIZE_W * 2) / GMp->TILE_SIZE_W,
-		(int)(_pos.y - GMp->TILE_SIZE_H * 2) / GMp->TILE_SIZE_H
+		(int)Pp->pos.x / GMp->TILE_SIZE_W,
+		(int)Pp->pos.y / GMp->TILE_SIZE_H
 	};
 
-
-	_pos = FixPositionVector(Ep->pos);
-
 	*e_pos = tpr::Vector2{
-		(int)(_pos.x - GMp->TILE_SIZE_W * 2) / GMp->TILE_SIZE_W,
-		(int)(_pos.y - GMp->TILE_SIZE_H * 2) / GMp->TILE_SIZE_H
+		(int)Ep->pos.x / GMp->TILE_SIZE_W,
+		(int)Ep->pos.y / GMp->TILE_SIZE_H
 	};
 }
 

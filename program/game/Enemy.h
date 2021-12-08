@@ -29,23 +29,25 @@ public:
 	//------------------------------------------------------------------------------------------
 	//変数
 
-	int search_range_palyer = 750;    //索敵範囲
-	int search_range_bullet = 800;    //弾の認識範囲
+	int search_range_palyer = 750;      //索敵範囲
+	int search_range_bullet = 800;      //弾の認識範囲
 
-	float bullet_direction_x = 0;     //弾を発射する向きX
-	float bullet_direction_y = 0;     //弾を発射する向きY
+	float bullet_direction_x = 0;       //弾を発射する向きX
+	float bullet_direction_y = 0;       //弾を発射する向きY
 
-	float angle = 0;                  //角度
+	float angle = 0;                    //角度
 
-	t2k::Vector3 prev_pos;            //1フレーム前の座標
+	t2k::Vector3 prev_pos;              //1フレーム前の座標
 
-	tpr::Astar* astar = nullptr;      //経路探索
+	tpr::Astar* astar = nullptr;        //経路探索
 
-	unsigned int flame_count = 0;     //フレームのカウント
+	unsigned int flame_count = 0;       //フレームのカウント
 
-	std::list<tpr::Node*> route;      //動くルート
+	std::list<tpr::Node*> route;        //動くルート
 
-	std::list<tpr::Vector2> move_pos; //ワールド座標
+	std::vector<tpr::Vector2> move_pos; //ワールド座標
+	int move_count = 0;
+	bool _astar_falg = true;
 
 
 	//------------------------------------------------------------------------------------------

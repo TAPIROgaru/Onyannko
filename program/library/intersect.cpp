@@ -1,6 +1,7 @@
 #include "vector.h"
 #include "intersect.h"
 #include "math.h"
+#include "matrix.h"
 #include "DxLib.h"
 
 namespace t2k {
@@ -128,7 +129,7 @@ namespace t2k {
 			// 右向きに移動している場合は左に補正
 			if (x >= 0) {
 				a_now.x = b.x - (b_rect_size_w / 2) - (a_rect_size_w / 2) - correct_space;
-				return CORRECT_RIGHT;
+				return CORRECT_LEFT;
 			}
 			// 左向きに移動している場合は上下どちらかに補正
 			else {
@@ -265,5 +266,66 @@ namespace t2k {
 		return true;
 	}
 
+	//----------------------------------------------------------------------------------------------
+	bool isIntersectRayOBB(const Vector3& pos, const Vector3& dir, const Vector3& aabb_max, const Vector3& aabb_min, const Matrix& obb_rot, Vector3& intersect_pos ) {
+
+		// 光線を境界ボックスの空間へ移動
+		Matrix invMat = obb_rot.inverse();
+
+		Vector3 p_l, dir_l;
+		p_l = Vector3::transformCoord(pos, invMat);
+		invMat._41 = 0.0f;
+		invMat._42 = 0.0f;
+		invMat._43 = 0.0f;
+		dir_l = Vector3::transformCoord(dir, invMat);
+
+		// 交差判定
+		float p[3], d[3], min[3], max[3];
+		memcpy(p, &p_l, sizeof(Vector3));
+		memcpy(d, &dir_l, sizeof(Vector3));
+		memcpy(min, &aabb_min, sizeof(Vector3));
+		memcpy(max, &aabb_max, sizeof(Vector3));
+
+		float t = -FLT_MAX;
+		float t_max = FLT_MAX;
+
+		for (int i = 0; i < 3; ++i) {
+			if (fabs(d[i]) < FLT_EPSILON) {
+				if (p[i] < min[i] || p[i] > max[i])
+					return false; // 交差していない
+			}
+			else {
+				// スラブとの距離を算出
+				// t1が近スラブ、t2が遠スラブとの距離
+				float odd = 1.0f / d[i];
+				float t1 = (min[i] - p[i]) * odd;
+				float t2 = (max[i] - p[i]) * odd;
+				if (t1 > t2) {
+					float tmp = t1; t1 = t2; t2 = tmp;
+				}
+
+				if (t1 > t) t = t1;
+				if (t2 < t_max) t_max = t2;
+
+				// スラブ交差チェック
+				if (t >= t_max)
+					return false;
+			}
+		}
+
+		// 交点
+		intersect_pos = pos + ( dir * t ) ;
+
+		return true;
+	}
+
+	//----------------------------------------------------------------------------------------------
+	bool isIntersectLineOBB(const Vector3& s, const Vector3& e, const Vector3& aabb_max, const Vector3& aabb_min, const Matrix& obb_rot, Vector3& intersect_pos) {
+		if (!isIntersectRayOBB(s, (e - s).normalize(), aabb_max, aabb_min, obb_rot, intersect_pos)) {
+			return false;
+		}
+		if ((intersect_pos - s).length() > (e - s).length()) return false;
+		return true;
+	}
 
 }

@@ -10,8 +10,8 @@ extern GameManager* GMp;
 Enemy::Enemy(int num) {
 
 	_team = false;
-	pos = { 200, 0, 0 };
-	r = 18;
+	pos = { GMp->FIELD_W / 2 + 300, GMp->FIELD_H / 2 , 0 };
+	r = 16;
 	LoadStatus(num);
 
 	secconds_AS = 1.0f / sta.attack_speed;
@@ -30,49 +30,59 @@ void Enemy::Move(float deltatime) {
 
 	if (!GMp->SPp->_start_flag || GMp->SRp->_switch) { return; }
 
-	std::list<tpr::Vector2>::iterator moveit;
-
 	if (flame_count % 3 == 0) {
 
-		move_pos.clear();
+		if (_astar_falg) {
 
-		tpr::Vector2 p_pos;
-		tpr::Vector2 e_pos;
-		
-		GMp->SPp->MakeVector2(&p_pos, &e_pos);
+			auto p = move_pos.begin();
 
-		route = astar->Astar_Exe(p_pos, e_pos);
+			move_pos.clear();
+			route.clear();
 
-		std::list<tpr::Node*>::iterator Npit = route.begin();
-		while (Npit != route.end()) {
+			tpr::Vector2 p_pos;
+			tpr::Vector2 e_pos;
 
-			move_pos.emplace_back(
-				(*Npit)->pos.x * GMp->TILE_SIZE_W,
-				(*Npit)->pos.y * GMp->TILE_SIZE_H
-			);
+			GMp->SPp->MakeVector2(&p_pos, &e_pos);
+
+			route = astar->Astar_Exe(p_pos, e_pos);
+
+			std::list<tpr::Node*>::iterator route_it = route.begin();
+			while (route_it != route.end()) {
+
+				move_pos.emplace_back(
+					(*route_it)->pos.x * GMp->TILE_SIZE_W,
+					(*route_it)->pos.y * GMp->TILE_SIZE_H
+				);
+				route_it++;
+			}
 		}
-
-		moveit = move_pos.begin();
 	}
 
-	if (moveit == move_pos.end()) {
-		return;
-	}
+	if (move_pos.empty()) { return; }
 
-	tpr::Vector2 my_pos = { (int)pos.x, (int)pos.y };
-	tpr::Vector2 component = (*moveit) - my_pos;
+	t2k::Vector3 _pos = GMp->SPp->FixPositionVector(
+		t2k::Vector3{ (float)move_pos[move_count].x + 16 ,(float)move_pos[move_count].y + 16 ,0 });
+
+	t2k::Vector3 my_pos = GMp->SPp->FixPositionVector(pos);
+
+	t2k::Vector3 component = {
+		_pos.x - my_pos.x ,
+		_pos.y - my_pos.y ,
+		0
+	};
+
 
 	float magnitude=(float)sqrt(component.x * component.x + component.y * component.y);
 
-	tpr::Vector2 move_dire = { (int)(component.x / magnitude),(int)(component.y / magnitude) };
+	t2k::Vector3 move_dire = { (component.x / magnitude),(component.y / magnitude),0 };
 
-	pos += {(float)move_dire.x* sta.move_speed, (float)move_dire.y* sta.move_speed, 0};
+	pos += {move_dire.x* sta.move_speed, move_dire.y* sta.move_speed, 0};
 
 	GMp->SPp->isHit_Wall(pos, prev_pos, r);
 
 	prev_pos = pos;
 	flame_count++;
-	moveit++;
+	move_count = 1;
 }
 
 
@@ -169,16 +179,29 @@ void Enemy::Update(float deltatime) {
 
 	timecount += deltatime;
 
-	//FindPlayer(deltatime);
+	FindPlayer(deltatime);
 	Move(deltatime);
 }
 void Enemy::Render(Camera* cam) {
 
 	t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
 
+	auto p = move_pos.begin();
+	int i = 0;
+	while (p != move_pos.end()) {
+
+		t2k::Vector3 _pos = GMp->SPp->FixPositionVector(
+			t2k::Vector3{ (float)move_pos[i].x ,(float)move_pos[i].y ,0 });
+
+		DrawGraph(_pos.x, _pos.y, astar->img, true);
+
+		i++;
+		p++;
+	}
+
 	DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, chara_handle, 1);
 
-	DrawFormatString(600, 100, -1, "x:%f y:%f"  , pos.x, pos.y);
+	DrawFormatString(600, 100, -1, "x:%f y:%f"  , pos_.x, pos_.y);
 	DrawFormatString(600, 120, -1, "–¼‘O    :%s"    , name);
 	DrawFormatString(600, 140, -1, "HP      :%d"      , sta.HP);
 	DrawFormatString(600, 160, -1, "ˆÚ“®‘¬“x:%d", sta.move_speed);

@@ -26,6 +26,8 @@ namespace tpr {
 		std::list<Node*> Astar_Exe(Vector2 p_pos, Vector2 e_pos);
 
 
+		int img = 0;
+
 	private:
 
 		//=======================================================
@@ -74,8 +76,8 @@ namespace tpr {
 
 		std::list<Node*> route;                       //スタートからゴールまでの経路
 
-		int map_w=0;
-		int map_h=0;
+		std::size_t map_w = 0;
+		std::size_t map_h = 0;
 
 
 		//------------------------------------------------------------------------------------------------

@@ -1,4 +1,5 @@
 #pragma once
+#include "matrix.h"
 
 namespace t2k {
 
@@ -136,6 +137,21 @@ namespace t2k {
 	// tips... 3D 用
 	bool isIntersectLineTriangle(const Vector3& v1, const Vector3& v2, const Vector3& v3, const Vector3& s, const Vector3& e);
 
+	//----------------------------------------------------------------------------------------------
+	// name... isIntersectRayOBB
+	// work... レイとOBB の衝突判定
+	// arg1... レイ上の座標 ( 線分なら始点 )
+	// arg2... レイの方向ベクトル
+	// arg3... ボックスをAABB とした時の 左奥上の座標
+	// arg4... ボックスをAABB とした時の 右前下の座標
+	// arg5... OBB の回転行列
+	// arg7... 演算結果の交点( 省略可 )
+	// ret.... [衝突している : true] [衝突していない : false]
+	bool isIntersectRayOBB( const Vector3& pos, const Vector3& dir, const Vector3& aabb_max, const Vector3& aabb_min, const Matrix& obb_rot, Vector3& intersect_pos = t2k::Vector3(0, 0, 0));
 
+	//----------------------------------------------------------------------------------------------
+	// name... isIntersectLineOBB
+	// work... 線分とOBB の衝突判定
+	bool isIntersectLineOBB(const Vector3& s, const Vector3& e, const Vector3& aabb_max, const Vector3& aabb_min, const Matrix& obb_rot, Vector3& intersect_pos = t2k::Vector3(0, 0, 0));
 
 }
