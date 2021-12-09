@@ -11,12 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="program\game\Astar.cpp" />
-    <ClCompile Include="program\game\Collision.cpp" />
     <ClCompile Include="program\game\Square.cpp" />
     <ClCompile Include="program\game\Bullet.cpp" />
     <ClCompile Include="program\game\Camera.cpp" />
-    <ClCompile Include="program\game\CircleHit.cpp" />
     <ClCompile Include="program\game\Enemy.cpp" />
     <ClCompile Include="program\game\GameManager.cpp" />
     <ClCompile Include="program\game\game_main.cpp" />
@@ -26,6 +23,9 @@
     <ClCompile Include="program\game\Scroll.cpp" />
     <ClCompile Include="program\game\ResultScene.cpp" />
     <ClCompile Include="program\game\TitleScene.cpp" />
+    <ClCompile Include="program\game\TPRlib\Astar.cpp" />
+    <ClCompile Include="program\game\TPRlib\Collision.cpp" />
+    <ClCompile Include="program\game\TPRlib\Vector2.cpp" />
     <ClCompile Include="program\library\bounding.cpp" />
     <ClCompile Include="program\library\font.cpp" />
     <ClCompile Include="program\library\input.cpp" />
@@ -43,15 +43,10 @@
     <ClCompile Include="program\system\sys_main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="program\game\Astar.h" />
-    <ClInclude Include="program\game\Collision.h" />
-    <ClInclude Include="program\game\Node.h" />
-    <ClInclude Include="program\game\Quadrilateral.h" />
     <ClInclude Include="program\game\Square.h" />
     <ClInclude Include="program\game\Bullet.h" />
     <ClInclude Include="program\game\Camera.h" />
     <ClInclude Include="program\game\CharaObj.h" />
-    <ClInclude Include="program\game\CircleHit.h" />
     <ClInclude Include="program\game\Enemy.h" />
     <ClInclude Include="program\game\GameManager.h" />
     <ClInclude Include="program\game\game_main.h" />
@@ -63,9 +58,14 @@
     <ClInclude Include="program\game\ResultScene.h" />
     <ClInclude Include="program\game\Scene.h" />
     <ClInclude Include="program\game\TitleScene.h" />
-    <ClInclude Include="program\game\tpr_library.h" />
-    <ClInclude Include="program\game\Vector2_deci.h" />
-    <ClInclude Include="program\game\Vector2_int.h" />
+    <ClInclude Include="program\game\TPRlib\Astar.h" />
+    <ClInclude Include="program\game\TPRlib\Collision.h" />
+    <ClInclude Include="program\game\TPRlib\Line.h" />
+    <ClInclude Include="program\game\TPRlib\Node.h" />
+    <ClInclude Include="program\game\TPRlib\Quadrilateral.h" />
+    <ClInclude Include="program\game\TPRlib\tpr_library.h" />
+    <ClInclude Include="program\game\TPRlib\Vector2.h" />
+    <ClInclude Include="program\game\TPRlib\Vector2_int.h" />
     <ClInclude Include="program\library\bounding.h" />
     <ClInclude Include="program\library\font.h" />
     <ClInclude Include="program\library\hierarchy_tree.h" />

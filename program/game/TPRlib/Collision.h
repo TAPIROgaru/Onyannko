@@ -3,7 +3,8 @@
 //--------------------------------------------------------------------------------------------------
 //自作ファイル
 
-#include "Vector2_deci.h"
+#include "Quadrilateral.h"
+#include "Line.h"
 
 
 //--------------------------------------------------------------------------------------------------
@@ -12,37 +13,43 @@ namespace tpr {
 
 	//=======================================================
 	// 円と円の当たり判定
-	// 1. 円AのVector2_deci座標
+	// 1. 円AのVector2座標
 	// 3. 円Aの半径r
-	// 4. 円BのVector2_deci座標
+	// 4. 円BのVector2座標
 	// 5. 円Bの半径r
 	// 
 	// return true 当たってる　false 当たってない
 	//=======================================================
-	bool isHit_CircleAndCircle(Vector2_deci cA_pos, float cA_r, Vector2_deci cB_pos, float cB_r);
+	bool isHit_CircleAndCircle(Vector2 cA_pos, float cA_r, Vector2 cB_pos, float cB_r);
 
 
 	//=======================================================
 	// 線分と線分の当たり判定
+	// 1. 線分A
+	// 2. 線分B
 	// 
-	// 
+	// return true 当たってる　false 当たってない
 	//=======================================================
-	bool isHit_LineAndLine();
+	bool isHit_LineAndLine(Line first_line, Line second_line);
 
 
 	//=======================================================
 	// 線分と矩形の当たり判定
+	// 1. 線分
+	// 2. 矩形
 	// 
-	// 
+	// return true 当たってる　false 当たってない
 	//=======================================================
-	bool isHit_LineAndRectangle();
+	bool isHit_LineAndRectangle(Line line, Quadrilateral quad);
 
 
 	//=======================================================
 	// 矩形と矩形の当たり判定
+	// 1. 矩形A
+	// 2. 矩形B
 	// 
-	// 
+	// return true 当たってる　false 当たってない
 	//=======================================================
-	bool isHit_RectangleAndRectangle();
+	bool isHit_RectangleAndRectangle(Quadrilateral first_quad, Quadrilateral second_quad);
 
 }

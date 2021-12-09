@@ -19,7 +19,7 @@ Square::Square(t2k::Vector3 start, int img) {
 //–ˆƒtƒŒ[ƒ€ŒÄ‚Ño‚µ
 void Square::Update(float deltatime) {
 
-	if (GMp->SRp->_switch) { alive_flag = false; }
+	if (GMp->SRp->_switch && GMp->SRp->_switch) { alive_flag = false; }
 }
 
 void Square::Render(Camera* camera) {

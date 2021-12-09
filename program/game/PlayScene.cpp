@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Square.h"
 #include "ResultScene.h"
+#include "TPRlib/tpr_library.h"
 
 
 extern GameManager* GMp;
@@ -76,11 +77,7 @@ void PlayScene::Delete() {
 //背景
 void PlayScene::LoadBuckGround() {
 
-
-
-	//float x = -GMp->FIELD_W - GMp->TILE_SIZE_W * 2;
 	float x = -GMp->TILE_SIZE_W * 3;
-	//float y = -GMp->FIELD_H - GMp->TILE_SIZE_H * 2;
 	float y = -GMp->TILE_SIZE_H * 3;
 
 	int _y = 0;
@@ -194,13 +191,19 @@ void PlayScene::isHit_bullet() {
 
 	for (auto p : Bp) {
 		if (p->_team) {
-			if (CircleHit(Ep->pos.x, Ep->pos.y, Ep->r, p->pos.x, p->pos.y, p->r)) {
+			if (tpr::isHit_CircleAndCircle(
+				tpr::Vector2(Ep->pos.x, Ep->pos.y),Ep->r,
+				tpr::Vector2(p->pos.x, p->pos.y), p->r)) {
+
 				Ep->sta.HP--;
 				p->alive_flag = false;
 			}
 		}
 		else if (!p->_team) {
-			if (CircleHit(Pp->pos.x, Pp->pos.y, Pp->r, p->pos.x, p->pos.y, p->r)) {
+			if (tpr::isHit_CircleAndCircle(
+				tpr::Vector2(Pp->pos.x, Pp->pos.y), Pp->r,
+				tpr::Vector2(p->pos.x, p->pos.y), p->r)) {
+
 				Pp->_hp--;
 				p->alive_flag = false;
 			}
@@ -302,6 +305,25 @@ inline void PlayScene::isHit_ActionCorrectionPosition(t2k::Vector3& pos, float r
 	}
 }
 
+bool PlayScene::isHit_RayAndWall() {
+
+	//PlayerとEnemyをつなぐ線分
+	tpr::Line line(tpr::Vector2(Ep->pos.x, Ep->pos.y), tpr::Vector2(Pp->pos.x, Pp->pos.y));
+
+	auto p = Sp_wall.begin();
+	while (p != Sp_wall.end()) {
+
+		//Squareの座標データを四辺形にする
+		tpr::Quadrilateral quad(
+			tpr::Vector2((*p)->pos.x, (*p)->pos.y), (*p)->size_w_, (*p)->size_h_);
+
+		if (tpr::isHit_LineAndRectangle(line, quad)) { return true; }
+
+		p++;
+	}
+
+	return false;
+}
 
 
 //----------------------------------------------------------------------------------------------------
@@ -318,6 +340,14 @@ void PlayScene::MakeVector2(tpr::Vector2_int* p_pos, tpr::Vector2_int* e_pos) {
 		(int)Ep->pos.x / GMp->TILE_SIZE_W,
 		(int)Ep->pos.y / GMp->TILE_SIZE_H
 	};
+}
+
+
+//----------------------------------------------------------------------------------------------------
+//線分の垂直方向を得る
+tpr::Vector2 PlayScene::Vertical(tpr::Vector2 first_pos, tpr::Vector2 second_pos) {
+	tpr::Vector2 pos;
+	return pos;
 }
 
 

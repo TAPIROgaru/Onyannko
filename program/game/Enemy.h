@@ -4,7 +4,7 @@
 //自作ファイル
 
 #include "CharaObj.h"
-#include "tpr_library.h"
+#include "TPRlib/tpr_library.h"
 
 //----------------------------------------------------------------------------------------------------
 //クラスの前方宣言
@@ -40,6 +40,8 @@ public:
 	float bullet_direction_y = 0;       //弾を発射する向きY
 
 	float angle = 0;                    //角度
+
+	bool _fire = false;
 
 	t2k::Vector3 prev_pos;              //1フレーム前の座標
 

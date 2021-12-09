@@ -60,31 +60,41 @@ void Enemy::Move(float deltatime) {
 		}
 	}
 
-	if (move_pos.empty()) { return; }
+	if (move_pos.empty()) {
+		return; 
+	}
+	else if (move_pos.size() == 1) {
+		move_count = 0;
+	}
 
-	t2k::Vector3 _pos = GMp->SPp->FixPositionVector(
-		t2k::Vector3{ (float)move_pos[move_count].x + 16 ,(float)move_pos[move_count].y + 16 ,0 });
+	if (!_fire) {
 
-	t2k::Vector3 my_pos = GMp->SPp->FixPositionVector(pos);
+		t2k::Vector3 _pos = GMp->SPp->FixPositionVector(
+			t2k::Vector3{ (float)move_pos[move_count].x + 16 ,(float)move_pos[move_count].y + 16 ,0 });
 
-	t2k::Vector3 component = {
-		_pos.x - my_pos.x ,
-		_pos.y - my_pos.y ,
-		0
-	};
+		t2k::Vector3 my_pos = GMp->SPp->FixPositionVector(pos);
+
+		t2k::Vector3 component = {
+			_pos.x - my_pos.x ,
+			_pos.y - my_pos.y ,
+			0
+		};
 
 
-	float magnitude=(float)sqrt(component.x * component.x + component.y * component.y);
+		float magnitude = (float)sqrt(component.x * component.x + component.y * component.y);
 
-	t2k::Vector3 move_dire = { (component.x / magnitude),(component.y / magnitude),0 };
+		t2k::Vector3 move_dire = { (component.x / magnitude),(component.y / magnitude),0 };
 
-	pos += {move_dire.x* sta.move_speed, move_dire.y* sta.move_speed, 0};
+		pos += {move_dire.x* sta.move_speed, move_dire.y* sta.move_speed, 0};
 
-	GMp->SPp->isHit_Wall(pos, prev_pos, r);
+		GMp->SPp->isHit_Wall(pos, prev_pos, r);
 
-	prev_pos = pos;
-	flame_count++;
-	move_count = 1;
+		prev_pos = pos;
+		flame_count++;
+		move_count = 1;
+	}
+	else {
+	}
 }
 
 
@@ -152,7 +162,10 @@ void Enemy::FindPlayer(float deltatime) {
 	//単位ベクトル
 	float magnitude = (float)sqrt(component.x * component.x + component.y * component.y);
 
-	if (search_range_palyer < magnitude) { return; }
+	if (search_range_palyer < magnitude|| GMp->SPp->isHit_RayAndWall()) { 
+		_fire = false; 
+		return; 
+	}
 
 	int gap = 40;
 
@@ -161,6 +174,7 @@ void Enemy::FindPlayer(float deltatime) {
 	bullet_direction_y = (component.y + rand() % gap - gap / 2) / magnitude;
 
 	FireBullet(deltatime);
+	_fire = true;
 }
 
 
