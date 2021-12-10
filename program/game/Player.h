@@ -29,8 +29,6 @@ public:
 
 	t2k::Vector3 prev_pos;
 	
-	int _hp = 0;
-	
 	float bullet_direction_x = 0; //’e‚ð”­ŽË‚·‚éŒü‚«
 	float bullet_direction_y = 0;
 

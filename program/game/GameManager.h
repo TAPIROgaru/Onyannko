@@ -26,13 +26,13 @@ class GameManager {
 public:
 
 	//------------------------------------------------------------------------------------------------
-	//スクリーンサイズ　フィールドサイズ　タイルサイズ
+	//サイズ一覧
 
 	static constexpr int SCREEN_W = 960;
 	static constexpr int SCREEN_H = 540;
 
-	static constexpr int FIELD_W = 576;   // 1152
-	static constexpr int FIELD_H = 400;   // 800
+	static constexpr int FIELD_W = 576;   // 
+	static constexpr int FIELD_H = 400;   // 
 
 	static constexpr int TILE_SIZE_W = 32;
 	static constexpr int TILE_SIZE_H = 32;
@@ -44,6 +44,9 @@ public:
 	static constexpr int TILE_VALUE_H_WALL = 6;
 
 	static constexpr bool WINDOW_MODE = true;
+
+
+	static constexpr int BULLET_RADIUS = 7;
 
 	//------------------------------------------------------------------------------------------------
 

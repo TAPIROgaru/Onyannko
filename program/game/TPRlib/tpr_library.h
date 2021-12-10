@@ -9,5 +9,5 @@
 
 
 //Œo˜H’Tõ
-//#include "Node.h"
-//#include "Astar.h"
+#include "Node.h"
+#include "Astar.h"

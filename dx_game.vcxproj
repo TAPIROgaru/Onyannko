@@ -23,6 +23,7 @@
     <ClCompile Include="program\game\Scroll.cpp" />
     <ClCompile Include="program\game\ResultScene.cpp" />
     <ClCompile Include="program\game\TitleScene.cpp" />
+    <ClCompile Include="program\game\TPRlib\Angle.cpp" />
     <ClCompile Include="program\game\TPRlib\Astar.cpp" />
     <ClCompile Include="program\game\TPRlib\Collision.cpp" />
     <ClCompile Include="program\game\TPRlib\Rotation.cpp" />
@@ -59,6 +60,7 @@
     <ClInclude Include="program\game\ResultScene.h" />
     <ClInclude Include="program\game\Scene.h" />
     <ClInclude Include="program\game\TitleScene.h" />
+    <ClInclude Include="program\game\TPRlib\Angle.h" />
     <ClInclude Include="program\game\TPRlib\Astar.h" />
     <ClInclude Include="program\game\TPRlib\Collision.h" />
     <ClInclude Include="program\game\TPRlib\Line.h" />

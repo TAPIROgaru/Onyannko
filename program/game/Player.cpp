@@ -17,7 +17,6 @@ Player::Player() {
 	prev_pos = { -200, 0, 0 };
 	LoadStatus();
 	r = 16;
-	_hp = sta.HP;
 
 	secconds_AS = 1.0f / sta.attack_speed;
 }
@@ -63,6 +62,7 @@ void Player::LoadStatus() {
 		//ステータス読み込み
 		sta = {
 			std::atoi(GMp->SPp->datas[0][1].c_str()), //ヒットポイント
+			sta.HP,                                   //増減するHP
 			std::atoi(GMp->SPp->datas[0][2].c_str()), //移動速度
 			std::atoi(GMp->SPp->datas[0][3].c_str()), //攻撃力
 			std::atoi(GMp->SPp->datas[0][4].c_str()), //防御力
@@ -81,13 +81,14 @@ void Player::LoadStatus() {
 	fread_s(name, sizeof(name), sizeof(char) * name_length, 1, fp);
 
 	//ステータス読み込み
-	fread_s(status, sizeof(status), sizeof(int) * status_value, 1, fp);
+	fread_s(status, sizeof(status), sizeof(int) * (status_value - 1), 1, fp);
 
 	sta.HP           = status[0];
-	sta.move_speed   = status[1];
-	sta.attack       = status[2];
-	sta.defense      = status[3];
-	sta.attack_speed = status[4];
+	sta.hp_          = sta.HP;
+	sta.move_speed   = status[2];
+	sta.attack       = status[3];
+	sta.defense      = status[4];
+	sta.attack_speed = status[5];
 
 	//スキル読み込み
 	int num[3];
@@ -217,7 +218,7 @@ void Player::Render(Camera* cam) {
 
 	DrawFormatString(100, 100, -1, "x:%f y:%f", pos.x, pos.y);
 	DrawFormatString(100, 120, -1, "名前    :%s", name);
-	DrawFormatString(100, 140, -1, "HP      :%d", _hp);
+	DrawFormatString(100, 140, -1, "HP      :%d", sta.hp_);
 	DrawFormatString(100, 160, -1, "移動速度:%d", sta.move_speed);
 	DrawFormatString(100, 180, -1, "攻撃力  :%d", sta.attack);
 	DrawFormatString(100, 200, -1, "防御力  :%d", sta.defense);

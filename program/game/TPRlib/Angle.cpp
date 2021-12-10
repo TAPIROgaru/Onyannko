@@ -14,13 +14,19 @@ namespace tpr {
 	//-----------------------------------------------------------------------------------------
 	// “ñ“_ŠÔ‚ÌŠp“x‚ðŒvŽZ
 
-	int Angle::DegCalc(Vector2 first_pos, Vector2 second_pos) {
+	float Angle::RadCalc(Vector2 first_pos, Vector2 second_pos) {
 
 		Vector2 pos_ = second_pos - first_pos;
 
-		float rad = atanf(pos_.y / pos_.x) * -1;
+		return atanf(pos_.y / pos_.x);
+	}
 
-		return RadChangeDeg(rad);
+	//-----------------------------------------------------------------------------------------
+	// “ñ“_ŠÔ‚ÌŠp“x‚ðŒvŽZ
+
+	int Angle::DegCalc(Vector2 first_pos, Vector2 second_pos) {
+
+		return RadChangeDeg(RadCalc(first_pos, second_pos));
 	}
 
 
@@ -31,7 +37,7 @@ namespace tpr {
 
 		float rad;
 
-		rad = degree * PI / 180 * -1;
+		rad = degree * PI / 180;
 
 		return rad;
 	}
@@ -44,7 +50,7 @@ namespace tpr {
 
 		int deg;
 
-		deg = radian * 180 / PI * -1;
+		deg = radian / PI * 180;
 
 		return deg;
 	}

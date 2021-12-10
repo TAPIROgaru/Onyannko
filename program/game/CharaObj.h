@@ -25,7 +25,7 @@ public:
 	//ステータス
 
 	static constexpr int name_length = 11;  //名前の長さ
-	static constexpr int status_value = 5;  //ステータスの数
+	static constexpr int status_value = 6;  //ステータスの数
 
 	char name[name_length] = { 0 };  //名前　※10文字
 
@@ -33,6 +33,7 @@ public:
 	public:
 
 		int HP;                     //ヒットポイント
+		int hp_;                    //増減するHP
 		int move_speed;             //移動速度
 		int attack;                 //攻撃力
 		int defense;                //防御力

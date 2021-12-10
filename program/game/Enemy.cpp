@@ -118,6 +118,7 @@ void Enemy::LoadStatus(int num) {
 	//ステータス読み込み
 	sta = {
 		std::atoi(GMp->SPp->datas[num][1].c_str()), //ヒットポイント
+		sta.HP,                                     //増減するHP
 		std::atoi(GMp->SPp->datas[num][2].c_str()), //移動速度
 		std::atoi(GMp->SPp->datas[num][3].c_str()), //攻撃力
 		std::atoi(GMp->SPp->datas[num][4].c_str()), //防御力
@@ -221,7 +222,7 @@ void Enemy::Render(Camera* cam) {
 
 	DrawFormatString(600, 100, -1, "x:%f y:%f"  , pos.x, pos.y);
 	DrawFormatString(600, 120, -1, "名前    :%s"    , name);
-	DrawFormatString(600, 140, -1, "HP      :%d"      , sta.HP);
+	DrawFormatString(600, 140, -1, "HP      :%d"      , sta.hp_);
 	DrawFormatString(600, 160, -1, "移動速度:%d", sta.move_speed);
 	DrawFormatString(600, 180, -1, "攻撃力  :%d"  , sta.attack);
 	DrawFormatString(600, 200, -1, "防御力  :%d"  , sta.defense);

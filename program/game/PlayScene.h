@@ -78,7 +78,7 @@ public:
 	// 
 	// return èCê≥Ç≥ÇÍÇΩVectorç¿ïW
 	//=======================================================
-	tpr::Vector2_int FixPositionVector(tpr::Vector2_int);
+	tpr::Vector2 FixPositionVector(tpr::Vector2);
 
 
 	//=======================================================

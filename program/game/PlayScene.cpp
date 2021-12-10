@@ -164,7 +164,11 @@ void PlayScene::SavePlayer() {
 	fopen_s(&fp, "player.bin", "wb");
 
 	fwrite(Pp->name, sizeof(Pp->name), 1, fp);
-	fwrite(&Pp->sta, sizeof(CharaObj::Status), 1, fp);
+	fwrite(&Pp->sta.HP, sizeof(int), 1, fp);
+	fwrite(&Pp->sta.move_speed, sizeof(int), 1, fp);
+	fwrite(&Pp->sta.attack, sizeof(int), 1, fp);
+	fwrite(&Pp->sta.defense, sizeof(int), 1, fp);
+	fwrite(&Pp->sta.attack_speed, sizeof(int), 1, fp);
 	fwrite(&Pp->ult->my_number, sizeof(int), 1, fp);
 	fwrite(&Pp->skillA->my_number, sizeof(int), 1, fp);
 	fwrite(&Pp->skillB->my_number, sizeof(int), 1, fp);
@@ -177,7 +181,7 @@ void PlayScene::SavePlayer() {
 //ゲームオーバー
 void PlayScene::isOver() {
 
-	if (Pp->_hp == 0 || Ep->sta.HP == 0) {
+	if (Pp->sta.hp_ == 0 || Ep->sta.hp_ == 0) {
 
 		GMp->SRp->_switch = true;
 	}
@@ -195,7 +199,7 @@ void PlayScene::isHit_bullet() {
 				tpr::Vector2(Ep->pos.x, Ep->pos.y),Ep->r,
 				tpr::Vector2(p->pos.x, p->pos.y), p->r)) {
 
-				Ep->sta.HP--;
+				Ep->sta.hp_--;
 				p->alive_flag = false;
 			}
 		}
@@ -204,7 +208,7 @@ void PlayScene::isHit_bullet() {
 				tpr::Vector2(Pp->pos.x, Pp->pos.y), Pp->r,
 				tpr::Vector2(p->pos.x, p->pos.y), p->r)) {
 
-				Pp->_hp--;
+				Pp->sta.hp_--;
 				p->alive_flag = false;
 			}
 		}
@@ -307,8 +311,13 @@ inline void PlayScene::isHit_ActionCorrectionPosition(t2k::Vector3& pos, float r
 
 bool PlayScene::isHit_RayAndWall() {
 
-	//PlayerとEnemyをつなぐ線分
-	tpr::Line line(tpr::Vector2(Ep->pos.x, Ep->pos.y), tpr::Vector2(Pp->pos.x, Pp->pos.y));
+	tpr::Vector2 e_pos = tpr::Vector2(Ep->pos.x, Ep->pos.y);
+	tpr::Vector2 p_pos = tpr::Vector2(Pp->pos.x, Pp->pos.y);
+
+	float rad = tpr::Angle::RadCalc(e_pos, p_pos);
+
+	//PlayerとEnemyをつなぐ矩形
+	tpr::Quadrilateral ray_quad(e_pos, p_pos, GMp->BULLET_RADIUS * 2, rad);
 
 	auto p = Sp_wall.begin();
 	while (p != Sp_wall.end()) {
@@ -317,7 +326,7 @@ bool PlayScene::isHit_RayAndWall() {
 		tpr::Quadrilateral quad(
 			tpr::Vector2((*p)->pos.x, (*p)->pos.y), (*p)->size_w_, (*p)->size_h_);
 
-		if (tpr::isHit_LineAndRectangle(line, quad)) { return true; }
+		if (tpr::isHit_RectangleAndRectangle(ray_quad, quad)) { return true; }
 
 		p++;
 	}
@@ -392,11 +401,11 @@ t2k::Vector3 PlayScene::FixPositionVector(t2k::Vector3 pos) {
 	return pos_;
 }
 
-tpr::Vector2_int PlayScene::FixPositionVector(tpr::Vector2_int pos) {
+tpr::Vector2 PlayScene::FixPositionVector(tpr::Vector2 pos) {
 
-	tpr::Vector2_int pos_ = {
-		(int)(pos.x - cam.pos.x + (GameManager::SCREEN_W >> 1)),
-		(int)(pos.y - cam.pos.y + (GameManager::SCREEN_H >> 1))
+	tpr::Vector2 pos_ = {
+		pos.x - cam.pos.x + (GameManager::SCREEN_W >> 1),
+		pos.y - cam.pos.y + (GameManager::SCREEN_H >> 1)
 	};
 
 	return pos_;
@@ -421,6 +430,10 @@ void PlayScene::Init() {
 	_start_flag = false;
 
 	_init = false;
+
+	//デバック用
+	Pp->sta.hp_ = 999;
+	Ep->sta.hp_ = 999;
 }
 
 
@@ -453,6 +466,16 @@ void PlayScene::Render(float deltatime) {
 	}
 
 	cam.render();
+
+	if (Ep == nullptr || Pp == nullptr) { return; }
+
+
+	tpr::Vector2 e_pos = FixPositionVector(tpr::Vector2(Ep->pos.x, Ep->pos.y));
+	tpr::Vector2 p_pos = FixPositionVector(tpr::Vector2(Pp->pos.x, Pp->pos.y));
+
+	float rad = tpr::Angle::RadCalc(e_pos, p_pos);
+	tpr::Quadrilateral ray_quad(e_pos, p_pos, GMp->BULLET_RADIUS * 2, rad);
+	ray_quad.DrawBox();
 }
 
 //----------------------------------------------------------------------------------------------------

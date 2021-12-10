@@ -6,6 +6,7 @@
 
 #include "Line.h"
 #include "Rotation.h"
+#include "Color.h"
 
 
 //---------------------------------------------------------------------------------------------
@@ -85,8 +86,8 @@ namespace tpr {
 			right_line(B_pos, C_pos),
 			bottom_line(C_pos, D_pos),
 			left_line(D_pos, A_pos)
-		{}		
-		
+		{}
+
 		//=======================================================
 		// 矩形の場合(二点を軸にしたサイズと回転)
 		// 1. 始点
@@ -94,17 +95,19 @@ namespace tpr {
 		// 3. 幅
 		// 4. 回転(ラジアン)
 		//=======================================================
-		Quadrilateral(Vector2 start_pos,Vector2 end_pos,int size_w,float rad):
+		Quadrilateral(Vector2 start_pos, Vector2 end_pos, int size_w, float rad) {
 
-			A_pos(),
-			B_pos(),
-			C_pos(),
-			D_pos(),
-			upper_line(A_pos, B_pos),
-			right_line(B_pos, C_pos),
-			bottom_line(C_pos, D_pos),
-			left_line(D_pos, A_pos)
-		{}
+			Vector2 pos_c = Vector2::CenterPointCalc(start_pos, end_pos);
+
+			int size_h = Vector2::DistanceCalc(start_pos, end_pos);
+
+			*this = Quadrilateral(pos_c, size_w, size_h, rad);
+
+			upper_line = Line(A_pos, B_pos);
+			right_line = Line(B_pos, C_pos);
+			bottom_line = Line(C_pos, D_pos);
+			left_line = Line(D_pos, A_pos);
+		}
 
 		//=======================================================
 		// 四辺形の場合(4点指定)
@@ -130,13 +133,13 @@ namespace tpr {
 		//-------------------------------------------------------------------------------------
 		//オペレータ
 
-		Quadrilateral operator = (const Quadrilateral quad) {
+		inline Quadrilateral operator = (const Quadrilateral p) {
 
 			return Quadrilateral(
-				A_pos = quad.A_pos,
-				B_pos = quad.B_pos,
-				C_pos = quad.C_pos,
-				D_pos = quad.D_pos
+				A_pos = p.A_pos,
+				B_pos = p.B_pos,
+				C_pos = p.C_pos,
+				D_pos = p.D_pos
 			);
 		}
 
@@ -144,14 +147,17 @@ namespace tpr {
 		//-------------------------------------------------------------------------------------
 		//関数
 
-		void DrawBox() {
+		//=======================================================
+		// 箱の描画
+		// 1. 色
+		//=======================================================
+		void DrawBox(unsigned int c);
 
-			upper_line.DrawLine();
-			bottom_line.DrawLine();
-			left_line.DrawLine();
-			right_line.DrawLine();
-		}
-
+		//=======================================================
+		// 箱の描画
+		// 1. 色
+		//=======================================================
+		void DrawBox(Color c);
 
 		//-------------------------------------------------------------------------------------
 		//変数
