@@ -53,6 +53,12 @@ namespace tpr {
 			return Vector2(x = p.x, y = p.y);
 		}
 
+		//外積
+		float operator *(Vector2 p) {
+
+			return float((x * p.y) - (y * p.x));
+		}
+
 		bool operator ==(Vector2 p) {
 
 			if (x == p.x && y == p.y) { return true; }
@@ -73,14 +79,14 @@ namespace tpr {
 		// 1. ベクトルAの大きさ
 		// 2. ベクトルBの大きさ
 		// 
-		// return 外積
+		// return 
 		//=======================================================
 		static float CrossProduct(Vector2 first_pos, Vector2 second_pos);
 
 		//=======================================================
-		// 内積
-		// 1. ベクトルAの大きさ
-		// 2. ベクトルBの大きさ
+		// 外積
+		// 1. 
+		// 2. 
 		// 
 		// return 
 		//=======================================================

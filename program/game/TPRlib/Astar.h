@@ -35,7 +35,7 @@ namespace tpr {
 		// 1. “ñŸŒ³À•Wã‚ÌPlayer
 		// 2. “ñŸŒ³À•Wã‚ÌEnemy
 		//=======================================================
-		bool Initialize(Vector2_int p_pos, Vector2_int e_pos);
+		void Initialize(Vector2_int p_pos, Vector2_int e_pos);
 
 
 		//=======================================================

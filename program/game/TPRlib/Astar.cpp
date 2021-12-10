@@ -39,9 +39,7 @@ namespace tpr{
 
 	std::list<Node*> Astar::Astar_Exe(Vector2_int p_pos, Vector2_int e_pos) {
 
-		bool go = Initialize(p_pos, e_pos);
-		if (!go) { return route; }
-
+		Initialize(p_pos, e_pos);
 		AstarPlay(&nodes[e_pos.y][e_pos.x], p_pos);
 
 		return route;
@@ -51,26 +49,13 @@ namespace tpr{
 	//-----------------------------------------------------------------------------------------------
 	//èâä˙âª
 
-	bool Astar::Initialize(Vector2_int p_pos, Vector2_int e_pos) {
+	void Astar::Initialize(Vector2_int p_pos, Vector2_int e_pos) {
 
 		nodes = origin_nodes;
 
 		adress_nodes.clear();
 		open_nodes.clear();
 		route.clear();
-
-		//ècâ°éŒÇﬂÇÃ8ï˚å¸ÇÃç¿ïW
-		Vector2_int pos[8] = {
-			Vector2_int(-1,-1),Vector2_int(0,-1),Vector2_int(1,-1),
-			Vector2_int(-1, 0),/*              */Vector2_int(1, 0),
-			Vector2_int(-1, 1),Vector2_int(0, 1),Vector2_int(1, 1)
-		};
-
-		for (int i = 0; i < 8; i++) {
-			if (e_pos + pos[i] == p_pos) {
-				return false;
-			}
-		}
 		
 		nodes[p_pos.y][p_pos.x].status = GOAL;
 		nodes[e_pos.y][e_pos.x].status = START;
@@ -89,8 +74,6 @@ namespace tpr{
 
 			it++;
 		}
-
-		return true;
 	}
 
 
@@ -130,10 +113,6 @@ namespace tpr{
 					*route.emplace_front(p);
 					p = p->parent;
 				}
-
-				auto it = route.end();
-				it--;
-				route.erase(it);
 
 				return true;
 			}

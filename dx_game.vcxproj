@@ -25,6 +25,7 @@
     <ClCompile Include="program\game\TitleScene.cpp" />
     <ClCompile Include="program\game\TPRlib\Astar.cpp" />
     <ClCompile Include="program\game\TPRlib\Collision.cpp" />
+    <ClCompile Include="program\game\TPRlib\Rotation.cpp" />
     <ClCompile Include="program\game\TPRlib\Vector2.cpp" />
     <ClCompile Include="program\library\bounding.cpp" />
     <ClCompile Include="program\library\font.cpp" />
@@ -63,6 +64,7 @@
     <ClInclude Include="program\game\TPRlib\Line.h" />
     <ClInclude Include="program\game\TPRlib\Node.h" />
     <ClInclude Include="program\game\TPRlib\Quadrilateral.h" />
+    <ClInclude Include="program\game\TPRlib\Rotation.h" />
     <ClInclude Include="program\game\TPRlib\tpr_library.h" />
     <ClInclude Include="program\game\TPRlib\Vector2.h" />
     <ClInclude Include="program\game\TPRlib\Vector2_int.h" />

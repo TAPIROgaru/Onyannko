@@ -9,19 +9,11 @@ namespace tpr {
 	}
 
 
-	//----------------------------------------------------------------------------------------
 	//äOêœ
-
+	
 	float Vector2::CrossProduct(Vector2 first_pos, Vector2 second_pos) {
 
 		return float((first_pos.x * second_pos.y) - (first_pos.y * second_pos.x));
 	}
 
-
-	//----------------------------------------------------------------------------------------
-	//ì‡êœ
-
-	Vector2 Vector2::InnerProduct(Vector2 first_pos, Vector2 second_pos) {
-
-	}
 }

@@ -85,14 +85,10 @@ namespace tpr {
 
 	bool isHit_LineAndRectangle(Line line, Quadrilateral quad) {
 
-		//l•ÓŒ`‚ğü•ª‚É•ª‚¯‚Ä”z—ñ‚ÉŠi”[
-		Line line_array[4] = { 
-			quad.upper_line,quad.right_line,
-			quad.bottom_line,quad.left_line
-		};
+		Line line_array[4] = { quad.upper_line,quad.right_line,quad.bottom_line,quad.left_line };
 
 		for (int i = 0; i < 4; i++) {
-			if (isHit_LineAndLine(line,line_array[i])) { return true; }
+			if (isHit_LineAndLine(line, line_array[i])) { return true; }
 		}
 
 		return false;
@@ -107,7 +103,7 @@ namespace tpr {
 		//l•ÓŒ`‚ğü•ª‚É•ª‚¯‚Ä”z—ñ‚ÉŠi”[
 		Line first_quad_ine_array[4] = {
 			first_quad.upper_line,first_quad.right_line,
-			first_quad.bottom_line,first_quad.left_line 
+			first_quad.bottom_line,first_quad.left_line
 		};
 
 		//l•ÓŒ`‚ğü•ª‚É•ª‚¯‚Ä”z—ñ‚ÉŠi”[

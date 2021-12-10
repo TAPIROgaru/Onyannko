@@ -124,6 +124,9 @@
     <ClCompile Include="program\game\TPRlib\Vector2.cpp">
       <Filter>program\game\TPRlib</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\TPRlib\Rotation.cpp">
+      <Filter>program\game\TPRlib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="program\support\FrameRateController.h">
@@ -268,6 +271,9 @@
       <Filter>program\game\TPRlib</Filter>
     </ClInclude>
     <ClInclude Include="program\game\TPRlib\Astar.h">
+      <Filter>program\game\TPRlib</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\TPRlib\Rotation.h">
       <Filter>program\game\TPRlib</Filter>
     </ClInclude>
   </ItemGroup>

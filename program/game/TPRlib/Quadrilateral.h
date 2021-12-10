@@ -5,6 +5,7 @@
 //自作ファイル
 
 #include "Line.h"
+#include "Rotation.h"
 
 
 //---------------------------------------------------------------------------------------------
@@ -22,11 +23,10 @@ namespace tpr {
 		// 変数宣言のみ
 		//=======================================================
 		Quadrilateral() :
-
-			A_pos(0,0),
-			B_pos(0,0),
-			C_pos(0,0),
-			D_pos(0,0),
+			A_pos(0, 0),
+			B_pos(0, 0),
+			C_pos(0, 0),
+			D_pos(0, 0),
 			upper_line(A_pos, B_pos),
 			right_line(B_pos, C_pos),
 			bottom_line(C_pos, D_pos),
@@ -41,9 +41,9 @@ namespace tpr {
 		Quadrilateral(Vector2 upper_left_pos, Vector2 bottom_right_pos) :
 
 			A_pos(upper_left_pos),
-			B_pos(bottom_right_pos.x ,upper_left_pos.y),
+			B_pos(bottom_right_pos.x, upper_left_pos.y),
 			C_pos(bottom_right_pos),
-			D_pos(upper_left_pos.x ,bottom_right_pos.y),
+			D_pos(upper_left_pos.x, bottom_right_pos.y),
 			upper_line(A_pos, B_pos),
 			right_line(B_pos, C_pos),
 			bottom_line(C_pos, D_pos),
@@ -69,6 +69,44 @@ namespace tpr {
 		{}
 
 		//=======================================================
+		// 矩形の場合(中心座標とサイズと回転)
+		// 1. 中心座標
+		// 2. 幅
+		// 3. 高さ
+		// 4. 回転(ラジアン)
+		//=======================================================
+		Quadrilateral(Vector2 pos, int size_w, int size_h, float rad) :
+
+			A_pos(Rotation::RotaVec2(Vector2(pos.x - (size_w >> 1), pos.y - (size_h >> 1)), pos, rad)),
+			B_pos(Rotation::RotaVec2(Vector2(pos.x + (size_w >> 1), pos.y - (size_h >> 1)), pos, rad)),
+			C_pos(Rotation::RotaVec2(Vector2(pos.x + (size_w >> 1), pos.y + (size_h >> 1)), pos, rad)),
+			D_pos(Rotation::RotaVec2(Vector2(pos.x - (size_w >> 1), pos.y + (size_h >> 1)), pos, rad)),
+			upper_line(A_pos, B_pos),
+			right_line(B_pos, C_pos),
+			bottom_line(C_pos, D_pos),
+			left_line(D_pos, A_pos)
+		{}		
+		
+		//=======================================================
+		// 矩形の場合(二点を軸にしたサイズと回転)
+		// 1. 始点
+		// 2. 終点
+		// 3. 幅
+		// 4. 回転(ラジアン)
+		//=======================================================
+		Quadrilateral(Vector2 start_pos,Vector2 end_pos,int size_w,float rad):
+
+			A_pos(),
+			B_pos(),
+			C_pos(),
+			D_pos(),
+			upper_line(A_pos, B_pos),
+			right_line(B_pos, C_pos),
+			bottom_line(C_pos, D_pos),
+			left_line(D_pos, A_pos)
+		{}
+
+		//=======================================================
 		// 四辺形の場合(4点指定)
 		// 1. 左上の座標
 		// 2. 右上の座標
@@ -77,16 +115,16 @@ namespace tpr {
 		//=======================================================
 		Quadrilateral(
 			Vector2 upper_left_pos, Vector2 upper_right_pos,
-			Vector2 bottom_left_pos, Vector2 bottom_right_pos):
+			Vector2 bottom_left_pos, Vector2 bottom_right_pos) :
 
 			A_pos(upper_left_pos),
 			B_pos(upper_right_pos),
 			C_pos(bottom_right_pos),
 			D_pos(bottom_left_pos),
-			upper_line(A_pos,B_pos),
-			right_line(B_pos,C_pos),
-			bottom_line(C_pos,D_pos),
-			left_line(D_pos,A_pos)
+			upper_line(A_pos, B_pos),
+			right_line(B_pos, C_pos),
+			bottom_line(C_pos, D_pos),
+			left_line(D_pos, A_pos)
 		{}
 
 		//-------------------------------------------------------------------------------------

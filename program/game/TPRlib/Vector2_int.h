@@ -62,9 +62,10 @@ namespace tpr {
 
 		bool operator !=(Vector2_int p) {
 
-			if (x != p.x || y != p.y) { return true; }
+			if (x != p.x && y != p.y) { return true; }
 			return false;
 		}
+
 
 		//-------------------------------------------------------------------------------------
 		//ŠÖ”
