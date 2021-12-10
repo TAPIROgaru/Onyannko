@@ -475,7 +475,7 @@ void PlayScene::Render(float deltatime) {
 
 	float rad = tpr::Angle::RadCalc(e_pos, p_pos);
 	tpr::Quadrilateral ray_quad(e_pos, p_pos, GMp->BULLET_RADIUS * 2, rad);
-	ray_quad.DrawBox();
+	ray_quad.DrawBox(-1);
 }
 
 //----------------------------------------------------------------------------------------------------

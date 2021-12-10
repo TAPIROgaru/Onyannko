@@ -5,6 +5,7 @@
 //©ìƒtƒ@ƒCƒ‹
 
 #include "Rotation.h"
+#include "Angle.h"
 
 
 namespace tpr {

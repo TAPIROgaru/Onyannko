@@ -31,7 +31,7 @@ namespace tpr {
 		// 
 		// return 弧度法の角度
 		//=======================================================
-		static float RadCalc(Vector2 first_pos, Vector2 second_pos);
+		static float RadCalc(Vector2 start_pos, Vector2 end_pos);
 
 		//=======================================================
 		// 二点間の角度を計算
@@ -40,7 +40,7 @@ namespace tpr {
 		// 
 		// return 度数法の角度
 		//=======================================================
-		static int DegCalc(Vector2 first_pos, Vector2 second_pos);
+		static int DegCalc(Vector2 start_pos, Vector2 end_pos);
 
 		//=======================================================
 		// 度数法を弧度法に直す
@@ -73,7 +73,7 @@ namespace tpr {
 		// info 3	左下
 		// info 4	右下
 		//=======================================================
-		inline static int SearchSide(Vector2 first_pos, Vector2 second_pos);
+		inline static int SearchSide(Vector2 start_pos, Vector2 end_pos);
 
 
 	};

@@ -41,7 +41,7 @@ namespace tpr {
 
 		float rad = Angle::RadCalc(start_pos, end_pos);
 
-		dist = (int)((start_pos - end_pos).x / cosf(rad));
+		dist = abs((int)((start_pos - end_pos).x / cosf(rad)));
 
 		return dist;
 	}

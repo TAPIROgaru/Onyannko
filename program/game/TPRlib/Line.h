@@ -31,9 +31,9 @@ namespace tpr {
 		// 1. 始点
 		// 2. 終点
 		//=======================================================
-		Line(Vector2 start_point, Vector2 end_point) :
-			start_pos(start_point),
-			end_pos(end_point)
+		Line(Vector2 start_pos, Vector2 end_pos) :
+			start_pos(start_pos),
+			end_pos(end_pos)
 		{}
 
 		//-------------------------------------------------------------------------------------

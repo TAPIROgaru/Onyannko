@@ -14,19 +14,19 @@ namespace tpr {
 	//-----------------------------------------------------------------------------------------
 	// 二点間の角度を計算
 
-	float Angle::RadCalc(Vector2 first_pos, Vector2 second_pos) {
+	float Angle::RadCalc(Vector2 start_pos, Vector2 end_pos) {
 
-		Vector2 pos_ = second_pos - first_pos;
+		Vector2 pos_ = end_pos - start_pos;
 
-		return atanf(pos_.y / pos_.x);
+		return atanf(pos_.y / pos_.x) * -1;
 	}
 
 	//-----------------------------------------------------------------------------------------
 	// 二点間の角度を計算
 
-	int Angle::DegCalc(Vector2 first_pos, Vector2 second_pos) {
+	int Angle::DegCalc(Vector2 start_pos, Vector2 end_pos) {
 
-		return RadChangeDeg(RadCalc(first_pos, second_pos));
+		return RadChangeDeg(RadCalc(start_pos, end_pos));
 	}
 
 
@@ -37,7 +37,7 @@ namespace tpr {
 
 		float rad;
 
-		rad = degree * PI / 180;
+		rad = degree * PI / 180 * -1;
 
 		return rad;
 	}
@@ -50,7 +50,7 @@ namespace tpr {
 
 		int deg;
 
-		deg = radian / PI * 180;
+		deg = radian / PI * 180 * -1;
 
 		return deg;
 	}
@@ -59,7 +59,7 @@ namespace tpr {
 	//-----------------------------------------------------------------------------------------
 	// 点Aを中心にX軸Y軸で分割したとき点Bがどこにいるか
 
-	inline int Angle::SearchSide(Vector2 first_pos, Vector2 second_pos) {
+	inline int Angle::SearchSide(Vector2 start_pos, Vector2 end_pos) {
 
 		const int ON_AXIS = 0;
 		const int UPPER_RIGHT = 1;
@@ -67,10 +67,10 @@ namespace tpr {
 		const int BOTTON_RIGHT = 3;
 		const int BOTTON_LEFT = 4;
 
-		if (first_pos.x == second_pos.x) { return ON_AXIS; }
-		if (first_pos.y == second_pos.y) { return ON_AXIS; }
+		if (start_pos.x == end_pos.x) { return ON_AXIS; }
+		if (start_pos.y == end_pos.y) { return ON_AXIS; }
 
-		Vector2 pos_ = second_pos - first_pos;
+		Vector2 pos_ = end_pos - start_pos;
 
 		if (pos_.x > 0 && pos_.y > 0) { return UPPER_RIGHT; }
 		if (pos_.x < 0 && pos_.y > 0) { return UPPER_LEFT; }
