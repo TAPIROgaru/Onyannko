@@ -12,8 +12,8 @@ namespace tpr {
 	//-----------------------------------------------------------------------------------------
 	// “_‚Ì•`‰æ
 
-	void Vector2::DrawPoint(unsigned int color){
-			DrawPixel((int)x, (int)y, color);
+	void Vector2::DrawPoint(unsigned int c){
+			DrawPixel((int)x, (int)y, c);
 	}
 
 	//-----------------------------------------------------------------------------------------

@@ -198,8 +198,8 @@ void Enemy::Update(float deltatime) {
 
 	timecount += deltatime;
 
-	FindPlayer(deltatime);
 	Move(deltatime);
+	FindPlayer(deltatime);
 }
 void Enemy::Render(Camera* cam) {
 

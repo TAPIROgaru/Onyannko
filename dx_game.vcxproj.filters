@@ -115,19 +115,28 @@
     <ClCompile Include="program\game\Scroll.cpp">
       <Filter>program\game\my_main</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\TPRlib\Line.cpp">
+      <Filter>program\game\TPRlib</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\TPRlib\Quadrilateral.cpp">
+      <Filter>program\game\TPRlib</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\TPRlib\Rotation.cpp">
+      <Filter>program\game\TPRlib</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\TPRlib\Vector2.cpp">
+      <Filter>program\game\TPRlib</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\TPRlib\Angle.cpp">
+      <Filter>program\game\TPRlib</Filter>
+    </ClCompile>
     <ClCompile Include="program\game\TPRlib\Astar.cpp">
       <Filter>program\game\TPRlib</Filter>
     </ClCompile>
     <ClCompile Include="program\game\TPRlib\Collision.cpp">
       <Filter>program\game\TPRlib</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\TPRlib\Vector2.cpp">
-      <Filter>program\game\TPRlib</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\TPRlib\Rotation.cpp">
-      <Filter>program\game\TPRlib</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\TPRlib\Angle.cpp">
+    <ClCompile Include="program\game\TPRlib\Color.cpp">
       <Filter>program\game\TPRlib</Filter>
     </ClCompile>
   </ItemGroup>
@@ -252,7 +261,7 @@
     <ClInclude Include="program\game\Scroll.h">
       <Filter>program\game\my_main</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\TPRlib\Collision.h">
+    <ClInclude Include="program\game\TPRlib\Color.h">
       <Filter>program\game\TPRlib</Filter>
     </ClInclude>
     <ClInclude Include="program\game\TPRlib\Line.h">
@@ -264,6 +273,9 @@
     <ClInclude Include="program\game\TPRlib\Quadrilateral.h">
       <Filter>program\game\TPRlib</Filter>
     </ClInclude>
+    <ClInclude Include="program\game\TPRlib\Rotation.h">
+      <Filter>program\game\TPRlib</Filter>
+    </ClInclude>
     <ClInclude Include="program\game\TPRlib\tpr_library.h">
       <Filter>program\game\TPRlib</Filter>
     </ClInclude>
@@ -273,13 +285,13 @@
     <ClInclude Include="program\game\TPRlib\Vector2_int.h">
       <Filter>program\game\TPRlib</Filter>
     </ClInclude>
+    <ClInclude Include="program\game\TPRlib\Angle.h">
+      <Filter>program\game\TPRlib</Filter>
+    </ClInclude>
     <ClInclude Include="program\game\TPRlib\Astar.h">
       <Filter>program\game\TPRlib</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\TPRlib\Rotation.h">
-      <Filter>program\game\TPRlib</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\TPRlib\Angle.h">
+    <ClInclude Include="program\game\TPRlib\Collision.h">
       <Filter>program\game\TPRlib</Filter>
     </ClInclude>
   </ItemGroup>

@@ -36,8 +36,6 @@ void Player::LoadStatus() {
 
 	FILE* fp = nullptr;
 
-	int status[status_value] = { 0 };
-
 	fopen_s(&fp, "player.bin", "rb");
 
 	//画像読み込み
@@ -61,7 +59,7 @@ void Player::LoadStatus() {
 
 		//ステータス読み込み
 		sta = {
-			std::atoi(GMp->SPp->datas[0][1].c_str()), //ヒットポイント
+			std::atoi(GMp->SPp->datas[0][0].c_str()), //ヒットポイント
 			sta.HP,                                   //増減するHP
 			std::atoi(GMp->SPp->datas[0][2].c_str()), //移動速度
 			std::atoi(GMp->SPp->datas[0][3].c_str()), //攻撃力
@@ -80,15 +78,18 @@ void Player::LoadStatus() {
 	//名前読み込み
 	fread_s(name, sizeof(name), sizeof(char) * name_length, 1, fp);
 
+
+	int status[status_value - 1] = { 0 };
+
 	//ステータス読み込み
 	fread_s(status, sizeof(status), sizeof(int) * (status_value - 1), 1, fp);
 
 	sta.HP           = status[0];
 	sta.hp_          = sta.HP;
-	sta.move_speed   = status[2];
-	sta.attack       = status[3];
-	sta.defense      = status[4];
-	sta.attack_speed = status[5];
+	sta.move_speed   = status[1];
+	sta.attack       = status[2];
+	sta.defense      = status[3];
+	sta.attack_speed = status[4];
 
 	//スキル読み込み
 	int num[3];

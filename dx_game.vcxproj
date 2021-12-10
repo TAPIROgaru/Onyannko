@@ -26,6 +26,9 @@
     <ClCompile Include="program\game\TPRlib\Angle.cpp" />
     <ClCompile Include="program\game\TPRlib\Astar.cpp" />
     <ClCompile Include="program\game\TPRlib\Collision.cpp" />
+    <ClCompile Include="program\game\TPRlib\Color.cpp" />
+    <ClCompile Include="program\game\TPRlib\Line.cpp" />
+    <ClCompile Include="program\game\TPRlib\Quadrilateral.cpp" />
     <ClCompile Include="program\game\TPRlib\Rotation.cpp" />
     <ClCompile Include="program\game\TPRlib\Vector2.cpp" />
     <ClCompile Include="program\library\bounding.cpp" />
@@ -63,6 +66,7 @@
     <ClInclude Include="program\game\TPRlib\Angle.h" />
     <ClInclude Include="program\game\TPRlib\Astar.h" />
     <ClInclude Include="program\game\TPRlib\Collision.h" />
+    <ClInclude Include="program\game\TPRlib\Color.h" />
     <ClInclude Include="program\game\TPRlib\Line.h" />
     <ClInclude Include="program\game\TPRlib\Node.h" />
     <ClInclude Include="program\game\TPRlib\Quadrilateral.h" />

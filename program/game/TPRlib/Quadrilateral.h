@@ -6,6 +6,7 @@
 
 #include "Line.h"
 #include "Rotation.h"
+#include "Angle.h"
 #include "Color.h"
 
 
@@ -89,17 +90,18 @@ namespace tpr {
 		{}
 
 		//=======================================================
-		// 矩形の場合(二点を軸にしたサイズと回転)
+		// 矩形の場合(軸になる2点とサイズ)
 		// 1. 始点
 		// 2. 終点
 		// 3. 幅
-		// 4. 回転(ラジアン)
 		//=======================================================
-		Quadrilateral(Vector2 start_pos, Vector2 end_pos, int size_w, float rad) {
+		Quadrilateral(Vector2 start_pos, Vector2 end_pos, int size_w) {
 
 			Vector2 pos_c = Vector2::CenterPointCalc(start_pos, end_pos);
 
 			int size_h = Vector2::DistanceCalc(start_pos, end_pos);
+
+			float rad = Angle::RadCalc(start_pos, end_pos) + Angle::DegChangeRad(90);
 
 			*this = Quadrilateral(pos_c, size_w, size_h, rad);
 

@@ -18,7 +18,7 @@ namespace tpr {
 
 		Vector2 pos_ = end_pos - start_pos;
 
-		return atanf(pos_.y / pos_.x) * -1;
+		return atanf(pos_.y / pos_.x);
 	}
 
 	//-----------------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ namespace tpr {
 
 		float rad;
 
-		rad = degree * PI / 180 * -1;
+		rad = degree * PI / 180;
 
 		return rad;
 	}
@@ -50,7 +50,7 @@ namespace tpr {
 
 		int deg;
 
-		deg = radian / PI * 180 * -1;
+		deg = radian / PI * 180;
 
 		return deg;
 	}

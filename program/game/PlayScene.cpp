@@ -314,17 +314,17 @@ bool PlayScene::isHit_RayAndWall() {
 	tpr::Vector2 e_pos = tpr::Vector2(Ep->pos.x, Ep->pos.y);
 	tpr::Vector2 p_pos = tpr::Vector2(Pp->pos.x, Pp->pos.y);
 
-	float rad = tpr::Angle::RadCalc(e_pos, p_pos);
-
 	//PlayerとEnemyをつなぐ矩形
-	tpr::Quadrilateral ray_quad(e_pos, p_pos, GMp->BULLET_RADIUS * 2, rad);
+	tpr::Quadrilateral ray_quad(e_pos, p_pos, GMp->BULLET_RADIUS * 2);
 
 	auto p = Sp_wall.begin();
 	while (p != Sp_wall.end()) {
 
 		//Squareの座標データを四辺形にする
-		tpr::Quadrilateral quad(
-			tpr::Vector2((*p)->pos.x, (*p)->pos.y), (*p)->size_w_, (*p)->size_h_);
+
+		t2k::Vector3 pos = FixPositionVector((*p)->pos);
+		tpr::Vector2 pos_(pos.x + (GMp->TILE_SIZE_W >> 1), pos.y + (GMp->TILE_SIZE_H >> 1));
+		tpr::Quadrilateral quad(pos_, (*p)->size_w_, (*p)->size_h_);
 
 		if (tpr::isHit_RectangleAndRectangle(ray_quad, quad)) { return true; }
 
@@ -349,14 +349,6 @@ void PlayScene::MakeVector2(tpr::Vector2_int* p_pos, tpr::Vector2_int* e_pos) {
 		(int)Ep->pos.x / GMp->TILE_SIZE_W,
 		(int)Ep->pos.y / GMp->TILE_SIZE_H
 	};
-}
-
-
-//----------------------------------------------------------------------------------------------------
-//線分の垂直方向を得る
-tpr::Vector2 PlayScene::Vertical(tpr::Vector2 first_pos, tpr::Vector2 second_pos) {
-	tpr::Vector2 pos;
-	return pos;
 }
 
 
@@ -467,15 +459,31 @@ void PlayScene::Render(float deltatime) {
 
 	cam.render();
 
-	if (Ep == nullptr || Pp == nullptr) { return; }
+	if (Ep == nullptr || Pp == nullptr) {
+		return;
+	}
 
 
 	tpr::Vector2 e_pos = FixPositionVector(tpr::Vector2(Ep->pos.x, Ep->pos.y));
 	tpr::Vector2 p_pos = FixPositionVector(tpr::Vector2(Pp->pos.x, Pp->pos.y));
 
 	float rad = tpr::Angle::RadCalc(e_pos, p_pos);
-	tpr::Quadrilateral ray_quad(e_pos, p_pos, GMp->BULLET_RADIUS * 2, rad);
+	tpr::Quadrilateral ray_quad(e_pos, p_pos, GMp->BULLET_RADIUS * 2);
 	ray_quad.DrawBox(-1);
+
+	auto p = Sp_wall.begin();
+	while (p != Sp_wall.end()) {
+
+		//Squareの座標データを四辺形にする
+
+		t2k::Vector3 pos = FixPositionVector((*p)->pos);
+		tpr::Vector2 pos_(pos.x + (GMp->TILE_SIZE_W >> 1), pos.y + (GMp->TILE_SIZE_H >> 1));
+		tpr::Quadrilateral quad(pos_, (*p)->size_w_, (*p)->size_h_);
+
+		quad.DrawBox(-1);
+
+		p++;
+	}
 }
 
 //----------------------------------------------------------------------------------------------------
