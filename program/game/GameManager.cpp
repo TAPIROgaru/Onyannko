@@ -77,6 +77,7 @@ void GameManager::ChangeScene() {
 
 //----------------------------------------------------------------------------------------------------
 //‰æ‘œŒÄ‚Ño‚µ
+
 int GameManager::loadGraph(std::string str) {
 
 	auto it =image.find(str);
@@ -87,6 +88,19 @@ int GameManager::loadGraph(std::string str) {
 
 	int img = LoadGraph(str.c_str());
 	image.insert(std::make_pair(str, img));
+
+	return img;
+}
+
+int* GameManager::loadDivGraph(std::string str[]) {
+
+	static constexpr unsigned int img_value = sizeof(str) / sizeof(std::string);
+
+	int* img = new int[img_value];
+
+	for (int i = 0; i < img_value; i++) {
+		img[i] = loadGraph(str[i]);
+	}
 
 	return img;
 }

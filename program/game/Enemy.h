@@ -33,7 +33,7 @@ public:
 	//------------------------------------------------------------------------------------------
 	//•Ï”
 
-	int search_range_palyer = 750;      //õ“G”ÍˆÍ
+	int search_range_palyer = 700;      //õ“G”ÍˆÍ
 	int search_range_bullet = 800;      //’e‚Ì”F¯”ÍˆÍ
 
 	float bullet_direction_x = 0;       //’e‚ğ”­Ë‚·‚éŒü‚«X
@@ -54,6 +54,8 @@ public:
 	std::vector<tpr::Vector2_int> move_pos; //ƒ[ƒ‹ƒhÀ•W
 	int move_count = 0;
 	bool _astar_falg = true;
+
+	tpr::Vector2 avo_dire;
 
 
 	//------------------------------------------------------------------------------------------

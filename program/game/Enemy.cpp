@@ -94,6 +94,29 @@ void Enemy::Move(float deltatime) {
 		move_count = 1;
 	}
 	else {
+
+		if (flame_count % 10 == 0) {
+			tpr::Vector2 v(1, 1);
+			int num = rand() % 2;
+
+			if (num == 0) {
+				v = tpr::Vector2(1, -1);
+			}
+			else if (num == 1) {
+				v = tpr::Vector2(-1, 1);
+			}
+
+			tpr::Vector2 norm = GMp->SPp->Normalize();
+
+			avo_dire = tpr::Vector2(norm.y * v.x, norm.x * v.y);
+		}
+
+		pos += {avo_dire.x* sta.move_speed, avo_dire.y* sta.move_speed, 0};
+
+		GMp->SPp->isHit_Wall(pos, prev_pos, r);
+
+		prev_pos = pos;
+		flame_count++;
 	}
 }
 
@@ -128,7 +151,7 @@ void Enemy::LoadStatus(int num) {
 	//画像
 	chara_handle = GMp->loadGraph("graphics/Enemy.png");
 
-	ult = new tpr::Scroll(rand() % 2);
+	ult = new tpr::Scroll(rand() % 2, 'u', tpr::Vector2(pos.x, pos.y));
 
 	//ランダムな順番にソート(スキル番号)
 	int arry[6] = { 3,4,5,6,7,8 };
@@ -143,8 +166,8 @@ void Enemy::LoadStatus(int num) {
 		arry[numB] = A;
 	}
 
-	skillA = new tpr::Scroll(arry[0]);
-	skillB = new tpr::Scroll(arry[1]);
+	skillA = new tpr::Scroll(arry[0], 'a', tpr::Vector2(pos.x, pos.y));
+	skillB = new tpr::Scroll(arry[1], 'b', tpr::Vector2(pos.x, pos.y));
 }
 
 
@@ -168,7 +191,7 @@ void Enemy::FindPlayer(float deltatime) {
 		return; 
 	}
 
-	int gap = 40;
+	int gap = 100;
 
 	//角度の計算
 	bullet_direction_x = (component.x + rand() % gap - gap / 2) / magnitude;

@@ -16,7 +16,7 @@ Bullet::Bullet(float x, float y, float dire_x, float dire_y, bool t) {
 	direction_x = dire_x;
 	direction_y = dire_y;
 
-	img = GMp->loadGraph("graphics/shuriken.png");
+	img = GMp->loadGraph("graphics/NINGU/SHURIKEN.png");
 
 	_team = t;
 	r = GMp->BULLET_RADIUS;

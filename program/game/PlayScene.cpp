@@ -311,8 +311,8 @@ inline void PlayScene::isHit_ActionCorrectionPosition(t2k::Vector3& pos, float r
 
 bool PlayScene::isHit_RayAndWall() {
 
-	tpr::Vector2 e_pos = tpr::Vector2(Ep->pos.x, Ep->pos.y);
-	tpr::Vector2 p_pos = tpr::Vector2(Pp->pos.x, Pp->pos.y);
+	tpr::Vector2 e_pos = FixPositionVector(tpr::Vector2(Ep->pos.x, Ep->pos.y));
+	tpr::Vector2 p_pos = FixPositionVector(tpr::Vector2(Pp->pos.x, Pp->pos.y));
 
 	//PlayerとEnemyをつなぐ矩形
 	tpr::Quadrilateral ray_quad(e_pos, p_pos, GMp->BULLET_RADIUS * 2);
@@ -351,6 +351,20 @@ void PlayScene::MakeVector2(tpr::Vector2_int* p_pos, tpr::Vector2_int* e_pos) {
 	};
 }
 
+
+//----------------------------------------------------------------------------------------------------
+// Enemyを始点、Playerを終点としたベクトルの単位ベクトルを得る
+
+tpr::Vector2 PlayScene::Normalize() {
+
+	tpr::Vector2 v = tpr::Vector2(Pp->pos.x - Ep->pos.x, Pp->pos.y - Ep->pos.y);
+
+	float magnitude = sqrtf(v.x * v.x + v.y * v.y);
+
+	tpr::Vector2 norm(v.x / magnitude, v.y / magnitude);
+
+	return norm;
+}
 
 //----------------------------------------------------------------------------------------------------
 //弾作成
@@ -458,32 +472,6 @@ void PlayScene::Render(float deltatime) {
 	}
 
 	cam.render();
-
-	if (Ep == nullptr || Pp == nullptr) {
-		return;
-	}
-
-
-	tpr::Vector2 e_pos = FixPositionVector(tpr::Vector2(Ep->pos.x, Ep->pos.y));
-	tpr::Vector2 p_pos = FixPositionVector(tpr::Vector2(Pp->pos.x, Pp->pos.y));
-
-	float rad = tpr::Angle::RadCalc(e_pos, p_pos);
-	tpr::Quadrilateral ray_quad(e_pos, p_pos, GMp->BULLET_RADIUS * 2);
-	ray_quad.DrawBox(-1);
-
-	auto p = Sp_wall.begin();
-	while (p != Sp_wall.end()) {
-
-		//Squareの座標データを四辺形にする
-
-		t2k::Vector3 pos = FixPositionVector((*p)->pos);
-		tpr::Vector2 pos_(pos.x + (GMp->TILE_SIZE_W >> 1), pos.y + (GMp->TILE_SIZE_H >> 1));
-		tpr::Quadrilateral quad(pos_, (*p)->size_w_, (*p)->size_h_);
-
-		quad.DrawBox(-1);
-
-		p++;
-	}
 }
 
 //----------------------------------------------------------------------------------------------------

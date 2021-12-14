@@ -68,9 +68,12 @@ void Player::LoadStatus() {
 		};
 
 		//ƒXƒLƒ‹“Ç‚Ýž‚Ý
-		ult    = new tpr::Scroll(std::atoi(GMp->SPp->datas[0][6].c_str()));
-		skillA = new tpr::Scroll(std::atoi(GMp->SPp->datas[0][7].c_str()));
-		skillB = new tpr::Scroll(std::atoi(GMp->SPp->datas[0][8].c_str()));
+		ult    = new tpr::Scroll(std::atoi(GMp->SPp->datas[0][6].c_str())
+			, 'u', tpr::Vector2(pos.x, pos.y));
+		skillA = new tpr::Scroll(std::atoi(GMp->SPp->datas[0][7].c_str())
+			, 'a', tpr::Vector2(pos.x, pos.y));
+		skillB = new tpr::Scroll(std::atoi(GMp->SPp->datas[0][8].c_str())
+			, 'b', tpr::Vector2(pos.x, pos.y));
 
 		return;
 	}
@@ -95,9 +98,9 @@ void Player::LoadStatus() {
 	int num[3];
 	fread_s(num, sizeof(num), sizeof(int) * 3, 1, fp);
 
-	ult    = new tpr::Scroll(num[0]);
-	skillA = new tpr::Scroll(num[1]);
-	skillB = new tpr::Scroll(num[2]);
+	ult = new tpr::Scroll(num[0], 'u', tpr::Vector2(pos.x, pos.y));
+	skillA = new tpr::Scroll(num[1], 'a', tpr::Vector2(pos.x, pos.y));
+	skillB = new tpr::Scroll(num[2], 'b', tpr::Vector2(pos.x, pos.y));
 
 	fclose(fp);
 }
@@ -206,6 +209,10 @@ void Player::Update(float deltatime) {
 
 	Move(deltatime);
 
+	ult->Update(deltatime,tpr::Vector2(pos.x,pos.y));
+	skillA->Update(deltatime, tpr::Vector2(pos.x, pos.y));
+	skillB->Update(deltatime, tpr::Vector2(pos.x, pos.y));
+
 	if (GMp->SRp->_switch) {
 
 		GMp->SPp->SavePlayer(); 
@@ -216,6 +223,10 @@ void Player::Render(Camera* cam) {
 	t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
 
 	DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, chara_handle, 1);
+
+	ult->Render(cam);
+	skillA->Render(cam);
+	skillB->Render(cam);
 
 	DrawFormatString(100, 100, -1, "x:%f y:%f", pos.x, pos.y);
 	DrawFormatString(100, 120, -1, "–¼‘O    :%s", name);
