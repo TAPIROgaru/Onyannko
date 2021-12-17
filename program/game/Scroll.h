@@ -32,15 +32,15 @@ namespace tpr {
 
 		bool Activate(float);
 
-		void Beam();
-		void AirStrike();
-		void Madness();
-		void Barrier();
-		void Tracking();
+		void Kaginawa();
+		void Nintou();
+		void Torinoko();
+		void Kakuremi();
+		void Kunai();
 		void Blink();
 		void Shotgun();
-		void Turret();
-		void ArmorPiercing();
+		void Makibisi();
+		void Teppo();
 
 
 		//--------------------------------------------------------------------------------------
@@ -52,9 +52,7 @@ namespace tpr {
 		int scroll_img_close;
 		int scroll_img_open;
 
-		tpr::Vector2 owner_pos;
-		float angle;
-
+		int angle;
 
 		//--------------------------------------------------------------------------------------
 		//‘•”õ‹Zˆê——

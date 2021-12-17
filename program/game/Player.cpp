@@ -209,13 +209,13 @@ void Player::Update(float deltatime) {
 
 	Move(deltatime);
 
-	ult->Update(deltatime,tpr::Vector2(pos.x,pos.y));
+	ult->Update(deltatime, tpr::Vector2(pos.x, pos.y));
 	skillA->Update(deltatime, tpr::Vector2(pos.x, pos.y));
 	skillB->Update(deltatime, tpr::Vector2(pos.x, pos.y));
 
 	if (GMp->SRp->_switch) {
 
-		GMp->SPp->SavePlayer(); 
+		GMp->SPp->SavePlayer();
 	}
 }
 void Player::Render(Camera* cam) {

@@ -11,7 +11,6 @@ namespace tpr {
 	Scroll::Scroll(int num, char c, tpr::Vector2 pos_) {
 
 		my_number = num;
-		owner_pos = GMp->SPp->FixPositionVector(pos_);
 		
 
 		switch (my_number) {
@@ -124,22 +123,23 @@ namespace tpr {
 			break;
 		}
 
-		tpr::Vector2 v(owner_pos.x, owner_pos.y + 50);
+		tpr::Vector2 v(pos_.x, pos_.y - 50);
+
 		if (c == 'u') {
-			pos = (v.x, v.y, 0);
-			angle = 0.0f;
+			pos = t2k::Vector3(v.x, v.y, 0);
+			angle = 0;
 		}
 		else if (c == 'a') {
 
-			angle = Angle::DegChangeRad(120);
-			tpr::Vector2 v2 = Rotation::RotaVec2(v, owner_pos, angle);
-			pos = (v2.x, v2.y, 0);
+			angle = 120;
+			tpr::Vector2 v2 = Rotation::RotaVec2(v, pos_, Angle::DegChangeRad(angle));
+			pos = t2k::Vector3(v2.x, v2.y, 0);
 		}
 		else if (c == 'b') {
 
-			angle = Angle::DegChangeRad(240);
-			tpr::Vector2 v2 = Rotation::RotaVec2(v, owner_pos, angle);
-			pos = (v2.x, v2.y, 0);
+			angle = 240;
+			tpr::Vector2 v2 = Rotation::RotaVec2(v, pos_, Angle::DegChangeRad(angle));
+			pos = t2k::Vector3(v2.x, v2.y, 0);
 		}
 	}
 
@@ -154,47 +154,47 @@ namespace tpr {
 
 		case Scroll::ult::KAGINAWA:
 
-			Beam();
+			KAGINAWA();
 			break;
 
 		case Scroll::ult::NINTOU:
 
-			AirStrike();
+			NINTOU();
 			break;
 
 		case Scroll::ult::TORINOKO:
 
-			Madness();
+			TORINOKO();
 			break;
 
 		case Scroll::skill::KAKUREMI:
 
-			Barrier();
+			KAKUREMI();
 			break;
 
 		case Scroll::skill::KUNAI:
 
-			Tracking();
+			KUNAI();
 			break;
 
 		case Scroll::skill::BLINK:
 
-			Blink();
+			BLINK();
 			break;
 
 		case Scroll::skill::SHOTGUN:
 
-			Shotgun();
+			SHOTGUN();
 			break;
 
 		case Scroll::skill::MAKIBISI:
 
-			Turret();
+			MAKIBISI();
 			break;
 
 		case Scroll::skill::TEPPO:
 
-			ArmorPiercing();
+			TEPPO();
 			break;
 
 		default:
@@ -261,7 +261,7 @@ namespace tpr {
 
 	//------------------------------------------------------------------------------------------------
 	//“Ob’e
-	void Scroll::ArmorPiercing() {
+	void Scroll::TEPPO() {
 
 	}
 
@@ -271,13 +271,16 @@ namespace tpr {
 
 	void Scroll::Update(float deltatime, tpr::Vector2 pos_) {
 
-		angle += deltatime;
-		owner_pos = GMp->SPp->FixPositionVector(pos_);
-		tpr::Vector2 pos__ = Rotation::RotaVec2(tpr::Vector2(pos.x, pos.y), owner_pos, angle);
-		pos = (pos__.x,pos__.y, 0);
+		tpr::Vector2 v(pos_.x, pos_.y - 50);
+
+		tpr::Vector2 v2 = Rotation::RotaVec2(v, pos_, Angle::DegChangeRad(angle));
+		pos = t2k::Vector3(v2.x, v2.y, 0);
+
+		angle++;
 	}
 	void Scroll::Render(Camera* cam) {
 
-		DrawRotaGraph(pos.x, pos.y, 1.0, 0, scroll_img_open, true);
+		t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
+		DrawRotaGraph(pos_.x, pos_.y, 0.5, 0, scroll_img_open, true);
 	}
 }

@@ -472,6 +472,13 @@ void PlayScene::Render(float deltatime) {
 	}
 
 	cam.render();
+
+	tpr::Vector2_int m;
+	GetMousePoint(&m.x, &m.y);
+
+	tpr::Vector2 mf(m.x, m.y);
+
+	DrawFormatString(200, 0, -1, "mx:%f my:%f", mf.x, mf.y);
 }
 
 //----------------------------------------------------------------------------------------------------

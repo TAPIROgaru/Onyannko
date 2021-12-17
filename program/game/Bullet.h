@@ -26,7 +26,7 @@ public:
 	float scope = 1.0f;
 	float count = 0;
 
-	float speed = 10.0f;
+	float speed = 8.0f;
 
 	float direction_x = 0;
 	float direction_y = 0;

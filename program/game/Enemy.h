@@ -33,8 +33,7 @@ public:
 	//------------------------------------------------------------------------------------------
 	//•Ï”
 
-	int search_range_palyer = 700;      //õ“G”ÍˆÍ
-	int search_range_bullet = 800;      //’e‚Ì”F¯”ÍˆÍ
+	int search_range_palyer = 500;      //õ“G”ÍˆÍ
 
 	float bullet_direction_x = 0;       //’e‚ğ”­Ë‚·‚éŒü‚«X
 	float bullet_direction_y = 0;       //’e‚ğ”­Ë‚·‚éŒü‚«Y

@@ -223,11 +223,17 @@ void Enemy::Update(float deltatime) {
 
 	Move(deltatime);
 	FindPlayer(deltatime);
+
+	ult->Update(deltatime, tpr::Vector2(pos.x, pos.y));
+	skillA->Update(deltatime, tpr::Vector2(pos.x, pos.y));
+	skillB->Update(deltatime, tpr::Vector2(pos.x, pos.y));
 }
 void Enemy::Render(Camera* cam) {
 
 	t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
 
+	//=====================================================================
+	//Astarデバッグ用
 	auto p = move_pos.begin();
 	int i = 0;
 	while (p != move_pos.end()) {
@@ -240,6 +246,11 @@ void Enemy::Render(Camera* cam) {
 		i++;
 		p++;
 	}
+	//=====================================================================
+
+	ult->Render(cam);
+	skillA->Render(cam);
+	skillB->Render(cam);
 
 	DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, chara_handle, 1);
 
