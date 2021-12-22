@@ -43,7 +43,7 @@ public:
 	static constexpr int TILE_VALUE_W_WALL = 6;
 	static constexpr int TILE_VALUE_H_WALL = 6;
 
-	static constexpr bool WINDOW_MODE = false;
+	static constexpr bool WINDOW_MODE = true;
 
 
 	static constexpr int BULLET_RADIUS = 7;
@@ -80,7 +80,7 @@ public:
 	// 
 	// return 画像データ配列の先頭アドレス
 	//=======================================================
-	int* loadDivGraph(std::string str[]);
+	std::vector<int> loadDivGraph(std::vector<std::string> str,int img_value);
 
 	//------------------------------------------------------------------------------------------------
 	//変数

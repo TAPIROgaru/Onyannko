@@ -30,10 +30,10 @@ namespace tpr {
 		Scroll(int num,char c, tpr::Vector2 pos_);
 		~Scroll() {};
 
-		bool Activate(float);
+		bool Activate(tpr::Vector2 pos,float dire_x, float dire_y);
 
 		void Kaginawa();
-		void Nintou();
+		void Nintou(tpr::Vector2 pos, float dire_x, float dire_y);
 		void Torinoko();
 		void Kakuremi();
 		void Kunai();
@@ -47,7 +47,10 @@ namespace tpr {
 		//ïœêî
 
 		int my_number;
+		float count = 0;
 		float cool_time;
+		bool _active = false;
+
 		std::vector<int> skill_img;
 		int scroll_img_close;
 		int scroll_img_open;

@@ -27,18 +27,15 @@ namespace tpr {
 
 		case Scroll::ult::NINTOU:
 		{
-			std::string str[4]{
-				"graphics/NINGU/NINTOU1.png",
-				"graphics/NINGU/NINTOU2.png",
-				"graphics/NINGU/NINTOU3.png",
-				"graphics/NINGU/NINTOU4.png",
-			};
 
-			int* p = GMp->loadDivGraph(&str[0]);
+			std::vector<std::string> str;
 
-			for (int i = 0; i < 4; i++, p++) {
-				skill_img.emplace_back(p[i]);
-			}
+			str.emplace_back("graphics/NINGU/NINTOU1.png");
+			str.emplace_back("graphics/NINGU/NINTOU2.png");
+			str.emplace_back("graphics/NINGU/NINTOU3.png");
+			str.emplace_back("graphics/NINGU/NINTOU4.png");
+
+			skill_img = GMp->loadDivGraph(str, 4);
 
 			scroll_img_close = GMp->loadGraph("graphics/scroll/NINTOU_close.png");
 			scroll_img_open = GMp->loadGraph("graphics/scroll/NINTOU_open.png");
@@ -146,7 +143,7 @@ namespace tpr {
 
 	//------------------------------------------------------------------------------------------------
 	//発動
-	bool Scroll::Activate(float count) {
+	bool Scroll::Activate(tpr::Vector2 pos,float dire_x, float dire_y) {
 
 		if (count < cool_time) { return false; }
 
@@ -154,47 +151,47 @@ namespace tpr {
 
 		case Scroll::ult::KAGINAWA:
 
-			KAGINAWA();
+			Kaginawa();
 			break;
 
 		case Scroll::ult::NINTOU:
 
-			NINTOU();
+			Nintou(pos, dire_x, dire_y);
 			break;
 
 		case Scroll::ult::TORINOKO:
 
-			TORINOKO();
+			Torinoko();
 			break;
 
 		case Scroll::skill::KAKUREMI:
 
-			KAKUREMI();
+			Kakuremi();
 			break;
 
 		case Scroll::skill::KUNAI:
 
-			KUNAI();
+			Kunai();
 			break;
 
 		case Scroll::skill::BLINK:
 
-			BLINK();
+			Blink();
 			break;
 
 		case Scroll::skill::SHOTGUN:
 
-			SHOTGUN();
+			Shotgun();
 			break;
 
 		case Scroll::skill::MAKIBISI:
 
-			MAKIBISI();
+			Makibisi();
 			break;
 
 		case Scroll::skill::TEPPO:
 
-			TEPPO();
+			Teppo();
 			break;
 
 		default:
@@ -204,36 +201,41 @@ namespace tpr {
 
 
 	//------------------------------------------------------------------------------------------------
-	//ビーム
-	void Scroll::Beam() {
+	//かぎなわ　(引っ張る)
+	void Scroll::Kaginawa() {
 
 	}
 
 
 	//------------------------------------------------------------------------------------------------
-	//特大空爆
-	void Scroll::AirStrike() {
+	//にんとう　(三回)
+	void Scroll::Nintou(tpr::Vector2 pos, float dire_x, float dire_y) {
+
+		int i = 0;
+		DrawGraph(pos.x+dire_x*100, pos.y + dire_y * 100, skill_img[i], true);
+		i++;
+		_active = true;
+		if (i > skill_img.size()) { _active = false; }
+	}
+
+
+	//------------------------------------------------------------------------------------------------
+	//とりのこ　(ばくだん)
+	void Scroll::Torinoko() {
 
 	}
 
 
 	//------------------------------------------------------------------------------------------------
-	//狂乱化
-	void Scroll::Madness() {
+	//かくれみ　(半透明にする)
+	void Scroll::Kakuremi() {
 
 	}
 
 
 	//------------------------------------------------------------------------------------------------
-	//バリア
-	void Scroll::Barrier() {
-
-	}
-
-
-	//------------------------------------------------------------------------------------------------
-	//追跡弾
-	void Scroll::Tracking() {
+	//くない　ついせき(相殺あり)
+	void Scroll::Kunai() {
 
 	}
 
@@ -253,15 +255,15 @@ namespace tpr {
 
 
 	//------------------------------------------------------------------------------------------------
-	//タレット
-	void Scroll::Turret() {
+	//まきびし　(トラップ)
+	void Scroll::Makibisi() {
 
 	}
 
 
 	//------------------------------------------------------------------------------------------------
 	//徹甲弾
-	void Scroll::TEPPO() {
+	void Scroll::Teppo() {
 
 	}
 
@@ -277,6 +279,7 @@ namespace tpr {
 		pos = t2k::Vector3(v2.x, v2.y, 0);
 
 		angle++;
+		count += deltatime;
 	}
 	void Scroll::Render(Camera* cam) {
 

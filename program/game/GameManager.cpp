@@ -92,14 +92,12 @@ int GameManager::loadGraph(std::string str) {
 	return img;
 }
 
-int* GameManager::loadDivGraph(std::string str[]) {
+std::vector<int> GameManager::loadDivGraph(std::vector<std::string> str, int img_value) {
 
-	static constexpr unsigned int img_value = sizeof(str) / sizeof(std::string);
-
-	int* img = new int[img_value];
+	std::vector<int> img;
 
 	for (int i = 0; i < img_value; i++) {
-		img[i] = loadGraph(str[i]);
+		img.emplace_back(loadGraph(str[i]));
 	}
 
 	return img;

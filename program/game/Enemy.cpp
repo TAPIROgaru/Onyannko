@@ -221,8 +221,8 @@ void Enemy::Update(float deltatime) {
 
 	timecount += deltatime;
 
-	Move(deltatime);
-	FindPlayer(deltatime);
+	//Move(deltatime);
+	//FindPlayer(deltatime);
 
 	ult->Update(deltatime, tpr::Vector2(pos.x, pos.y));
 	skillA->Update(deltatime, tpr::Vector2(pos.x, pos.y));

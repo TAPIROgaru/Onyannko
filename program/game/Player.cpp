@@ -143,20 +143,22 @@ void Player::Move(float deltatime) {
 	}
 
 	//ult
-	if (t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_SPACE)) {
+	if (ult->_active||t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_SPACE)) {
 
 		ShootDirection();
-		//ult->Activate();
+		ult->Activate(tpr::Vector2(pos.x, pos.y), bullet_direction_x, bullet_direction_y);
 	}
 
 	//skillA
-	if (t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_C)) {
+	if (skillA->_active|| t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_C)) {
 		ShootDirection();
+		skillA->Activate(tpr::Vector2(pos.x, pos.y), bullet_direction_x, bullet_direction_y);
 	}
 
 	//skillB
-	if (t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_V)) {
+	if (skillB->_active || t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_V)) {
 		ShootDirection();
+		skillB->Activate(tpr::Vector2(pos.x, pos.y), bullet_direction_x, bullet_direction_y);
 	}
 
 	GMp->SPp->isHit_Wall(pos, prev_pos, r);
