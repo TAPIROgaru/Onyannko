@@ -156,28 +156,6 @@ void PlayScene::Start(float deltatime) {
 
 
 //----------------------------------------------------------------------------------------------------
-//セーブ
-void PlayScene::SavePlayer() {
-
-	FILE* fp = nullptr;
-
-	fopen_s(&fp, "player.bin", "wb");
-
-	fwrite(Pp->name, sizeof(Pp->name), 1, fp);
-	fwrite(&Pp->sta.HP, sizeof(int), 1, fp);
-	fwrite(&Pp->sta.move_speed, sizeof(int), 1, fp);
-	fwrite(&Pp->sta.attack, sizeof(int), 1, fp);
-	fwrite(&Pp->sta.defense, sizeof(int), 1, fp);
-	fwrite(&Pp->sta.attack_speed, sizeof(int), 1, fp);
-	fwrite(&Pp->ult->my_number, sizeof(int), 1, fp);
-	fwrite(&Pp->skillA->my_number, sizeof(int), 1, fp);
-	fwrite(&Pp->skillB->my_number, sizeof(int), 1, fp);
-
-	fclose(fp);
-}
-
-
-//----------------------------------------------------------------------------------------------------
 //ゲームオーバー
 void PlayScene::isOver() {
 
@@ -189,6 +167,34 @@ void PlayScene::isOver() {
 
 
 //----------------------------------------------------------------------------------------------------
+//初期化
+void PlayScene::Init() {
+
+	if (!_init) { return; }
+
+	LoadBuckGround();
+
+	Pp = new Player();
+	Op.emplace_back(Pp);
+
+	Ep = new Enemy(1);
+	Op.emplace_back(Ep);
+
+	count = 0;
+	_start_flag = false;
+
+	_init = false;
+
+	//デバック用
+	Pp->sta.hp_ = 999;
+	Ep->sta.hp_ = 999;
+}
+
+
+//===================================================================================================
+// 他のソースファイルからも呼び出される関数や計算などの関数
+// 
+//--------------------------------------------------------------------------------------
 //当たり判定
 
 void PlayScene::isHit_bullet() {
@@ -335,7 +341,7 @@ bool PlayScene::isHit_RayAndWall() {
 }
 
 
-//----------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------
 //Astar用のPlayerとEnemyの二次元座標作製
 
 void PlayScene::MakeVector2(tpr::Vector2_int* p_pos, tpr::Vector2_int* e_pos) {
@@ -352,7 +358,7 @@ void PlayScene::MakeVector2(tpr::Vector2_int* p_pos, tpr::Vector2_int* e_pos) {
 }
 
 
-//----------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------
 // Enemyを始点、Playerを終点としたベクトルの単位ベクトルを得る
 
 tpr::Vector2 PlayScene::Normalize() {
@@ -366,7 +372,7 @@ tpr::Vector2 PlayScene::Normalize() {
 	return norm;
 }
 
-//----------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------
 //弾作成
 
 void PlayScene::MakeBullet(t2k::Vector3 pos, float direction_x, float direction_y, bool t) {
@@ -377,7 +383,7 @@ void PlayScene::MakeBullet(t2k::Vector3 pos, float direction_x, float direction_
 }
 
 
-//----------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------
 //カメラを考慮したマウス座標の取得
 
 t2k::Vector3 PlayScene::GetMousePosition() {
@@ -418,29 +424,51 @@ tpr::Vector2 PlayScene::FixPositionVector(tpr::Vector2 pos) {
 }
 
 
-//----------------------------------------------------------------------------------------------------
-//初期化
-void PlayScene::Init() {
+//--------------------------------------------------------------------------------------
+// プレイヤーか敵の現在地を取得
 
-	if (!_init) { return; }
+tpr::Vector2 PlayScene::GetCharaPosition(bool _team_) {
 
-	LoadBuckGround();
-
-	Pp = new Player();
-	Op.emplace_back(Pp);
-
-	Ep = new Enemy(1);
-	Op.emplace_back(Ep);
-
-	count = 0;
-	_start_flag = false;
-
-	_init = false;
-
-	//デバック用
-	Pp->sta.hp_ = 999;
-	Ep->sta.hp_ = 999;
+	if (_team_) {
+		return tpr::Vector2(Pp->pos.x, Pp->pos.y);
+	}
+	else {
+		return tpr::Vector2(Ep->pos.x, Ep->pos.y);
+	}
 }
+
+
+//--------------------------------------------------------------------------------------
+// 遅延
+void PlayScene::Slow(bool _team_, float s_value) {
+
+	if (_team_) {
+
+		Pp->sta.move_speed -= s_value;
+	}
+	else if (!_team_) {
+
+		Ep->sta.move_speed -= s_value;
+	}
+}
+
+
+//--------------------------------------------------------------------------------------
+// ダメージ
+void PlayScene::Damage(bool _team_, int d_value) {
+
+	if (_team_) {
+
+		Pp->sta.hp_-= d_value;
+	}
+	else if (!_team_) {
+
+		Ep->sta.hp_-= d_value;
+	}
+}
+
+
+//===================================================================================================
 
 
 //----------------------------------------------------------------------------------------------------

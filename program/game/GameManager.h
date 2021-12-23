@@ -18,6 +18,7 @@ class PlayScene;
 class TitleScene;
 class MenuScene;
 class ResultScene;
+class Player;
 
 
 //----------------------------------------------------------------------------------------------------
@@ -31,8 +32,8 @@ public:
 	static constexpr int SCREEN_W = 960;
 	static constexpr int SCREEN_H = 540;
 
-	static constexpr int FIELD_W = 576;   // 
-	static constexpr int FIELD_H = 400;   // 
+	static constexpr int FIELD_W = 576;
+	static constexpr int FIELD_H = 400;
 
 	static constexpr int TILE_SIZE_W = 32;
 	static constexpr int TILE_SIZE_H = 32;
@@ -81,6 +82,8 @@ public:
 	// return 画像データ配列の先頭アドレス
 	//=======================================================
 	std::vector<int> loadDivGraph(std::vector<std::string> str,int img_value);
+
+	void SavePlayer(Player* p);
 
 	//------------------------------------------------------------------------------------------------
 	//変数

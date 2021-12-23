@@ -3,38 +3,46 @@
 //----------------------------------------------------------------------------------------------------
 //自作ファイル
 
-#include "Scene.h"
-
+#include "../Object.h"
+#include "../TPRlib/tpr_library.h"
 
 
 //----------------------------------------------------------------------------------------------------
 
-class TitleScene :public Scene {
+class TEPPO :public Object {
 public:
 
 	//------------------------------------------------------------------------------------------------
 	//関数
 
-	TitleScene();
+	TEPPO(tpr::Vector2 pos_, tpr::Vector2 dire_, bool _team_);
 
-	void ChangeMenuScene();
+	void Move(float deltatime);
+	bool isDelete();
 
 
 	//------------------------------------------------------------------------------------------------
 	//変数
 
-	int x1 = 480 - 200;
-	int y1 = 400 - 50;
-	int x2 = 480 + 200;
-	int y2 = 400 + 50;
-	int img = 0;
-	
+	float scope = 1.0f;
+	float count = 0;
+
+	float speed = 3.0f;
+
+	tpr::Vector2 dire;
+
+	float angle = 0;
+
+	t2k::Vector3 prve_pos;
+
+	float size_x = 16.0f;
+	float size_y = 4.0f;
 
 	//------------------------------------------------------------------------------------------------
 	//毎フレーム呼び出し
 
 	void Update(float deltatime) override;
-	void Render(float deltatime) override;
+	void Render(Camera* cam)     override;
 
 
 	//------------------------------------------------------------------------------------------------

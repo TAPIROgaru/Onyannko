@@ -10,7 +10,7 @@ extern GameManager* GMp;
 //コンストラクタ
 TitleScene::TitleScene() {
 
-
+	img = GMp->loadGraph("graphics/title.png");
 }
 
 
@@ -40,9 +40,9 @@ void TitleScene::Update(float deltatime) {
 }
 void TitleScene::Render(float deltatime) {
 
+	DrawGraph(0, 0, img, true);
 	DrawBox(x1, y1, x2, y2, -1, false);
 	DrawString(480, 200, "タイトル", -1);
-
 }
 
 //----------------------------------------------------------------------------------------------------

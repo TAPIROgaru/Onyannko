@@ -19,6 +19,7 @@ Player::Player() {
 	r = 16;
 
 	secconds_AS = 1.0f / sta.attack_speed;
+	default_speed = sta.move_speed;
 }
 
 
@@ -26,7 +27,7 @@ Player::Player() {
 //デストラクタ
 Player::~Player() {
 
-	GMp->SPp->SavePlayer();
+	GMp->SavePlayer(this);
 }
 
 
@@ -146,24 +147,31 @@ void Player::Move(float deltatime) {
 	if (ult->_active||t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_SPACE)) {
 
 		ShootDirection();
-		ult->Activate(tpr::Vector2(pos.x, pos.y), bullet_direction_x, bullet_direction_y);
+		ult->Activate(tpr::Vector2(pos.x, pos.y), bullet_direction_x, bullet_direction_y, _team);
 	}
 
 	//skillA
 	if (skillA->_active|| t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_C)) {
 		ShootDirection();
-		skillA->Activate(tpr::Vector2(pos.x, pos.y), bullet_direction_x, bullet_direction_y);
+		skillA->Activate(tpr::Vector2(pos.x, pos.y), bullet_direction_x, bullet_direction_y, _team);
 	}
 
 	//skillB
 	if (skillB->_active || t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_V)) {
 		ShootDirection();
-		skillB->Activate(tpr::Vector2(pos.x, pos.y), bullet_direction_x, bullet_direction_y);
+		skillB->Activate(tpr::Vector2(pos.x, pos.y), bullet_direction_x, bullet_direction_y, _team);
 	}
 
 	GMp->SPp->isHit_Wall(pos, prev_pos, r);
 
 	prev_pos = pos;
+
+	if (sta.move_speed < default_speed) {
+		sta.move_speed ++;
+	}
+	else if (sta.move_speed > default_speed) {
+		sta.move_speed --;
+	}
 }
 
 
@@ -217,7 +225,7 @@ void Player::Update(float deltatime) {
 
 	if (GMp->SRp->_switch) {
 
-		GMp->SPp->SavePlayer();
+		GMp->SavePlayer(this);
 	}
 }
 void Player::Render(Camera* cam) {

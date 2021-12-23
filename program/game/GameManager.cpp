@@ -4,6 +4,7 @@
 #include "MenuScene.h"
 #include "ResultScene.h"
 #include "TitleScene.h"
+#include "Player.h"
 
 
 //----------------------------------------------------------------------------------------------------
@@ -101,6 +102,28 @@ std::vector<int> GameManager::loadDivGraph(std::vector<std::string> str, int img
 	}
 
 	return img;
+}
+
+
+//----------------------------------------------------------------------------------------------------
+//ƒZ[ƒu
+void GameManager::SavePlayer(Player* p) {
+
+	FILE* fp = nullptr;
+
+	fopen_s(&fp, "player.bin", "wb");
+
+	fwrite(p->name, sizeof(p->name), 1, fp);
+	fwrite(&p->sta.HP, sizeof(int), 1, fp);
+	fwrite(&p->default_speed, sizeof(int), 1, fp);
+	fwrite(&p->sta.attack, sizeof(int), 1, fp);
+	fwrite(&p->sta.defense, sizeof(int), 1, fp);
+	fwrite(&p->sta.attack_speed, sizeof(int), 1, fp);
+	fwrite(&p->ult->my_number, sizeof(int), 1, fp);
+	fwrite(&p->skillA->my_number, sizeof(int), 1, fp);
+	fwrite(&p->skillB->my_number, sizeof(int), 1, fp);
+
+	fclose(fp);
 }
 
 

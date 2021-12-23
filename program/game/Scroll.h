@@ -7,6 +7,7 @@
 
 #include "Object.h"
 #include "TPRlib/tpr_library.h"
+#include "my_skill/skill_list.h"
 
 namespace tpr {
 
@@ -30,17 +31,17 @@ namespace tpr {
 		Scroll(int num,char c, tpr::Vector2 pos_);
 		~Scroll() {};
 
-		bool Activate(tpr::Vector2 pos,float dire_x, float dire_y);
+		void Activate(tpr::Vector2 pos, float dire_x, float dire_y, bool _team_);
 
-		void Kaginawa();
-		void Nintou(tpr::Vector2 pos, float dire_x, float dire_y);
-		void Torinoko();
-		void Kakuremi();
-		void Kunai();
-		void Blink();
-		void Shotgun();
-		void Makibisi();
-		void Teppo();
+		void Kaginawa(tpr::Vector2 pos, float dire_x, float dire_y, bool _team_);
+		void Nintou(tpr::Vector2 pos, float dire_x, float dire_y, bool _team_);
+		void Torinoko(tpr::Vector2 pos, float dire_x, float dire_y, bool _team_);
+		void Kakuremi(tpr::Vector2 pos, float dire_x, float dire_y, bool _team_);
+		void Kunai(tpr::Vector2 pos, float dire_x, float dire_y, bool _team_);
+		void Blink(tpr::Vector2 pos, float dire_x, float dire_y, bool _team_);
+		void Shotgun(tpr::Vector2 pos, float dire_x, float dire_y, bool _team_);
+		void Makibisi(tpr::Vector2 pos, bool _team_);
+		void Teppo(tpr::Vector2 pos, float dire_x, float dire_y, bool _team_);
 
 
 		//--------------------------------------------------------------------------------------
@@ -52,10 +53,23 @@ namespace tpr {
 		bool _active = false;
 
 		std::vector<int> skill_img;
-		int scroll_img_close;
-		int scroll_img_open;
+		int skill_img_num = 0;
+		tpr::Vector2 skill_img_pos;
+		float skill_img_rad;
+		int flame_count = 0;
 
-		int angle;
+		int scroll_img_close=0;
+		int scroll_img_open=0;
+
+		int angle = 0.0f;
+
+		KAGINAWA* kagi = nullptr;
+		KUNAI*    kuna = nullptr;
+		MAKIBISI* maki = nullptr;
+		NINTOU*   nint = nullptr;
+		SHOTGUN*  shot = nullptr;
+		TEPPO*    tepp = nullptr;
+		TORINOKO* tori = nullptr;
 
 		//--------------------------------------------------------------------------------------
 		//ëïîıãZàÍóó
@@ -79,7 +93,7 @@ namespace tpr {
 		//--------------------------------------------------------------------------------------
 		//ñàÉtÉåÅ[ÉÄåƒÇ—èoÇµ
 
-		void Update(float deltatime, tpr::Vector2 pos_);
-		void Render(Camera* cam);
+		void Update(float deltatime, tpr::Vector2 pos_) override;
+		void Render(Camera* cam)override;
 	};
 }

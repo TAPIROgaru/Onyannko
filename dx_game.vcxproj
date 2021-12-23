@@ -11,6 +11,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="program\game\my_skill\KAGINAWA.cpp" />
+    <ClCompile Include="program\game\my_skill\KUNAI.cpp" />
+    <ClCompile Include="program\game\my_skill\MAKIBISI.cpp" />
+    <ClCompile Include="program\game\my_skill\NINTOU.cpp" />
+    <ClCompile Include="program\game\my_skill\SHOTGUN.cpp" />
+    <ClCompile Include="program\game\my_skill\TEPPO.cpp" />
+    <ClCompile Include="program\game\my_skill\TORINOKO.cpp" />
     <ClCompile Include="program\game\Square.cpp" />
     <ClCompile Include="program\game\Bullet.cpp" />
     <ClCompile Include="program\game\Camera.cpp" />
@@ -48,6 +55,14 @@
     <ClCompile Include="program\system\sys_main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="program\game\my_skill\KAGINAWA.h" />
+    <ClInclude Include="program\game\my_skill\KUNAI.h" />
+    <ClInclude Include="program\game\my_skill\MAKIBISI.h" />
+    <ClInclude Include="program\game\my_skill\NINTOU.h" />
+    <ClInclude Include="program\game\my_skill\SHOTGUN.h" />
+    <ClInclude Include="program\game\my_skill\skill_list.h" />
+    <ClInclude Include="program\game\my_skill\TEPPO.h" />
+    <ClInclude Include="program\game\my_skill\TORINOKO.h" />
     <ClInclude Include="program\game\Square.h" />
     <ClInclude Include="program\game\Bullet.h" />
     <ClInclude Include="program\game\Camera.h" />
