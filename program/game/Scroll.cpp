@@ -11,7 +11,7 @@ namespace tpr {
 	Scroll::Scroll(int num, char c, tpr::Vector2 pos_) {
 
 		my_number = num;
-
+		
 
 		switch (my_number) {
 
@@ -143,181 +143,75 @@ namespace tpr {
 
 	//------------------------------------------------------------------------------------------------
 	//”­“®
-	void Scroll::Activate(tpr::Vector2 pos, float dire_x, float dire_y, bool _team_) {
+	bool Scroll::Activate(tpr::Vector2 pos,float dire_x, float dire_y) {
 
-		if (count < cool_time || _active) { return; }
+		if (count < cool_time) { return false; }
 
-		switch (my_number) {
 
-		case Scroll::ult::KAGINAWA:
-
-			Kaginawa(pos, dire_x, dire_y, _team_);
-			break;
-
-		case Scroll::ult::NINTOU:
-
-			Nintou(pos, dire_x, dire_y, _team_);
-			break;
-
-		case Scroll::ult::TORINOKO:
-
-			Torinoko(pos, dire_x, dire_y, _team_);
-			break;
-
-		case Scroll::skill::KAKUREMI:
-
-			Kakuremi(pos, dire_x, dire_y, _team_);
-			break;
-
-		case Scroll::skill::KUNAI:
-
-			Kunai(pos, dire_x, dire_y, _team_);
-			break;
-
-		case Scroll::skill::BLINK:
-
-			Blink(pos, dire_x, dire_y, _team_);
-			break;
-
-		case Scroll::skill::SHOTGUN:
-
-			Shotgun(pos, dire_x, dire_y, _team_);
-			break;
-
-		case Scroll::skill::MAKIBISI:
-
-			Makibisi(pos, _team_);
-			break;
-
-		case Scroll::skill::TEPPO:
-
-			Teppo(pos, dire_x, dire_y, _team_);
-			break;
-
-		default:
-			break;
-		}
 	}
 
 
 	//------------------------------------------------------------------------------------------------
 	//‚©‚¬‚È‚í@(ˆø‚Á’£‚é)
-	void Scroll::Kaginawa(tpr::Vector2 pos, float dire_x, float dire_y, bool _team_) {
+	void Scroll::Kaginawa(tpr::Vector2 pos, float dire_x, float dire_y) {
 
-		kagi = new class KAGINAWA(pos, tpr::Vector2(dire_x, dire_y), _team_);
-
-		_active = true;
 	}
 
 
 	//------------------------------------------------------------------------------------------------
 	//‚É‚ñ‚Æ‚¤@(ŽO‰ñ)
-	void Scroll::Nintou(tpr::Vector2 pos, float dire_x, float dire_y, bool _team_) {
+	void Scroll::Nintou(tpr::Vector2 pos, float dire_x, float dire_y) {
 
-		if (!_active) {
-			nint = new class NINTOU(pos, tpr::Vector2(dire_x, dire_y), _team_);
-		}
 
-		skill_img_num = 0;
-		skill_img_pos.x = pos.x + dire_x * 32;
-		skill_img_pos.y = pos.y + dire_y * 32;
-		skill_img_rad = tpr::Angle::RadCalc(tpr::Vector2(), tpr::Vector2(dire_x, dire_y));
-		if (dire_x < 0) {
-			skill_img_rad += tpr::Angle::DegChangeRad(-90);
-		}
-		else if (dire_x > 0) {
-			skill_img_rad += tpr::Angle::DegChangeRad(90);
-		}
-
-		if (skill_img_num >= skill_img.size() - 1) { _active = false; skill_img_num = 0; }
-
-		if (flame_count == 2) {
-			skill_img_num++;
-			flame_count = 0;
-		}
-		flame_count++;
-
-		_active = true;
 	}
 
 
 	//------------------------------------------------------------------------------------------------
 	//‚Æ‚è‚Ì‚±@(‚Î‚­‚¾‚ñ)
-	void Scroll::Torinoko(tpr::Vector2 pos, float dire_x, float dire_y, bool _team_) {
+	void Scroll::Torinoko(tpr::Vector2 pos, float dire_x, float dire_y) {
 
-		if (!_active) {
-			tori = new class TORINOKO(pos, tpr::Vector2(dire_x, dire_y), _team_);
-		}
-
-		_active = true;
 	}
 
 
 	//------------------------------------------------------------------------------------------------
 	//‚©‚­‚ê‚Ý@(”¼“§–¾‚É‚·‚é)
-	void Scroll::Kakuremi(tpr::Vector2 pos, float dire_x, float dire_y, bool _team_) {
+	void Scroll::Kakuremi(tpr::Vector2 pos, float dire_x, float dire_y) {
 
-
-
-		_active = true;
 	}
 
 
 	//------------------------------------------------------------------------------------------------
 	//‚­‚È‚¢@‚Â‚¢‚¹‚«(‘ŠŽE‚ ‚è)
-	void Scroll::Kunai(tpr::Vector2 pos, float dire_x, float dire_y, bool _team_) {
+	void Scroll::Kunai(tpr::Vector2 pos, float dire_x, float dire_y) {
 
-		if (!_active) {
-			kuna = new class KUNAI(pos, tpr::Vector2(dire_x, dire_y), _team_);
-		}
-
-		_active = true;
 	}
 
 
 	//------------------------------------------------------------------------------------------------
 	//ƒuƒŠƒ“ƒN
-	void Scroll::Blink(tpr::Vector2 pos, float dire_x, float dire_y, bool _team_) {
+	void Scroll::Blink(tpr::Vector2 pos, float dire_x, float dire_y) {
 
-		tpr::Vector2 pos_ = GMp->SPp->GetCharaPosition(_team_);
-
-		if (_team_) {
-			
-
-		}
-
-		_active = true;
 	}
 
 
 	//------------------------------------------------------------------------------------------------
 	//ŽU’e
-	void Scroll::Shotgun(tpr::Vector2 pos, float dire_x, float dire_y, bool _team_) {
+	void Scroll::Shotgun(tpr::Vector2 pos, float dire_x, float dire_y) {
 
-		if (!_active) {
-			shot = new class SHOTGUN(pos, tpr::Vector2(dire_x, dire_y), _team_);
-		}
 	}
 
 
 	//------------------------------------------------------------------------------------------------
 	//‚Ü‚«‚Ñ‚µ@(ƒgƒ‰ƒbƒv)
-	void Scroll::Makibisi(tpr::Vector2 pos, bool _team_) {
+	void Scroll::Makibisi(tpr::Vector2 pos, float dire_x, float dire_y) {
 
-		if (!_active) {
-			maki = new class MAKIBISI(t2k::Vector3(pos.x, pos.y, 0), _team_);
-			GMp->SPp->Op.emplace_back(maki);
-		}
 	}
 
 
 	//------------------------------------------------------------------------------------------------
 	//“Ob’e
-	void Scroll::Teppo(tpr::Vector2 pos, float dire_x, float dire_y, bool _team_) {
+	void Scroll::Teppo(tpr::Vector2 pos, float dire_x, float dire_y) {
 
-		if (!_active) {
-			tepp = new class TEPPO(pos, tpr::Vector2(dire_x, dire_y), _team_);
-		}
 	}
 
 
@@ -338,19 +232,5 @@ namespace tpr {
 
 		t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
 		DrawRotaGraph(pos_.x, pos_.y, 0.5, 0, scroll_img_open, true);
-
-		if (!_active) { return; }
-
-		tpr::Vector2 pos__ = GMp->SPp->FixPositionVector(skill_img_pos);
-
-		DrawRotaGraph(pos__.x, pos__.y, 1.0, skill_img_rad, skill_img[skill_img_num], true);
-
-		if (skill_img_num >= skill_img.size() - 1) { _active = false; skill_img_num = 0; }
-
-		if (flame_count == 2) {
-			skill_img_num++;
-			flame_count = 0;
-		}
-		flame_count++;
 	}
 }

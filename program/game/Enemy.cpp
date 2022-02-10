@@ -19,8 +19,6 @@ Enemy::Enemy(int num) {
 	secconds_AS = 1.0f / sta.attack_speed;
 
 	astar = new tpr::Astar( GMp->SPp->astar_map);
-
-	default_speed = sta.move_speed;
 }
 //デストラクタ
 Enemy::~Enemy() {
@@ -29,20 +27,11 @@ Enemy::~Enemy() {
 
 
 //----------------------------------------------------------------------------------------------------
-//動く
+//
 void Enemy::Move(float deltatime) {
 
 	if (!GMp->SPp->_start_flag || GMp->SRp->_switch) { return; }
 
-	//速度の調整
-	if (sta.move_speed < default_speed) {
-		sta.move_speed ++;
-	}
-	else if (sta.move_speed > default_speed) {
-		sta.move_speed --;
-	}
-
-	//経路探索
 	if (flame_count % 3 == 0) {
 
 		if (_astar_falg) {
@@ -78,7 +67,6 @@ void Enemy::Move(float deltatime) {
 		move_count = 0;
 	}
 
-	//動作
 	if (!_fire) {
 
 		t2k::Vector3 _pos = GMp->SPp->FixPositionVector(
@@ -233,7 +221,7 @@ void Enemy::Update(float deltatime) {
 
 	timecount += deltatime;
 
-	Move(deltatime);
+	//Move(deltatime);
 	//FindPlayer(deltatime);
 
 	ult->Update(deltatime, tpr::Vector2(pos.x, pos.y));

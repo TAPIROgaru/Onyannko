@@ -11,13 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="program\game\my_skill\KAGINAWA.cpp" />
-    <ClCompile Include="program\game\my_skill\KUNAI.cpp" />
-    <ClCompile Include="program\game\my_skill\MAKIBISI.cpp" />
-    <ClCompile Include="program\game\my_skill\NINTOU.cpp" />
-    <ClCompile Include="program\game\my_skill\SHOTGUN.cpp" />
-    <ClCompile Include="program\game\my_skill\TEPPO.cpp" />
-    <ClCompile Include="program\game\my_skill\TORINOKO.cpp" />
+    <ClCompile Include="program\game\BLINK.cpp" />
+    <ClCompile Include="program\game\KAGINAWA.cpp" />
+    <ClCompile Include="program\game\KAKUREMI.cpp" />
+    <ClCompile Include="program\game\KUNAI.cpp" />
+    <ClCompile Include="program\game\MAKIBISI.cpp" />
+    <ClCompile Include="program\game\NINTOU.cpp" />
+    <ClCompile Include="program\game\SHOTGUN.cpp" />
+    <ClCompile Include="program\game\Skill.cpp" />
     <ClCompile Include="program\game\Square.cpp" />
     <ClCompile Include="program\game\Bullet.cpp" />
     <ClCompile Include="program\game\Camera.cpp" />
@@ -29,7 +30,9 @@
     <ClCompile Include="program\game\PlayScene.cpp" />
     <ClCompile Include="program\game\Scroll.cpp" />
     <ClCompile Include="program\game\ResultScene.cpp" />
+    <ClCompile Include="program\game\TEPPO.cpp" />
     <ClCompile Include="program\game\TitleScene.cpp" />
+    <ClCompile Include="program\game\TORINOKO.cpp" />
     <ClCompile Include="program\game\TPRlib\Angle.cpp" />
     <ClCompile Include="program\game\TPRlib\Astar.cpp" />
     <ClCompile Include="program\game\TPRlib\Collision.cpp" />
@@ -55,14 +58,14 @@
     <ClCompile Include="program\system\sys_main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="program\game\my_skill\KAGINAWA.h" />
-    <ClInclude Include="program\game\my_skill\KUNAI.h" />
-    <ClInclude Include="program\game\my_skill\MAKIBISI.h" />
-    <ClInclude Include="program\game\my_skill\NINTOU.h" />
-    <ClInclude Include="program\game\my_skill\SHOTGUN.h" />
-    <ClInclude Include="program\game\my_skill\skill_list.h" />
-    <ClInclude Include="program\game\my_skill\TEPPO.h" />
-    <ClInclude Include="program\game\my_skill\TORINOKO.h" />
+    <ClInclude Include="program\game\BLINK.h" />
+    <ClInclude Include="program\game\KAGINAWA.h" />
+    <ClInclude Include="program\game\KAKUREMI.h" />
+    <ClInclude Include="program\game\KUNAI.h" />
+    <ClInclude Include="program\game\MAKIBISI.h" />
+    <ClInclude Include="program\game\NINTOU.h" />
+    <ClInclude Include="program\game\SHOTGUN.h" />
+    <ClInclude Include="program\game\Skill.h" />
     <ClInclude Include="program\game\Square.h" />
     <ClInclude Include="program\game\Bullet.h" />
     <ClInclude Include="program\game\Camera.h" />
@@ -77,7 +80,9 @@
     <ClInclude Include="program\game\Scroll.h" />
     <ClInclude Include="program\game\ResultScene.h" />
     <ClInclude Include="program\game\Scene.h" />
+    <ClInclude Include="program\game\TEPPO.h" />
     <ClInclude Include="program\game\TitleScene.h" />
+    <ClInclude Include="program\game\TORINOKO.h" />
     <ClInclude Include="program\game\TPRlib\Angle.h" />
     <ClInclude Include="program\game\TPRlib\Astar.h" />
     <ClInclude Include="program\game\TPRlib\Collision.h" />

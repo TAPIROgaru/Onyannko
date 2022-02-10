@@ -8,7 +8,6 @@
 //自作ファイル
 
 #include "Camera.h"
-#include "TPRlib/tpr_library.h"
 
 
 //----------------------------------------------------------------------------------------------------
@@ -38,7 +37,6 @@ public:
 	//毎フレーム呼び出し
 
 	virtual void Update(float deltatime) {};
-	virtual void Update(float deltatime, tpr::Vector2 pos_) {};
 	virtual void Render(Camera* cam) {};
 
 

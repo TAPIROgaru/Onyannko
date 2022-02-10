@@ -32,8 +32,8 @@
     <Filter Include="program\game\TPRlib">
       <UniqueIdentifier>{e046a0e9-aeb1-4b8f-9ff4-6f85ad4f389b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="program\game\my_main\my_skill">
-      <UniqueIdentifier>{5653621c-7446-44fc-adb6-d3854d456742}</UniqueIdentifier>
+    <Filter Include="program\game\my_skill">
+      <UniqueIdentifier>{7d978c85-7564-4293-a839-b9f93763e48e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -115,9 +115,6 @@
     <ClCompile Include="program\game\Camera.cpp">
       <Filter>program\game\my_system</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\Scroll.cpp">
-      <Filter>program\game\my_main</Filter>
-    </ClCompile>
     <ClCompile Include="program\game\TPRlib\Line.cpp">
       <Filter>program\game\TPRlib</Filter>
     </ClCompile>
@@ -142,26 +139,38 @@
     <ClCompile Include="program\game\TPRlib\Color.cpp">
       <Filter>program\game\TPRlib</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\my_skill\KAGINAWA.cpp">
-      <Filter>program\game\my_main\my_skill</Filter>
+    <ClCompile Include="program\game\Scroll.cpp">
+      <Filter>program\game\my_skill</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\my_skill\NINTOU.cpp">
-      <Filter>program\game\my_main\my_skill</Filter>
+    <ClCompile Include="program\game\KAGINAWA.cpp">
+      <Filter>program\game\my_skill</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\my_skill\TORINOKO.cpp">
-      <Filter>program\game\my_main\my_skill</Filter>
+    <ClCompile Include="program\game\NINTOU.cpp">
+      <Filter>program\game\my_skill</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\my_skill\KUNAI.cpp">
-      <Filter>program\game\my_main\my_skill</Filter>
+    <ClCompile Include="program\game\TORINOKO.cpp">
+      <Filter>program\game\my_skill</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\my_skill\SHOTGUN.cpp">
-      <Filter>program\game\my_main\my_skill</Filter>
+    <ClCompile Include="program\game\KAKUREMI.cpp">
+      <Filter>program\game\my_skill</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\my_skill\MAKIBISI.cpp">
-      <Filter>program\game\my_main\my_skill</Filter>
+    <ClCompile Include="program\game\KUNAI.cpp">
+      <Filter>program\game\my_skill</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\my_skill\TEPPO.cpp">
-      <Filter>program\game\my_main\my_skill</Filter>
+    <ClCompile Include="program\game\BLINK.cpp">
+      <Filter>program\game\my_skill</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\SHOTGUN.cpp">
+      <Filter>program\game\my_skill</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\MAKIBISI.cpp">
+      <Filter>program\game\my_skill</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\TEPPO.cpp">
+      <Filter>program\game\my_skill</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\Skill.cpp">
+      <Filter>program\game\my_skill</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -282,9 +291,6 @@
     <ClInclude Include="program\game\Camera.h">
       <Filter>program\game\my_system</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\Scroll.h">
-      <Filter>program\game\my_main</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\TPRlib\Color.h">
       <Filter>program\game\TPRlib</Filter>
     </ClInclude>
@@ -318,29 +324,38 @@
     <ClInclude Include="program\game\TPRlib\Collision.h">
       <Filter>program\game\TPRlib</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\my_skill\NINTOU.h">
-      <Filter>program\game\my_main\my_skill</Filter>
+    <ClInclude Include="program\game\Scroll.h">
+      <Filter>program\game\my_skill</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\my_skill\KAGINAWA.h">
-      <Filter>program\game\my_main\my_skill</Filter>
+    <ClInclude Include="program\game\KAGINAWA.h">
+      <Filter>program\game\my_skill</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\my_skill\TORINOKO.h">
-      <Filter>program\game\my_main\my_skill</Filter>
+    <ClInclude Include="program\game\NINTOU.h">
+      <Filter>program\game\my_skill</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\my_skill\KUNAI.h">
-      <Filter>program\game\my_main\my_skill</Filter>
+    <ClInclude Include="program\game\TORINOKO.h">
+      <Filter>program\game\my_skill</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\my_skill\SHOTGUN.h">
-      <Filter>program\game\my_main\my_skill</Filter>
+    <ClInclude Include="program\game\KAKUREMI.h">
+      <Filter>program\game\my_skill</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\my_skill\MAKIBISI.h">
-      <Filter>program\game\my_main\my_skill</Filter>
+    <ClInclude Include="program\game\KUNAI.h">
+      <Filter>program\game\my_skill</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\my_skill\TEPPO.h">
-      <Filter>program\game\my_main\my_skill</Filter>
+    <ClInclude Include="program\game\BLINK.h">
+      <Filter>program\game\my_skill</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\my_skill\skill_list.h">
-      <Filter>program\game\my_main\my_skill</Filter>
+    <ClInclude Include="program\game\SHOTGUN.h">
+      <Filter>program\game\my_skill</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\MAKIBISI.h">
+      <Filter>program\game\my_skill</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\TEPPO.h">
+      <Filter>program\game\my_skill</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\Skill.h">
+      <Filter>program\game\my_skill</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
