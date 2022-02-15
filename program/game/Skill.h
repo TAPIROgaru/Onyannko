@@ -4,9 +4,11 @@
 //----------------------------------------------------------------------------------------------
 //自作ファイル
 
+#include "Object.h"
 #include "TPRlib/tpr_library.h"
+#include "Camera.h"
 
-class Skill {
+class Skill :public Object {
 public:
 
 	virtual ~Skill() {};
@@ -30,4 +32,13 @@ public:
 	int angle;
 
 	virtual void Active(tpr::Vector2 pos, float dire_x, float dire_y) {};
+
+	//------------------------------------------------------------------------------------------
+	//毎フレーム呼び出し
+
+	virtual void Update(float deltatime, tpr::Vector2 pos_) {};
+	virtual void Render(Camera* cam) {};
+
+
+	//------------------------------------------------------------------------------------------
 };

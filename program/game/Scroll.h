@@ -13,7 +13,7 @@
 namespace tpr {
 
 	//‘•”õ‹Z
-	class Scroll final :public Object  {
+	class Scroll final  {
 	//final‚ÍŒp³‚³‚¹‚È‚¢
 
 	public:
@@ -44,9 +44,22 @@ namespace tpr {
 		void Makibisi(tpr::Vector2 pos, float dire_x, float dire_y);
 		void Teppo(tpr::Vector2 pos, float dire_x, float dire_y);
 
+		void make_Kaginawa(tpr::Vector2 pos, int angle);
+		void make_Nintou(tpr::Vector2 pos, int angle);
+		void make_Torinoko(tpr::Vector2 pos, int angle);
+		void make_Kakuremi(tpr::Vector2 pos, int angle);
+		void make_Kunai(tpr::Vector2 pos, int angle);
+		void make_Blink(tpr::Vector2 pos, int angle);
+		void make_Shotgun(tpr::Vector2 pos, int angle);
+		void make_Makibisi(tpr::Vector2 pos, int angle);
+		void make_Teppo(tpr::Vector2 pos, int angle);
+
 
 		//--------------------------------------------------------------------------------------
 		//•Ï”
+
+
+		int my_number;
 
 		std::function< void (Scroll, tpr::Vector2 pos, float dire_x, float dire_y) > 
 			skill_func[9] = {
@@ -61,16 +74,18 @@ namespace tpr {
 			Teppo
 		};
 
-		int my_number;
-		float count = 0;
-		float cool_time;
-		bool _active = false;
-
-		std::vector<int> skill_img;
-		int scroll_img_close;
-		int scroll_img_open;
-
-		int angle;
+		std::function< void(Scroll,tpr::Vector2 pos, int angle) >
+			make_skill_func[9] = {
+			make_Kaginawa,
+			make_Nintou,
+			make_Torinoko,
+			make_Kakuremi,
+			make_Kunai,
+			make_Blink,
+			make_Shotgun,
+			make_Makibisi,
+			make_Teppo
+		};
 
 		//--------------------------------------------------------------------------------------
 		//‘•”õ‹Zˆê——

@@ -16,6 +16,7 @@ Player::Player() {
 	pos = { GMp->FIELD_W / 2 - 200, GMp->FIELD_H / 2 , 0 };
 	prev_pos = { -200, 0, 0 };
 	LoadStatus();
+	sp.emplace_back(ult, skillA, skillB);
 	r = 16;
 
 	secconds_AS = 1.0f / sta.attack_speed;

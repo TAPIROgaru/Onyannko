@@ -11,133 +11,27 @@ namespace tpr {
 	Scroll::Scroll(int num, char c, tpr::Vector2 pos_) {
 
 		my_number = num;
+		int angle;
+
+		tpr::Vector2 pos__(pos_.x, pos_.y - 50);
 		
-
-		switch (my_number) {
-
-		case Scroll::ult::KAGINAWA:
-
-			scroll_img_close = GMp->loadGraph("graphics/scroll/KAGINAWA_close.png");
-			scroll_img_open = GMp->loadGraph("graphics/scroll/KAGINAWA_open.png");
-
-			skill_img.emplace_back(GMp->loadGraph("graphics/NINGU/.png"));
-
-			cool_time = 0.0f;
-			break;
-
-		case Scroll::ult::NINTOU:
-		{
-
-			std::vector<std::string> str;
-
-			str.emplace_back("graphics/NINGU/NINTOU1.png");
-			str.emplace_back("graphics/NINGU/NINTOU2.png");
-			str.emplace_back("graphics/NINGU/NINTOU3.png");
-			str.emplace_back("graphics/NINGU/NINTOU4.png");
-
-			skill_img = GMp->loadDivGraph(str, 4);
-
-			scroll_img_close = GMp->loadGraph("graphics/scroll/NINTOU_close.png");
-			scroll_img_open = GMp->loadGraph("graphics/scroll/NINTOU_open.png");
-		}
-
-		cool_time = 0.0f;
-		break;
-
-		case Scroll::ult::TORINOKO:
-
-			scroll_img_close = GMp->loadGraph("graphics/scroll/TORINOKO_close.png");
-			scroll_img_open = GMp->loadGraph("graphics/scroll/TORINOKO_open.png");
-
-			skill_img.emplace_back(GMp->loadGraph("graphics/NINGU/.png"));
-
-			cool_time = 0.0f;
-			break;
-
-		case Scroll::skill::KAKUREMI:
-
-			scroll_img_close = GMp->loadGraph("graphics/scroll/KAKUREMI_close.png");
-			scroll_img_open = GMp->loadGraph("graphics/scroll/KAKUREMI_open.png");
-
-			skill_img.emplace_back(GMp->loadGraph("graphics/NINGU/.png"));
-
-			cool_time = 0.0f;
-			break;
-
-		case Scroll::skill::KUNAI:
-
-			scroll_img_close = GMp->loadGraph("graphics/scroll/KUNAI_close.png");
-			scroll_img_open = GMp->loadGraph("graphics/scroll/KUNAI_open.png");
-
-			skill_img.emplace_back(GMp->loadGraph("graphics/NINGU/KUNAI.png"));
-
-			cool_time = 0.0f;
-			break;
-
-		case Scroll::skill::BLINK:
-
-			scroll_img_close = GMp->loadGraph("graphics/scroll/BLINK_close.png");
-			scroll_img_open = GMp->loadGraph("graphics/scroll/BLINK_open.png");
-
-			skill_img.emplace_back(GMp->loadGraph("graphics/NINGU/.png"));
-
-			cool_time = 0.0f;
-			break;
-
-		case Scroll::skill::SHOTGUN:
-
-			scroll_img_close = GMp->loadGraph("graphics/scroll/SHOTGUN_close.png");
-			scroll_img_open = GMp->loadGraph("graphics/scroll/SHOTGUN_open.png");
-
-			skill_img.emplace_back(GMp->loadGraph("graphics/NINGU/.png"));
-
-			cool_time = 0.0f;
-			break;
-
-		case Scroll::skill::MAKIBISI:
-
-			scroll_img_close = GMp->loadGraph("graphics/scroll/MAKIBISI_close.png");
-			scroll_img_open = GMp->loadGraph("graphics/scroll/MAKIBISI_open.png");
-
-			skill_img.emplace_back(GMp->loadGraph("graphics/NINGU/.png"));
-
-			cool_time = 0.0f;
-			break;
-
-		case Scroll::skill::TEPPO:
-
-			scroll_img_close = GMp->loadGraph("graphics/scroll/TEPPO_close.png");
-			scroll_img_open = GMp->loadGraph("graphics/scroll/TEPPO_open.png");
-
-			skill_img.emplace_back(GMp->loadGraph("graphics/NINGU/.png"));
-
-			cool_time = 0.0f;
-			break;
-
-		default:
-
-			cool_time = 0.0f;
-			break;
-		}
-
-		tpr::Vector2 v(pos_.x, pos_.y - 50);
-
 		if (c == 'u') {
-			pos = t2k::Vector3(v.x, v.y, 0);
+
 			angle = 0;
 		}
 		else if (c == 'a') {
 
 			angle = 120;
-			tpr::Vector2 v2 = Rotation::RotaVec2(v, pos_, Angle::DegChangeRad(angle));
-			pos = t2k::Vector3(v2.x, v2.y, 0);
+			pos__ = Rotation::RotaVec2(pos__, pos_, Angle::DegChangeRad(angle));
 		}
 		else if (c == 'b') {
 
 			angle = 240;
-			tpr::Vector2 v2 = Rotation::RotaVec2(v, pos_, Angle::DegChangeRad(angle));
-			pos = t2k::Vector3(v2.x, v2.y, 0);
+			pos__ = Rotation::RotaVec2(pos__, pos_, Angle::DegChangeRad(angle));
 		}
+
+		make_skill_func[my_number](, pos__, angle);
+
 	}
 
 
@@ -145,15 +39,16 @@ namespace tpr {
 	//”­“®
 	bool Scroll::Activate(tpr::Vector2 pos,float dire_x, float dire_y) {
 
-		if (count < cool_time) { return false; }
-
-
+		skill_func[my_number](, pos, dire_x, dire_y);
 	}
 
 
 	//------------------------------------------------------------------------------------------------
 	//‚©‚¬‚È‚í@(ˆø‚Á’£‚é)
 	void Scroll::Kaginawa(tpr::Vector2 pos, float dire_x, float dire_y) {
+
+	}
+	void Scroll::make_Kaginawa(tpr::Vector2 pos, int angle) {
 
 	}
 
@@ -164,11 +59,18 @@ namespace tpr {
 
 
 	}
+	void Scroll::make_Nintou(tpr::Vector2 pos, int angle) {
+
+
+	}
 
 
 	//------------------------------------------------------------------------------------------------
 	//‚Æ‚è‚Ì‚±@(‚Î‚­‚¾‚ñ)
 	void Scroll::Torinoko(tpr::Vector2 pos, float dire_x, float dire_y) {
+
+	}
+	void Scroll::make_Torinoko(tpr::Vector2 pos, int angle) {
 
 	}
 
@@ -178,11 +80,17 @@ namespace tpr {
 	void Scroll::Kakuremi(tpr::Vector2 pos, float dire_x, float dire_y) {
 
 	}
+	void Scroll::make_Kakuremi(tpr::Vector2 pos, int angle) {
+
+	}
 
 
 	//------------------------------------------------------------------------------------------------
 	//‚­‚È‚¢@‚Â‚¢‚¹‚«(‘ŠŽE‚ ‚è)
 	void Scroll::Kunai(tpr::Vector2 pos, float dire_x, float dire_y) {
+
+	}
+	void Scroll::make_Kunai(tpr::Vector2 pos, int angle) {
 
 	}
 
@@ -192,11 +100,17 @@ namespace tpr {
 	void Scroll::Blink(tpr::Vector2 pos, float dire_x, float dire_y) {
 
 	}
+	void Scroll::make_Blink(tpr::Vector2 pos, int angle) {
+
+	}
 
 
 	//------------------------------------------------------------------------------------------------
 	//ŽU’e
 	void Scroll::Shotgun(tpr::Vector2 pos, float dire_x, float dire_y) {
+
+	}
+	void Scroll::make_Shotgun(tpr::Vector2 pos, int angle) {
 
 	}
 
@@ -206,11 +120,17 @@ namespace tpr {
 	void Scroll::Makibisi(tpr::Vector2 pos, float dire_x, float dire_y) {
 
 	}
+	void Scroll::make_Makibisi(tpr::Vector2 pos, int angle) {
+
+	}
 
 
 	//------------------------------------------------------------------------------------------------
 	//“Ob’e
 	void Scroll::Teppo(tpr::Vector2 pos, float dire_x, float dire_y) {
+
+	}
+	void Scroll::make_Teppo(tpr::Vector2 pos, int angle) {
 
 	}
 
@@ -219,18 +139,7 @@ namespace tpr {
 	//–ˆƒtƒŒ[ƒ€ŒÄ‚Ño‚µ
 
 	void Scroll::Update(float deltatime, tpr::Vector2 pos_) {
-
-		tpr::Vector2 v(pos_.x, pos_.y - 50);
-
-		tpr::Vector2 v2 = Rotation::RotaVec2(v, pos_, Angle::DegChangeRad(angle));
-		pos = t2k::Vector3(v2.x, v2.y, 0);
-
-		angle++;
-		count += deltatime;
 	}
 	void Scroll::Render(Camera* cam) {
-
-		t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
-		DrawRotaGraph(pos_.x, pos_.y, 0.5, 0, scroll_img_open, true);
 	}
 }

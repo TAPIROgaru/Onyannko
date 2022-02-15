@@ -6,6 +6,7 @@
 
 #include "Object.h"
 #include "Scroll.h"
+#include "Skill.h"
 
 
 //----------------------------------------------------------------------------------------------------
@@ -47,6 +48,8 @@ public:
 	tpr::Scroll* ult;
 	tpr::Scroll* skillA;
 	tpr::Scroll* skillB;
+
+	std::list <Skill*> sp;
 
 	float secconds_AS = 0;   //1UŒ‚‰½•b‚©
 	float timecount = 0;     //ŠÔŒv‘ª
