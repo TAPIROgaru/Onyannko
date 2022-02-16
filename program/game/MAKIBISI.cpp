@@ -13,3 +13,7 @@ MAKIBISI::MAKIBISI() {
 
 	cool_time = 0.0f;
 }
+void MAKIBISI::Active(tpr::Vector2 pos, float dire_x, float dire_y)
+{
+
+}

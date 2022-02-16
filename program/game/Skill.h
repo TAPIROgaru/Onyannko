@@ -36,8 +36,8 @@ public:
 	//------------------------------------------------------------------------------------------
 	//–ˆƒtƒŒ[ƒ€ŒÄ‚Ño‚µ
 
-	virtual void Update(float deltatime, tpr::Vector2 pos_) {};
-	virtual void Render(Camera* cam) {};
+	virtual void Update(float deltatime, tpr::Vector2 pos_);
+	virtual void Render(Camera* cam);
 
 
 	//------------------------------------------------------------------------------------------

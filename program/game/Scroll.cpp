@@ -1,6 +1,15 @@
 #include "Scroll.h"
 #include "GameManager.h"
 #include "PlayScene.h"
+#include "BLINK.h"
+#include "KAGINAWA.h"
+#include "KAKUREMI.h"
+#include "KUNAI.h"
+#include "MAKIBISI.h"
+#include "NINTOU.h"
+#include "SHOTGUN.h"
+#include "TEPPO.h"
+#include "TORINOKO.h"
 
 extern GameManager *GMp;
 
@@ -30,16 +39,16 @@ namespace tpr {
 			pos__ = Rotation::RotaVec2(pos__, pos_, Angle::DegChangeRad(angle));
 		}
 
-		make_skill_func[my_number](, pos__, angle);
+		make_skill_func[my_number](this, pos__, angle);
 
 	}
 
 
 	//------------------------------------------------------------------------------------------------
 	//”­“®
-	bool Scroll::Activate(tpr::Vector2 pos,float dire_x, float dire_y) {
+	void Scroll::Activate(tpr::Vector2 pos,float dire_x, float dire_y) {
 
-		skill_func[my_number](, pos, dire_x, dire_y);
+		skill_func[my_number](this, pos, dire_x, dire_y);
 	}
 
 
@@ -50,6 +59,7 @@ namespace tpr {
 	}
 	void Scroll::make_Kaginawa(tpr::Vector2 pos, int angle) {
 
+		kaginawa = new KAGINAWA();
 	}
 
 

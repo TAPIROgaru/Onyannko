@@ -10,6 +10,17 @@
 #include "Object.h"
 #include "TPRlib/tpr_library.h"
 
+class BLINK;
+class KAGINAWA;
+class KAKUREMI;
+class KUNAI;
+class MAKIBISI;
+class NINTOU;
+class SHOTGUN;
+class TEPPO;
+class TORINOKO;
+
+
 namespace tpr {
 
 	//装備技
@@ -29,10 +40,11 @@ namespace tpr {
 		// 2. ultならu skillAならa skillBならb
 		// 3. スキル所有者の座標
 		//======================================================
-		Scroll(int num,char c, tpr::Vector2 pos_);
+		Scroll() {}
+		Scroll(int num, char c, tpr::Vector2 pos_);
 		~Scroll() {};
 
-		bool Activate(tpr::Vector2 pos,float dire_x, float dire_y);
+		void Activate(tpr::Vector2 pos,float dire_x, float dire_y);
 
 		void Kaginawa(tpr::Vector2 pos, float dire_x, float dire_y);
 		void Nintou(tpr::Vector2 pos, float dire_x, float dire_y);
@@ -55,56 +67,70 @@ namespace tpr {
 		void make_Teppo(tpr::Vector2 pos, int angle);
 
 
+
+		//--------------------------------------------------------------------------------------
+		//装備技一覧
+		enum ult {
+			E_KAGINAWA,
+			E_NINTOU,
+			E_TORINOKO,
+			E_ULT_MAX
+		};
+		enum skill {
+
+			E_KAKUREMI = E_ULT_MAX,
+			E_KUNAI,
+			E_BLINK,
+			E_SHOTGUN,
+			E_MAKIBISI,
+			E_TEPPO,
+			E_SKILL_MAX
+		};
+
+
 		//--------------------------------------------------------------------------------------
 		//変数
 
 
 		int my_number;
 
-		std::function< void (Scroll, tpr::Vector2 pos, float dire_x, float dire_y) > 
-			skill_func[9] = {
-			Kaginawa,
-			Nintou,
-			Torinoko,
-			Kakuremi,
-			Kunai,
-			Blink,
-			Shotgun,
-			Makibisi,
-			Teppo
+
+		std::function< void (Scroll*, tpr::Vector2 pos, float dire_x, float dire_y) >
+			skill_func[E_SKILL_MAX] = {
+			&Scroll::Kaginawa,
+			&Scroll::Nintou,
+			&Scroll::Torinoko,
+			&Scroll::Kakuremi,
+			&Scroll::Kunai,
+			&Scroll::Blink,
+			&Scroll::Shotgun,
+			&Scroll::Makibisi,
+			&Scroll::Teppo
 		};
 
-		std::function< void(Scroll,tpr::Vector2 pos, int angle) >
-			make_skill_func[9] = {
-			make_Kaginawa,
-			make_Nintou,
-			make_Torinoko,
-			make_Kakuremi,
-			make_Kunai,
-			make_Blink,
-			make_Shotgun,
-			make_Makibisi,
-			make_Teppo
+		std::function< void(Scroll*, tpr::Vector2 pos, int angle) >
+			make_skill_func[E_SKILL_MAX] = {
+			&Scroll::make_Kaginawa,
+			&Scroll::make_Nintou,
+			&Scroll::make_Torinoko,
+			&Scroll::make_Kakuremi,
+			&Scroll::make_Kunai,
+			&Scroll::make_Blink,
+			&Scroll::make_Shotgun,
+			&Scroll::make_Makibisi,
+			&Scroll::make_Teppo
 		};
 
-		//--------------------------------------------------------------------------------------
-		//装備技一覧
-		enum ult {
+		BLINK* blink;
+		KAGINAWA* kaginawa;
+		KAKUREMI* kakuremi;
+		KUNAI* kunai;
+		MAKIBISI* makibisi;
+		NINTOU* nintou;
+		SHOTGUN* shotgun;
+		TEPPO* teppo;
+		TORINOKO* torinoko;
 
-			KAGINAWA,
-			NINTOU,
-			TORINOKO,
-		};
-		enum skill {
-
-			KAKUREMI = 3,
-			KUNAI,
-			BLINK,
-			SHOTGUN,
-			MAKIBISI,
-			TEPPO,
-		};
-		
 		
 		//--------------------------------------------------------------------------------------
 		//毎フレーム呼び出し

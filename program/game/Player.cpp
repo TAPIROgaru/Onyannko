@@ -16,7 +16,6 @@ Player::Player() {
 	pos = { GMp->FIELD_W / 2 - 200, GMp->FIELD_H / 2 , 0 };
 	prev_pos = { -200, 0, 0 };
 	LoadStatus();
-	sp.emplace_back(ult, skillA, skillB);
 	r = 16;
 
 	secconds_AS = 1.0f / sta.attack_speed;
@@ -144,20 +143,20 @@ void Player::Move(float deltatime) {
 	}
 
 	//ult
-	if (ult->_active||t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_SPACE)) {
+	if (t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_SPACE)) {
 
 		ShootDirection();
 		ult->Activate(tpr::Vector2(pos.x, pos.y), bullet_direction_x, bullet_direction_y);
 	}
 
 	//skillA
-	if (skillA->_active|| t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_C)) {
+	if ( t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_C)) {
 		ShootDirection();
 		skillA->Activate(tpr::Vector2(pos.x, pos.y), bullet_direction_x, bullet_direction_y);
 	}
 
 	//skillB
-	if (skillB->_active || t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_V)) {
+	if (t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_V)) {
 		ShootDirection();
 		skillB->Activate(tpr::Vector2(pos.x, pos.y), bullet_direction_x, bullet_direction_y);
 	}

@@ -15,3 +15,7 @@ BLINK::BLINK() {
 
 	cool_time = 0.0f;
 }
+void BLINK::Active(tpr::Vector2 pos, float dire_x, float dire_y)
+{
+
+}
