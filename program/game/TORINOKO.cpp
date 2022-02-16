@@ -4,7 +4,7 @@
 extern GameManager* GMp;
 
 
-TORINOKO::TORINOKO() {
+TORINOKO::TORINOKO(tpr::Vector2 pos_, int angle) {
 
 	std::vector<std::string> str;
 

@@ -6,7 +6,7 @@ extern GameManager* GMp;
 
 //----------------------------------------------------------------------------------------------
 //コンストラクタ
-KAGINAWA::KAGINAWA() {
+KAGINAWA::KAGINAWA(tpr::Vector2 pos_, int angle) {
 
 	scroll_img_close = GMp->loadGraph("graphics/scroll/KAGINAWA_close.png");
 	scroll_img_open = GMp->loadGraph("graphics/scroll/KAGINAWA_open.png");

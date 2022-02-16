@@ -4,7 +4,7 @@
 extern GameManager* GMp;
 
 
-MAKIBISI::MAKIBISI() {
+MAKIBISI::MAKIBISI(tpr::Vector2 pos_, int angle) {
 
 	scroll_img_close = GMp->loadGraph("graphics/scroll/MAKIBISI_close.png");
 	scroll_img_open = GMp->loadGraph("graphics/scroll/MAKIBISI_open.png");

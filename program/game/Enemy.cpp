@@ -151,7 +151,7 @@ void Enemy::LoadStatus(int num) {
 	//画像
 	chara_handle = GMp->loadGraph("graphics/Enemy.png");
 
-	ult = new tpr::Scroll(rand() % 2, 'u', tpr::Vector2(pos.x, pos.y));
+	ult = new Scroll(rand() % 2, 'u', tpr::Vector2(pos.x, pos.y));
 
 	//ランダムな順番にソート(スキル番号)
 	int arry[6] = { 3,4,5,6,7,8 };
@@ -166,8 +166,8 @@ void Enemy::LoadStatus(int num) {
 		arry[numB] = A;
 	}
 
-	skillA = new tpr::Scroll(arry[0], 'a', tpr::Vector2(pos.x, pos.y));
-	skillB = new tpr::Scroll(arry[1], 'b', tpr::Vector2(pos.x, pos.y));
+	skillA = new Scroll(arry[0], 'a', tpr::Vector2(pos.x, pos.y));
+	skillB = new Scroll(arry[1], 'b', tpr::Vector2(pos.x, pos.y));
 }
 
 

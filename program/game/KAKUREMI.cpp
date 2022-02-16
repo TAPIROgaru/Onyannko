@@ -4,7 +4,7 @@
 extern GameManager* GMp;
 
 
-KAKUREMI::KAKUREMI() {
+KAKUREMI::KAKUREMI(tpr::Vector2 pos_, int angle) {
 
 	scroll_img_close = GMp->loadGraph("graphics/scroll/KAKUREMI_close.png");
 	scroll_img_open = GMp->loadGraph("graphics/scroll/KAKUREMI_open.png");

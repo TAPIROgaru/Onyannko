@@ -68,11 +68,11 @@ void Player::LoadStatus() {
 		};
 
 		//ƒXƒLƒ‹“Ç‚Ýž‚Ý
-		ult    = new tpr::Scroll(std::atoi(GMp->SPp->datas[0][6].c_str())
+		ult    = new Scroll(std::atoi(GMp->SPp->datas[0][6].c_str())
 			, 'u', tpr::Vector2(pos.x, pos.y));
-		skillA = new tpr::Scroll(std::atoi(GMp->SPp->datas[0][7].c_str())
+		skillA = new Scroll(std::atoi(GMp->SPp->datas[0][7].c_str())
 			, 'a', tpr::Vector2(pos.x, pos.y));
-		skillB = new tpr::Scroll(std::atoi(GMp->SPp->datas[0][8].c_str())
+		skillB = new Scroll(std::atoi(GMp->SPp->datas[0][8].c_str())
 			, 'b', tpr::Vector2(pos.x, pos.y));
 
 		return;
@@ -98,9 +98,9 @@ void Player::LoadStatus() {
 	int num[3];
 	fread_s(num, sizeof(num), sizeof(int) * 3, 1, fp);
 
-	ult = new tpr::Scroll(num[0], 'u', tpr::Vector2(pos.x, pos.y));
-	skillA = new tpr::Scroll(num[1], 'a', tpr::Vector2(pos.x, pos.y));
-	skillB = new tpr::Scroll(num[2], 'b', tpr::Vector2(pos.x, pos.y));
+	ult = new Scroll(num[0], 'u', tpr::Vector2(pos.x, pos.y));
+	skillA = new Scroll(num[1], 'a', tpr::Vector2(pos.x, pos.y));
+	skillB = new Scroll(num[2], 'b', tpr::Vector2(pos.x, pos.y));
 
 	fclose(fp);
 }

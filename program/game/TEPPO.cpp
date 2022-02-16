@@ -3,7 +3,7 @@
 
 extern GameManager* GMp;
 
-TEPPO::TEPPO() {
+TEPPO::TEPPO(tpr::Vector2 pos_, int angle) {
 
 }
 

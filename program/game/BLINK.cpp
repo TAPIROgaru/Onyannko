@@ -6,7 +6,7 @@ extern GameManager* GMp;
 //----------------------------------------------------------------------------------------------
 //コンストラクタ
 
-BLINK::BLINK() {
+BLINK::BLINK(tpr::Vector2 pos_, int angle) {
 
 	scroll_img_close = GMp->loadGraph("graphics/scroll/BLINK_close.png");
 	scroll_img_open = GMp->loadGraph("graphics/scroll/BLINK_open.png");

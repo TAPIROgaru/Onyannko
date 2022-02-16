@@ -1,5 +1,11 @@
 #include "NINTOU.h"
 
+
+NINTOU::NINTOU(tpr::Vector2 pos_, int angle) {
+
+
+}
+
 void NINTOU::Active(tpr::Vector2 pos, float dire_x, float dire_y) {
 
 	int i = 0;

@@ -45,9 +45,9 @@ public:
 
 	Status sta;
 
-	tpr::Scroll* ult;
-	tpr::Scroll* skillA;
-	tpr::Scroll* skillB;
+	Scroll* ult;
+	Scroll* skillA;
+	Scroll* skillB;
 
 	std::list <Skill*> sp;
 
