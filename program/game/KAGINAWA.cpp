@@ -14,6 +14,7 @@ KAGINAWA::KAGINAWA(tpr::Vector2 pos_, int angle) {
 	skill_img.emplace_back(GMp->loadGraph("graphics/NINGU/KAGINAWA.png"));
 
 	cool_time = 0.0f;
+	this->angle = angle;
 }
 void KAGINAWA::Active(tpr::Vector2 pos, float dire_x, float dire_y)
 {

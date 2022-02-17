@@ -23,6 +23,7 @@ TORINOKO::TORINOKO(tpr::Vector2 pos_, int angle) {
 	scroll_img_open = GMp->loadGraph("graphics/scroll/TORINOKO_open.png");
 
 	cool_time = 0.0f;
+	this->angle = angle;
 }
 void TORINOKO::Active(tpr::Vector2 pos, float dire_x, float dire_y)
 {

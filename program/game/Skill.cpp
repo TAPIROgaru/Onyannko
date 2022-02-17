@@ -13,7 +13,6 @@ void Skill::Update(float deltatime, tpr::Vector2 pos_) {
 	pos = t2k::Vector3(v2.x, v2.y, 0);
 
 	angle++;
-	count += deltatime;
 };
 void Skill::Render(Camera* cam) {
 
