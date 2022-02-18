@@ -6,8 +6,10 @@
 #include "Collision.h"
 #include "Line.h"
 #include "Quadrilateral.h"
+#include "Color.h"
+#include "Coroutine.h"
 
 
 //åoòHíTçı
-#include "Node.h"
-#include "Astar.h"
+//#include "Node.h"
+//#include "Astar.h"

@@ -115,30 +115,6 @@
     <ClCompile Include="program\game\Camera.cpp">
       <Filter>program\game\my_system</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\TPRlib\Line.cpp">
-      <Filter>program\game\TPRlib</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\TPRlib\Quadrilateral.cpp">
-      <Filter>program\game\TPRlib</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\TPRlib\Rotation.cpp">
-      <Filter>program\game\TPRlib</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\TPRlib\Vector2.cpp">
-      <Filter>program\game\TPRlib</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\TPRlib\Angle.cpp">
-      <Filter>program\game\TPRlib</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\TPRlib\Astar.cpp">
-      <Filter>program\game\TPRlib</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\TPRlib\Collision.cpp">
-      <Filter>program\game\TPRlib</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\TPRlib\Color.cpp">
-      <Filter>program\game\TPRlib</Filter>
-    </ClCompile>
     <ClCompile Include="program\game\Scroll.cpp">
       <Filter>program\game\my_skill</Filter>
     </ClCompile>
@@ -171,6 +147,33 @@
     </ClCompile>
     <ClCompile Include="program\game\Skill.cpp">
       <Filter>program\game\my_skill</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\TPRlib\Quadrilateral.cpp">
+      <Filter>program\game\TPRlib</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\TPRlib\Rotation.cpp">
+      <Filter>program\game\TPRlib</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\TPRlib\Vector2.cpp">
+      <Filter>program\game\TPRlib</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\TPRlib\Angle.cpp">
+      <Filter>program\game\TPRlib</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\TPRlib\Astar.cpp">
+      <Filter>program\game\TPRlib</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\TPRlib\Collision.cpp">
+      <Filter>program\game\TPRlib</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\TPRlib\Color.cpp">
+      <Filter>program\game\TPRlib</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\TPRlib\Coroutine.cpp">
+      <Filter>program\game\TPRlib</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\TPRlib\Line.cpp">
+      <Filter>program\game\TPRlib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -291,39 +294,6 @@
     <ClInclude Include="program\game\Camera.h">
       <Filter>program\game\my_system</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\TPRlib\Color.h">
-      <Filter>program\game\TPRlib</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\TPRlib\Line.h">
-      <Filter>program\game\TPRlib</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\TPRlib\Node.h">
-      <Filter>program\game\TPRlib</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\TPRlib\Quadrilateral.h">
-      <Filter>program\game\TPRlib</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\TPRlib\Rotation.h">
-      <Filter>program\game\TPRlib</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\TPRlib\tpr_library.h">
-      <Filter>program\game\TPRlib</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\TPRlib\Vector2.h">
-      <Filter>program\game\TPRlib</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\TPRlib\Vector2_int.h">
-      <Filter>program\game\TPRlib</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\TPRlib\Angle.h">
-      <Filter>program\game\TPRlib</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\TPRlib\Astar.h">
-      <Filter>program\game\TPRlib</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\TPRlib\Collision.h">
-      <Filter>program\game\TPRlib</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\Scroll.h">
       <Filter>program\game\my_skill</Filter>
     </ClInclude>
@@ -356,6 +326,42 @@
     </ClInclude>
     <ClInclude Include="program\game\Skill.h">
       <Filter>program\game\my_skill</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\TPRlib\Line.h">
+      <Filter>program\game\TPRlib</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\TPRlib\Node.h">
+      <Filter>program\game\TPRlib</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\TPRlib\Quadrilateral.h">
+      <Filter>program\game\TPRlib</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\TPRlib\Rotation.h">
+      <Filter>program\game\TPRlib</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\TPRlib\tpr_library.h">
+      <Filter>program\game\TPRlib</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\TPRlib\Vector2.h">
+      <Filter>program\game\TPRlib</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\TPRlib\Vector2_int.h">
+      <Filter>program\game\TPRlib</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\TPRlib\Angle.h">
+      <Filter>program\game\TPRlib</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\TPRlib\Astar.h">
+      <Filter>program\game\TPRlib</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\TPRlib\Collision.h">
+      <Filter>program\game\TPRlib</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\TPRlib\Color.h">
+      <Filter>program\game\TPRlib</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\TPRlib\Coroutine.h">
+      <Filter>program\game\TPRlib</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
