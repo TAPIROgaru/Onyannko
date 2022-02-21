@@ -163,6 +163,10 @@ void Player::Move(float deltatime) {
 
 	GMp->SPp->isHit_Wall(pos, prev_pos, r);
 
+	if (_stun) {
+		pos = prev_pos;
+	}
+
 	prev_pos = pos;
 }
 

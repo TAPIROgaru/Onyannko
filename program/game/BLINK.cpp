@@ -54,9 +54,10 @@ void BLINK::TurnOff(float deltatime) {
 
 void BLINK::Skill_UpDate(float deltatime) {
 
-	if (_active) {
-		TurnOff(deltatime);
-	}
+	if (!_active)return;
+
+	TurnOff(deltatime);
+	
 }
 void BLINK::Skill_Render(Camera* cam) {
 

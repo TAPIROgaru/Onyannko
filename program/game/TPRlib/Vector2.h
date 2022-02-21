@@ -49,14 +49,59 @@ namespace tpr {
 			return Vector2(x - p.x, y - p.y);
 		}
 
-		Vector2 operator /(int value) {
+		Vector2 operator *(Vector2 p) {
 
-			return Vector2(x / value, y / value);
+			return Vector2(x * p.x, y * p.y);
+		}
+
+		Vector2 operator /(Vector2 p) {
+
+			return Vector2(x / p.x, y / p.y);
 		}
 
 		Vector2 operator =(Vector2 p) {
 
 			return Vector2(x = p.x, y = p.y);
+		}
+
+		Vector2 operator +(float value) {
+
+			return Vector2(x + value, y + value);
+		}
+
+		Vector2 operator -(float value) {
+
+			return Vector2(x - value, y - value);
+		}
+
+		Vector2 operator /(float value) {
+
+			return Vector2(x / value, y / value);
+		}
+
+		Vector2 operator *(float value) {
+
+			return Vector2(x * value, y * value);
+		}
+
+		Vector2 operator +=(Vector2 p) {
+
+			return Vector2(x += p.x, y += p.y);
+		}
+
+		Vector2 operator -=(Vector2 p) {
+
+			return Vector2(x -= p.x, y -= p.y);
+		}
+
+		Vector2 operator *=(Vector2 p) {
+
+			return Vector2(x *= p.x, y *= p.y);
+		}
+
+		Vector2 operator /=(Vector2 p) {
+
+			return Vector2(x /= p.x, y /= p.y);
 		}
 
 		bool operator ==(Vector2 p) {

@@ -22,12 +22,21 @@ public:
 
 	void TurnOff(float deltatime)override;
 
+	bool isHit();
+
 
 	//--------------------------------------------------------------------------------------
 	//ïœêî
 
-	float speed = 8.0f;
+	float throw_speed = 8.0f;
+	float pull_speed = throw_speed * 1.5;
 	tpr::Line* line = nullptr;
+	CharaObj* p = nullptr;
+	CharaObj* e_p = nullptr;
+	t2k::Vector3 origin_pos;
+	int r = 16;
+
+	bool _hit = false;
 
 
 	//--------------------------------------------------------------------------------------
