@@ -18,7 +18,8 @@ namespace tpr {
 
 		Vector2 pos_ = end_pos - start_pos;
 
-		return atanf(pos_.y / pos_.x);
+		return atan2(pos_.y, pos_.x);
+
 	}
 
 	//-----------------------------------------------------------------------------------------

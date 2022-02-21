@@ -5,9 +5,8 @@
 //自作ファイル
 
 #include "Object.h"
-#include "Scroll.h"
-#include "Skill.h"
 
+class Scroll;
 
 //----------------------------------------------------------------------------------------------------
 
@@ -66,6 +65,8 @@ public:
 
 		int skill_b = 0;         //Bスキル
 		float b_cooltime = 0;    //↑のクールタイム
+
+		bool _active = false;    //スキルが発動している状態
 	};
 
 	Ability abi;

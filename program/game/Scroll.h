@@ -10,6 +10,7 @@
 #include "Object.h"
 #include "TPRlib/tpr_library.h"
 
+class CharaObj;
 class Skill;
 class BLINK;
 class KAGINAWA;
@@ -43,17 +44,17 @@ public:
 	Scroll(int num, char c, tpr::Vector2 pos_);
 	~Scroll() {};
 
-	void Activate(tpr::Vector2 pos, float dire_x, float dire_y);
+	void Activate(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p);
 
-	void Kaginawa(tpr::Vector2 pos, float dire_x, float dire_y);
-	void Nintou(tpr::Vector2 pos, float dire_x, float dire_y);
-	void Torinoko(tpr::Vector2 pos, float dire_x, float dire_y);
-	void Kakuremi(tpr::Vector2 pos, float dire_x, float dire_y);
-	void Kunai(tpr::Vector2 pos, float dire_x, float dire_y);
-	void Blink(tpr::Vector2 pos, float dire_x, float dire_y);
-	void Shotgun(tpr::Vector2 pos, float dire_x, float dire_y);
-	void Makibisi(tpr::Vector2 pos, float dire_x, float dire_y);
-	void Teppo(tpr::Vector2 pos, float dire_x, float dire_y);
+	void Kaginawa(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p);
+	void Nintou(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p);
+	void Torinoko(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p);
+	void Kakuremi(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p);
+	void Kunai(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p);
+	void Blink(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p);
+	void Shotgun(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p);
+	void Makibisi(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p);
+	void Teppo(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p);
 
 	void make_Kaginawa(tpr::Vector2 pos, int angle);
 	void make_Nintou(tpr::Vector2 pos, int angle);
@@ -94,7 +95,7 @@ public:
 	int my_number = -1;
 
 
-	std::function< void(Scroll*, tpr::Vector2 pos, float dire_x, float dire_y) >
+	std::function< void(Scroll*, tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) >
 		skill_func[E_SKILL_MAX] = {
 		&Scroll::Kaginawa,
 		&Scroll::Nintou,

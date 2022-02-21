@@ -48,16 +48,18 @@ Scroll::Scroll(int num, char c, tpr::Vector2 pos_) {
 
 //------------------------------------------------------------------------------------------------
 //”­“®
-void Scroll::Activate(tpr::Vector2 pos, float dire_x, float dire_y) {
+void Scroll::Activate(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
-	skill_func[my_number](this, pos, dire_x, dire_y);
+	skill_func[my_number](this, pos, dire_x, dire_y, p);
 }
 
 
 //------------------------------------------------------------------------------------------------
 //‚©‚¬‚È‚í@(ˆø‚Á’£‚é)
-void Scroll::Kaginawa(tpr::Vector2 pos, float dire_x, float dire_y) {
+void Scroll::Kaginawa(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
+	if (kaginawa->_active)return;
+	kaginawa->Active(pos, dire_x, dire_y, p);
 }
 void Scroll::make_Kaginawa(tpr::Vector2 pos, int angle) {
 
@@ -68,9 +70,9 @@ void Scroll::make_Kaginawa(tpr::Vector2 pos, int angle) {
 
 //------------------------------------------------------------------------------------------------
 //‚É‚ñ‚Æ‚¤@(ŽO‰ñ)
-void Scroll::Nintou(tpr::Vector2 pos, float dire_x, float dire_y) {
+void Scroll::Nintou(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
-
+	if(nintou->_active)return;
 }
 void Scroll::make_Nintou(tpr::Vector2 pos, int angle) {
 
@@ -81,8 +83,9 @@ void Scroll::make_Nintou(tpr::Vector2 pos, int angle) {
 
 //------------------------------------------------------------------------------------------------
 //‚Æ‚è‚Ì‚±@(‚Î‚­‚¾‚ñ)
-void Scroll::Torinoko(tpr::Vector2 pos, float dire_x, float dire_y) {
+void Scroll::Torinoko(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
+	if(torinoko->_active)return;
 }
 void Scroll::make_Torinoko(tpr::Vector2 pos, int angle) {
 
@@ -93,8 +96,9 @@ void Scroll::make_Torinoko(tpr::Vector2 pos, int angle) {
 
 //------------------------------------------------------------------------------------------------
 //‚©‚­‚ê‚Ý@(”¼“§–¾‚É‚·‚é)
-void Scroll::Kakuremi(tpr::Vector2 pos, float dire_x, float dire_y) {
+void Scroll::Kakuremi(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
+	if(kakuremi->_active)return;
 }
 void Scroll::make_Kakuremi(tpr::Vector2 pos, int angle) {
 
@@ -105,8 +109,9 @@ void Scroll::make_Kakuremi(tpr::Vector2 pos, int angle) {
 
 //------------------------------------------------------------------------------------------------
 //‚­‚È‚¢@‚Â‚¢‚¹‚«(‘ŠŽE‚ ‚è)
-void Scroll::Kunai(tpr::Vector2 pos, float dire_x, float dire_y) {
+void Scroll::Kunai(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
+	if(kunai->_active)return;
 }
 void Scroll::make_Kunai(tpr::Vector2 pos, int angle) {
 
@@ -117,8 +122,10 @@ void Scroll::make_Kunai(tpr::Vector2 pos, int angle) {
 
 //------------------------------------------------------------------------------------------------
 //ƒuƒŠƒ“ƒN
-void Scroll::Blink(tpr::Vector2 pos, float dire_x, float dire_y) {
+void Scroll::Blink(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
+	if(blink->_active)return;
+	blink->Active(pos, dire_x, dire_y, p);
 }
 void Scroll::make_Blink(tpr::Vector2 pos, int angle) {
 
@@ -129,8 +136,9 @@ void Scroll::make_Blink(tpr::Vector2 pos, int angle) {
 
 //------------------------------------------------------------------------------------------------
 //ŽU’e
-void Scroll::Shotgun(tpr::Vector2 pos, float dire_x, float dire_y) {
+void Scroll::Shotgun(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
+	if(shotgun->_active)return;
 }
 void Scroll::make_Shotgun(tpr::Vector2 pos, int angle) {
 
@@ -141,8 +149,9 @@ void Scroll::make_Shotgun(tpr::Vector2 pos, int angle) {
 
 //------------------------------------------------------------------------------------------------
 //‚Ü‚«‚Ñ‚µ@(ƒgƒ‰ƒbƒv)
-void Scroll::Makibisi(tpr::Vector2 pos, float dire_x, float dire_y) {
+void Scroll::Makibisi(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
+	if(makibisi->_active)return;
 }
 void Scroll::make_Makibisi(tpr::Vector2 pos, int angle) {
 
@@ -153,8 +162,9 @@ void Scroll::make_Makibisi(tpr::Vector2 pos, int angle) {
 
 //------------------------------------------------------------------------------------------------
 //“Ob’e
-void Scroll::Teppo(tpr::Vector2 pos, float dire_x, float dire_y) {
+void Scroll::Teppo(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
+	if(teppo->_active)return;
 }
 void Scroll::make_Teppo(tpr::Vector2 pos, int angle) {
 
@@ -169,12 +179,12 @@ void Scroll::make_Teppo(tpr::Vector2 pos, int angle) {
 void Scroll::Update(float deltatime, tpr::Vector2 pos_) {
 
 	for (auto p: skill_p) {
-		p->Update(deltatime, pos_);
+		p->Skill_UpDateMain(deltatime, pos_);
 	}
 }
 void Scroll::Render(Camera* cam) {
 
 	for (auto p : skill_p) {
-		p->Render(cam);
+		p->Skill_RenderMain(cam);
 	}
 }

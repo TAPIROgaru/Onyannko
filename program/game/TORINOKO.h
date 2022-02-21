@@ -16,5 +16,5 @@ public:
 	//------------------------------------------------------------------------------------------------
 	//ä÷êî
 
-	void Active(tpr::Vector2 pos, float dire_x, float dire_y)override;
+	void Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p)override;
 };

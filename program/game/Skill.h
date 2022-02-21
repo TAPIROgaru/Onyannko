@@ -8,6 +8,8 @@
 #include "TPRlib/tpr_library.h"
 #include "Camera.h"
 
+class CharaObj;
+
 class Skill :public Object {
 public:
 
@@ -16,31 +18,37 @@ public:
 	//------------------------------------------------------------------------------------------
 	//ä÷êî
 
+	virtual void Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {};
+
+	virtual void TurnOff(float deltatime) {};
+
 
 	//------------------------------------------------------------------------------------------
 	//ïœêî
 
 	int my_number;
-	float count = 0;
-	float cool_time;
+	float cool_time_count = 0.0f;
+	float cool_time = 0.0f;
+	float count = 0.0f;
 
 	std::vector<int> skill_img;
 	int scroll_img_close;
 	int scroll_img_open;
 
 	int angle;
-
+	tpr::Vector2 dire;
 
 	bool _active = false;
 	bool _end_effect = false;
-
-	virtual void Active(tpr::Vector2 pos, float dire_x, float dire_y) {};
+	bool _effect = false;
 
 	//------------------------------------------------------------------------------------------
 	//ñàÉtÉåÅ[ÉÄåƒÇ—èoÇµ
 
-	virtual void Update(float deltatime, tpr::Vector2 pos_);
-	virtual void Render(Camera* cam);
+	virtual void Skill_UpDateMain(float deltatime, tpr::Vector2 pos_);
+	virtual void Skill_UpDate(float deltatime) {}
+	virtual void Skill_RenderMain(Camera* cam);
+	virtual void Skill_Render(Camera* cam) {}
 
 
 	//------------------------------------------------------------------------------------------

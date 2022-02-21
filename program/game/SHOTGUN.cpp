@@ -1,5 +1,8 @@
 #include "GameManager.h"
 #include "SHOTGUN.h"
+#include "TPRlib/tpr_library.h"
+#include "Player.h"
+#include "Enemy.h"
 
 extern GameManager* GMp;
 
@@ -11,6 +14,6 @@ SHOTGUN::SHOTGUN(tpr::Vector2 pos_, int angle) {
 	this->angle = angle;
 }
 
-void SHOTGUN::Active(tpr::Vector2 pos, float dire_x, float dire_y) {
+void SHOTGUN::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
 }

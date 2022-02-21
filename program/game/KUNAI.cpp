@@ -1,5 +1,8 @@
 #include "GameManager.h"
 #include "KUNAI.h"
+#include "TPRlib/tpr_library.h"
+#include "Player.h"
+#include "Enemy.h"
 
 extern GameManager* GMp;
 
@@ -14,7 +17,7 @@ KUNAI::KUNAI(tpr::Vector2 pos_, int angle) {
 	cool_time = 0.0f;
 	this->angle = angle;
 }
-void KUNAI::Active(tpr::Vector2 pos, float dire_x, float dire_y)
+void KUNAI::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p)
 {
 
 }
