@@ -151,7 +151,7 @@ namespace tpr {
 		// 
 		// return 距離
 		//=======================================================
-		static int DistanceCalc(Vector2 start_pos, Vector2 end_pos);
+		static float DistanceCalc(Vector2 start_pos, Vector2 end_pos);
 
 		//=======================================================
 		// 2点間の中心点の計算

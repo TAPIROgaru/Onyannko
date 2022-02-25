@@ -473,12 +473,27 @@ void PlayScene::Render(float deltatime) {
 
 	cam.render();
 
+	//=============================================================================
+	//デバッグ用
+
 	tpr::Vector2_int m;
 	GetMousePoint(&m.x, &m.y);
 
 	tpr::Vector2 mf(m.x, m.y);
 
 	DrawFormatString(200, 0, -1, "mx:%f my:%f", mf.x, mf.y);
+
+	if (Pp == nullptr)return;
+
+	tpr::Vector2 e_pos = FixPositionVector(tpr::Vector2(Ep->pos.x, Ep->pos.y));
+	tpr::Vector2 p_pos = FixPositionVector(tpr::Vector2(Pp->pos.x, Pp->pos.y));
+
+	//PlayerとEnemyをつなぐ矩形
+	tpr::Quadrilateral ray_quad(e_pos, p_pos, GMp->BULLET_RADIUS * 2);
+
+	ray_quad.DrawBox(-1);
+
+	//=============================================================================
 }
 
 //----------------------------------------------------------------------------------------------------

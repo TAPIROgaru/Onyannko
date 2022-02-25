@@ -12,7 +12,7 @@ namespace tpr {
 
 	void Quadrilateral::DrawBox(unsigned int c) {
 
-		//upper_line.DrawLine(c);
+		upper_line.DrawLine(c);
 		bottom_line.DrawLine(c);
 		left_line.DrawLine(c);
 		right_line.DrawLine(c);
@@ -20,7 +20,7 @@ namespace tpr {
 
 	void Quadrilateral::DrawBox(Color c) {
 
-		//upper_line.DrawLine(c);
+		upper_line.DrawLine(c);
 		bottom_line.DrawLine(c);
 		left_line.DrawLine(c);
 		right_line.DrawLine(c);

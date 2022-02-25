@@ -35,13 +35,13 @@ namespace tpr {
 	//-----------------------------------------------------------------------------------------
 	// 2“_ŠÔ‚Ì‹——£‚ÌŒvŽZ
 
-	int Vector2::DistanceCalc(Vector2 start_pos, Vector2 end_pos) {
+	float Vector2::DistanceCalc(Vector2 start_pos, Vector2 end_pos) {
 
-		int dist;
+		float x = end_pos.x - start_pos.x;
 
-		float rad = Angle::RadCalc(start_pos, end_pos);
+		float y = end_pos.y - start_pos.y;
 
-		dist = abs((int)((start_pos - end_pos).x / cosf(rad)));
+		float dist = sqrtf(x * x + y * y);
 
 		return dist;
 	}

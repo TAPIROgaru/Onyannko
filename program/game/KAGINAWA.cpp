@@ -61,7 +61,6 @@ void KAGINAWA::TurnOff(float deltatime) {
 
 		if (48.0f * 48.0f > (v.x * v.x) + (v.y * v.y)) {
 
-			_active = false;
 			_effect = false;
 			_hit = false;
 			e_p->_stun = false;

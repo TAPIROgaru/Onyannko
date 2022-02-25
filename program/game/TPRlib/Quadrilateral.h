@@ -101,7 +101,7 @@ namespace tpr {
 
 			int size_h = Vector2::DistanceCalc(start_pos, end_pos);
 
-			float rad = Angle::RadCalc(start_pos, end_pos) + Angle::DegChangeRad(90);
+			float rad = Angle::RadCalc(start_pos, end_pos);
 
 			*this = Quadrilateral(pos_c, size_w, size_h, rad);
 

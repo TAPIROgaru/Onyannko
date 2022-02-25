@@ -225,8 +225,8 @@ void Enemy::Update(float deltatime) {
 
 	timecount += deltatime;
 
-	//Move(deltatime);
-	//FindPlayer(deltatime);
+	Move(deltatime);
+	FindPlayer(deltatime);
 
 	ult->Update(deltatime, tpr::Vector2(pos.x, pos.y));
 	skillA->Update(deltatime, tpr::Vector2(pos.x, pos.y));
@@ -258,16 +258,16 @@ void Enemy::Render(Camera* cam) {
 
 	DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, chara_handle, 1);
 
-	DrawFormatString(600, 100, -1, "x:%f y:%f"  , pos.x, pos.y);
-	DrawFormatString(600, 120, -1, "–¼‘O    :%s"    , name);
-	DrawFormatString(600, 140, -1, "HP      :%d"      , sta.hp_);
-	DrawFormatString(600, 160, -1, "ˆÚ“®‘¬“x:%d", sta.move_speed);
-	DrawFormatString(600, 180, -1, "UŒ‚—Í  :%d"  , sta.attack);
-	DrawFormatString(600, 200, -1, "–hŒä—Í  :%d"  , sta.defense);
-	DrawFormatString(600, 220, -1, "UŒ‚‘¬“x:%d", sta.attack_speed);
-	DrawFormatString(600, 240, -1, "ult     :%d", ult->my_number);
-	DrawFormatString(600, 260, -1, "skillA  :%d", skillA->my_number);
-	DrawFormatString(600, 280, -1, "skillB  :%d", skillB->my_number);
+	//DrawFormatString(600, 100, -1, "x:%f y:%f"  , pos.x, pos.y);
+	//DrawFormatString(600, 120, -1, "–¼‘O    :%s"    , name);
+	//DrawFormatString(600, 140, -1, "HP      :%d"      , sta.hp_);
+	//DrawFormatString(600, 160, -1, "ˆÚ“®‘¬“x:%d", sta.move_speed);
+	//DrawFormatString(600, 180, -1, "UŒ‚—Í  :%d"  , sta.attack);
+	//DrawFormatString(600, 200, -1, "–hŒä—Í  :%d"  , sta.defense);
+	//DrawFormatString(600, 220, -1, "UŒ‚‘¬“x:%d", sta.attack_speed);
+	//DrawFormatString(600, 240, -1, "ult     :%d", ult->my_number);
+	//DrawFormatString(600, 260, -1, "skillA  :%d", skillA->my_number);
+	//DrawFormatString(600, 280, -1, "skillB  :%d", skillB->my_number);
 }
 
 //----------------------------------------------------------------------------------------------------

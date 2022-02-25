@@ -14,6 +14,34 @@ SHOTGUN::SHOTGUN(tpr::Vector2 pos_, int angle) {
 	this->angle = angle;
 }
 
-void SHOTGUN::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
+
+//----------------------------------------------------------------------------------------------
+//アクティブ
+
+void SHOTGUN::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p)
+{
+
+
+	_active = true;
+	_effect = true;
+}
+
+
+//----------------------------------------------------------------------------------------------
+//スキルの終わり
+
+void SHOTGUN::TurnOff(float deltatime) {
+
+}
+
+
+//----------------------------------------------------------------------------------------------
+//毎フレーム呼び出し
+
+void SHOTGUN::Skill_UpDate(float deltatime) {
+
+}
+void SHOTGUN::Skill_Render(Camera* cam) {
+
 
 }

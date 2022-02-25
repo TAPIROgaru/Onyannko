@@ -234,16 +234,16 @@ void Player::Render(Camera* cam) {
 	skillA->Render(cam);
 	skillB->Render(cam);
 
-	DrawFormatString(100, 100, -1, "x:%f y:%f", pos.x, pos.y);
-	DrawFormatString(100, 120, -1, "–¼‘O    :%s", name);
-	DrawFormatString(100, 140, -1, "HP      :%d", sta.hp_);
-	DrawFormatString(100, 160, -1, "ˆÚ“®‘¬“x:%d", sta.move_speed);
-	DrawFormatString(100, 180, -1, "UŒ‚—Í  :%d", sta.attack);
-	DrawFormatString(100, 200, -1, "–hŒä—Í  :%d", sta.defense);
-	DrawFormatString(100, 220, -1, "UŒ‚‘¬“x:%d", sta.attack_speed);
-	DrawFormatString(100, 240, -1, "ult     :%d", ult->my_number);
-	DrawFormatString(100, 260, -1, "skillA  :%d", skillA->my_number);
-	DrawFormatString(100, 280, -1, "skillB  :%d", skillB->my_number);
+	//DrawFormatString(100, 100, -1, "x:%f y:%f", pos.x, pos.y);
+	//DrawFormatString(100, 120, -1, "–¼‘O    :%s", name);
+	//DrawFormatString(100, 140, -1, "HP      :%d", sta.hp_);
+	//DrawFormatString(100, 160, -1, "ˆÚ“®‘¬“x:%d", sta.move_speed);
+	//DrawFormatString(100, 180, -1, "UŒ‚—Í  :%d", sta.attack);
+	//DrawFormatString(100, 200, -1, "–hŒä—Í  :%d", sta.defense);
+	//DrawFormatString(100, 220, -1, "UŒ‚‘¬“x:%d", sta.attack_speed);
+	//DrawFormatString(100, 240, -1, "ult     :%d", ult->my_number);
+	//DrawFormatString(100, 260, -1, "skillA  :%d", skillA->my_number);
+	//DrawFormatString(100, 280, -1, "skillB  :%d", skillB->my_number);
 }
 
 //----------------------------------------------------------------------------------------------------

@@ -43,5 +43,5 @@ void gameMain( float deltatime ) {
 	GMp->Update(deltatime);
 	GMp->Render(deltatime);
 
-	printfDx("%f\n",deltatime);
+	//printfDx("%f\n",deltatime);
 }

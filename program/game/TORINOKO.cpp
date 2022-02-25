@@ -28,7 +28,35 @@ TORINOKO::TORINOKO(tpr::Vector2 pos_, int angle) {
 	cool_time = 0.0f;
 	this->angle = angle;
 }
+
+
+//----------------------------------------------------------------------------------------------
+//アクティブ
+
 void TORINOKO::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p)
 {
+
+
+	_active = true;
+	_effect = true;
+}
+
+
+//----------------------------------------------------------------------------------------------
+//スキルの終わり
+
+void TORINOKO::TurnOff(float deltatime) {
+
+}
+
+
+//----------------------------------------------------------------------------------------------
+//毎フレーム呼び出し
+
+void TORINOKO::Skill_UpDate(float deltatime) {
+
+}
+void TORINOKO::Skill_Render(Camera* cam) {
+
 
 }

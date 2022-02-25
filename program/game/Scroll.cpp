@@ -99,6 +99,7 @@ void Scroll::make_Torinoko(tpr::Vector2 pos, int angle) {
 void Scroll::Kakuremi(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
 	if(kakuremi->_active)return;
+	kakuremi->Active(pos, dire_x, dire_y, p);
 }
 void Scroll::make_Kakuremi(tpr::Vector2 pos, int angle) {
 
