@@ -195,11 +195,20 @@ void PlayScene::isHit_bullet() {
 
 	for (auto p : Bp) {
 		if (p->_team) {
+
+			//当たり判定
 			if (tpr::isHit_CircleAndCircle(
 				tpr::Vector2(Ep->pos.x, Ep->pos.y),Ep->r,
 				tpr::Vector2(p->pos.x, p->pos.y), p->r)) {
 
-				Ep->sta.hp_--;
+
+				//ダメ計算
+				int damage = Pp->sta.attack - Ep->sta.defense;
+
+				//ダメ付与
+				if (damage <= 0) { Ep->sta.hp_--; }
+				else { Ep->sta.hp_ -= damage; }
+
 				p->alive_flag = false;
 			}
 		}
@@ -208,7 +217,14 @@ void PlayScene::isHit_bullet() {
 				tpr::Vector2(Pp->pos.x, Pp->pos.y), Pp->r,
 				tpr::Vector2(p->pos.x, p->pos.y), p->r)) {
 
-				Pp->sta.hp_--;
+
+				//ダメ計算
+				int damage = Ep->sta.attack - Pp->sta.defense;
+
+				//ダメ付与
+				if (damage <= 0) { Pp->sta.hp_--; }
+				else { Pp->sta.hp_ -= damage; }
+
 				p->alive_flag = false;
 			}
 		}
@@ -429,7 +445,7 @@ void PlayScene::Init() {
 	Pp = new Player();
 	Op.emplace_back(Pp);
 
-	Ep = new Enemy(1);
+	Ep = new Enemy(GMp->ENEMY_TAG);
 	Op.emplace_back(Ep);
 
 	count = 0;
@@ -481,7 +497,7 @@ void PlayScene::Render(float deltatime) {
 
 	tpr::Vector2 mf(m.x, m.y);
 
-	DrawFormatString(200, 0, -1, "mx:%f my:%f", mf.x, mf.y);
+	//DrawFormatString(200, 0, -1, "mx:%f my:%f", mf.x, mf.y);
 
 	if (Pp == nullptr)return;
 

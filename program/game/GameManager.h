@@ -26,7 +26,7 @@ class GameManager {
 public:
 
 	//------------------------------------------------------------------------------------------------
-	//サイズ一覧
+	//サイズ一覧 その他設定
 
 	static constexpr int SCREEN_W = 960;
 	static constexpr int SCREEN_H = 540;
@@ -47,6 +47,10 @@ public:
 
 
 	static constexpr int BULLET_RADIUS = 7;
+
+
+	static constexpr int PLAYER_TAG = 1;
+	static constexpr int ENEMY_TAG = 2;
 
 	//------------------------------------------------------------------------------------------------
 

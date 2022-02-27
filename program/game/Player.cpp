@@ -49,9 +49,9 @@ void Player::LoadStatus() {
 		//名前読み込み
 		for (i = 0; i < name_length; i++) {
 
-			name[i] = GMp->SPp->datas[0][0].c_str()[i];
+			name[i] = GMp->SPp->datas[GMp->PLAYER_TAG][0].c_str()[i];
 
-			if ('\0' == GMp->SPp->datas[0][0].c_str()[i]) {
+			if ('\0' == GMp->SPp->datas[GMp->PLAYER_TAG][0].c_str()[i]) {
 
 				break;
 			}
@@ -59,20 +59,20 @@ void Player::LoadStatus() {
 
 		//ステータス読み込み
 		sta = {
-			std::atoi(GMp->SPp->datas[0][0].c_str()), //ヒットポイント
+			std::atoi(GMp->SPp->datas[GMp->PLAYER_TAG][0].c_str()), //ヒットポイント
 			sta.HP,                                   //増減するHP
-			std::atoi(GMp->SPp->datas[0][2].c_str()), //移動速度
-			std::atoi(GMp->SPp->datas[0][3].c_str()), //攻撃力
-			std::atoi(GMp->SPp->datas[0][4].c_str()), //防御力
-			std::atoi(GMp->SPp->datas[0][5].c_str()), //攻撃速度
+			std::atoi(GMp->SPp->datas[GMp->PLAYER_TAG][2].c_str()), //移動速度
+			std::atoi(GMp->SPp->datas[GMp->PLAYER_TAG][3].c_str()), //攻撃力
+			std::atoi(GMp->SPp->datas[GMp->PLAYER_TAG][4].c_str()), //防御力
+			std::atoi(GMp->SPp->datas[GMp->PLAYER_TAG][5].c_str()), //攻撃速度
 		};
 
 		//スキル読み込み
-		ult    = new Scroll(std::atoi(GMp->SPp->datas[0][6].c_str())
+		ult    = new Scroll(std::atoi(GMp->SPp->datas[GMp->PLAYER_TAG][6].c_str())
 			, 'u', tpr::Vector2(pos.x, pos.y));
-		skillA = new Scroll(std::atoi(GMp->SPp->datas[0][7].c_str())
+		skillA = new Scroll(std::atoi(GMp->SPp->datas[GMp->PLAYER_TAG][7].c_str())
 			, 'a', tpr::Vector2(pos.x, pos.y));
-		skillB = new Scroll(std::atoi(GMp->SPp->datas[0][8].c_str())
+		skillB = new Scroll(std::atoi(GMp->SPp->datas[GMp->PLAYER_TAG][8].c_str())
 			, 'b', tpr::Vector2(pos.x, pos.y));
 
 		return;
