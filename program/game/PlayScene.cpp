@@ -164,11 +164,11 @@ void PlayScene::SavePlayer() {
 	fopen_s(&fp, "player.bin", "wb");
 
 	fwrite(Pp->name, sizeof(Pp->name), 1, fp);
-	fwrite(&Pp->sta.HP, sizeof(int), 1, fp);
-	fwrite(&Pp->sta.move_speed, sizeof(int), 1, fp);
-	fwrite(&Pp->sta.attack, sizeof(int), 1, fp);
-	fwrite(&Pp->sta.defense, sizeof(int), 1, fp);
-	fwrite(&Pp->sta.attack_speed, sizeof(int), 1, fp);
+	fwrite(&Pp->origin_sta.HP, sizeof(int), 1, fp);
+	fwrite(&Pp->origin_sta.move_speed, sizeof(int), 1, fp);
+	fwrite(&Pp->origin_sta.attack, sizeof(int), 1, fp);
+	fwrite(&Pp->origin_sta.defense, sizeof(int), 1, fp);
+	fwrite(&Pp->origin_sta.attack_speed, sizeof(int), 1, fp);
 	fwrite(&Pp->ult->my_number, sizeof(int), 1, fp);
 	fwrite(&Pp->skillA->my_number, sizeof(int), 1, fp);
 	fwrite(&Pp->skillB->my_number, sizeof(int), 1, fp);
@@ -201,15 +201,16 @@ void PlayScene::isHit_bullet() {
 				tpr::Vector2(Ep->pos.x, Ep->pos.y),Ep->r,
 				tpr::Vector2(p->pos.x, p->pos.y), p->r)) {
 
+				if (!Ep->_invincible) {
+					//ダメ計算
+					int damage = Pp->sta.attack - Ep->sta.defense;
 
-				//ダメ計算
-				int damage = Pp->sta.attack - Ep->sta.defense;
+					//ダメ付与
+					if (damage <= 0) { Ep->sta.hp_--; }
+					else { Ep->sta.hp_ -= damage; }
 
-				//ダメ付与
-				if (damage <= 0) { Ep->sta.hp_--; }
-				else { Ep->sta.hp_ -= damage; }
-
-				p->alive_flag = false;
+					p->alive_flag = false;
+				}
 			}
 		}
 		else if (!p->_team) {
@@ -218,20 +219,29 @@ void PlayScene::isHit_bullet() {
 				tpr::Vector2(p->pos.x, p->pos.y), p->r)) {
 
 
-				//ダメ計算
-				int damage = Ep->sta.attack - Pp->sta.defense;
+				if (!Pp->_invincible) {
+					//ダメ計算
+					int damage = Ep->sta.attack - Pp->sta.defense;
 
-				//ダメ付与
-				if (damage <= 0) { Pp->sta.hp_--; }
-				else { Pp->sta.hp_ -= damage; }
+					//ダメ付与
+					if (damage <= 0) { Pp->sta.hp_--; }
+					else { Pp->sta.hp_ -= damage; }
 
-				p->alive_flag = false;
+					p->alive_flag = false;
+				}
 			}
 		}
 	}
 }
 
 bool PlayScene::isHit_Wall(t2k::Vector3 pos, float r) {
+
+	//posに近い順にソート
+	Sp_wall.sort([&](Square* l, Square* r) {
+		float ld = (pos - l->pos).length();
+		float rd = (pos - r->pos).length();
+		return (ld < rd);
+		});
 
 	for (auto p : Sp_wall) {
 
@@ -247,6 +257,42 @@ bool PlayScene::isHit_Wall(t2k::Vector3 pos, float r) {
 		);
 
 		if (isHit_DotAndCircle(pos_, pos, r)) { return true; }
+	}
+
+	return false;
+}
+
+bool PlayScene::isHit_Wall(t2k::Vector3 pos,  t2k::Vector3 prev_pos, float r, int *num) {
+
+	//posに近い順にソート
+	Sp_wall.sort([&](Square* l, Square* r) {
+		float ld = (pos - l->pos).length();
+		float rd = (pos - r->pos).length();
+		return (ld < rd);
+		});
+
+	for (auto p : Sp_wall) {
+
+		float x = p->pos.x + (p->size_w_ >> 1);
+		float y = p->pos.y + (p->size_h_ >> 1);
+		t2k::Vector3 box_pos = { x, y, 0 };
+
+		t2k::Vector3 pos_ = t2k::getNearestRectPoint(
+			box_pos,
+			p->size_w_,
+			p->size_h_,
+			pos
+		);
+
+		if (isHit_DotAndCircle(pos_, pos, r)) { 
+			
+			*num = t2k::getRegionPointAndRect(prev_pos, t2k::Vector3(x, y, 0),
+				p->size_w_, p->size_h_);
+
+			isHit_ActionCorrectionPosition(pos, r, pos_, *num);
+
+			return true;
+		}
 	}
 
 	return false;
@@ -279,6 +325,8 @@ void PlayScene::isHit_Wall(t2k::Vector3& pos, t2k::Vector3 prev_pos, float r) {
 			int num = t2k::getRegionPointAndRect(prev_pos, t2k::Vector3(x, y, 0), p->size_w_, p->size_h_);
 
 			isHit_ActionCorrectionPosition(pos, r, pos_, num);
+
+			break;
 		}
 	}
 }
@@ -331,7 +379,7 @@ bool PlayScene::isHit_RayAndWall() {
 	tpr::Vector2 p_pos = FixPositionVector(tpr::Vector2(Pp->pos.x, Pp->pos.y));
 
 	//PlayerとEnemyをつなぐ矩形
-	tpr::Quadrilateral ray_quad(e_pos, p_pos, GMp->BULLET_RADIUS * 2);
+	tpr::Quadrilateral ray_quad(e_pos, p_pos, GMp->BULLET_RADIUS * 3);
 
 	auto p = Sp_wall.begin();
 	while (p != Sp_wall.end()) {
@@ -452,10 +500,6 @@ void PlayScene::Init() {
 	_start_flag = false;
 
 	_init = false;
-
-	//デバック用
-	Pp->sta.hp_ = 999;
-	Ep->sta.hp_ = 999;
 }
 
 
@@ -505,7 +549,7 @@ void PlayScene::Render(float deltatime) {
 	tpr::Vector2 p_pos = FixPositionVector(tpr::Vector2(Pp->pos.x, Pp->pos.y));
 
 	//PlayerとEnemyをつなぐ矩形
-	tpr::Quadrilateral ray_quad(e_pos, p_pos, GMp->BULLET_RADIUS * 2);
+	tpr::Quadrilateral ray_quad(e_pos, p_pos, GMp->BULLET_RADIUS * 3);
 
 	ray_quad.DrawBox(-1);
 

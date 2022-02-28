@@ -17,7 +17,7 @@ BLINK::BLINK(tpr::Vector2 pos_, int angle) {
 
 	skill_img.emplace_back(GMp->loadGraph("graphics/NINGU/BLINK.png"));
 
-	cool_time = 3.0f;
+	cool_time = 4.0f;
 	this->angle = angle;
 }
 

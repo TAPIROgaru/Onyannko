@@ -2,6 +2,7 @@
 #include "GameManager.h"
 #include "PlayScene.h"
 #include "ResultScene.h"
+#include "Skill.h"
 
 
 #define PI 3.14159265359f
@@ -13,10 +14,11 @@ extern GameManager* GMp;
 Player::Player() {
 
 	_team = true;
-	pos = { GMp->FIELD_W / 2 - 200, GMp->FIELD_H / 2 , 0 };
-	prev_pos = { -200, 0, 0 };
+	pos = { GameManager::START_POSITION_PLAYER_W,GameManager::START_POSITION_H , 0 };
+	prev_pos = { 0, 0, 0 };
 	LoadStatus();
 	r = 16;
+	origin_sta = sta;
 
 	secconds_AS = 1.0f / sta.attack_speed;
 }
@@ -59,13 +61,15 @@ void Player::LoadStatus() {
 
 		//ステータス読み込み
 		sta = {
-			std::atoi(GMp->SPp->datas[GMp->PLAYER_TAG][0].c_str()), //ヒットポイント
-			sta.HP,                                   //増減するHP
+			std::atoi(GMp->SPp->datas[GMp->PLAYER_TAG][1].c_str()), //ヒットポイント
+			0,
 			std::atoi(GMp->SPp->datas[GMp->PLAYER_TAG][2].c_str()), //移動速度
 			std::atoi(GMp->SPp->datas[GMp->PLAYER_TAG][3].c_str()), //攻撃力
 			std::atoi(GMp->SPp->datas[GMp->PLAYER_TAG][4].c_str()), //防御力
 			std::atoi(GMp->SPp->datas[GMp->PLAYER_TAG][5].c_str()), //攻撃速度
 		};
+
+		sta.hp_ = sta.HP;                                           //増減するHP
 
 		//スキル読み込み
 		ult    = new Scroll(std::atoi(GMp->SPp->datas[GMp->PLAYER_TAG][6].c_str())
@@ -145,20 +149,40 @@ void Player::Move(float deltatime) {
 	//ult
 	if (t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_SPACE)) {
 
-		ShootDirection();
-		ult->Activate(tpr::Vector2(pos.x, pos.y), bullet_direction_x, bullet_direction_y, this);
+		for (auto p : ult->skill_p) {
+			if (!p->_active) {
+
+				ShootDirection();
+				ult->Activate(tpr::Vector2(pos.x, pos.y), bullet_direction_x,
+					bullet_direction_y, this);
+			}
+		}
 	}
 
 	//skillA
-	if ( t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_C)) {
-		ShootDirection();
-		skillA->Activate(tpr::Vector2(pos.x, pos.y), bullet_direction_x, bullet_direction_y, this);
+	if (t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_C)) {
+
+		for (auto p : skillA->skill_p) {
+			if (!p->_active) {
+
+				ShootDirection();
+				skillA->Activate(tpr::Vector2(pos.x, pos.y), bullet_direction_x,
+					bullet_direction_y, this);
+			}
+		}
 	}
 
 	//skillB
 	if (t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_V)) {
-		ShootDirection();
-		skillB->Activate(tpr::Vector2(pos.x, pos.y), bullet_direction_x, bullet_direction_y, this);
+
+		for (auto p : skillB->skill_p) {
+			if (!p->_active) {
+
+				ShootDirection();
+				skillB->Activate(tpr::Vector2(pos.x, pos.y), bullet_direction_x,
+					bullet_direction_y, this);
+			}
+		}
 	}
 
 	GMp->SPp->isHit_Wall(pos, prev_pos, r);
@@ -176,6 +200,7 @@ void Player::Move(float deltatime) {
 void Player::FireBullet(float deltatime) {
 
 	if (secconds_AS > timecount) { return; }
+	if (_stun) { return; }
 
 	ShootDirection();
 
@@ -233,6 +258,8 @@ void Player::Render(Camera* cam) {
 	ult->Render(cam);
 	skillA->Render(cam);
 	skillB->Render(cam);
+
+	HP.DrawGauge(tpr::Vector2(pos_.x, pos_.y - 20), 0, sta.HP, sta.hp_);
 
 	//DrawFormatString(100, 100, -1, "x:%f y:%f", pos.x, pos.y);
 	//DrawFormatString(100, 120, -1, "名前    :%s", name);

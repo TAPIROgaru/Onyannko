@@ -52,6 +52,12 @@ public:
 	static constexpr int PLAYER_TAG = 1;
 	static constexpr int ENEMY_TAG = 2;
 
+
+	static constexpr float START_POSITION_PLAYER_W = 50.0f;
+	static constexpr float START_POSITION_ENEMY_W = 1050.0f;
+	static constexpr float START_POSITION_H = 300.0f;
+
+
 	//------------------------------------------------------------------------------------------------
 
 	//コンストラクタ

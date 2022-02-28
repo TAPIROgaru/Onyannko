@@ -25,6 +25,7 @@ public:
 	//変数
 
 	t2k::Vector3 pos;          //座標
+	t2k::Vector3 prev_pos;     //1フレーム前の座標
 	int r;                     //当たり判定用の半径
 	int size_w;                //当たり判定用の幅
 	int size_h;                //当たり判定用の高さ

@@ -1,9 +1,56 @@
 #include "Skill.h"
 #include "GameManager.h"
 #include "PlayScene.h"
+#include "CharaObj.h"
 
 extern GameManager* GMp;
 
+
+//----------------------------------------------------------------------------------------------
+//’e‚Æ“G’e‚Ì“–‚½‚è”»’è
+
+bool Skill::isHit_Bullet() {
+
+	for (auto p : GMp->SPp->Bp) {
+		if (p->_team == _team) { continue; }
+
+		if (tpr::isHit_CircleAndCircle(
+			tpr::Vector2(p->pos.x, p->pos.y), p->r,
+			tpr::Vector2(pos.x, pos.y), r)) {
+
+			p->alive_flag = false;
+
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+//----------------------------------------------------------------------------------------------
+//’e‚Æ“G‚Ì“–‚½‚è”»’è
+
+bool Skill::isHit_Enemy(tpr::Vector2 pos) {
+
+	CharaObj* p = nullptr;
+
+	if (_team) { p = GMp->SPp->Ep; }
+	else if (!_team) { p = GMp->SPp->Pp; }
+
+	if (tpr::isHit_CircleAndCircle(tpr::Vector2(p->pos.x, p->pos.y), p->r, pos, r)) {
+
+		p->sta.hp_--;
+
+		return true;
+	}
+
+	return false;
+}
+
+
+//----------------------------------------------------------------------------------------------
+//–ˆƒtƒŒ[ƒ€ŒÄ‚Ño‚µ
 
 void Skill::Skill_UpDateMain(float deltatime, tpr::Vector2 pos_) {
 
@@ -19,6 +66,7 @@ void Skill::Skill_UpDateMain(float deltatime, tpr::Vector2 pos_) {
 		cool_time_count += deltatime;
 		if (cool_time_count > cool_time) {
 			_active = false;
+			_effect = false;
 			cool_time_count = 0.0f;
 		}
 	}

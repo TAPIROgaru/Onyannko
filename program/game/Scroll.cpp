@@ -113,6 +113,7 @@ void Scroll::make_Kakuremi(tpr::Vector2 pos, int angle) {
 void Scroll::Kunai(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
 	if(kunai->_active)return;
+	kunai->Active(pos, dire_x, dire_y, p);
 }
 void Scroll::make_Kunai(tpr::Vector2 pos, int angle) {
 

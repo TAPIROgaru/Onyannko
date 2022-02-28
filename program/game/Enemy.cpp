@@ -12,9 +12,10 @@ extern GameManager* GMp;
 Enemy::Enemy(int num) {
 
 	_team = false;
-	pos = { GMp->FIELD_W / 2 + 300, GMp->FIELD_H / 2 , 0 };
+	pos = {GameManager::START_POSITION_ENEMY_W,GameManager::START_POSITION_H , 0 };
 	r = 16;
 	LoadStatus(num);
+	origin_sta = sta;
 
 	secconds_AS = 1.0f / sta.attack_speed;
 
@@ -89,6 +90,10 @@ void Enemy::Move(float deltatime) {
 
 		GMp->SPp->isHit_Wall(pos, prev_pos, r);
 
+		if (_stun) {
+			pos = prev_pos;
+		}
+
 		prev_pos = pos;
 		flame_count++;
 		move_count = 1;
@@ -145,12 +150,14 @@ void Enemy::LoadStatus(int num) {
 	//ステータス読み込み
 	sta = {
 		std::atoi(GMp->SPp->datas[num][1].c_str()), //ヒットポイント
-		sta.HP,                                     //増減するHP
+		0,
 		std::atoi(GMp->SPp->datas[num][2].c_str()), //移動速度
 		std::atoi(GMp->SPp->datas[num][3].c_str()), //攻撃力
 		std::atoi(GMp->SPp->datas[num][4].c_str()), //防御力
 		std::atoi(GMp->SPp->datas[num][5].c_str()), //攻撃速度
 	};
+
+	sta.hp_ = sta.HP;                               //増減するHP
 
 	//画像
 	chara_handle = GMp->loadGraph("graphics/Enemy.png");
@@ -180,6 +187,7 @@ void Enemy::LoadStatus(int num) {
 void Enemy::FindPlayer(float deltatime) {
 
 	if (!GMp->SPp->_start_flag || GMp->SRp->_switch) { return; }
+	if (_stun) { return; }
 
 	//Player座標を取得
 	t2k::Vector3 pos_ = GMp->SPp->Pp->pos;
@@ -257,6 +265,9 @@ void Enemy::Render(Camera* cam) {
 	skillB->Render(cam);
 
 	DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, chara_handle, 1);
+
+	HP.DrawGauge(tpr::Vector2(pos_.x, pos_.y - 20), 0, sta.HP, sta.hp_);
+
 
 	//DrawFormatString(600, 100, -1, "x:%f y:%f"  , pos.x, pos.y);
 	//DrawFormatString(600, 120, -1, "名前    :%s"    , name);

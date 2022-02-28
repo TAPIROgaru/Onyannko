@@ -5,6 +5,7 @@
 //自作ファイル
 
 #include "Object.h"
+#include "TPRlib/tpr_library.h"
 
 class Scroll;
 
@@ -43,6 +44,7 @@ public:
 	int chara_handle = 0;         //画像ハンドル
 
 	Status sta;
+	Status origin_sta;
 
 	Scroll* ult;
 	Scroll* skillA;
@@ -52,6 +54,9 @@ public:
 	float timecount = 0;     //時間計測
 
 	bool _stun = false;
+	bool _invincible = false;
+
+	tpr::Hitpoints HP = tpr::Hitpoints(50, 10);
 
 
 	//------------------------------------------------------------------------------------------------

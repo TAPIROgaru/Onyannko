@@ -90,7 +90,7 @@ namespace tpr{
 		//c‰¡Î‚ß‚Ì8•ûŒü‚ÌÀ•W
 		Vector2_int dire[8] = {
 			Vector2_int(-1,-1),Vector2_int( 0,-1),Vector2_int( 1,-1),
-			Vector2_int(-1, 0),/*                   */Vector2_int( 1, 0),
+			Vector2_int(-1, 0),/*               */Vector2_int( 1, 0),
 			Vector2_int(-1, 1),Vector2_int( 0, 1),Vector2_int( 1, 1)
 		};
 

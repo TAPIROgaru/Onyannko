@@ -5,6 +5,7 @@
 //é©çÏÉtÉ@ÉCÉã
 
 #include "Skill.h"
+#include "TPRlib/HitPoints.h"
 
 class KUNAI :public Skill {
 public:
@@ -21,9 +22,21 @@ public:
 
 	void TurnOff(float deltatime)override;
 
+	void isHit();
+
+	void Move();
+
 
 	//--------------------------------------------------------------------------------------
 	//ïœêî
+
+	int hitpoint = 5;
+	float speed = 9.0f;
+	int damage = 1;
+
+	tpr::Hitpoints hp = tpr::Hitpoints(25, 5);
+
+	tpr::Vector2 pos;
 
 
 	//--------------------------------------------------------------------------------------

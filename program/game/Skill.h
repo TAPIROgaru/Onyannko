@@ -18,6 +18,10 @@ public:
 	//------------------------------------------------------------------------------------------
 	//ä÷êî
 
+	bool isHit_Bullet();
+
+	bool isHit_Enemy(tpr::Vector2 pos);
+
 	virtual void Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {};
 
 	virtual void TurnOff(float deltatime) {};

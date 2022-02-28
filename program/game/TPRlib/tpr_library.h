@@ -8,6 +8,7 @@
 #include "Quadrilateral.h"
 #include "Color.h"
 #include "Coroutine.h"
+#include "HitPoints.h"
 
 
 //Œo˜H’Tõ

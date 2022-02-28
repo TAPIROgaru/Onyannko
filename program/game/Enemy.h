@@ -42,8 +42,6 @@ public:
 
 	bool _fire = false;
 
-	t2k::Vector3 prev_pos;              //1フレーム前の座標
-
 	tpr::Astar* astar = nullptr;        //経路探索
 
 	unsigned int flame_count = 0;       //フレームのカウント

@@ -71,20 +71,20 @@ public:
 	//--------------------------------------------------------------------------------------
 	//‘•”õ‹Zˆê——
 	enum ult {
-		E_KAGINAWA,
-		E_NINTOU,
-		E_TORINOKO,
+		E_KAGINAWA,              //0
+		E_NINTOU,                //1
+		E_TORINOKO,              //2
 		E_ULT_MAX
 	};
 	enum skill {
 
-		E_KAKUREMI = E_ULT_MAX,
-		E_KUNAI,
-		E_BLINK,
-		E_SHOTGUN,
-		E_MAKIBISI,
-		E_TEPPO,
-		E_SKILL_MAX
+		E_KAKUREMI = E_ULT_MAX,  //3
+		E_KUNAI,                 //4
+		E_BLINK,                 //5
+		E_SHOTGUN,               //6
+		E_MAKIBISI,              //7
+		E_TEPPO,                 //8
+		E_SKILL_MAX              //9
 	};
 
 

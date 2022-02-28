@@ -100,9 +100,7 @@ void KAGINAWA::Skill_UpDate(float deltatime) {
 
 	if (!_active || !_effect)return;
 
-	TurnOff(deltatime);
-
-	if (isHit()) {
+	if (_hit || isHit()) {
 
 		e_p->_stun = true;
 		_hit = true;
@@ -110,24 +108,27 @@ void KAGINAWA::Skill_UpDate(float deltatime) {
 		line->end_pos -= dire * pull_speed;
 		e_p->pos.x -= dire.x * pull_speed;
 		e_p->pos.y -= dire.y * pull_speed;
+
+		e_p->prev_pos = e_p->pos;
 	}
 	else {
 
 		line->end_pos += dire * throw_speed;
 	}
 
+	TurnOff(deltatime);
+
 	p->pos = origin_pos;
 }
 void KAGINAWA::Skill_Render(Camera* cam) {
 
-	if (_effect) {
+	if (!_effect) { return; }
 
-		tpr::Vector2 s_pos = GMp->SPp->FixPositionVector(line->start_pos);
-		tpr::Vector2 e_pos = GMp->SPp->FixPositionVector(line->end_pos);
-		DrawLine(s_pos.x, s_pos.y, e_pos.x, e_pos.y, 0);
+	tpr::Vector2 s_pos = GMp->SPp->FixPositionVector(line->start_pos);
+	tpr::Vector2 e_pos = GMp->SPp->FixPositionVector(line->end_pos);
+	DrawLine(s_pos.x, s_pos.y, e_pos.x, e_pos.y, 0);
 
-		float rad = tpr::Angle::RadCalc(line->start_pos, line->end_pos);
-		tpr::Vector2 pos_ = GMp->SPp->FixPositionVector(line->end_pos);
-		DrawRotaGraph(pos_.x, pos_.y, 1.0, rad, skill_img[0], true);
-	}
+	float rad = tpr::Angle::RadCalc(line->start_pos, line->end_pos);
+	tpr::Vector2 pos_ = GMp->SPp->FixPositionVector(line->end_pos);
+	DrawRotaGraph(pos_.x, pos_.y, 1.0, rad, skill_img[0], true);
 }
