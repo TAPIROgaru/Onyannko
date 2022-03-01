@@ -22,6 +22,20 @@ void ResultScene::ChangeMenuScene() {
 		GMp->SMp->_switch = true;
 		GMp->SPp->_switch = false;
 		GMp->SPp->_init= true;
+
+		GMp->SPp->Op.clear();
+		GMp->SPp->Bp.clear();
+		GMp->SPp->Sp.clear();
+		GMp->SPp->Sp_wall.clear();
+
+		if (GMp->SPp->Pp != nullptr) {
+			delete GMp->SPp->Pp;
+			GMp->SPp->Pp = nullptr;
+		}
+		if (GMp->SPp->Ep != nullptr) {
+			delete GMp->SPp->Ep;
+			GMp->SPp->Ep = nullptr;
+		}
 	}
 }
 

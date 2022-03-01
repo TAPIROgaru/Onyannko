@@ -82,11 +82,6 @@ void PlayScene::Delete() {
 }
 void PlayScene::ForcedDelete() {
 
-	//=============================================================================
-	//デバッグ用
-
-	if (!GameManager::DEBUG_MODE) { return; }
-
 	std::vector<Scroll*>::iterator spit = scroll_p.begin();
 	while (spit != scroll_p.end()) {
 		delete (*spit);
@@ -94,8 +89,6 @@ void PlayScene::ForcedDelete() {
 		continue;
 		spit++;
 	}
-
-	//=============================================================================
 }
 
 
@@ -521,8 +514,6 @@ void PlayScene::Init() {
 
 	if (!_init) { return; }
 
-	ForcedDelete();
-
 	LoadBuckGround();
 
 	Pp = new Player();
@@ -541,6 +532,8 @@ void PlayScene::Init() {
 	//デバッグ用
 
 	if (!GameManager::DEBUG_MODE) { return; }
+
+	ForcedDelete();
 
 	int m_x, m_y;
 	GetMousePoint(&m_x, &m_y);
