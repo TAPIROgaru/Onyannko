@@ -3,6 +3,7 @@
 #include "TPRlib/tpr_library.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "PlayScene.h"
 
 extern GameManager* GMp;
 

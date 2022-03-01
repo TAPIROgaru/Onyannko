@@ -27,7 +27,7 @@ BLINK::BLINK(tpr::Vector2 pos_, int angle) {
 
 void BLINK::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p)
 {
-	this->pos = pos;
+	this->pos_b = pos;
 	p->pos.x += dire_x * move_amount;
 	p->pos.y += dire_y * move_amount;
 
@@ -54,15 +54,15 @@ void BLINK::TurnOff(float deltatime) {
 
 void BLINK::Skill_UpDate(float deltatime) {
 
-	if (!_active)return;
+	if (!_active) { return; }
 
 	TurnOff(deltatime);
 	
 }
 void BLINK::Skill_Render(Camera* cam) {
 
-	if (_effect) {
-		tpr::Vector2 pos_ = GMp->SPp->FixPositionVector(pos);
-		DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, skill_img[0], true);
-	}
+	if (!_effect) { return; }
+
+	tpr::Vector2 pos_ = GMp->SPp->FixPositionVector(pos_b);
+	DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, skill_img[0], true);
 }

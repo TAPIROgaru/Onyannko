@@ -25,7 +25,7 @@ KUNAI::KUNAI(tpr::Vector2 pos_, int angle) {
 
 void KUNAI::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p)
 {
-	this->pos = pos;
+	this->pos_b = pos;
 
 	dire = tpr::Vector2(dire_x, dire_y);
 
@@ -48,7 +48,7 @@ void KUNAI::TurnOff(float deltatime) {
 
 	count += deltatime;
 
-	if (count > 0.6f) {
+	if (count > 0.4f) {
 		_effect = false;
 		count = 0.0f;
 	}
@@ -72,7 +72,7 @@ void KUNAI::isHit() {
 			dire.x *= -1;
 		}
 
-		pos = tpr::Vector2(prev_pos.x, prev_pos.y);
+		pos_b = tpr::Vector2(prev_pos.x, prev_pos.y);
 		count = 0.0f;
 	}
 
@@ -80,7 +80,7 @@ void KUNAI::isHit() {
 		hitpoint--;
 	}
 
-	if (isHit_Enemy(pos)) {
+	if (isHit_Enemy(pos_b)) {
 
 		if (_team) {
 			GMp->SPp->Ep->sta.hp_ -= damage;
@@ -125,7 +125,7 @@ void KUNAI::Skill_Render(Camera* cam) {
 	if (!_effect) { return; }
 
 	float rad = tpr::Angle::RadCalc(tpr::Vector2(0, 0), dire);
-	tpr::Vector2 pos_ = GMp->SPp->FixPositionVector(pos);
+	tpr::Vector2 pos_ = GMp->SPp->FixPositionVector(pos_b);
 
 	DrawRotaGraph(pos_.x, pos_.y, 1, rad, skill_img[0], true);
 

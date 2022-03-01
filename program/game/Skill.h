@@ -34,6 +34,7 @@ public:
 	float cool_time_count = 0.0f;
 	float cool_time = 0.0f;
 	float count = 0.0f;
+	int flame_count = 0;
 
 	std::vector<int> skill_img;
 	int scroll_img_close;
@@ -41,6 +42,7 @@ public:
 
 	int angle;
 	tpr::Vector2 dire;
+	tpr::Vector2 pos_b;
 
 	bool _active = false;
 	bool _end_effect = false;

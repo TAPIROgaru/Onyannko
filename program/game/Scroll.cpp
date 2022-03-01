@@ -73,6 +73,7 @@ void Scroll::make_Kaginawa(tpr::Vector2 pos, int angle) {
 void Scroll::Nintou(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
 	if(nintou->_active)return;
+	nintou->Active(pos, dire_x, dire_y, p);
 }
 void Scroll::make_Nintou(tpr::Vector2 pos, int angle) {
 
@@ -86,6 +87,7 @@ void Scroll::make_Nintou(tpr::Vector2 pos, int angle) {
 void Scroll::Torinoko(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
 	if(torinoko->_active)return;
+	torinoko->Active(pos, dire_x, dire_y, p);
 }
 void Scroll::make_Torinoko(tpr::Vector2 pos, int angle) {
 
@@ -141,6 +143,7 @@ void Scroll::make_Blink(tpr::Vector2 pos, int angle) {
 void Scroll::Shotgun(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
 	if(shotgun->_active)return;
+	shotgun->Active(pos, dire_x, dire_y, p);
 }
 void Scroll::make_Shotgun(tpr::Vector2 pos, int angle) {
 
@@ -154,6 +157,7 @@ void Scroll::make_Shotgun(tpr::Vector2 pos, int angle) {
 void Scroll::Makibisi(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
 	if(makibisi->_active)return;
+	makibisi->Active(pos, dire_x, dire_y, p);
 }
 void Scroll::make_Makibisi(tpr::Vector2 pos, int angle) {
 
@@ -167,6 +171,7 @@ void Scroll::make_Makibisi(tpr::Vector2 pos, int angle) {
 void Scroll::Teppo(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
 	if(teppo->_active)return;
+	teppo->Active(pos, dire_x, dire_y, p);
 }
 void Scroll::make_Teppo(tpr::Vector2 pos, int angle) {
 

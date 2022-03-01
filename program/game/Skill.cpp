@@ -40,8 +40,6 @@ bool Skill::isHit_Enemy(tpr::Vector2 pos) {
 
 	if (tpr::isHit_CircleAndCircle(tpr::Vector2(p->pos.x, p->pos.y), p->r, pos, r)) {
 
-		p->sta.hp_--;
-
 		return true;
 	}
 
