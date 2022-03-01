@@ -178,6 +178,9 @@
     <ClCompile Include="program\game\TPRlib\HitPoints.cpp">
       <Filter>program\game\TPRlib</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\CustomizeScene.cpp">
+      <Filter>program\game\my_scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="program\support\FrameRateController.h">
@@ -368,6 +371,9 @@
     </ClInclude>
     <ClInclude Include="program\game\TPRlib\HitPoints.h">
       <Filter>program\game\TPRlib</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\CustomizeScene.h">
+      <Filter>program\game\my_scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

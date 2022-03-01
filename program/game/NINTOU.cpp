@@ -20,6 +20,15 @@ NINTOU::NINTOU(tpr::Vector2 pos_, int angle) {
 	cool_time = 8.0f;
 	this->angle = angle;
 	r = 23;
+
+	//=============================================================================
+	//デバッグ用
+
+	if (!GameManager::DEBUG_MODE) { return; }
+
+	cool_time = 6.0f;
+
+	//=============================================================================
 }
 
 void NINTOU::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {

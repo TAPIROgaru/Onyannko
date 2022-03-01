@@ -54,6 +54,7 @@ public:
 	virtual void Skill_UpDateMain(float deltatime, tpr::Vector2 pos_);
 	virtual void Skill_UpDate(float deltatime) {}
 	virtual void Skill_RenderMain(Camera* cam);
+	virtual void Skill_RenderDebug(Camera* cam);
 	virtual void Skill_Render(Camera* cam) {}
 
 

@@ -76,3 +76,10 @@ void Skill::Skill_RenderMain(Camera* cam) {
 	t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
 	DrawRotaGraph(pos_.x, pos_.y, 0.5, 0, scroll_img_open, true);
 }
+void Skill::Skill_RenderDebug(Camera* cam) {
+
+	Skill_Render(cam);
+	if (_active)return;
+
+	DrawRotaGraph(pos.x, pos.y, 0.5, 0, scroll_img_open, true);
+}

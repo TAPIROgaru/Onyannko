@@ -57,6 +57,9 @@ public:
 	static constexpr float START_POSITION_ENEMY_W = 1050.0f;
 	static constexpr float START_POSITION_H = 300.0f;
 
+	static constexpr bool DEBUG_MODE = true;
+	                 bool ENEMY_MODE = true;
+
 
 	//------------------------------------------------------------------------------------------------
 

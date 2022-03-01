@@ -17,6 +17,15 @@ KUNAI::KUNAI(tpr::Vector2 pos_, int angle) {
 
 	cool_time = 10.0f;
 	this->angle = angle;
+
+	//=============================================================================
+	//デバッグ用
+
+	if (!GameManager::DEBUG_MODE) { return; }
+
+	cool_time = 6.0f;
+
+	//=============================================================================
 }
 
 
@@ -34,7 +43,7 @@ void KUNAI::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p)
 	_active = true;
 	_effect = true;
 
-	r = 15;
+	r = 14;
 	prev_pos = { 0,0,0 };
 
 	damage += p->sta.attack;
@@ -62,17 +71,19 @@ void KUNAI::isHit() {
 
 	int num;
 
-	if (GMp->SPp->isHit_Wall(t2k::Vector3{ pos.x,pos.y,0 }, prev_pos, r, &num)) {
+	if (GMp->SPp->isHit_Wall(t2k::Vector3{ pos_b.x,pos_b.y,0 }, prev_pos, r, &num)) {
 
 
 		if (num == 0 || num == 2) {
 			dire.y *= -1;
+			prev_pos.y + dire.y * r;
 		}
 		if (num == 3 || num == 1) {
 			dire.x *= -1;
+			prev_pos.x + dire.x * r;
 		}
 
-		pos_b = tpr::Vector2(prev_pos.x, prev_pos.y);
+		pos_b = { prev_pos.x, prev_pos.y };
 		count = 0.0f;
 	}
 
@@ -100,12 +111,12 @@ void KUNAI::isHit() {
 
 void KUNAI::Move() {
 
-	pos.x += dire.x * speed;
-	pos.y += dire.y * speed;
+	pos_b.x += dire.x * speed;
+	pos_b.y += dire.y * speed;
 
 	isHit();
 
-	prev_pos = { pos.x,pos.y,0 };
+	prev_pos = { pos_b.x,pos_b.y,0 };
 }
 
 
@@ -129,5 +140,5 @@ void KUNAI::Skill_Render(Camera* cam) {
 
 	DrawRotaGraph(pos_.x, pos_.y, 1, rad, skill_img[0], true);
 
-	hp.DrawGauge(tpr::Vector2(pos_.x, pos_.y - 17), 0, 5, hitpoint);
+	hp.DrawGauge(tpr::Vector2(pos_.x, pos_.y - 17), 0, MAX_HP, hitpoint);
 }

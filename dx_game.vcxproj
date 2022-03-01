@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="program\game\BLINK.cpp" />
+    <ClCompile Include="program\game\CustomizeScene.cpp" />
     <ClCompile Include="program\game\KAGINAWA.cpp" />
     <ClCompile Include="program\game\KAKUREMI.cpp" />
     <ClCompile Include="program\game\KUNAI.cpp" />
@@ -61,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="program\game\BLINK.h" />
+    <ClInclude Include="program\game\CustomizeScene.h" />
     <ClInclude Include="program\game\KAGINAWA.h" />
     <ClInclude Include="program\game\KAKUREMI.h" />
     <ClInclude Include="program\game\KUNAI.h" />

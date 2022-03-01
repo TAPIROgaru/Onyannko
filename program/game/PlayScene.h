@@ -28,6 +28,8 @@ public:
 
 	void Delete();
 
+	void ForcedDelete();
+
 	void SavePlayer();
 
 	void Start(float);
@@ -209,6 +211,12 @@ public:
 
 	tpr::Vector2_int e_pos = { 0,0 };
 	tpr::Vector2_int p_pos = { 0,0 };
+
+
+	//=======================================================
+	//デバック用の変数
+
+	std::vector<Scroll*>scroll_p;
 
 
 	//------------------------------------------------------------------------------------------------

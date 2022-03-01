@@ -31,6 +31,13 @@ Enemy::~Enemy() {
 //
 void Enemy::Move(float deltatime) {
 
+	//=====================================================================
+	//デバッグ用
+
+	if (!GMp->ENEMY_MODE) { return; }
+
+	//=====================================================================
+
 	if (!GMp->SPp->_start_flag || GMp->SRp->_switch) { return; }
 
 	if (flame_count % 3 == 0) {
@@ -186,6 +193,13 @@ void Enemy::LoadStatus(int num) {
 //プレイヤーとの距離
 void Enemy::FindPlayer(float deltatime) {
 
+	//=====================================================================
+	//デバッグ用
+
+	if (!GMp->ENEMY_MODE) { return; }
+
+	//=====================================================================
+
 	if (!GMp->SPp->_start_flag || GMp->SRp->_switch) { return; }
 	if (_stun) { return; }
 
@@ -233,19 +247,30 @@ void Enemy::Update(float deltatime) {
 
 	timecount += deltatime;
 
-	Move(deltatime);
-	FindPlayer(deltatime);
-
 	ult->Update(deltatime, tpr::Vector2(pos.x, pos.y));
 	skillA->Update(deltatime, tpr::Vector2(pos.x, pos.y));
 	skillB->Update(deltatime, tpr::Vector2(pos.x, pos.y));
+
+	Move(deltatime);
+	FindPlayer(deltatime);
 }
 void Enemy::Render(Camera* cam) {
 
 	t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
 
+	ult->Render(cam);
+	skillA->Render(cam);
+	skillB->Render(cam);
+
+	DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, chara_handle, 1);
+
+	HP.DrawGauge(tpr::Vector2(pos_.x, pos_.y - 20), 0, sta.HP, sta.hp_);
+
 	//=====================================================================
-	//Astarデバッグ用
+	//デバッグ用
+
+	if (!GameManager::DEBUG_MODE) { return; }
+
 	auto p = move_pos.begin();
 	int i = 0;
 	while (p != move_pos.end()) {
@@ -259,26 +284,6 @@ void Enemy::Render(Camera* cam) {
 		p++;
 	}
 	//=====================================================================
-
-	ult->Render(cam);
-	skillA->Render(cam);
-	skillB->Render(cam);
-
-	DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, chara_handle, 1);
-
-	HP.DrawGauge(tpr::Vector2(pos_.x, pos_.y - 20), 0, sta.HP, sta.hp_);
-
-
-	//DrawFormatString(600, 100, -1, "x:%f y:%f"  , pos.x, pos.y);
-	//DrawFormatString(600, 120, -1, "名前    :%s"    , name);
-	//DrawFormatString(600, 140, -1, "HP      :%d"      , sta.hp_);
-	//DrawFormatString(600, 160, -1, "移動速度:%d", sta.move_speed);
-	//DrawFormatString(600, 180, -1, "攻撃力  :%d"  , sta.attack);
-	//DrawFormatString(600, 200, -1, "防御力  :%d"  , sta.defense);
-	//DrawFormatString(600, 220, -1, "攻撃速度:%d", sta.attack_speed);
-	//DrawFormatString(600, 240, -1, "ult     :%d", ult->my_number);
-	//DrawFormatString(600, 260, -1, "skillA  :%d", skillA->my_number);
-	//DrawFormatString(600, 280, -1, "skillB  :%d", skillB->my_number);
 }
 
 //----------------------------------------------------------------------------------------------------

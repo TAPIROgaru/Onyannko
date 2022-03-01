@@ -30,7 +30,8 @@ public:
 	//--------------------------------------------------------------------------------------
 	//•Ï”
 
-	int hitpoint = 5;
+	static constexpr int MAX_HP = 4;
+	int hitpoint = MAX_HP;
 	float speed = 8.0f;
 	int damage = 1;
 

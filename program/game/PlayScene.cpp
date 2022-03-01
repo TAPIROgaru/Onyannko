@@ -16,6 +16,15 @@ PlayScene::PlayScene() {
 	datas = GMp->datas;
 
 	map = t2k::loadCsv("BackGround.csv");
+
+	//=============================================================================
+	//デバッグ用
+
+	if (!GameManager::DEBUG_MODE) { return; }
+
+	map = t2k::loadCsv("BackGroundDebug.csv");
+
+	//=============================================================================
 }
 
 
@@ -70,6 +79,23 @@ void PlayScene::Delete() {
 		delete (Ep);
 		Ep = nullptr;
 	}
+}
+void PlayScene::ForcedDelete() {
+
+	//=============================================================================
+	//デバッグ用
+
+	if (!GameManager::DEBUG_MODE) { return; }
+
+	std::vector<Scroll*>::iterator spit = scroll_p.begin();
+	while (spit != scroll_p.end()) {
+		delete (*spit);
+		spit = scroll_p.erase(spit);
+		continue;
+		spit++;
+	}
+
+	//=============================================================================
 }
 
 
@@ -478,7 +504,6 @@ t2k::Vector3 PlayScene::FixPositionVector(t2k::Vector3 pos) {
 
 	return pos_;
 }
-
 tpr::Vector2 PlayScene::FixPositionVector(tpr::Vector2 pos) {
 
 	tpr::Vector2 pos_ = {
@@ -496,6 +521,8 @@ void PlayScene::Init() {
 
 	if (!_init) { return; }
 
+	ForcedDelete();
+
 	LoadBuckGround();
 
 	Pp = new Player();
@@ -508,6 +535,24 @@ void PlayScene::Init() {
 	_start_flag = false;
 
 	_init = false;
+
+
+	//=============================================================================
+	//デバッグ用
+
+	if (!GameManager::DEBUG_MODE) { return; }
+
+	int m_x, m_y;
+	GetMousePoint(&m_x, &m_y);
+
+	for (int i = 0; i < 9; i++) {
+
+		Scroll* s_p = nullptr;
+		s_p = new Scroll(i, 40 * i, { (float)m_x, (float)m_y });
+		scroll_p.emplace_back(s_p);
+	}
+
+	//=============================================================================
 }
 
 
@@ -531,6 +576,41 @@ void PlayScene::Update(float deltatime) {
 	Delete();
 
 	isOver();
+
+	//=============================================================================
+	//デバッグ用
+
+	if (!GameManager::DEBUG_MODE) { return; }
+
+	int m_x, m_y;
+	GetMousePoint(&m_x, &m_y);
+
+	for (auto p : scroll_p) {
+
+		p->Update(deltatime, { (float)m_x, (float)m_y });
+	}
+
+	char Buf[256];
+
+	GetHitKeyStateAll(Buf);
+
+	tpr::Vector2 pos_p = FixPositionVector({ Pp->pos.x,Pp->pos.y });
+	tpr::Vector2 dire = tpr::Vector2::Normalize(pos_p, { (float)m_x,(float)m_y });
+
+	if (Buf[KEY_INPUT_NUMPAD1] == 1) { scroll_p[0]->Activate({ Pp->pos.x,Pp->pos.y }, dire.x, dire.y, Pp); }
+	if (Buf[KEY_INPUT_NUMPAD2] == 1) { scroll_p[1]->Activate({ Pp->pos.x,Pp->pos.y }, dire.x, dire.y, Pp); }
+	if (Buf[KEY_INPUT_NUMPAD3] == 1) { scroll_p[2]->Activate({ Pp->pos.x,Pp->pos.y }, dire.x, dire.y, Pp); }
+	if (Buf[KEY_INPUT_NUMPAD4] == 1) { scroll_p[3]->Activate({ Pp->pos.x,Pp->pos.y }, dire.x, dire.y, Pp); }
+	if (Buf[KEY_INPUT_NUMPAD5] == 1) { scroll_p[4]->Activate({ Pp->pos.x,Pp->pos.y }, dire.x, dire.y, Pp); }
+	if (Buf[KEY_INPUT_NUMPAD6] == 1) { scroll_p[5]->Activate({ Pp->pos.x,Pp->pos.y }, dire.x, dire.y, Pp); }
+	if (Buf[KEY_INPUT_NUMPAD7] == 1) { scroll_p[6]->Activate({ Pp->pos.x,Pp->pos.y }, dire.x, dire.y, Pp); }
+	if (Buf[KEY_INPUT_NUMPAD8] == 1) { scroll_p[7]->Activate({ Pp->pos.x,Pp->pos.y }, dire.x, dire.y, Pp); }
+	if (Buf[KEY_INPUT_NUMPAD9] == 1) { scroll_p[8]->Activate({ Pp->pos.x,Pp->pos.y }, dire.x, dire.y, Pp); }
+
+	if (Buf[KEY_INPUT_O] == 1) { GMp->ENEMY_MODE = true; }
+	if (Buf[KEY_INPUT_P] == 1) { GMp->ENEMY_MODE = false; }
+
+	//=============================================================================
 }
 void PlayScene::Render(float deltatime) {
 
@@ -544,12 +624,7 @@ void PlayScene::Render(float deltatime) {
 	//=============================================================================
 	//デバッグ用
 
-	tpr::Vector2_int m;
-	GetMousePoint(&m.x, &m.y);
-
-	tpr::Vector2 mf(m.x, m.y);
-
-	//DrawFormatString(200, 0, -1, "mx:%f my:%f", mf.x, mf.y);
+	if (!GameManager::DEBUG_MODE) { return; }
 
 	if (Pp == nullptr)return;
 
@@ -560,6 +635,11 @@ void PlayScene::Render(float deltatime) {
 	tpr::Quadrilateral ray_quad(e_pos, p_pos, GMp->BULLET_RADIUS * 3);
 
 	ray_quad.DrawBox(-1);
+
+	for (auto p : scroll_p) {
+
+		p->RenderDebug(&cam);
+	}
 
 	//=============================================================================
 }

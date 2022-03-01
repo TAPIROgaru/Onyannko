@@ -39,9 +39,18 @@ public:
 	//    ヘッダー内の装備技一覧(enum)参照
 	// 2. ultならu skillAならa skillBならb
 	// 3. スキル所有者の座標
-	//======================================================
-	Scroll() {}
+	//=======================================================
 	Scroll(int num, char c, tpr::Vector2 pos_);
+
+	//=======================================================
+	// デバック用のスキルの生成(コンストラクタ)
+	// 1. 生成するスキルの番号
+	// 2. マウス中心とした角度
+	// 3. マウス座標
+	//=======================================================
+	Scroll(int num, int angle, tpr::Vector2 pos_);
+
+	//デストラクタ
 	~Scroll() {};
 
 	void Activate(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p);
@@ -139,4 +148,5 @@ public:
 
 	void Update(float deltatime, tpr::Vector2 pos_);
 	void Render(Camera* cam);
+	void RenderDebug(Camera* cam);
 };

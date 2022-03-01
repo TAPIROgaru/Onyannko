@@ -48,6 +48,21 @@ namespace tpr {
 
 
 	//-----------------------------------------------------------------------------------------
+	// ベクトルの正規化
+
+	Vector2 Vector2::Normalize(Vector2 start_pos, Vector2 end_pos) {
+
+		Vector2 pos = end_pos - start_pos;
+
+		float magnitude = sqrtf(pos.x * pos.x + pos.y * pos.y);
+
+		Vector2 dire = pos / magnitude;
+
+		return dire;
+	}
+
+
+	//-----------------------------------------------------------------------------------------
 	// 2点間の中心点の計算
 
 	Vector2 Vector2::CenterPointCalc(Vector2 start_pos, Vector2 end_pos) {

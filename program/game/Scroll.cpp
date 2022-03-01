@@ -44,6 +44,16 @@ Scroll::Scroll(int num, char c, tpr::Vector2 pos_) {
 
 	
 }
+Scroll::Scroll(int num, int angle, tpr::Vector2 pos) {
+
+	my_number = num;
+
+	tpr::Vector2 pos_(pos.x, pos.y - 50);
+
+	pos_= Rotation::RotaVec2(pos_, pos, Angle::DegChangeRad(angle));
+
+	make_skill_func[my_number](this, pos_, angle);
+}
 
 
 //------------------------------------------------------------------------------------------------
@@ -193,5 +203,11 @@ void Scroll::Render(Camera* cam) {
 
 	for (auto p : skill_p) {
 		p->Skill_RenderMain(cam);
+	}
+}
+void Scroll::RenderDebug(Camera* cam) {
+
+	for (auto p : skill_p) {
+		p->Skill_RenderDebug(cam);
 	}
 }

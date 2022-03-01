@@ -43,21 +43,14 @@ void GameManager::Init() {
 //ƒV[ƒ“‘JˆÚ
 void GameManager::ChangeScene() {
 
-	if (STp->_switch && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD1)) {
-		STp->_switch = false;
-		SMp->_switch = true;
-
-		return;
-	}
-
-	if (SMp->_switch && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD2)) {
+	if (SMp->_switch && t2k::Input::isKeyDown(t2k::Input::KEYBORD_2)) {
 		SMp->_switch = false;
 		STp->_switch = true;
 
 		return;
 	}
 
-	if (SMp->_switch && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD3)) {
+	if (SMp->_switch && t2k::Input::isKeyDown(t2k::Input::KEYBORD_3)) {
 		SMp->_switch = false;
 		SPp->_switch = true;
 		SPp->_init = true;
@@ -65,7 +58,7 @@ void GameManager::ChangeScene() {
 		return;
 	}
 
-	if (SPp->_switch && t2k::Input::isKeyDown(t2k::Input::KEYBORD_NUMPAD4)) {
+	if (SPp->_switch && t2k::Input::isKeyDown(t2k::Input::KEYBORD_4)) {
 		SPp->_switch = false;
 		SRp->_switch = false;
 		SMp->_switch = true;
@@ -127,12 +120,6 @@ void GameManager::Render(float deltatime) {
 
 	int x, y;
 	GetMousePoint(&x, &y);
-
-	if (SPp->_switch) {
-		DrawRotaGraph(x, y, 0.05f, 0, img_aim, true);
-	}
-	else {
-		DrawRotaGraph(x, y, 0.05f, 0, img_mouse, true);
-	}
+	DrawRotaGraph(x, y, 0.05f, 0, img_aim, true);
 }
 //----------------------------------------------------------------------------------------------------
