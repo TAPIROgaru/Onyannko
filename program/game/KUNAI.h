@@ -31,7 +31,7 @@ public:
 	//•Ï”
 
 	int hitpoint = 5;
-	float speed = 9.0f;
+	float speed = 8.0f;
 	int damage = 1;
 
 	tpr::Hitpoints hp = tpr::Hitpoints(25, 5);

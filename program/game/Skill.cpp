@@ -15,8 +15,7 @@ bool Skill::isHit_Bullet() {
 		if (p->_team == _team) { continue; }
 
 		if (tpr::isHit_CircleAndCircle(
-			tpr::Vector2(p->pos.x, p->pos.y), p->r,
-			tpr::Vector2(pos.x, pos.y), r)) {
+			tpr::Vector2(p->pos.x, p->pos.y), p->r, pos_b, r)) {
 
 			p->alive_flag = false;
 

@@ -4,6 +4,7 @@
 //é©çÏÉtÉ@ÉCÉã
 
 #include "Object.h"
+#include "TPRlib/tpr_library.h"
 
 
 //----------------------------------------------------------------------------------------------------
@@ -15,6 +16,7 @@ public:
 	//ä÷êî
 
 	Bullet(float, float, float, float, bool);
+	Bullet(tpr::Vector2 pos, tpr::Vector2 dire, int img, bool _team, float speed, float scope, int r);
 
 	void Move(float);
 	bool isDelete();

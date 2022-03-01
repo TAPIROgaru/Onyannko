@@ -25,8 +25,7 @@ MAKIBISI::MAKIBISI(tpr::Vector2 pos_, int angle) {
 //----------------------------------------------------------------------------------------------
 //アクティブ
 
-void MAKIBISI::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p)
-{
+void MAKIBISI::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p){
 	pos_b = pos;
 	_team = p->_team;
 

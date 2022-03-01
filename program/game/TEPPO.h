@@ -6,6 +6,9 @@
 
 #include "Skill.h"
 
+class Bullet;
+
+
 class TEPPO :public Skill {
 public:
 
@@ -21,10 +24,19 @@ public:
 
 	void TurnOff(float deltatime)override;
 
+	void isHit();
+
 
 	//--------------------------------------------------------------------------------------
 	//•Ï”
 
+	float speed = 7.0f;
+	float scope = 0.7f;
+	int damage = 2;
+
+	Bullet* bp = nullptr;
+
+	CharaObj* e_p = nullptr;
 
 	//--------------------------------------------------------------------------------------
 	//–ˆƒtƒŒ[ƒ€ŒÄ‚Ño‚µ

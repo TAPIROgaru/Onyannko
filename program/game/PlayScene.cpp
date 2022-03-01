@@ -439,6 +439,14 @@ void PlayScene::MakeBullet(t2k::Vector3 pos, float direction_x, float direction_
 	Bp.emplace_back(bp);
 	Op.emplace_back(bp);
 }
+Bullet* PlayScene::MakeBullet(tpr::Vector2 pos, tpr::Vector2 dire, int img, bool _team, float speed, float scope, int r) {
+
+	Bullet* bp = new Bullet(pos, dire, img, _team, speed, scope, r);
+	Bp.emplace_back(bp);
+	Op.emplace_back(bp);
+
+	return bp;
+}
 
 
 //----------------------------------------------------------------------------------------------------

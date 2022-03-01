@@ -21,6 +21,21 @@ Bullet::Bullet(float x, float y, float dire_x, float dire_y, bool t) {
 	_team = t;
 	r = GMp->BULLET_RADIUS;
 }
+Bullet::Bullet(tpr::Vector2 pos, tpr::Vector2 dire, int img, bool _team, float speed, float scope,int r) {
+
+	this->pos = { pos.x,pos.y,0 };
+	prev_pos = this->pos;
+
+	direction_x = dire.x;
+	direction_y = dire.y;
+
+	this->img = img;
+	this->_team = _team;
+	this->speed = speed;
+	this->scope = scope;
+	this->r = r;
+}
+
 
 
 //----------------------------------------------------------------------------------------------------
