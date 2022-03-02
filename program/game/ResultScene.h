@@ -29,6 +29,18 @@ public:
 
 	bool _win_or_lose;
 
+	int win_img = 0;
+	int lose_img = 0;
+
+	int sound[3] = { 0 };
+
+	int play_num = 0;
+
+	bool _effect = true;
+
+	int count = 0;
+
+	int player_img = 0;
 
 	//------------------------------------------------------------------------------------------------
 	//–ˆƒtƒŒ[ƒ€ŒÄ‚Ño‚µ

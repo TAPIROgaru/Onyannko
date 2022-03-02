@@ -237,13 +237,20 @@ void PlayScene::SavePlayer() {
 //ゲームオーバー
 void PlayScene::isOver() {
 
-	if (Pp->sta.hp_ == 0 || Ep->sta.hp_ == 0) {
+	if (Ep->sta.hp_ == 0) {
 
 		GMp->SRp->_switch = true;
 		StopSoundMem(bgm);
 
-		if (Ep->sta.hp_ == 0)GMp->SRp->_win_or_lose = true;
-		else if (Pp->sta.hp_ == 0)GMp->SRp->_win_or_lose = false;
+		GMp->SRp->_win_or_lose = true;
+	}
+
+	if (Pp->sta.hp_ == 0 ) {
+
+		GMp->SRp->_switch = true;
+		StopSoundMem(bgm);
+
+		GMp->SRp->_win_or_lose = false;
 	}
 }
 

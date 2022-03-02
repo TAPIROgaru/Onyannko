@@ -43,7 +43,7 @@ public:
 	static constexpr int TILE_VALUE_W_WALL = 6;
 	static constexpr int TILE_VALUE_H_WALL = 6;
 
-	static constexpr bool WINDOW_MODE = true;
+	static constexpr bool WINDOW_MODE = false;
 
 
 	static constexpr int BULLET_RADIUS = 7;
@@ -57,7 +57,7 @@ public:
 	static constexpr float START_POSITION_ENEMY_W = 1050.0f;
 	static constexpr float START_POSITION_H = 300.0f;
 
-	static constexpr bool DEBUG_MODE = true;
+	static constexpr bool DEBUG_MODE = false;
 	                 bool ENEMY_MODE = true;
 
 
