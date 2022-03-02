@@ -13,8 +13,8 @@ namespace t2k {
 
 
 	int getRegionPointAndRect(const Vector3& p, const Vector3& rp, const int rect_w, const int rect_h) {
-		t2k::Vector3 v1 = t2k::Vector3(rect_h, rect_w, 0).normalize();
-		t2k::Vector3 v2 = t2k::Vector3(rect_h, -rect_w, 0).normalize();
+		t2k::Vector3 v1 = t2k::Vector3((float)rect_h, (float)rect_w, 0).normalize();
+		t2k::Vector3 v2 = t2k::Vector3((float)rect_h, (float)-rect_w, 0).normalize();
 //		t2k::Vector3 vc1 = v1.cross(t2k::Vector3(0, 0, 1));
 //		t2k::Vector3 vc2 = v2.cross(t2k::Vector3(0, 0, 1));
 		t2k::Vector3 vc1 = v1;

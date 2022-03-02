@@ -22,7 +22,7 @@ namespace tpr {
 
 		float andR = cA_r + cB_r;
 
-		float _c = sqrt(C);
+		float _c = sqrtf(C);
 
 		if (andR >= _c) {
 			return true;

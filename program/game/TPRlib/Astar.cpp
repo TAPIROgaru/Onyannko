@@ -160,8 +160,8 @@ namespace tpr{
 
 		if (pos.x < 0) { return false; }
 		if (pos.y < 0) { return false; }
-		if (pos.x >= map_w ) { return false; }
-		if (pos.y >= map_h ) { return false; }
+		if (unsigned(pos.x) >= map_w ) { return false; }
+		if (unsigned(pos.y) >= map_h ) { return false; }
 		if (OPEN == adress_nodes[pos.y][pos.x].status) { return false; }
 		if (START == adress_nodes[pos.y][pos.x].status) { return false; }
 		if (YES == adress_nodes[pos.y][pos.x].status) { return true; }

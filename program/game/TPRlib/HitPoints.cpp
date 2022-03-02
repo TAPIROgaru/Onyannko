@@ -19,10 +19,10 @@ namespace tpr {
 		Quadrilateral quad(pos, size_w, size_h);
 		quad.DrawBox(c);
 
-		int x1 = pos.x - size_w / 2 + 1;
-		int x2 = pos.x + size_w / 2;
-		int y1 = pos.y - size_h / 2 + 1;
-		int y2 = pos.y + size_h / 2;
+		int x1 = (int)(pos.x - size_w / 2 + 1);
+		int x2 = (int)(pos.x + size_w / 2);
+		int y1 = (int)(pos.y - size_h / 2 + 1);
+		int y2 = (int)(pos.y + size_h / 2);
 
 		float ratio = now / max;
 
@@ -36,7 +36,7 @@ namespace tpr {
 		}
 		else {
 
-			int w = size_w * ratio;
+			int w = (int)(size_w * ratio);
 
 			DrawBox(x1, y1, x1 + w, y2, GetColor(0, 255, 0), true);
 
