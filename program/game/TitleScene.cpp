@@ -15,7 +15,7 @@ TitleScene::TitleScene() {
 	control_img = GMp->loadGraph("graphics/control.png");
 	push_img = GMp->loadGraph("graphics/pushanybotton.png");
 	bgm = GMp->loadSoundMem("sound/bgm_title.mp3");
-	ChangeVolumeSoundMem(255 * 0.2, bgm);
+	ChangeVolumeSoundMem((int)(255 * 0.2), bgm);
 }
 
 

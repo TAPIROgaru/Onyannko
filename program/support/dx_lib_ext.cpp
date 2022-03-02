@@ -21,5 +21,5 @@ void DrawLineEx(t2k::Vector3& p, t2k::Vector3& v, float length, int color) {
 	t2k::Vector3 n = v;
 	n.normalize();
 	n *= length;
-	DrawLine(p.x, p.y, p.x + n.x, p.y + n.y, color, false);
+	DrawLine((int)p.x, (int)p.y, (int)(p.x + n.x), (int)(p.y + n.y), color, false);
 }

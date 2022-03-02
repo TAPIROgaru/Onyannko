@@ -27,9 +27,9 @@ TORINOKO::TORINOKO(tpr::Vector2 pos_, int angle) {
 	r = 20;
 
 	sound = GMp->loadSoundMem("sound/put.mp3");
-	ChangeVolumeSoundMem(255 * 0.4, sound);
+	ChangeVolumeSoundMem((int)(255 * 0.4), sound);
 	sound2 = GMp->loadSoundMem("sound/torinoko.mp3");
-	ChangeVolumeSoundMem(255 * 0.4, sound2);
+	ChangeVolumeSoundMem((int)(255 * 0.4), sound2);
 
 	//=============================================================================
 	//デバッグ用
@@ -102,31 +102,31 @@ void TORINOKO::Skill_Render(Camera* cam) {
 	const int PLAY_IMG_TIMES_S = 6;
 
 	if (flame_count < PLAY_IMG_TIMES_F) {
-		DrawRotaGraph(pos_.x, pos_.y, 1.5, 0, skill_img[0], true);
+		DrawRotaGraph((int)pos_.x, (int)pos_.y, 1.5, 0, skill_img[0], true);
 	}
 	else if (flame_count < PLAY_IMG_TIMES_S + PLAY_IMG_TIMES_F) {
-		DrawRotaGraph(pos_.x, pos_.y, 1.5, 0, skill_img[1], true);
+		DrawRotaGraph((int)pos_.x, (int)pos_.y, 1.5, 0, skill_img[1], true);
 	}
 	else if (flame_count < PLAY_IMG_TIMES_S * 2 + PLAY_IMG_TIMES_F) {
-		DrawRotaGraph(pos_.x, pos_.y, 1.5, 0, skill_img[2], true);
+		DrawRotaGraph((int)pos_.x, (int)pos_.y, 1.5, 0, skill_img[2], true);
 
 		PlaySoundMem(sound2, DX_PLAYTYPE_BACK);
 		_check = true;
 	}
 	else if (flame_count < PLAY_IMG_TIMES_S * 3 + PLAY_IMG_TIMES_F) {
-		DrawRotaGraph(pos_.x, pos_.y, 1.5, 0, skill_img[3], true);
+		DrawRotaGraph((int)pos_.x, (int)pos_.y, 1.5, 0, skill_img[3], true);
 	}
 	else if (flame_count < PLAY_IMG_TIMES_S * 4 + PLAY_IMG_TIMES_F) {
-		DrawRotaGraph(pos_.x, pos_.y, 1.5, 0, skill_img[4], true);
+		DrawRotaGraph((int)pos_.x, (int)pos_.y, 1.5, 0, skill_img[4], true);
 	}
 	else if (flame_count < PLAY_IMG_TIMES_S * 5 + PLAY_IMG_TIMES_F) {
-		DrawRotaGraph(pos_.x, pos_.y, 1.5, 0, skill_img[5], true);
+		DrawRotaGraph((int)pos_.x, (int)pos_.y, 1.5, 0, skill_img[5], true);
 	}
 	else if (flame_count < PLAY_IMG_TIMES_S * 6 + PLAY_IMG_TIMES_F) {
-		DrawRotaGraph(pos_.x, pos_.y, 1.5, 0, skill_img[6], true);
+		DrawRotaGraph((int)pos_.x, (int)pos_.y, 1.5, 0, skill_img[6], true);
 	}
 	else if (flame_count < PLAY_IMG_TIMES_S * 7 + PLAY_IMG_TIMES_F) {
-		DrawRotaGraph(pos_.x, pos_.y, 1.5, 0, skill_img[7], true);
+		DrawRotaGraph((int)pos_.x, (int)pos_.y, 1.5, 0, skill_img[7], true);
 	}
 	else {
 		_end_effect = true;

@@ -26,11 +26,11 @@ public:
 
 	t2k::Vector3 pos;          //座標
 	t2k::Vector3 prev_pos;     //1フレーム前の座標
-	int r;                     //当たり判定用の半径
-	int size_w;                //当たり判定用の幅
-	int size_h;                //当たり判定用の高さ
+	int r = 0;                 //当たり判定用の半径
+	int size_w = 0;            //当たり判定用の幅
+	int size_h = 0;            //当たり判定用の高さ
 	bool alive_flag = true;    //生存フラグ
-	bool _team;                //陣営
+	bool _team = true;         //陣営
 	int img = 0;               //画像
 	int sound = 0;             //効果音
 

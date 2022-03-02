@@ -15,7 +15,7 @@ GameManager::GameManager() {
 	img_aim = loadGraph("graphics/AIM.png");
 	img_mouse = loadGraph("graphics/mouse.png");
 	scene_sou = loadSoundMem("sound/scene.mp3");
-	ChangeVolumeSoundMem(255 * 0.5, scene_sou);
+	ChangeVolumeSoundMem((int)(255 * 0.5), scene_sou);
 }
 
 

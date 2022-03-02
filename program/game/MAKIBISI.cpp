@@ -19,7 +19,7 @@ MAKIBISI::MAKIBISI(tpr::Vector2 pos_, int angle) {
 	this->angle = angle;
 
 	sound = GMp->loadSoundMem("sound/put.mp3");
-	ChangeVolumeSoundMem(255 * 0.4, sound);
+	ChangeVolumeSoundMem((int)(255 * 0.4), sound);
 
 	r = 15;
 
@@ -79,7 +79,7 @@ void MAKIBISI::isHit() {
 	if (isHit_Enemy(pos_b)) {
 
 		e_p->sta.hp_--;
-		e_p->sta.move_speed *= 0.6f;
+		e_p->sta.move_speed = (int)(e_p->sta.move_speed * 0.6f);
 		_effect = false;
 		_hit = true;
 	}
@@ -105,5 +105,5 @@ void MAKIBISI::Skill_Render(Camera* cam) {
 	if (!_effect) { return; }
 
 	tpr::Vector2 pos_ = GMp->SPp->FixPositionVector(pos_b);
-	DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, skill_img[0], true);
+	DrawRotaGraph((int)pos_.x, (int)pos_.y, 1.0, 0, skill_img[0], true);
 }

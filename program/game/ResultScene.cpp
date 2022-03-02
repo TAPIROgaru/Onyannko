@@ -17,14 +17,14 @@ ResultScene::ResultScene() {
 
 
 	bgm = GMp->loadSoundMem("sound/bgm_other.mp3");
-	ChangeVolumeSoundMem(255 * 0.2, bgm);
+	ChangeVolumeSoundMem((int)(255 * 0.2), bgm);
 	
 	sound[0] = GMp->loadSoundMem("sound/result1.mp3");
-	ChangeVolumeSoundMem(255 * 0.5, sound[0]);
+	ChangeVolumeSoundMem((int)(255 * 0.5), sound[0]);
 	sound[1] = GMp->loadSoundMem("sound/result_win.mp3");
-	ChangeVolumeSoundMem(255 * 0.5, sound[1]);
+	ChangeVolumeSoundMem((int)(255 * 0.5), sound[1]);
 	sound[2] = GMp->loadSoundMem("sound/result_lose.mp3");
-	ChangeVolumeSoundMem(255 * 0.5, sound[2]);
+	ChangeVolumeSoundMem((int)(255 * 0.5), sound[2]);
 }
 
 

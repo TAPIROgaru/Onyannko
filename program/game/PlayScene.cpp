@@ -17,7 +17,7 @@ PlayScene::PlayScene() {
 
 	map = t2k::loadCsv("BackGround.csv");
 	bgm = GMp->loadSoundMem("sound/bgm_play.mp3");
-	ChangeVolumeSoundMem(255 * 0.2, bgm);
+	ChangeVolumeSoundMem((int)(255 * 0.2), bgm);
 	count_sou[0]= GMp->loadSoundMem("sound/start_count.mp3");
 	count_sou[1]= GMp->loadSoundMem("sound/start.mp3");
 
@@ -265,8 +265,8 @@ void PlayScene::isHit_bullet() {
 
 			//“–‚½‚è”»’è
 			if (tpr::isHit_CircleAndCircle(
-				tpr::Vector2(Ep->pos.x, Ep->pos.y),Ep->r,
-				tpr::Vector2(p->pos.x, p->pos.y), p->r)) {
+				tpr::Vector2(Ep->pos.x, Ep->pos.y),(float)Ep->r,
+				tpr::Vector2(p->pos.x, p->pos.y), (float)p->r)) {
 
 				if (!Ep->_invincible) {
 					//ƒ_ƒŒvŽZ
@@ -282,8 +282,8 @@ void PlayScene::isHit_bullet() {
 		}
 		else if (!p->_team) {
 			if (tpr::isHit_CircleAndCircle(
-				tpr::Vector2(Pp->pos.x, Pp->pos.y), Pp->r,
-				tpr::Vector2(p->pos.x, p->pos.y), p->r)) {
+				tpr::Vector2(Pp->pos.x, Pp->pos.y), (float)Pp->r,
+				tpr::Vector2(p->pos.x, p->pos.y), (float)p->r)) {
 
 
 				if (!Pp->_invincible) {
@@ -318,8 +318,8 @@ bool PlayScene::isHit_Wall(t2k::Vector3 pos, float r) {
 
 		t2k::Vector3 pos_ = t2k::getNearestRectPoint(
 			box_pos,
-			p->size_w_,
-			p->size_h_,
+			(float)p->size_w_,
+			(float)p->size_h_,
 			pos
 		);
 
@@ -346,8 +346,8 @@ bool PlayScene::isHit_Wall(t2k::Vector3 pos,  t2k::Vector3 prev_pos, float r, in
 
 		t2k::Vector3 pos_ = t2k::getNearestRectPoint(
 			box_pos,
-			p->size_w_,
-			p->size_h_,
+			(float)p->size_w_,
+			(float)p->size_h_,
 			pos
 		);
 
@@ -382,8 +382,8 @@ void PlayScene::isHit_Wall(t2k::Vector3& pos, t2k::Vector3 prev_pos, float r) {
 
 		t2k::Vector3 pos_ = t2k::getNearestRectPoint(
 			box_pos,
-			p->size_w_,
-			p->size_h_,
+			(float)p->size_w_,
+			(float)p->size_h_,
 			pos
 		);
 
@@ -685,9 +685,9 @@ void PlayScene::Render(float deltatime) {
 	tpr::Vector2 p_pos = FixPositionVector(tpr::Vector2(Pp->pos.x, Pp->pos.y));
 
 	//Player‚ÆEnemy‚ð‚Â‚È‚®‹éŒ`
-	tpr::Quadrilateral ray_quad(e_pos, p_pos, GMp->BULLET_RADIUS * 3);
+	//tpr::Quadrilateral ray_quad(e_pos, p_pos, GMp->BULLET_RADIUS * 3);
 
-	ray_quad.DrawBox(-1);
+	//ray_quad.DrawBox(-1);
 
 	for (auto p : scroll_p) {
 

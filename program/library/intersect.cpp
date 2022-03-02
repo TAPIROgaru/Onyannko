@@ -58,7 +58,7 @@ namespace t2k {
 
 		if (!t2k::isIntersectRect(a_now, a_rect_size_w, a_rect_size_h, b, b_rect_size_w, b_rect_size_h)) return NO_HIT;
 
-		t2k::Vector3 a_near = t2k::getNearestRectPoint(a_prev, a_rect_size_w, a_rect_size_h, b);
+		t2k::Vector3 a_near = t2k::getNearestRectPoint(a_prev, (float)a_rect_size_w, (float)a_rect_size_h, b);
 		int n = t2k::getRegionPointAndRect(a_near, b, b_rect_size_w, b_rect_size_h);
 
 		if (0 == n) {
@@ -164,8 +164,8 @@ namespace t2k {
 		t2k::Vector3 ln = line_end - line_start;
 		t2k::Vector3 pa = line_start - plane_pos;
 		t2k::Vector3 pb = line_end - plane_pos;
-		float na = fabs(pa.dot(plane_normal));
-		float nb = fabs(pb.dot(plane_normal));
+		float na = (float)fabs(pa.dot(plane_normal));
+		float nb = (float)fabs(pb.dot(plane_normal));
 
 		intersect_position = line_start + ln * (na / (na + nb));
 

@@ -15,7 +15,7 @@ bool Skill::isHit_Bullet() {
 		if (p->_team == _team) { continue; }
 
 		if (tpr::isHit_CircleAndCircle(
-			tpr::Vector2(p->pos.x, p->pos.y), p->r, pos_b, r)) {
+			tpr::Vector2(p->pos.x, p->pos.y), (float)p->r, pos_b, (float)r)) {
 
 			p->alive_flag = false;
 
@@ -37,7 +37,7 @@ bool Skill::isHit_Enemy(tpr::Vector2 pos) {
 	if (_team) { p = GMp->SPp->Ep; }
 	else if (!_team) { p = GMp->SPp->Pp; }
 
-	if (tpr::isHit_CircleAndCircle(tpr::Vector2(p->pos.x, p->pos.y), p->r, pos, r)) {
+	if (tpr::isHit_CircleAndCircle(tpr::Vector2(p->pos.x, p->pos.y), (float)p->r, pos, (float)r)) {
 
 		return true;
 	}
@@ -74,12 +74,12 @@ void Skill::Skill_RenderMain(Camera* cam) {
 	if (_active)return;
 
 	t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
-	DrawRotaGraph(pos_.x, pos_.y, 0.5, 0, scroll_img_open, true);
+	DrawRotaGraph((int)pos_.x, (int)pos_.y, 0.5, 0, scroll_img_open, true);
 }
 void Skill::Skill_RenderDebug(Camera* cam) {
 
 	Skill_Render(cam);
 	if (_active)return;
 
-	DrawRotaGraph(pos.x, pos.y, 0.5, 0, scroll_img_open, true);
+	DrawRotaGraph((int)pos.x, (int)pos.y, 0.5, 0, scroll_img_open, true);
 }

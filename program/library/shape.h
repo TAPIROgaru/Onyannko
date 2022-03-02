@@ -11,8 +11,8 @@ namespace t2k {
 			, width_(width)
 			, height_(height)
 		{}
-		float width_;
-		float height_;
+		float width_ = 0.0f;
+		float height_ = 0.0f;
 		t2k::Vector3 pos_;
 		inline float ltx() { return pos_.x - width_ * 0.5f; }
 		inline float lty() { return pos_.y - height_ * 0.5f; }

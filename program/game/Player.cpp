@@ -185,7 +185,7 @@ void Player::Move(float deltatime) {
 		}
 	}
 
-	GMp->SPp->isHit_Wall(pos, prev_pos, r);
+	GMp->SPp->isHit_Wall(pos, prev_pos, (float)r);
 
 	if (_stun) {
 		pos = prev_pos;
@@ -253,13 +253,13 @@ void Player::Render(Camera* cam) {
 
 	t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
 
-	DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, chara_handle, 1);
+	DrawRotaGraph((int)pos_.x, (int)pos_.y, 1.0, 0, chara_handle, 1);
 
 	ult->Render(cam);
 	skillA->Render(cam);
 	skillB->Render(cam);
 
-	HP.DrawGauge(tpr::Vector2(pos_.x, pos_.y - 20), 0, sta.HP, sta.hp_);
+	HP.DrawGauge(tpr::Vector2(pos_.x, pos_.y - 20.0f), 0, (float)sta.HP, (float)sta.hp_);
 }
 
 //----------------------------------------------------------------------------------------------------

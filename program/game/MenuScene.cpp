@@ -9,7 +9,7 @@ MenuScene::MenuScene() {
 
 	img = GMp->loadGraph("graphics/back.png");
 	bgm = GMp->loadSoundMem("sound/bgm_other.mp3");
-	ChangeVolumeSoundMem(255 * 0.2, bgm);
+	ChangeVolumeSoundMem((int)(255 * 0.2), bgm);
 }
 
 

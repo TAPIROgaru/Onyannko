@@ -22,7 +22,7 @@ KAGINAWA::KAGINAWA(tpr::Vector2 pos_, int angle) {
 	this->angle = angle;
 
 	sound = GMp->loadSoundMem("sound/shuriken.mp3");
-	ChangeVolumeSoundMem(255 * 0.4, sound);
+	ChangeVolumeSoundMem((int)(255 * 0.4), sound);
 
 	//=============================================================================
 	//デバッグ用
@@ -99,7 +99,7 @@ bool KAGINAWA::isHit() {
 
 	tpr::Vector2 pos_(e_p->pos.x, e_p->pos.y);
 
-	if (tpr::isHit_CircleAndCircle(line->end_pos, r, pos_, e_p->r)) {
+	if (tpr::isHit_CircleAndCircle(line->end_pos, (float)r, pos_, (float)e_p->r)) {
 		return true;
 	}
 
@@ -140,9 +140,9 @@ void KAGINAWA::Skill_Render(Camera* cam) {
 
 	tpr::Vector2 s_pos = GMp->SPp->FixPositionVector(line->start_pos);
 	tpr::Vector2 e_pos = GMp->SPp->FixPositionVector(line->end_pos);
-	DrawLine(s_pos.x, s_pos.y, e_pos.x, e_pos.y, 0);
+	DrawLine((int)s_pos.x, (int)s_pos.y, (int)e_pos.x, (int)e_pos.y, 0);
 
 	float rad = tpr::Angle::RadCalc(line->start_pos, line->end_pos);
 	tpr::Vector2 pos_ = GMp->SPp->FixPositionVector(line->end_pos);
-	DrawRotaGraph(pos_.x, pos_.y, 1.0, rad, skill_img[0], true);
+	DrawRotaGraph((int)pos_.x, (int)pos_.y, 1.0, rad, skill_img[0], true);
 }

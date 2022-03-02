@@ -18,7 +18,7 @@ Bullet::Bullet(float x, float y, float dire_x, float dire_y, bool t) {
 
 	img = GMp->loadGraph("graphics/NINGU/SHURIKEN.png");
 	sound = GMp->loadSoundMem("sound/shuriken.mp3");
-	ChangeVolumeSoundMem(255 * 0.4, sound);
+	ChangeVolumeSoundMem((int)(255 * 0.4), sound);
 	PlaySoundMem(sound,DX_PLAYTYPE_BACK);
 
 	_team = t;
@@ -66,7 +66,7 @@ bool Bullet::isDelete() {
 
 	if (scope < count) { return true; }
 
-	if (GMp->SPp->isHit_Wall(pos, r)) { return true; }
+	if (GMp->SPp->isHit_Wall(pos, (float)r)) { return true; }
 
 	return false;
 }
@@ -86,7 +86,7 @@ void Bullet::Render(Camera* cam) {
 
 	t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(pos);
 
-	DrawRotaGraph(pos_.x, pos_.y, 1.0, angle, img, 1);
+	DrawRotaGraph((int)pos_.x, (int)pos_.y, 1.0, angle, img, 1);
 
 	angle += 0.15f;
 }

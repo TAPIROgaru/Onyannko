@@ -27,9 +27,9 @@ public:
 
 	int origin_img = 0;
 	int origin_r = 0;
-	float origin_speed = 0.0f;
+	int origin_speed = 0;
 
-	float change_speed = 0;
+	int change_speed = 0;
 
 	CharaObj* p = nullptr;
 

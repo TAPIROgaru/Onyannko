@@ -21,7 +21,7 @@ BLINK::BLINK(tpr::Vector2 pos_, int angle) {
 	this->angle = angle;
 
 	sound = GMp->loadSoundMem("sound/blink.mp3");
-	ChangeVolumeSoundMem(255 * 0.4, sound);
+	ChangeVolumeSoundMem((int)(255 * 0.4), sound);
 
 	//=============================================================================
 	//デバッグ用
@@ -78,5 +78,5 @@ void BLINK::Skill_Render(Camera* cam) {
 	if (!_effect) { return; }
 
 	tpr::Vector2 pos_ = GMp->SPp->FixPositionVector(pos_b);
-	DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, skill_img[0], true);
+	DrawRotaGraph((int)pos_.x, (int)pos_.y, 1.0, 0, skill_img[0], true);
 }

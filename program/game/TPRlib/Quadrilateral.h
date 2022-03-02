@@ -99,7 +99,7 @@ namespace tpr {
 
 			Vector2 pos_c = Vector2::CenterPointCalc(start_pos, end_pos);
 
-			int size_h = Vector2::DistanceCalc(start_pos, end_pos);
+			int size_h = (int)Vector2::DistanceCalc(start_pos, end_pos);
 
 			float rad = Angle::RadCalc(start_pos, end_pos);
 

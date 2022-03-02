@@ -29,7 +29,7 @@ public:
 	//•Ï”
 
 	float throw_speed = 8.0f;
-	float pull_speed = throw_speed * 1.5;
+	float pull_speed = throw_speed * 1.5f;
 	tpr::Line* line = nullptr;
 	CharaObj* p = nullptr;
 	CharaObj* e_p = nullptr;

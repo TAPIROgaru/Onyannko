@@ -28,7 +28,7 @@ public:
 	//•Ï”
 
 	CharaObj* e_p = nullptr;
-	float origin_speed = 0.0f;
+	int origin_speed = 0;
 
 	bool _hit = false;
 

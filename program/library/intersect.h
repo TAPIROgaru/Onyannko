@@ -52,7 +52,7 @@ namespace t2k {
 	// ret....[ è’ìÀÇµÇƒÇ¢ÇÈ : true ]   [ è’ìÀÇµÇƒÇ¢Ç»Ç¢ : false ]
 	inline bool isIntersectRect(const t2k::Vector3& a, const int a_rect_size_w, const int a_rect_size_h,
 		const t2k::Vector3& b, const int b_rect_size_w, const int b_rect_size_h) {
-		return isIntersectRect(a.x, a.y, a_rect_size_w, a_rect_size_h, b.x, b.y, b_rect_size_w, b_rect_size_h);
+		return isIntersectRect((int)a.x, (int)a.y, a_rect_size_w, a_rect_size_h, (int)b.x, (int)b.y, b_rect_size_w, b_rect_size_h);
 	}
  
 	//-----------------------------------------------------------------------------------------------------

@@ -20,7 +20,7 @@ SHOTGUN::SHOTGUN(tpr::Vector2 pos_, int angle) {
 	r = 4;
 
 	sound = GMp->loadSoundMem("sound/shot.mp3");
-	ChangeVolumeSoundMem(255 * 0.4, sound);
+	ChangeVolumeSoundMem((int)(255 * 0.4), sound);
 
 	//=============================================================================
 	//デバッグ用

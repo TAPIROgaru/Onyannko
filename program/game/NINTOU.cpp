@@ -22,7 +22,7 @@ NINTOU::NINTOU(tpr::Vector2 pos_, int angle) {
 	r = 23;
 
 	sound = GMp->loadSoundMem("sound/nintou.mp3");
-	ChangeVolumeSoundMem(255 * 0.4, sound);
+	ChangeVolumeSoundMem((int)(255 * 0.4), sound);
 
 	//=============================================================================
 	//デバッグ用
@@ -100,19 +100,19 @@ void NINTOU::Skill_Render(Camera* cam) {
 	const int PLAY_IMG_TIMES = 5;
 
 	if (flame_count < PLAY_IMG_TIMES) {
-		DrawRotaGraph(pos_.x, pos_.y, 1.5, rad, skill_img[0], true);
+		DrawRotaGraph((int)pos_.x, (int)pos_.y, 1.5, rad, skill_img[0], true);
 	}
 	else if (flame_count < PLAY_IMG_TIMES * 2) {
 		_move = true;
-		DrawRotaGraph(pos_.x, pos_.y, 1.5, rad, skill_img[1], true);
+		DrawRotaGraph((int)pos_.x, (int)pos_.y, 1.5, rad, skill_img[1], true);
 	}
 	else if (flame_count < PLAY_IMG_TIMES * 3) {
 		_move = true;
-		DrawRotaGraph(pos_.x, pos_.y, 1.5, rad, skill_img[2], true);
+		DrawRotaGraph((int)pos_.x, (int)pos_.y, 1.5, rad, skill_img[2], true);
 	}
 	else if (flame_count < PLAY_IMG_TIMES * 4) {
 		_move = true;
-		DrawRotaGraph(pos_.x, pos_.y, 1.5, rad, skill_img[3], true);
+		DrawRotaGraph((int)pos_.x, (int)pos_.y, 1.5, rad, skill_img[3], true);
 	}
 	else {
 		_end_effect = true;

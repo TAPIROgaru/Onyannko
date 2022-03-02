@@ -95,7 +95,7 @@ void Enemy::Move(float deltatime) {
 
 		pos += {move_dire.x* sta.move_speed, move_dire.y* sta.move_speed, 0};
 
-		GMp->SPp->isHit_Wall(pos, prev_pos, r);
+		GMp->SPp->isHit_Wall(pos, prev_pos, (float)r);
 
 		if (_stun) {
 			pos = prev_pos;
@@ -125,7 +125,7 @@ void Enemy::Move(float deltatime) {
 
 		pos += {avo_dire.x* sta.move_speed, avo_dire.y* sta.move_speed, 0};
 
-		GMp->SPp->isHit_Wall(pos, prev_pos, r);
+		GMp->SPp->isHit_Wall(pos, prev_pos, (float)r);
 
 		if (_stun) {
 			pos = prev_pos;
@@ -262,9 +262,9 @@ void Enemy::Render(Camera* cam) {
 	skillA->Render(cam);
 	skillB->Render(cam);
 
-	DrawRotaGraph(pos_.x, pos_.y, 1.0, 0, chara_handle, 1);
+	DrawRotaGraph((int)pos_.x, (int)pos_.y, 1.0, 0, chara_handle, 1);
 
-	HP.DrawGauge(tpr::Vector2(pos_.x, pos_.y - 20), 0, sta.HP, sta.hp_);
+	HP.DrawGauge(tpr::Vector2(pos_.x, pos_.y - 20), 0, (float)sta.HP, (float)sta.hp_);
 
 	//=====================================================================
 	//デバッグ用
@@ -278,7 +278,7 @@ void Enemy::Render(Camera* cam) {
 		t2k::Vector3 _pos = GMp->SPp->FixPositionVector(
 			t2k::Vector3{ (float)move_pos[i].x ,(float)move_pos[i].y ,0 });
 
-		DrawGraph(_pos.x, _pos.y, astar->img, true);
+		DrawGraph((int)_pos.x, (int)_pos.y, astar->img, true);
 
 		i++;
 		p++;

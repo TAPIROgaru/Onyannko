@@ -26,7 +26,7 @@ KAKUREMI::KAKUREMI(tpr::Vector2 pos_, int angle) {
 	this->angle = angle;
 
 	sound = GMp->loadSoundMem("sound/kakuremi.mp3");
-	ChangeVolumeSoundMem(255 * 0.4, sound);
+	ChangeVolumeSoundMem((int)(255 * 0.4), sound);
 
 	//=============================================================================
 	//デバッグ用
@@ -44,7 +44,7 @@ KAKUREMI::KAKUREMI(tpr::Vector2 pos_, int angle) {
 
 void KAKUREMI::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p)
 {
-	change_speed = p->sta.move_speed * 1.8f;
+	change_speed = (int)(p->sta.move_speed * 1.8f);
 	origin_img = p->chara_handle;
 	origin_speed = p->sta.move_speed;
 
@@ -76,9 +76,9 @@ void KAKUREMI::TurnOff(float deltatime) {
 		p->sta.move_speed = origin_speed;
 		p->_invincible = false;
 
-		change_speed = 0.0f;
+		change_speed = 0;
 		origin_img = 0;
-		origin_speed = 0.0f;
+		origin_speed = 0;
 	}
 }
 
@@ -102,16 +102,16 @@ void KAKUREMI::Skill_Render(Camera* cam) {
 	t2k::Vector3 pos_ = GMp->SPp->FixPositionVector(p->pos);
 
 	if (flame_count < 6) {
-		DrawRotaGraph(pos_.x, pos_.y, 2, 0, skill_img[1], true);
+		DrawRotaGraph((int)pos_.x, (int)pos_.y, 2, 0, skill_img[1], true);
 	}
 	else if (flame_count < 12) {
-		DrawRotaGraph(pos_.x, pos_.y, 2, 0, skill_img[2], true);
+		DrawRotaGraph((int)pos_.x, (int)pos_.y, 2, 0, skill_img[2], true);
 	}
 	else if (flame_count < 18) {
-		DrawRotaGraph(pos_.x, pos_.y, 2, 0, skill_img[3], true);
+		DrawRotaGraph((int)pos_.x, (int)pos_.y, 2, 0, skill_img[3], true);
 	}
 	else if (flame_count < 24) {
-		DrawRotaGraph(pos_.x, pos_.y, 2, 0, skill_img[4], true);
+		DrawRotaGraph((int)pos_.x, (int)pos_.y, 2, 0, skill_img[4], true);
 	}
 	else {
 		_effect = false;

@@ -19,7 +19,7 @@ KUNAI::KUNAI(tpr::Vector2 pos_, int angle) {
 	this->angle = angle;
 
 	sound = GMp->loadSoundMem("sound/shuriken.mp3");
-	ChangeVolumeSoundMem(255 * 0.4, sound);
+	ChangeVolumeSoundMem((int)(255 * 0.4), sound);
 
 	//=============================================================================
 	//デバッグ用
@@ -76,16 +76,16 @@ void KUNAI::isHit() {
 
 	int num;
 
-	if (GMp->SPp->isHit_Wall(t2k::Vector3{ pos_b.x,pos_b.y,0 }, prev_pos, r, &num)) {
+	if (GMp->SPp->isHit_Wall(t2k::Vector3{ pos_b.x,pos_b.y,0 }, prev_pos, (float)r, &num)) {
 
 
 		if (num == 0 || num == 2) {
 			dire.y *= -1;
-			prev_pos.y + dire.y * r;
+			prev_pos.y += dire.y * r;
 		}
 		if (num == 3 || num == 1) {
 			dire.x *= -1;
-			prev_pos.x + dire.x * r;
+			prev_pos.x += dire.x * r;
 		}
 
 		pos_b = { prev_pos.x, prev_pos.y };
@@ -143,7 +143,7 @@ void KUNAI::Skill_Render(Camera* cam) {
 	float rad = tpr::Angle::RadCalc(tpr::Vector2(0, 0), dire);
 	tpr::Vector2 pos_ = GMp->SPp->FixPositionVector(pos_b);
 
-	DrawRotaGraph(pos_.x, pos_.y, 1, rad, skill_img[0], true);
+	DrawRotaGraph((int)pos_.x, (int)pos_.y, 1, rad, skill_img[0], true);
 
-	hp.DrawGauge(tpr::Vector2(pos_.x, pos_.y - 17), 0, MAX_HP, hitpoint);
+	hp.DrawGauge(tpr::Vector2(pos_.x, pos_.y - 17), 0, (float)MAX_HP, (float)hitpoint);
 }
