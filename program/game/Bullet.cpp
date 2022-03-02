@@ -17,6 +17,9 @@ Bullet::Bullet(float x, float y, float dire_x, float dire_y, bool t) {
 	direction_y = dire_y;
 
 	img = GMp->loadGraph("graphics/NINGU/SHURIKEN.png");
+	sound = GMp->loadSoundMem("sound/shuriken.mp3");
+	ChangeVolumeSoundMem(255 * 0.4, sound);
+	PlaySoundMem(sound,DX_PLAYTYPE_BACK);
 
 	_team = t;
 	r = GMp->BULLET_RADIUS;

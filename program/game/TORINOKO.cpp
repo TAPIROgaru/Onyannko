@@ -26,6 +26,11 @@ TORINOKO::TORINOKO(tpr::Vector2 pos_, int angle) {
 	this->angle = angle;
 	r = 20;
 
+	sound = GMp->loadSoundMem("sound/put.mp3");
+	ChangeVolumeSoundMem(255 * 0.4, sound);
+	sound2 = GMp->loadSoundMem("sound/torinoko.mp3");
+	ChangeVolumeSoundMem(255 * 0.4, sound2);
+
 	//=============================================================================
 	//デバッグ用
 
@@ -48,6 +53,7 @@ void TORINOKO::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p)
 	if (_team) { e_p = GMp->SPp->Ep; }
 	else if (!_team) { e_p = GMp->SPp->Pp; }
 
+	PlaySoundMem(sound, DX_PLAYTYPE_BACK);
 
 	_active = true;
 	_effect = true;
@@ -103,6 +109,8 @@ void TORINOKO::Skill_Render(Camera* cam) {
 	}
 	else if (flame_count < PLAY_IMG_TIMES_S * 2 + PLAY_IMG_TIMES_F) {
 		DrawRotaGraph(pos_.x, pos_.y, 1.5, 0, skill_img[2], true);
+
+		PlaySoundMem(sound2, DX_PLAYTYPE_BACK);
 		_check = true;
 	}
 	else if (flame_count < PLAY_IMG_TIMES_S * 3 + PLAY_IMG_TIMES_F) {

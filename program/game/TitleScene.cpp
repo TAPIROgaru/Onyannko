@@ -14,6 +14,8 @@ TitleScene::TitleScene() {
 	name_img = GMp->loadGraph("graphics/title_name.png");
 	control_img = GMp->loadGraph("graphics/control.png");
 	push_img = GMp->loadGraph("graphics/pushanybotton.png");
+	bgm = GMp->loadSoundMem("sound/bgm_title.mp3");
+	ChangeVolumeSoundMem(255 * 0.2, bgm);
 }
 
 
@@ -24,6 +26,11 @@ void TitleScene::ChangeMenuScene() {
 	if (CheckHitKeyAll(DX_CHECKINPUT_ALL) != 0) {
 		_switch = false;
 		GMp->SMp->_switch = true;
+
+		PlaySoundMem(GMp->scene_sou, DX_PLAYTYPE_BACK);
+		if (CheckSoundMem(bgm) == 1) {
+			StopSoundMem(bgm);
+		}
 	}
 }
 
@@ -31,6 +38,12 @@ void TitleScene::ChangeMenuScene() {
 //–ˆƒtƒŒ[ƒ€ŒÄ‚Ño‚µ
 
 void TitleScene::Update(float deltatime) {
+
+	if (_init) {
+
+		PlaySoundMem(bgm, DX_PLAYTYPE_LOOP, true);
+		_init = false;
+	}
 
 	ChangeMenuScene();
 }

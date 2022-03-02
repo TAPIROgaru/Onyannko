@@ -19,6 +19,9 @@ TEPPO::TEPPO(tpr::Vector2 pos_, int angle) {
 	this->angle = angle;
 	r = 14;
 
+	sound = GMp->loadSoundMem("sound/shot.mp3");
+	ChangeVolumeSoundMem(255 * 0.4, sound);
+
 	//=============================================================================
 	//デバッグ用
 
@@ -47,6 +50,8 @@ void TEPPO::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p){
 	bp = GMp->SPp->MakeBullet(pos, dire, skill_img[0], _team, speed, scope, r);
 
 	pos_b = { bp->pos.x, bp->pos.y };
+
+	PlaySoundMem(sound, DX_PLAYTYPE_BACK);
 }
 
 

@@ -21,6 +21,9 @@ NINTOU::NINTOU(tpr::Vector2 pos_, int angle) {
 	this->angle = angle;
 	r = 23;
 
+	sound = GMp->loadSoundMem("sound/nintou.mp3");
+	ChangeVolumeSoundMem(255 * 0.4, sound);
+
 	//=============================================================================
 	//デバッグ用
 
@@ -46,6 +49,8 @@ void NINTOU::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p) {
 
 	_active = true;
 	_effect = true;
+
+	PlaySoundMem(sound, DX_PLAYTYPE_BACK);
 }
 
 

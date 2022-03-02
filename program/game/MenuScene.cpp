@@ -8,6 +8,8 @@ extern GameManager* GMp;
 MenuScene::MenuScene() {
 
 	img = GMp->loadGraph("graphics/back.png");
+	bgm = GMp->loadSoundMem("sound/bgm_other.mp3");
+	ChangeVolumeSoundMem(255 * 0.2, bgm);
 }
 
 
@@ -16,6 +18,10 @@ MenuScene::MenuScene() {
 
 void MenuScene::Update(float deltatime) {
 
+	if (_init) {
+		PlaySoundMem(bgm, DX_PLAYTYPE_BACK);
+		_init = false;
+	}
 
 }
 void MenuScene::Render(float deltatime) {

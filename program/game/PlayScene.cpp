@@ -16,6 +16,15 @@ PlayScene::PlayScene() {
 	datas = GMp->datas;
 
 	map = t2k::loadCsv("BackGround.csv");
+	bgm = GMp->loadSoundMem("sound/bgm_play.mp3");
+	ChangeVolumeSoundMem(255 * 0.2, bgm);
+	count_sou[0]= GMp->loadSoundMem("sound/start_count.mp3");
+	count_sou[1]= GMp->loadSoundMem("sound/start.mp3");
+
+	count_img[0] = GMp->loadGraph("graphics/count3.png");
+	count_img[1] = GMp->loadGraph("graphics/count2.png");
+	count_img[2] = GMp->loadGraph("graphics/count1.png");
+	count_img[3] = GMp->loadGraph("graphics/start.png");
 
 	//=============================================================================
 	//デバッグ用
@@ -168,9 +177,37 @@ void PlayScene::Start(float deltatime) {
 
 	count += deltatime;
 
+	if (CheckSoundMem(count_sou[0]) == 0) {
+		PlaySoundMem(count_sou[0], DX_PLAYTYPE_BACK);
+	}
+
+	if (count < 1) { return; }
+
+	draw_num = 0;
+
+	if (count < 2) { return; }
+
+	draw_num = 1;
+
 	if (count < 3) { return; }
 
-	if (count < 5) { _start_flag = true; return; }
+	draw_num = 2;
+
+	if (count < 4) { return; }
+
+	draw_num = 3;
+
+	if (CheckSoundMem(count_sou[0]) == 1) {
+		StopSoundMem(count_sou[0]);
+	}
+
+	if (CheckSoundMem(count_sou[1]) == 0) {
+		PlaySoundMem(count_sou[1], DX_PLAYTYPE_BACK);
+	}
+
+	PlaySoundMem(bgm, DX_PLAYTYPE_LOOP);
+
+	_start_flag = true;
 }
 
 
@@ -203,6 +240,10 @@ void PlayScene::isOver() {
 	if (Pp->sta.hp_ == 0 || Ep->sta.hp_ == 0) {
 
 		GMp->SRp->_switch = true;
+		StopSoundMem(bgm);
+
+		if (Ep->sta.hp_ == 0)GMp->SRp->_win_or_lose = true;
+		else if (Pp->sta.hp_ == 0)GMp->SRp->_win_or_lose = false;
 	}
 }
 
@@ -525,7 +566,9 @@ void PlayScene::Init() {
 	count = 0;
 	_start_flag = false;
 
-	_init = false;
+	_init = false; 
+	
+	draw_num = -1;
 
 
 	//=============================================================================
@@ -613,6 +656,16 @@ void PlayScene::Render(float deltatime) {
 	}
 
 	cam.render();
+
+	if (draw_num != -1) {
+		DrawRotaGraph(GMp->SCREEN_W / 2, GMp->SCREEN_H / 2,
+			2.0, 0, count_img[draw_num], true);
+
+		if (draw_num == 3) {
+			count += deltatime;
+		}
+		if (count > 5) { draw_num = -1; }
+	}
 
 	//=============================================================================
 	//デバッグ用

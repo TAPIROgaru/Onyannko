@@ -18,6 +18,9 @@ MAKIBISI::MAKIBISI(tpr::Vector2 pos_, int angle) {
 	cool_time = 15.0f;
 	this->angle = angle;
 
+	sound = GMp->loadSoundMem("sound/put.mp3");
+	ChangeVolumeSoundMem(255 * 0.4, sound);
+
 	r = 15;
 
 	//=============================================================================
@@ -45,6 +48,8 @@ void MAKIBISI::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p)
 
 	_active = true;
 	_effect = true;
+
+	PlaySoundMem(sound, DX_PLAYTYPE_BACK);
 }
 
 

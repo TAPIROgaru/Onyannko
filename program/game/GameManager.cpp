@@ -14,6 +14,8 @@ GameManager::GameManager() {
 
 	img_aim = loadGraph("graphics/AIM.png");
 	img_mouse = loadGraph("graphics/mouse.png");
+	scene_sou = loadSoundMem("sound/scene.mp3");
+	ChangeVolumeSoundMem(255 * 0.5, scene_sou);
 }
 
 
@@ -43,17 +45,25 @@ void GameManager::Init() {
 //シーン遷移
 void GameManager::ChangeScene() {
 
-	if (SMp->_switch && t2k::Input::isKeyDown(t2k::Input::KEYBORD_2)) {
-		SMp->_switch = false;
-		STp->_switch = true;
+	//if (SMp->_switch && t2k::Input::isKeyDown(t2k::Input::KEYBORD_2)) {
+	//	SMp->_switch = false;
+	//	STp->_switch = true;
 
-		return;
-	}
+	//	PlaySoundMem(scene_sou, DX_PLAYTYPE_BACK);
+
+	//	return;
+	//}
 
 	if (SMp->_switch && t2k::Input::isKeyDown(t2k::Input::KEYBORD_3)) {
 		SMp->_switch = false;
 		SPp->_switch = true;
 		SPp->_init = true;
+
+		PlaySoundMem(scene_sou, DX_PLAYTYPE_BACK);
+
+		if (CheckSoundMem(SMp->bgm) == 1) {
+			StopSoundMem(SMp->bgm);
+		}
 
 		return;
 	}
@@ -62,6 +72,8 @@ void GameManager::ChangeScene() {
 		SPp->_switch = false;
 		SRp->_switch = false;
 		SMp->_switch = true;
+
+		PlaySoundMem(scene_sou, DX_PLAYTYPE_BACK);
 
 		return;
 	}
@@ -94,6 +106,25 @@ std::vector<int> GameManager::loadDivGraph(std::vector<std::string> str, int img
 	}
 
 	return img;
+}
+
+
+//----------------------------------------------------------------------------------------------------
+//音源ファイル
+
+int GameManager::loadSoundMem(std::string str) {
+
+	auto it = sound.find(str);
+
+	if (it != sound.end()) {
+		return it->second;
+	}
+
+	int sou = LoadSoundMem(str.c_str());
+	sound.insert(std::make_pair(str, sou));
+
+	return sou;
+
 }
 
 

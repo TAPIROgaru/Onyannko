@@ -95,16 +95,27 @@ public:
 	//=======================================================
 	std::vector<int> loadDivGraph(std::vector<std::string> str,int img_value);
 
+	//=======================================================
+	// 音源呼び出し
+	// 1.ハンドル
+	// 
+	//  return データ
+	//=======================================================
+	int loadSoundMem(std::string str);
+
 	//------------------------------------------------------------------------------------------------
 	//変数
 
 	std::vector<std::vector<std::string>>datas;
 	std::unordered_map<std::string, int> image;
+	std::unordered_map<std::string, int> sound;
 
 	bool _init = true;
 
 	int img_aim;
 	int img_mouse;
+
+	int scene_sou = 0;
 
 
 	//------------------------------------------------------------------------------------------------

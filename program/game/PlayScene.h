@@ -200,10 +200,12 @@ public:
 
 	bool _over = false;
 
-	bool _init = true;
-
 	float count = 0;
 	float start = 3;
+
+	int count_img[4] = { 0 };
+	int draw_num = -1;
+	int count_sou[2] = { 0 };
 
 	//=======================================================
 	//Astar—p•Ï”

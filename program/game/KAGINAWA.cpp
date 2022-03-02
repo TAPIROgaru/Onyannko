@@ -21,6 +21,9 @@ KAGINAWA::KAGINAWA(tpr::Vector2 pos_, int angle) {
 	cool_time = 10.0f;
 	this->angle = angle;
 
+	sound = GMp->loadSoundMem("sound/shuriken.mp3");
+	ChangeVolumeSoundMem(255 * 0.4, sound);
+
 	//=============================================================================
 	//デバッグ用
 
@@ -56,6 +59,8 @@ void KAGINAWA::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p)
 
 	_active = true;
 	_effect = true;
+
+	PlaySoundMem(sound, DX_PLAYTYPE_BACK);
 }
 
 

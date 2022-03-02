@@ -18,6 +18,9 @@ KUNAI::KUNAI(tpr::Vector2 pos_, int angle) {
 	cool_time = 10.0f;
 	this->angle = angle;
 
+	sound = GMp->loadSoundMem("sound/shuriken.mp3");
+	ChangeVolumeSoundMem(255 * 0.4, sound);
+
 	//=============================================================================
 	//デバッグ用
 
@@ -47,6 +50,8 @@ void KUNAI::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p)
 	prev_pos = { 0,0,0 };
 
 	damage += p->sta.attack;
+
+	PlaySoundMem(sound, DX_PLAYTYPE_BACK);
 }
 
 

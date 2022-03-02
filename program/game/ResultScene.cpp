@@ -11,6 +11,8 @@ ResultScene::ResultScene() {
 
 	img_back_black = GMp->loadGraph("graphics/BuckBlack.png");
 	push_img = GMp->loadGraph("graphics/pushanybotton.png");
+	bgm = GMp->loadSoundMem("sound/bgm_other.mp3");
+	ChangeVolumeSoundMem(255 * 0.2, bgm);
 }
 
 
@@ -36,6 +38,8 @@ void ResultScene::ChangeMenuScene() {
 			delete GMp->SPp->Ep;
 			GMp->SPp->Ep = nullptr;
 		}
+
+		PlaySoundMem(GMp->scene_sou, DX_PLAYTYPE_BACK);
 	}
 }
 
@@ -44,6 +48,11 @@ void ResultScene::ChangeMenuScene() {
 //–ˆƒtƒŒ[ƒ€ŒÄ‚Ño‚µ
 
 void ResultScene::Update(float deltatime) {
+
+	if (_init) {
+		PlaySoundMem(bgm, DX_PLAYTYPE_LOOP);
+		_init = false;
+	}
 
 	ChangeMenuScene();
 }

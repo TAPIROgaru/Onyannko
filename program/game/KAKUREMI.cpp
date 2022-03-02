@@ -25,6 +25,9 @@ KAKUREMI::KAKUREMI(tpr::Vector2 pos_, int angle) {
 	cool_time = 8.0f;
 	this->angle = angle;
 
+	sound = GMp->loadSoundMem("sound/kakuremi.mp3");
+	ChangeVolumeSoundMem(255 * 0.4, sound);
+
 	//=============================================================================
 	//デバッグ用
 
@@ -53,6 +56,8 @@ void KAKUREMI::Active(tpr::Vector2 pos, float dire_x, float dire_y, CharaObj* p)
 
 	_active = true;
 	_effect = true;
+
+	PlaySoundMem(sound, DX_PLAYTYPE_BACK);
 }
 
 
