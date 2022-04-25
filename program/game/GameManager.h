@@ -28,37 +28,37 @@ public:
 	//------------------------------------------------------------------------------------------------
 	//サイズ一覧 その他設定
 
-	static constexpr int SCREEN_W = 960;
-	static constexpr int SCREEN_H = 540;
+	static constexpr int SCREEN_W = 960;   //ウィンドウの横幅
+	static constexpr int SCREEN_H = 540;   //ウィンドウの縦幅
 
-	static constexpr int FIELD_W = 576;   // 
-	static constexpr int FIELD_H = 400;   // 
+	static constexpr int FIELD_W = 576;   //フィールドの横幅
+	static constexpr int FIELD_H = 400;   //フィールドの縦幅
 
-	static constexpr int TILE_SIZE_W = 32;
-	static constexpr int TILE_SIZE_H = 32;
+	static constexpr int TILE_SIZE_W = 32;   //1マスの横幅
+	static constexpr int TILE_SIZE_H = 32;   //1マスの縦幅
 
-	static constexpr int TILE_VALUE_W = 40;
-	static constexpr int TILE_VALUE_H = 28;
+	static constexpr int TILE_VALUE_W = 40;   //横のマス目の数
+	static constexpr int TILE_VALUE_H = 28;   //縦のマス目の数
 
-	static constexpr int TILE_VALUE_W_WALL = 6;
-	static constexpr int TILE_VALUE_H_WALL = 6;
+	static constexpr int TILE_VALUE_W_WALL = 6;   //左右の合計した壁の数
+	static constexpr int TILE_VALUE_H_WALL = 6;   //上下の合計した壁の数
 
-	static constexpr bool WINDOW_MODE = false;
-
-
-	static constexpr int BULLET_RADIUS = 7;
+	static constexpr bool WINDOW_MODE = false;    //スクリーンモード　true フル　false ウィンドウ
 
 
-	static constexpr int PLAYER_TAG = 1;
-	static constexpr int ENEMY_TAG = 2;
+	static constexpr int BULLET_RADIUS = 7;   //弾の半径
 
 
-	static constexpr float START_POSITION_PLAYER_W = 50.0f;
-	static constexpr float START_POSITION_ENEMY_W = 1050.0f;
-	static constexpr float START_POSITION_H = 300.0f;
+	static constexpr int PLAYER_TAG = 1;   //Playerのタグ番号
+	static constexpr int ENEMY_TAG = 2;   //Enemyのタグ番号
 
-	static constexpr bool DEBUG_MODE = true;
-	                 bool ENEMY_MODE = true;
+
+	static constexpr float START_POSITION_PLAYER_W = 50.0f;   //Playerの初期座標X
+	static constexpr float START_POSITION_ENEMY_W = 1050.0f;   //Enemyの初期座標X
+	static constexpr float START_POSITION_H = 300.0f;   //両方の初期座標Y
+
+	static constexpr bool DEBUG_MODE = true;   //デバッグモード
+	                 bool ENEMY_MODE = true;   //敵の行動するかしないか
 
 
 	//------------------------------------------------------------------------------------------------
